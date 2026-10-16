@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 初回起動時のオープニング(IntroMovieActivity)。青空の壁紙の上に AirSky のロゴを出す。 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/intro_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:alpha="0"
+        android:importantForAccessibility="no"/>
+
+    <!-- 文字を読みやすくする幕(テーマに合わせて白 / 黒) -->
+    <View
+        android:id="@+id/intro_scrim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:id="@+id/intro_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp">
+
+        <TextView
+            android:id="@+id/intro_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.04"
+            android:text="AirSky"
+            android:textSize="56sp"/>
+
+        <View
+            android:id="@+id/intro_line"
+            android:layout_width="56dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="14dp"
+            android:alpha="0"/>
+
+        <TextView
+            android:id="@+id/intro_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            android:gravity="center"
+            android:letterSpacing="0.08"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+</FrameLayout>

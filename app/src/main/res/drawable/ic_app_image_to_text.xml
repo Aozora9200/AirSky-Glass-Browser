@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 画像を文字に -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp" android:height="48dp"
+    android:viewportWidth="48" android:viewportHeight="48">
+    <path android:fillColor="#FF5E35B1" android:pathData="M24,2a22,22 0,1 1,0,44a22,22 0,1 1,0,-44z"/>
+    <group android:translateX="10.8" android:translateY="10.8" android:scaleX="1.1" android:scaleY="1.1">
+        <path android:fillColor="#FFFFFFFF" android:pathData="M3,18h12v-2H3v2zM3,6v2h18V6H3zM3,13h18v-2H3v2z"/>
+    </group>
+</vector>

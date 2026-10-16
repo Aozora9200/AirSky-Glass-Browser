@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ページ情報のカードが、画面の上から縦に広がりながら下りてきて、少し弾んで止まる -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shareInterpolator="false">
+    <scale
+        android:duration="380"
+        android:fromXScale="0.9"
+        android:fromYScale="0.6"
+        android:interpolator="@android:anim/overshoot_interpolator"
+        android:pivotX="50%"
+        android:pivotY="0%"
+        android:toXScale="1"
+        android:toYScale="1" />
+    <translate
+        android:duration="320"
+        android:fromYDelta="-12%"
+        android:interpolator="@android:anim/decelerate_interpolator"
+        android:toYDelta="0" />
+    <alpha
+        android:duration="200"
+        android:fromAlpha="0"
+        android:interpolator="@android:anim/decelerate_interpolator"
+        android:toAlpha="1" />
+</set>

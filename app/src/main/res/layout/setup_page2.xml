@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- セットアップ 3: テーマ(「次へ」でガラスのデザインを選ぶ画面が開く) -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:scrollbars="none">
+
+    <LinearLayout style="@style/Aozora.Setup.Page">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/setup_lottie"
+            style="@style/Aozora.Setup.Illustration"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/lottie_setup_theme" />
+
+        <TextView
+            style="@style/Aozora.Setup.Headline"
+            android:text="@string/i18n_a782c4614f" />
+
+        <TextView
+            style="@style/Aozora.Setup.Body"
+            android:text="@string/i18n_90ee2e996a" />
+
+        <androidx.cardview.widget.CardView
+            style="@style/Aozora.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <!-- テーマのプレビュー -->
+                <androidx.cardview.widget.CardView
+                    style="@style/Aozora.Card.Inner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/theme_example_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/bg_pressable"
+                        android:contentDescription="@string/i18n_b8ff73111d"
+                        android:maxHeight="220dp"
+                        android:padding="8dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/aozora_default" />
+                </androidx.cardview.widget.CardView>
+
+                <!-- テーマの選択(文字色は item_setup_spinner で暗いカードに合わせる) -->
+                <androidx.cardview.widget.CardView
+                    style="@style/Aozora.Card.Inner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp">
+
+                        <Spinner
+                            android:id="@+id/setup_styleList"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:dropDownVerticalOffset="60dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="48dp"
+                            android:popupBackground="@drawable/bg_spinner_popup"
+                            android:spinnerMode="dropdown" />
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center_vertical|right"
+                            android:layout_marginRight="16dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_arrow_drop_down" />
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
+
+                <CheckBox
+                    android:id="@+id/setup_checkbox_progressBar"
+                    style="@style/Aozora.Switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/i18n_46b9019fc9" />
+
+                <Button
+                    android:id="@+id/setup_help_progress"
+                    style="@style/Aozora.Button.Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_help_primary"
+                    android:text="@string/i18n_b540124d4c" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>

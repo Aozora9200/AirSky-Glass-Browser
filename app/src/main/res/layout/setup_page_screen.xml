@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- セットアップ: 一画面/二画面(画面を 2 つ持つ端末向け) -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:scrollbars="none">
+
+    <LinearLayout style="@style/Aozora.Setup.Page">
+
+        <TextView
+            style="@style/Aozora.Setup.Headline"
+            android:text="@string/i18n_36dd800709" />
+
+        <TextView
+            style="@style/Aozora.Setup.Body"
+            android:text="@string/i18n_548092e620" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/setup_screen_single"
+                style="@style/Aozora.Card"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="108dp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ill_screen_single" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/setup_radio_single"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:text="@string/i18n_5c50823a58"
+                        android:textColor="@color/setup_on_card"
+                        android:textSize="16sp"
+                        app:buttonTint="@color/setup_primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/i18n_b5a8f2aef3"
+                        android:textColor="@color/setup_on_card_variant"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/setup_screen_dual"
+                style="@style/Aozora.Card"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="108dp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ill_screen_dual" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/setup_radio_dual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:text="@string/i18n_90fb57b7e2"
+                        android:textColor="@color/setup_on_card"
+                        android:textSize="16sp"
+                        app:buttonTint="@color/setup_primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/i18n_8ca5cfbe0f"
+                        android:textColor="@color/setup_on_card_variant"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/setup_screen_tablet"
+            style="@style/Aozora.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="12dp">
+
+                <ImageView
+                    android:layout_width="84dp"
+                    android:layout_height="96dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ill_screen_tablet" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/setup_radio_tablet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:textColor="@color/setup_on_card"
+                        android:textSize="16sp"
+                        app:buttonTint="@color/setup_primary" />
+
+                    <TextView
+                        android:id="@+id/setup_tablet_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/setup_on_card_variant"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/setup_screen_note"
+            style="@style/Aozora.Text.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/i18n_c959bee4e8" />
+    </LinearLayout>
+</ScrollView>

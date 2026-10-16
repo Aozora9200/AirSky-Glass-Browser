@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Aozora メニューの行 1 つ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/PageMenuRow">
+
+    <ImageView
+        android:id="@+id/am_row_icon"
+        style="@style/PageMenuRowIcon" />
+
+    <TextView
+        android:id="@+id/am_row_label"
+        style="@style/PageMenuRowText" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:alpha="0.6"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_si_chevron" />
+</LinearLayout>

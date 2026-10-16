@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  初回セットアップ(Pixel のセットアップ風)。
+  背景の壁紙とスクリムはそのまま、上にページ、下に「戻る」(文字ボタン)と「次へ」(ピル)を置く。
+  ページは指でめくらず、ボタンだけで進む(利用規約に同意するまで先へ進めないように)。
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/setup_window_bg">
+
+    <!-- 背景写真（ID は既存コードから参照されるためそのまま） -->
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/setupback" />
+
+    <!-- 常時表示のグラデーションスクリム（文字の可読性を確保） -->
+    <View
+        android:id="@+id/setupScrim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_setup_scrim" />
+
+    <!-- 既存コード用に残している追加スクリム（元と同じく初期は非表示） -->
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000"
+        android:contentDescription="@null"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <com.airsky.browser.SetupViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingTop="12dp"
+            android:paddingRight="24dp"
+            android:paddingBottom="20dp">
+
+            <Button
+                android:id="@+id/btnPrev"
+                style="@style/Aozora.Button.Text"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="@string/i18n_4a622f127b" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btnNext"
+                style="@style/Aozora.Button.Filled"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:minWidth="112dp"
+                android:paddingLeft="28dp"
+                android:paddingRight="28dp"
+                android:text="@string/i18n_0e032e88c3" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- タッチエフェクト（最前面・タッチは素通し） -->
+    <com.airsky.browser.TouchEffectView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        android:focusable="false" />
+
+</FrameLayout>

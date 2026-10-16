@@ -1,0 +1,2737 @@
+\n\nrequirements.txt があります。必要なパッケージを先に入れておくと動きやすくなります。	\n\nThere's a requirements.txt. Installing the needed packages first makes it more likely to work.
+\n\n【改善の提案】\n	\n\n[Suggestions]\n
+\n\nお名前: 	\n\nName: 
+\n\nカード情報は暗号化して保存され、使用する時に本人確認が必要です。\nセキュリティ コードは保存しません。	\n\nCard info is stored encrypted, and you'll need to verify your identity to use it.\nSecurity codes aren't saved.
+\n\nツールに追加すると、メニューのツール一覧からすぐに実行できます。	\n\nAdd it to Tools to run it right away from the Tools list in the menu.
+\n\nパスワードは暗号化して保存され、使用する時に本人確認が必要です。	\n\nPasswords are stored encrypted, and you'll need to verify your identity to use them.
+\n\n有効期間\n	\n\nValidity period\n
+\n\n発行者\n	\n\nIssued by\n
+\n(プログラムの作業フォルダ。Python 実行ツールの「作業フォルダを書き出す」で端末に保存できます)	\n(the program's work folder. You can save it to the device with "Export work folder" in Python Runner)
+\n[パッケージを入れました]\n	\n[Packages installed]\n
+\n[パッケージを入れられませんでした (終了コード 	\n[Couldn't install packages (exit code 
+\n[プログラムが終了しました	\n[Program finished
+\n[プログラムが終了しました (終了コード 	\n[Program finished (exit code 
+\n[プログラムが終了しました]\n	\n[Program finished]\n
+\n[停止しました]\n	\n[Stopped]\n
+\n〒•••-•••• 	\nZIP •••-•••• 
+\nしばらく使用していないタブと重複しているタブ	\nTabs unused for a while and duplicate tabs
+\nダウンロードできませんでした: 	\nCouldn't download: 
+\nパスワード: 	\nPassword: 
+\nユーザー名: 	\nUsername: 
+\n実行できませんでした: 	\nCouldn't run: 
+\n最後に使用: 	\nLast used: 
+\n有効期限 ••/••	\nExpires ••/••
+  %.1f  ·  レビュー数: %s	  %.1f  ·  Reviews: %s
+  レビュー数: 	  Reviews: 
+ (ゆっくり)	 (slow)
+ (国コード 例: JP)	 (country code, e.g. JP)
+ (強制終了)	 (force stop)
+ (標準)	 (default)
+ (終了コード 	 (exit code 
+ (速い)	 (fast)
+ · ツールに表示中	 · Shown in Tools
+ · 引数: 	 · Arguments: 
+ 〜 	 – 
+ から	 onward
+ か月前	 months ago
+ が	 wants
+ が利用可能です。\n\n【変更内容】\n	 is available.\n\n[What's new]\n
+ が利用可能です。タップして更新します	 is available. Tap to update
+ でパスワードの保存を提案するようにします。	 will be offered password saving again.
+ など 	 and 
+ に新しいフォルダ	 : new folder
+ に更新できます	 is available to update to
+ の Cookie などのサイトデータが削除されます	 : cookies and other site data will be deleted
+ のサイトごとの設定をすべて削除しますか?	 : delete all per-site settings?
+ のサイトのデータへのアクセス	 : access your data for this site
+ のダウンロードを中止しました	 was stopped
+ のダウンロードを続行しますか？	 — continue downloading?
+ のデータを削除しますか?\nこのサイトからログアウトされる場合があります。	 : delete data?\nYou may be signed out of this site.
+ のパスワード	 passwords
+ のパッケージ	 packages
+ の住所	 's address
+ の対話モードです。下の欄にコードを入力して送信します。\n終わる時は exit() を入力するか、右上の停止を押します。\n\n	 interactive mode. Type code in the box below and send it.\nTo finish, enter exit() or tap Stop at the top right.\n\n
+ の履歴を 	 : 
+ の履歴をすべて削除	 : delete all history
+ の本体(約 23MB、展開後 約 60MB)を python.org からダウンロードします。最初の 1 回だけ必要です。	 runtime (about 23 MB, about 60 MB after extraction) will be downloaded from python.org. This is needed only once.
+ の権限をリセットしますか?	 : reset permissions?
+ への接続は暗号化されています。	 : your connection is encrypted.
+ をコピーしました	 copied
+ をダウンロードしています…\n	 downloading…\n
+ をダウンロードしてインストールします。\nタブやブックマークなどのデータはそのまま引き継がれます。	 will be downloaded and installed.\nYour tabs, bookmarks, and other data are kept.
+ を削除しました	 deleted
+ を削除しますか？	 — delete?
+ を読み込み中...	 — loading...
+ を追加しました	 added
+ を追加しますか？	 — add?
+ を閉じました	 closed
+ クラス)	 classes)
+ ・ 	 · 
+ ・ 保存先: 	 · Save to: 
+ 中 	 total, 
+ 件	 items
+ 件のサイト	 sites
+ 件のサイトに位置情報・カメラなどを許可しています	 sites are allowed location, camera, and other permissions
+ 件のファイルをダウンロードしています	 file(s) downloading
+ 件のファイルをダウンロードしています...	 file(s) downloading...
+ 件のファイル／フォルダを削除しますか？\nこの操作は元に戻せません。	 files/folders will be deleted. Continue?\nThis can't be undone.
+ 件のページを、インターネットにつながったら読み込みます	 pages will load once you're connected to the internet
+ 件のメモを削除しますか？	 notes will be deleted. Continue?
+ 件のメモを書き出しました	 notes exported
+ 件のライブラリとソフトウェア	 libraries and software
+ 件の履歴を削除しました	 history items deleted
+ 件の権限	 permissions
+ 件も削除されます	 items inside will also be deleted
+ 件を	 items:
+ 件を選択	 selected
+ 件削除しました	 history items deleted
+ 件選択中	 selected
+ 使用	 used
+ 個)	 )
+ 個のグループ	 groups
+ 個のサイトのデータへのアクセス	 other sites: access your data
+ 個のタブ	 tabs
+ 個のタブ、	 tabs,
+ 個のタブとグループを閉じます。グループは「タブグループ」に保存されます。	 tabs and groups will be closed. Groups are saved in "Tab groups".
+ 個のタブを閉じて、グループを削除します。	 tabs will be closed and the group deleted.
+ 個のファイルを作業フォルダに追加しました	 files added to the work folder
+ 個の値を環境変数に入れました]\n	 values from .env into environment variables]\n
+ 個の拡張機能が入っています(有効 	 extensions installed (enabled: 
+ 個の拡張機能を更新しました	 extensions updated
+ 個の権限	 permissions
+ 分	 min
+ 分前	 min ago
+ 分間は、再度ロックの解除を求めません	 minutes after unlocking, you won't be asked to unlock again
+ 年前	 years ago
+ 日 	 d 
+ 日前	 days ago
+ 日間使用していないタブ	 days: unused tabs
+ 日間使用していないタブとグループを移動します	 days: tabs and groups unused this long are moved
+ 日間使用していないタブとグループを移動します(おすすめ)	 days: tabs and groups unused this long are moved (recommended)
+ 日間経過後	 days
+ 時間前	 hr ago
+ 発行のものであると確認されました。	 .
+ 発行のものです。	 .
+ 秒お待ちください	 more seconds
+" は既に存在します。	" already exists.
+" は既に存在します。\nどうしますか？	" already exists.\nWhat do you want to do?
+% を使用中	% of device storage
+% ・ 	% · 
+% 完了	% done
+%d分前	%d min ago
+%d日前	%d days ago
+%d時間前	%d hr ago
+%s に変更しました	Changed to %s
+%sのコンテンツを表示しない	Don't show content from %s
+%sのコンテンツを表示しません	Content from %s won't be shown
+(URL バーの横のボタンを長押ししても変更できます)	 (you can also change it by long-pressing the button next to the URL bar)
+(モバイル 	(mobile 
+(ユーザー名なし)	(no username)
+(ワイヤレス)	 (wireless)
+(約 23MB)	 (about 23 MB)
++ チェック済みのアイテム 	+ Checked items 
+.env(環境変数)	.env (environment variables)
+.env(環境変数)を編集	Edit .env (environment variables)
+.main が static ではありません	.main is not static
+.py ファイル、またはプロジェクトの .zip	A .py file, or a project .zip
+0% 完了	0% done
+0分後にやり直して下さい	Try again in 0 minutes
+1 つの画面に\nすべてを表示	Everything on\none screen
+1 分後や画面を離れた時にも自動的に戻ります	Also hidden automatically after 1 minute or when you leave the screen
+1 文字消す	Delete one character
+1 日の平均	Daily average
+1 行ずつコードを入力して試せます(対話モード)	Try code one line at a time (interactive mode)
+1 行に 1 つ「名前=値」で書きます。実行する時に環境変数として読み込まれます。	Write one "name=value" per line. They're loaded as environment variables when the program runs.
+10% ずつ区切って進みます。動きが少なく、軽い表示です。	It advances in 10% steps. Less motion and a lighter display.
+10% ずつ進むプログレスバーの例	Example of a progress bar advancing in 10% steps
+16 進数 (#RRGGBB)	Hex (#RRGGBB)
+1文字を入力	Enter one character
+1文字を入力してください	Enter one character
+2 本の指で広げると拡大できます(ピンチアウト)。設定 →「全般」→「ズームボタンの表示」をオンにすると、ボタンでも拡大・縮小できます。	Spread two fingers to zoom in (pinch out). Turn on Settings → "General" → "Show zoom buttons" to zoom with buttons too.
+25% に縮小が選択されました	Scale to 25% selected
+25%に縮小	Shrink to 25%
+30 日間	30 days
+50% に縮小が選択されました	Scale to 50% selected
+50%に縮小	Shrink to 50%
+7 日間	7 days
+:00〜	:00–
+>>> Python のコードを入力	>>> Enter Python code
+AZ_MOVフラグの初期化(isFirstMov)	Reset AZ_MOV flag (isFirstMov)
+AirSky (ウィンドウ 2)	AirSky (window 2)
+AirSky Browser について	About AirSky Browser
+AirSky Browser は軽量でシンプルなオープンソースのブラウザです。\nいくつかの設定をして、使い始めましょう。	AirSky Browser is a lightweight, simple, open source browser.\nSet a few things up and get started.
+AirSky からの通知を管理	Manage notifications from AirSky
+AirSky で、このウェブサイトの証明書が 	AirSky verified that this website's certificate was issued by 
+AirSky で、このウェブサイトの証明書が確認されました。	AirSky verified this website's certificate.
+AirSky での利用	How AirSky uses it
+AirSky で実行中	Running in AirSky
+AirSky で開いたページの文字は、この大きさで表示されます。読みやすい大きさになるまで、上のスライダーで調整してください。	Text on pages opened in AirSky will be shown at this size. Adjust the slider above until it's comfortable to read.
+AirSky で開く	Open in AirSky
+AirSky にパスワードが設定されていません	AirSky has no password
+AirSky のアップデートがあります	AirSky update available
+AirSky のスタートページ	AirSky start page
+AirSky のツール	AirSky tools
+AirSky のユーザー保護の仕組み	How AirSky protects you
+AirSky のロックを解除	Unlock AirSky
+AirSky の基盤となったプロジェクト	Projects AirSky is built on
+AirSky の安全性をまとめて確認	Check AirSky's safety all at once
+AirSky の操作方法を確認しましょう。	Let's go over how to use AirSky.
+AirSky の新しいバージョンが公開された時にお知らせします	Notifies you when a new version of AirSky is released
+AirSky の言語	AirSky language
+AirSky の設定が安全かどうかを確認します。注意が必要な項目は、押すと設定を変更できます。	Checks whether AirSky's settings are safe. Tap items that need attention to change the setting.
+AirSky の通知がオフになっています	AirSky notifications are off
+AirSky は GeckoView を使い、セーフ ブラウジング・トラッキング防止・HTTPS への切り替え・サイトごとの権限によって、危険なサイトや追跡からあなたを守ります。	AirSky uses GeckoView to protect you from dangerous sites and tracking with Safe Browsing, tracking protection, switching to HTTPS, and per-site permissions.
+AirSky は UA を別の端末のものに変えて、サイトに「別の端末で見ている」と伝えられます。	AirSky can change the UA to another device's and tell sites "I'm viewing on a different device".
+AirSky は、以下のオープンソース ソフトウェアを使用しています。	AirSky uses the following open source software.
+AirSky はパスワードで保護されています	AirSky is protected with a password
+AirSky は使用できません	AirSky can't be used
+AirSky は使用できません\n	AirSky can't be used\n
+AirSky は最新の状態です	AirSky is up to date
+AirSky は軽量なWeb ブラウザです。\n幅広いデバイスに対応した快適性とユーザーインターフェースを備えています。	AirSky is a lightweight web browser.\nIt's comfortable to use and has an interface that works on a wide range of devices.
+AirSky をお使いいただく前に、利用規約をご確認ください。「同意する」を押すと、利用規約に同意したものとみなされます。	Before using AirSky, please review the terms of use. Tapping "Agree" means you agree to the terms of use.
+AirSky をご利用いただく際の条件	Conditions for using AirSky
+AirSky を再起動して表示言語を切り替えます。開いているタブはそのまま残ります。	AirSky will restart to switch the display language. Your open tabs are kept.
+AirSky を最新の状態にします	Bring AirSky up to date
+AirSky を起動	Launch AirSky
+AirSky を起動した時やアプリに戻った時に、ロックの解除を求めます	Ask to unlock when AirSky starts or when you return to the app
+AirSky ブラウザ内のすべてのサイトデータが削除されます	All site data in the AirSky browser will be deleted
+AirSky メニュー →「ダウンロード」に一覧があります。端末の「ダウンロード」フォルダにも保存されています。	There's a list in AirSky menu → "Downloads". Files are also saved in the device's "Download" folder.
+AirSky メニューの「拡張機能」から使えます。権限とデータの設定は、拡張機能の設定でいつでも変更できます。	Use it from "Extensions" in the AirSky menu. You can change permission and data settings anytime in the extension's settings.
+AirSkyを操作する	Using AirSky
+Android 9 以降で使用できます	Available on Android 9 and later
+Android で設定している言語の順に伝えます	Tell sites the languages set in Android, in order
+Android のアプリの言語設定	Android app language settings
+Android の設定でも変更できます	You can also change it in Android settings
+Android の設定で変更します	Change it in Android settings
+Android の設定の文字サイズで、ページの文字の大きさを決めます	Use the font size from Android settings to size text on pages
+Android バージョン	Android version
+Android 用に変換しています… (	Converting for Android… (
+App バージョン	App version
+Bingで検索	Search with Bing
+CT3UA / ガラケーUA	CT3UA / feature phone UA
+Cookie が無効になっているため、この設定は使われません。(設定 › プライバシーとセキュリティ › Cookieを受け入れる)	This setting isn't used because cookies are turned off. (Settings › Privacy and security › Accept cookies)
+Cookie とサイトデータ	Cookies and site data
+Cookie と他のサイトデータは、ログインや広告のパーソナライズなどでユーザーを覚えておくために使用されます。すべてのサイトの Cookie を管理するには、設定をご覧ください。	Cookies and other site data are used to remember you, for example to keep you signed in or to personalize ads. To manage cookies for all sites, see Settings.
+Cookie の読み取りと変更	Read and modify cookies
+Cookie をすべて消去	Clear all cookies
+Cookie をすべて消去します\n本当によろしいですか?	All cookies will be cleared\nAre you sure?
+Cookie を削除しますか?	Delete cookies?
+Cookie を受け入れる	Accept cookies
+Cookie、トラッキング防止、安全な接続	Cookies, tracking protection, secure connections
+Cookieをすべて消去	Clear all cookies
+Cookieを受け入れる	Accept cookies
+DATを画像に復元	Restore image from DAT
+Data URL 保存エラー: 	Data URL save error: 
+DuckDuckGoで検索	Search with DuckDuckGo
+Ecosiaで検索	Search with Ecosia
+FPS(WASD + 視点)	FPS (WASD + look)
+Google 翻訳	Google Translate
+Google 翻訳で開くこともできます	You can also open it in Google Translate
+Googleで検索	Search with Google
+Grep処理を実行するボタン	Button to run grep
+Grep用キーワード入力欄	Grep keyword field
+HOME (モード)	HOME (mode)
+HTML エディタ	HTML Editor
+HTML エディター	HTML Editor
+HTML キャプチャ失敗	HTML capture failed
+HTMLの取得に失敗しました: 	Couldn't get the HTML: 
+HTMLダウンロード失敗	HTML download failed
+HTMLファイルの読み込みに失敗しました: 	Couldn't load the HTML file: 
+HTMLファイルを選択	Choose an HTML file
+HTML保存エラー: 	HTML save error: 
+I, l, 1 のいずれかを入力してください	Enter one of I, l, or 1
+I,1,l判別	I, 1, l checker
+IP アドレス	IP address
+InputStreamが取得できません	Can't get InputStream
+JAR と、変換したデータが削除されます。プログラムが作業フォルダに保存したファイルは残ります。	The JAR and its converted data will be deleted. Files the program saved in its work folder are kept.
+JAR を実行 · 実験的な機能	Run JARs · experimental
+JAR を読み込んでいます…	Reading the JAR…
+JAR ファイル	JAR files
+JAR ファイル(Java のプログラム)を、この端末の上で実行します。コンソールに文字を出すプログラムと、Swing / AWT の画面を持つプログラムの多くに対応しています。\nJava 実行は実験的な機能です。動かないプログラムや、今後動きが変わることがあります。	Runs JAR files (Java programs) on this device. Supports most programs that print to the console and many that have Swing / AWT windows.\nJava Runner is an experimental feature. Some programs may not work, and behavior may change in the future.
+JAR ファイルではないか、Java のクラスが入っていません	Not a JAR file, or it contains no Java classes
+JAR ファイルを読めませんでした。	Couldn't read the JAR file.
+JAR ファイルを追加	Add a JAR file
+Java 実行	Java Runner
+JavaScript の最適化とセキュリティ	JavaScript optimization and security
+JavaScript を実行する	Run JavaScript
+JavaScriptが無効なため、リソース保存は利用できません	Saving resources isn't available because JavaScript is disabled
+JavaScriptを有効にする	Enable JavaScript
+Java・Python に追加したプログラムが、ここに並びます	Programs you add in Java and Python appear here
+L3 (左スティック押し込み)	L3 (press left stick)
+MD5 確認	Check MD5
+MD5チェックを実行するボタン	Button to run the MD5 check
+Manual HTML 保存失敗	Manual HTML save failed
+3D ゲームなど、マウスを固定して視点を動かすページでは、クリックするとカーソルが隠れ、指やマウスの動きがそのまま視点の動きになります。Esc キー・戻る操作・3 本指でタップのどれかで解除できます。	On pages that lock the mouse to move the view, such as 3D games, clicking hides the cursor and your finger or mouse movements move the view directly. Release it with the Esc key, the Back gesture, or a three-finger tap.
+Mozilla のおすすめ	Recommended by Mozilla
+M月d日	MMM d
+M月d日(E)	EEE, MMM d
+ON にすることで、位置情報の権限を許可できます	Turn ON to allow location permission
+OutputStreamが取得できません	Can't get OutputStream
+PC 版サイト	Desktop site
+PC 用 User-Agent を使う	Use a desktop User-Agent
+PIN が一致しません	PINs don't match
+PIN が違います	Wrong PIN
+PIN でロックを解除	Unlock with PIN
+PIN の保存に失敗しました	Couldn't save the PIN
+PIN を入力してください	Enter your PIN
+PIN を変更する	Change PIN
+PIN を設定	Set PIN
+PIN を設定しました	PIN set
+PINの再入力	Re-enter PIN
+PINを入力してください	Enter your PIN
+PIN設定 - AirSky	PIN settings - AirSky
+PyPI のパッケージ名を空白で区切って入力します。このプログラムだけで使えます。	Enter PyPI package names separated by spaces. They can be used only by this program.
+Python のプログラムを、この端末の上で実行します。文字を出すプログラムのほか、tkinter・wxPython・Flet の画面を持つプログラムの多くは、Android の画面として表示されます。\nPython 実行は実験的な機能です。動かないプログラムや、今後動きが変わることがあります。	Runs Python programs on this device. Besides programs that print text, many programs with tkinter, wxPython, or Flet windows are shown as Android screens.\nPython Runner is an experimental feature. Some programs may not work, and behavior may change in the future.
+Python は 64bit の端末(arm64 / x86_64)にだけ対応しています	Python supports only 64-bit devices (arm64 / x86_64)
+Python をダウンロード	Download Python
+Python をダウンロードしますか?	Download Python?
+Python を入れました	Python installed
+Python を入れました。\n\n	Python installed.\n\n
+Python を準備しています	Preparing Python
+Python を起動できませんでした: 	Couldn't start Python: 
+Python シェル	Python shell
+Python シェルを開く	Open Python shell
+Python ファイルを追加	Add a Python file
+Python 実行	Python Runner
+Python 本体	Python runtime
+Python 本体を削除	Delete Python runtime
+Python 本体を削除しますか?	Delete the Python runtime?
+QR コード	QR code
+QR コードをコピーしました	QR code copied
+QR コードを作成	Create QR code
+QR コードを共有	Share QR code
+QR コードを写真に保存しました	QR code saved to Photos
+QRコードのスキャン	Scan QR code
+QRコードのプレビュー	QR code preview
+QRコードをスキャン	Scan QR code
+QRコードをスキャンしてください	Scan a QR code
+QRコードをスキャンしてください.	Scan a QR code.
+QRコード作成	Create QR code
+QRコード化	Create QR code
+QRスキャン	Scan QR code
+R3 (右スティック押し込み)	R3 (press right stick)
+SELECT と START を同時に押すと、いつでもブラウザ操作とページ入力を切り替えられます。	Press SELECT and START together at any time to switch between browser control and page input.
+SHA-1指紋: 	SHA-1 fingerprint: 
+SHA-1指紋：	SHA-1 fingerprint:
+SHA-256指紋: 	SHA-256 fingerprint: 
+SHA-256指紋：	SHA-256 fingerprint:
+UA (ユーザーエージェント)とは、Webサイトにアクセスした際に、相手のサイトに渡される自身の端末の情報の事です。	A UA (user agent) is information about your device that's passed to a website when you visit it.
+UA を切り替えるとどうなるの?	What happens if I switch the UA?
+UA を変えると、表示が崩れたりログインできなかったりするサイトもあります。困ったときは元に戻してください。設定 › ブラウザの動作 からいつでも変えられます。	Changing the UA can make some sites display incorrectly or prevent signing in. If you run into trouble, change it back. You can change it anytime in Settings › Browser behavior.
+UAとは	What is a UA?
+URL が正しいか確認する	Check that the URL is correct
+URL が空のため保存しませんでした	Not saved because the URL is empty
+URL の形式が正しくありません	Invalid URL format
+URL をコピーしました	URL copied
+URL スキーム	URL schemes
+URL バーとボトムバーを、ページと同じ画面に表示します	Show the URL bar and bottom bar on the same screen as the page
+URL バーに言葉を入力して検索する時と、スタートページの検索欄で使われます。	Used when you search by typing words in the URL bar, and in the start page's search box.
+URL バーの横に置くボタンを選びます。ボタンを長押ししても変更できます。	Choose the button to place next to the URL bar. You can also change it by long-pressing the button.
+URLをコピー	Copy URL
+URLを入力	Enter URL
+URLを入力してください	Enter a URL
+URLを長押しでコピー	Long-press the URL to copy
+VR / AR デバイスの使用	Use VR / AR devices
+Yahoo!ニュース	Yahoo! News
+Yahooで検索	Search with Yahoo
+YouTubeで検索	Search with YouTube
+ZIP (添付ファイルも含む)	ZIP (including attachments)
+ZIP の展開・閲覧にも対応	Now supports extracting and browsing ZIPs
+ZIPの中では使えません	Not available inside a ZIP
+ZIPを展開	Extract ZIP
+ZIPを読み込み中...	Loading ZIP...
+ZIPを開けません: 	Can't open ZIP: 
+ZIPファイルとして読み込めません	Can't read as a ZIP file
+ZIP圧縮が完了しました	ZIP compression complete
+[.env の 	[Loaded 
+appendOutput('ERROR: su が見つかりません。この端末はルート化されていないようです')	appendOutput('ERROR: su not found. This device does not appear to be rooted')
+appendOutput('ERROR: シェルが動いていません')	appendOutput('ERROR: The shell is not running')
+appendOutput('ERROR: シェルを起動できません: 	appendOutput('ERROR: Cannot start the shell: 
+appendOutput('ERROR: ルート権限を得られませんでした(終了コード 	appendOutput('ERROR: Could not get root permission (exit code 
+appendOutput('INFO: シェルが終了しました(終了コード 	appendOutput('INFO: The shell exited (exit code 
+appendOutput('INFO: 止まらないため、シェルを立ち上げ直します')	appendOutput('INFO: Not stopping, so restarting the shell')
+blob: URLはサポートされていません	blob: URLs aren't supported
+data URL の形式が不正です	Invalid data URL format
+grep -i 実行	Run grep -i
+main メソッドのあるクラスが見つかりません	No class with a main method was found
+main(String[] args) に渡す引数を、空白で区切って入力します。次回からも使われます。	Enter the arguments to pass to main(String[] args), separated by spaces. They'll be used next time too.
+python.org の Android 版 Python 	Python for Android from python.org 
+requirements.txt のパッケージを入れる	Install packages from requirements.txt
+showToast('実行中のコマンドはありません')	showToast('No command is running')
+sys.argv に渡す引数を、空白で区切って入力します。次回からも使われます。	Enter the arguments to pass in sys.argv, separated by spaces. They'll be used next time too.
+tar が途中で終わっています	The tar ends unexpectedly
+yyyy年M月d日	MMM d, yyyy
+yyyy年M月d日(E)	EEE, MMM d, yyyy
+zip の中に Python のファイル(.py)が見つかりません	No Python file (.py) found in the zip
+… に移動	Move to …
+※ この数値は端末のシステム情報から推定した参考値です。実際のバッテリー診断結果と多少異なる場合があります。より正確な数値を得るには、満充電に近い状態で計測してください。	* This value is an estimate from the device's system information and may differ somewhat from an actual battery diagnosis. For a more accurate value, measure when the battery is nearly full.
+※スワイプで再読み込みは、サイトの仕様によってはスクロールができなくなることがあります。	*Depending on the site, swipe to refresh may prevent scrolling.
+↑ アップロード	↑ Upload
+↓ ダウンロード	↓ Download
+⚠ 保存した情報を読み込めませんでした。端末の画面ロックの変更などで暗号鍵が使えなくなった可能性があります。「保存した情報をすべて削除」を行うと、もう一度使えるようになります。	⚠ Couldn't load saved info. The encryption key may have become unusable, for example after a screen lock change. Use "Delete all saved info" to start using it again.
+⚠ 別のサイト: 	⚠ Different site: 
+⚠ 安全でない接続です\n	⚠ Connection is not secure\n
+⚠ 安全でない接続です\n保存した住所を使用	⚠ Connection is not secure\nUse a saved address
+⚠ 端末の生体認証や画面ロックが変更されたため、読み出せなくなった情報があります。該当する情報を削除して、もう一度保存してください。	⚠ Some info can no longer be read because the device's biometrics or screen lock changed. Delete it and save it again.
+✅ 証明書は有効です。	✅ The certificate is valid.
+✓ このフォルダを選ぶ	✓ Choose this folder
+❌️ この証明書は信頼できる認証機関のものではありません。	❌️ This certificate isn't from a trusted certificate authority.
+❌️ セキュリティ証明書	❌️ Security certificate
+⬆  上のフォルダへ	⬆  Parent folder
+⬑ 上のフォルダ	⬑ Parent folder
+　作成日: 	  Created: 
+、	,
+「	"
+「Do Not Track」リクエストを送信する	Send a "Do Not Track" request
+「この接続は安全ではありません」と出る	I see "This connection is not secure"
+「そのまま」はコントローラーの入力をそのままページの Gamepad API へ送ります。キーボードで遊ぶゲームでは、ボタンをキーに置き換えてください(例: A → Space、十字キー → 矢印キー)。	"As is" sends the controller's input straight to the page's Gamepad API. For games played with a keyboard, replace buttons with keys (e.g. A → Space, D-pad → arrow keys).
+「リンク先を新しいタブで開く」「リンクをコピー」などを選べます。	You can choose "Open link in new tab", "Copy link", and more.
+「送信」を押すと、入力した内容(と、オンの場合は端末の情報)が開発者のフィードバック用フォーム(Google フォーム)へ暗号化された通信で送られます。パスワードなどの個人情報は書かないでください。	When you tap "Send", what you entered (and device info, if turned on) is sent over an encrypted connection to the developer's feedback form (Google Forms). Don't include passwords or other personal information.
+」が追加の権限を求めています	" is requesting additional permissions
+」に一致するブックマークはありません	" matched no bookmarks
+」に一致する設定は見つかりませんでした	" matched no settings
+」に保存しました	"
+」に割り当てるボタンを、コントローラーで押してください。\n\n今の割り当て: 	" — press the controller button to assign.\n\nCurrent: 
+」に移動しました	"
+」に置き換わります。	".
+」の 	": 
+」の割り当てを解除しました	" assignment removed
+」の更新に新しい権限が必要です	" — this update needs new permissions
+」はまだ動いています。	" is still running.
+」を削除しました	" deleted
+」を削除します。	" will be deleted.
+」を削除しますか?	" — delete?
+」を削除しますか？	" ?
+」を外します。JAR は「Java 実行」に残ります。	" from Tools. The JAR stays in "Java Runner".
+」を外します。プログラムは「Python 実行」に残ります。	" from Tools. The program stays in "Python Runner".
+」を追加しました	" added
+」タブグループを閉じて保存しました	" tab group closed and saved
+〒•••-••••  	ZIP •••-•••• 
+あとから「設定」→「デザイン」→「画面」で変更できます。	You can change this later in "Settings" → "Design" → "Screen".
+いいえ	No
+いちばん多かった日	Busiest day
+いちばん多かった時間	Busiest hour
+いつものブックマーク	Your usual bookmarks
+いまの通信	Current traffic
+おすすめ	Recommended
+おすすめの拡張機能はすべて追加済みです	All recommended extensions are already added
+おすすめの記事はありません	No recommended articles
+おすすめの記事を読み込めませんでした	Couldn't load recommended articles
+おすすめを再読み込み	Reload recommendations
+おすすめを読み込めませんでした	Couldn't load recommendations
+おすすめを読み込んでいます…	Loading recommendations…
+お使いの端末のダウンロード速度: 	Your device's download speed: 
+お名前	Name
+お問い合わせ	Contact us
+お問い合わせいただきありがとうございます。\nいただいた内容は今後の改善に役立てさせていただきます。	Thank you for contacting us.\nWe'll use your feedback to improve the app.
+お問い合わせが AirSky の画面の中で完結するようになりました。種類を選んで内容を書き、「送信」を押すだけです。\n\n不具合のご報告に役立つ端末とアプリの情報も、ワンタップで添付できます。	Contacting us now happens entirely inside AirSky. Just choose a type, write your message, and tap "Send".\n\nYou can also attach device and app info, helpful for bug reports, with one tap.
+お問い合わせ内容(必須)	Your message (required)
+お問い合わせ内容を入力してください	Enter your message
+お待ち下さい...	Please wait...
+お支払い方法	Payment methods
+お支払い方法 (クレジットカード)	Payment methods (credit cards)
+お知らせ	Notifications
+から	 →
+かんたんアップデート	Easy updates
+くるくる回る印が出たら指を離すと、ページが読み込み直されます。	When the spinning icon appears, let go and the page reloads.
+ここで離すとグループから外します	Release here to remove from the group
+ここに展開（ZIPと同じフォルダ）	Extract here (same folder as the ZIP)
+ここに移動	Move here
+この Android のバージョンでは使用できません	Not available on this Android version
+この JAR には Java のクラスが入っていません	This JAR contains no Java classes
+このアドレスは開けません。	This address can't be opened.
+このアプリ(AirSky)の通信量です。端末の記録から集計しています。	Data used by this app (AirSky), totaled from the device's records.
+このアプリに登場する商標について	About trademarks in this app
+このウェブサイトの証明書は 	This website's certificate was issued by 
+このグループに新しいタブを追加	Add a new tab to this group
+このサイトだけ許可・ブロックします	Allow or block for this site only
+このサイトでは保存しない	Never for this site
+このサイトでは許可しています	Allowed on this site
+このサイトには、暗号化されずに読み込まれた画像やスクリプトなどが含まれています。パスワードやクレジットカード情報などの機密情報はこのサイトに入力しないでください。	This site contains images, scripts, or other content loaded without encryption. Don't enter sensitive info such as passwords or credit card numbers on this site.
+このサイトには接続できませんでした。	Couldn't connect to this site.
+このサイトの Cookie・保存データ・キャッシュを削除します	Delete this site's cookies, stored data, and cache
+このサイトのセキュリティ証明書に問題があります。第三者が通信を盗み見ようとしている可能性があるため、読み込みを中止しました。	There's a problem with this site's security certificate. Loading was stopped because a third party may be trying to intercept the connection.
+このサイトの保存データ	Data stored by this site
+このサイトの権限をすべて既定の動作に戻します	Return all of this site's permissions to the default behavior
+このサイトの証明書を検証できなかったため、警告を無視して表示しています。攻撃者がパスワードやメッセージ、クレジットカード情報などを盗もうとしている可能性があります。	This site's certificate couldn't be verified, and it's being shown despite the warning. Attackers might be trying to steal your passwords, messages, credit card info, and more.
+このサイトの証明書を確認できません。保護されていない通信です。	This site's certificate can't be verified. The connection isn't secure.
+このサイトは翻訳を提案しません	Translation won't be offered for this site
+このサイトは詐欺・マルウェア配布などの危険なサイトとして報告されているため、読み込みを中止しました。	Loading was stopped because this site has been reported as dangerous, for example for fraud or distributing malware.
+このサイトを翻訳しない	Never translate this site
+このバージョンで追加・変わったこと	What was added or changed in this version
+このバージョンには対応していません	Not compatible with this version
+このファイルを開けるアプリがありません	No app can open this file
+このフォルダにはファイルがありません。\n	This folder has no files.\n
+このフォルダは空です	This folder is empty
+このフォルダを選ぶ	Choose this folder
+このプログラムが使う機能の一部(JavaFX など)には対応していません。\n	Some features this program uses (such as JavaFX) aren't supported.\n
+このプログラムは削除されています	This program has been deleted
+このプログラムは削除されました	This program was deleted
+このページからのメッセージ	Message from this page
+このページから移動しますか？	Leave this page?
+このページがポップアップを開こうとしています。\n	This page is trying to open a pop-up.\n
+このページでは使用できません	Not available on this page
+このページについて	About this page
+このページの QR コード	QR code for this page
+このページはダウンロードできません	This page can't be downloaded
+このページはネットワークを使わずに表示されています	This page is shown without using the network
+このページはリーディングモードで表示できません	This page can't be shown in reading mode
+このページは保存できません	This page can't be saved
+このページは完全には保護されていません。パスワードなどの機密情報は入力しないでください。	This page isn't fully secure. Don't enter sensitive info such as passwords.
+このページは本文を取り出せないため、リーディングモードで表示できません	This page can't be shown in reading mode because its main text can't be extracted
+このページは追加できません	This page can't be added
+このページを再読み込みすると、入力内容がもう一度送信されます。	Reloading this page will send the information you entered again.
+このページを削除しますか？	Delete this page?
+このページを翻訳しますか？	Translate this page?
+このページを開く	Open this page
+このホームアプリはショートカットの追加に対応していません	This home app doesn't support adding shortcuts
+このメモを削除しますか？	Delete this note?
+このリンクを開けるアプリが見つかりません	No app found to open this link
+この中にフォルダはありません\n右上のボタンで作れます	No folders here\nCreate one with the button at the top right
+この情報を削除しますか?元に戻すことはできません。	Delete this info? This can't be undone.
+この拡張機能とその設定・保存したデータが削除されます。	This extension and its settings and saved data will be deleted.
+この拡張機能は AirSky に対応していません。	This extension isn't compatible with AirSky.
+この拡張機能は Mozilla の署名がないため、インストールできません。	This extension can't be installed because it isn't signed by Mozilla.
+この拡張機能は今のバージョンの AirSky に対応していません。	This extension isn't compatible with this version of AirSky.
+この拡張機能は安全上の理由で Mozilla によりブロックされています。	This extension has been blocked by Mozilla for safety reasons.
+この拡張機能は安全上の理由でブロックされています。	This extension is blocked for safety reasons.
+この拡張機能は止まっています	This extension is stopped
+この拡張機能は署名を確認できないため、無効になっています。	This extension is disabled because its signature couldn't be verified.
+この接続は保護されています	This connection is secure
+この接続は保護されていません	This connection isn't secure
+この接続は保護されていません (HTTPS ではありません)。パスワードやクレジットカード情報は入力しないでください。	This connection isn't secure (not HTTPS). Don't enter passwords or credit card info.
+この接続は完全には保護されていません	This connection isn't fully secure
+この機能を使用するにはストレージの読み取り権限が必要です。権限を有効にしてください。	This feature needs permission to read storage. Please enable the permission.
+この画像は壁紙に設定できませんでした	This image couldn't be set as wallpaper
+この種類のアドオンはインストールできません。	This type of add-on can't be installed.
+この端末では 2 つ目の画面が見つかりません。二画面を選んでいても、2 つ目の画面が使える時だけ二画面で表示します。	No second screen was found on this device. Even with dual screen selected, dual screen is used only when a second screen is available.
+この端末では 2 つ目の画面が見つかりませんでした。二画面を選んだ場合は、2 つ目の画面が使える時だけ二画面で表示します。あとから「設定」→「デザイン」→「画面」で変更できます。	No second screen was found on this device. If you choose dual screen, it's used only when a second screen is available. You can change this later in "Settings" → "Design" → "Screen".
+この端末では Python を使えません	Python isn't available on this device
+この端末では使えません	Not available on this device
+この端末では使用できません	Not available on this device
+この端末では期間ごとの記録を読めないため、端末を起動してからの合計を表示しています。	This device can't read records by period, so the total since the device started is shown.
+この端末では測れません	Can't be measured on this device
+この端末では設定画面を開けませんでした	Couldn't open the settings screen on this device
+この端末の CPU(32bit)では Python を実行できません。\n	Python can't run on this device's CPU (32-bit).\n
+この端末の CPU(32bit)には対応していません	This device's CPU (32-bit) isn't supported
+この言語	This language
+この言語の翻訳には対応していません	Translation isn't available for this language
+この記事を表示しません	This article won't be shown
+この部品を削除	Delete this part
+これでデベロッパーになりました！	You are now a developer!
+これまでの新機能	Earlier new features
+これ以上のおすすめはありません	No more recommendations
+これ以上前はありません	Nothing more to undo
+さあ、はじめましょう	Let's get started
+しない	Don't split
+しばらくしてから再度アクセスする	Try again later
+しばらく使っていないタブは「非アクティブなタブ」としてまとめられることがあります。タブの一覧の一番上を確認してください。期間は 設定 →「非アクティブなタブ」で変えられます。	Tabs you haven't used for a while may be grouped as "inactive tabs". Check the top of the tab list. You can change the period in Settings → "Inactive tabs".
+しばらく使用していないタブと重複しているタブを、タブ一覧の一番上の「非アクティブなタブ」にまとめて、タブ一覧を見やすくします。	Tabs you haven't used for a while and duplicate tabs are grouped under "Inactive tabs" at the top of the tab list, keeping your tab list tidy.
+しました	 done
+しました: 	 done: 
+すでにスタートページにあります	Already on the start page
+すでにリーディングリストにあります	Already in reading list
+すでに存在します	Already exists
+すべて	All
+すべて「そのまま」に戻す	Reset all to "As is"
+すべてのCookieを削除しますか？	Delete all cookies?
+すべてのウェブサイトのデータへのアクセス	Access your data for all websites
+すべてのウェブサイトの保存されたデータへのアクセス	Access your stored data for all websites
+すべてのサイト	All sites
+すべてのサイトで PC 版の表示をリクエストする	Request the desktop version on all sites
+すべてのサイトの権限をリセット	Reset permissions for all sites
+すべてのサイトの権限を既定の動作に戻しますか?	Return permissions for all sites to the default behavior?
+すべてのサイトをデスクトップモードで表示します	Show all sites in desktop mode
+すべてのサイトを既定の動作に戻します	Return all sites to the default behavior
+すべてのシークレットタブを閉じますか？	Close all incognito tabs?
+すべてのシークレットタブを閉じる	Close all incognito tabs
+すべてのタブ	All tabs
+すべてのタブ\n可能な限り HTTPS で接続し、安全でないサイトを開く前に警告します	All tabs\nConnect with HTTPS whenever possible and warn before opening insecure sites
+すべてのタブを閉じました	All tabs closed
+すべてのタブを閉じる	Close all tabs
+すべてのファイルに適用する	Apply to all files
+すべてのブラウザ Cookie を消去する	Clear all browser cookies
+すべてのページでコンテンツをブロック	Block content on any page
+すべてのメモをファイルに出力	Export all notes to files
+すべての拡張機能は最新です	All extensions are up to date
+すべての期間	All time
+すべての画像を表示します	Show all images
+すべてをデスクトップモードにする	Use desktop mode everywhere
+すべて削除	Delete all
+すべて展開（新しいフォルダ）	Extract all (new folder)
+すべて消しますか？	Clear everything?
+すべて消す	Clear all
+すべて選択	Select all
+すべて閉じる	Close all
+そのまま(コントローラーのボタン)	As is (controller button)
+そのまま(コントローラーの入力)	As is (controller input)
+そのまま指で下へ引っ張ります。	Keep pulling down with your finger.
+その他	More
+その他のアプリ	Other apps
+その他のオプション	More options
+その他のブックマーク	Other bookmarks
+その他のヘルプ	More help
+その他の操作	More actions
+その他の設定	More settings
+それ以前	Older
+たった今	Just now
+たった今更新	Updated just now
+つまずきやすいポイント	Common stumbling points
+できること・できないこと	What works and what doesn't
+とマイク	 and microphone
+と重複しているタブ	 and duplicate tabs
+どちらにするかは、あとから設定でいつでも変えられます。	You can change this anytime later in Settings.
+どれもあとから設定で変更できます。	You can change any of these later in Settings.
+どんなことが伝わるの?	What does it tell sites?
+なし	None
+なめらか	Smooth
+なめらかに伸びるので、進み具合が自然に見えます。	It grows smoothly, so progress looks natural.
+なめらかに伸びるプログレスバーの例	Example of a smoothly growing progress bar
+にやり直して下さい	 — try again later
+に更新	Updated
+のページは翻訳を提案しません	 pages won't be offered translation
+のページを常に翻訳	: always translate pages
+のページを常に翻訳します	 pages will always be translated
+のページを翻訳しない	: never translate pages
+の使用	 access
+の使用を求めています。	 access.
+の使用を許可しません	∅
+はい	Yes
+はじめに	Getting started
+ひし形	Diamond
+ほかのアプリでサインインやリンクを開くと、AirSky の簡易ブラウザがアプリの上に重なって開くようになりました。AirSky でサインイン済みのサイトはそのまま使えます。\n\n「∨」ボタンで小さなカードに最小化して、元のアプリを操作しながら待つこともできます。メニューからは、ページ内検索・翻訳・PC 版サイトの表示・AirSky で開き直す操作ができます。\n\n※ AirSky を既定のブラウザに設定している場合に使われます。	When you sign in or open a link in another app, AirSky's lightweight browser now opens on top of that app. Sites you're already signed in to in AirSky work as is.\n\nUse the "∨" button to minimize it into a small card and keep using the original app while you wait. From the menu you can find in page, translate, view the desktop site, or reopen the page in AirSky.\n\n* Used when AirSky is set as your default browser.
+ほかの言葉や期間で探してみてください	Try other words or a different time range
+ほかの言語のページを開いた時に、日本語への翻訳を提案します(端末内で翻訳します)	When you open a page in another language, offer to translate it into your language (translated on the device)
+まずは引っ張って更新してみてください。直らない場合は 設定 →「プライバシーとセキュリティ」→「キャッシュを消去」を試してください。	First, try pulling to refresh. If that doesn't fix it, try Settings → "Privacy and security" → "Clear cache".
+まだ拡張機能は入っていません。おすすめから追加してみましょう。	No extensions installed yet. Try adding one from the recommendations.
+まだ計算の履歴はありません	No calculation history yet
+まとめています…	Packaging…
+もう一度 戻る で終了します	Press Back again to exit
+もう一度、同じパスワード を入力してください	Enter the same password again
+もう一度実行	Run again
+やや劣化	Slightly degraded
+やり直す	Redo
+ようこそ	Welcome
+を使用する前に確認します(おすすめ)	 (recommended)
+を有効にする	: enable
+を求めています。	 permission.
+を追加	: add
+を非アクティブにします	 become inactive
+アクセスしたすべてのサイトでテキストと画像を拡大または縮小して表示します	Zoom text and images in or out on every site you visit
+アクセスしたサイトに他のサイトのコンテンツ(画像、広告、テキストなど)が埋め込まれている場合があります。こうした他のサイトによって設定された Cookie は「サードパーティ Cookie」と呼ばれます。	Sites you visit may embed content from other sites (images, ads, text, etc.). Cookies set by these other sites are called "third-party cookies".
+アクセスにはパスワードが必要です	A password is required for access
+アクセント	Accent
+アクティブではないタブを 3 か月後に自動的に閉じる	Close inactive tabs automatically after 3 months
+アスキーアートに変換	Convert to ASCII art
+アップデート	Update
+アップデートがあります	Update available
+アップデートのお知らせ	Update notices
+アップデートのお知らせから「更新する」を押すと、専用の画面でダウンロードの進み具合・速度を確認しながら最新版を入手できます。端末に合ったファイルを自動で選び、ダウンロードが終わるとそのままインストールに進みます。	Tap "Update" in the update notice to get the latest version on a dedicated screen showing download progress and speed. The right file for your device is chosen automatically, and installation starts as soon as the download finishes.
+アップデートの準備をしています...	Preparing the update...
+アップデートをインストールするには、AirSky に「不明なアプリのインストール」を許可してください。	To install the update, allow AirSky to "Install unknown apps".
+アップデートを中止しますか？	Cancel the update?
+アップデートを確認しています…	Checking for updates…
+アップデートを確認できませんでした	Couldn't check for updates
+アップデートを通知で知らせる	Notify me about updates
+アドオンストアで見る	View in add-ons store
+アドレスバーが消えてしまった	The address bar disappeared
+アドレスバーの使い方	Using the address bar
+アニメーション有	With animation
+アニメーション無	Without animation
+アニメーション素材のライセンス	Animation asset licenses
+アプリから開く簡易ブラウザ	Lightweight browser opened from apps
+アプリのアップデート	App updates
+アプリのテーマに関係なく、ダークモードに対応したサイトを暗い配色で表示します	Show sites that support dark mode with dark colors, regardless of the app theme
+アプリの壁紙はスタートページの壁紙と同じです。スタートページ右上の壁紙ボタンから変更できます。	The app wallpaper is the same as the start page wallpaper. Change it with the wallpaper button at the top right of the start page.
+アプリの情報を開く	Open app info
+アプリの言語	App language
+アプリを閉じたり画面を消したりしても、動画や音声の再生を続ける(通知から操作できます)	Keep playing video and audio after closing the app or turning off the screen (control it from the notification)
+アプリを離れたときにシークレット タブをロックする	Lock incognito tabs when you leave the app
+アプリケーションの更新を確認する	Check for app updates
+アプリ内でお問い合わせ	Contact us in the app
+アプリ名	App name
+アプリ情報	App info
+アプリ起動時に起動画面を表示する	Show a splash screen when the app starts
+アプリ起動時に起動音を再生する	Play a sound when the app starts
+アルファベットの大文字 I(ｱｲ) です	It's the uppercase letter I (eye)
+アルファベットの小文字 l(ｴﾙ) です	It's the lowercase letter l (el)
+アーカイブの作成	Create archive
+アーカイブを抽出中...	Extracting archive...
+アーカイブ名:	Archive name:
+イエロー	Yellow
+イコール	equals
+インストーラーを開けませんでした	Couldn't open the installer
+インストール	Install
+インストールしています...	Installing...
+インストールできません: 	Can't install: 
+インストールに失敗しました	Installation failed
+インストールの許可	Allow installation
+インストール済み · 	Installed · 
+インターネットにつながったらページを読み込んでお知らせします	The page will load and notify you once you're connected to the internet
+インターネットに再接続しました	Reconnected to the internet
+インターネットに接続されたら自動で読み込み、通知でお知らせします。	It will load automatically once you're connected to the internet, and you'll get a notification.
+インターネットに接続されていません。	You're not connected to the internet.
+インターネットに接続して、もう一度お試しください	Connect to the internet and try again
+イーサネット	Ethernet
+ウィンドウ	Window
+ウィンドウを閉じる	Close window
+ウイルスが検出されたため、	A virus was detected, so the download of
+ウイルスが検出されたため、このファイルは削除されました	This file was deleted because a virus was detected
+ウイルスが検出されたため、ダウンロードを中止しました	A virus was detected, so the download was stopped
+ウイルスが検出されたため中止しました(	Stopped because a virus was detected (
+ウイルスが検出されたため削除しました(	Deleted because a virus was detected (
+ウイルスを検出しました: 	Virus detected: 
+ウイルススキャン	Virus scan
+ウェブアドレスを入力	Enter web address
+ウェブサイト	Website
+ウェブサイトのズーム防止リクエストを上書きします	Override a website's request to prevent zooming
+ウェブサイトの現在地情報へのアクセスをクリアしますか？	Clear websites' access to your current location?
+ウェブサイト設定	Website settings
+ウェブページの言語	Web page language
+ウェブページの言語と翻訳	Web page language and translation
+ウェブページをダークモードで表示	Show web pages in dark mode
+エラー	Error
+エラー: 	Error: 
+エラー: ファイルが開けません。	Error: Can't open the file.
+エラー:取得できませんでした	Error: couldn't get it
+エラーコード: 	Error code: 
+エラー：表示できませんでした	Error: couldn't show it
+オフ	Off
+オフ\nトラッカーをブロックしません	Off\nDon't block trackers
+オフ\n通常の DNS を使います	Off\nUse regular DNS
+オフにすると、ボタンとスティックはすべてページ(ゲームなど)へそのまま渡します	When off, all buttons and sticks are passed straight to the page (games, etc.)
+オフにすると、名前の後ろに番号を付けて保存します	When off, a number is added after the name when saving
+オフライン用に保存	Save for offline
+オプション	Options
+オプションの選択	Select an option
+オレンジ	Orange
+オン	On
+オン(このアプリは対象外)	On (this app is exempt)
+オンの間は、ボタンをブラウザの操作に使わずページ(ゲーム)へ送ります。SELECT と START の同時押しでも切り替えられます	While on, buttons go to the page (games) instead of controlling the browser. You can also switch by pressing SELECT and START together
+オープンソース ライセンス	Open source licenses
+カスタマイズした動作	Customized behavior
+カスタムのウェブアドレス	Custom web address
+カット	Cut
+カメラ	camera
+カメラ (DCIM)	Camera (DCIM)
+カメラで読み取るとこのページを開けます\n長押しで QR コードをコピー	Scan with a camera to open this page\nLong-press to copy the QR code
+カメラの使用	Use your camera
+カラー保存	Save colors
+カラー情報の保存先: 	Color info saved to: 
+カーソル ブラウジングをオンまたはオフにするには、F7 キーを使用します	Press F7 to turn caret browsing on or off
+カーソルとスクロールの速さ	Cursor and scroll speed
+カーソルの位置をクリック(押したまま動かすとドラッグ)	Click at the cursor (hold and move to drag)
+カーソルの位置を右クリック(リンクのメニューなど)	Right-click at the cursor (link menus, etc.)
+カーソルの大きさ	Cursor size
+カーソルの色	Cursor color
+カード	Card
+カードを保存しました	Card saved
+カードを保存しますか？	Save card?
+カードを保存できませんでした	Couldn't save card
+カードを編集	Edit card
+カードを追加	Add card
+カード情報を入力	Fill in card info
+カード情報を更新	Update card info
+カード情報を更新しますか？	Update card info?
+カード番号	Card number
+カード番号が正しくありません	Card number is invalid
+ガラケーUA	Feature phone UA
+ガラケーの UA	Feature phone UA
+ガラケーのユーザーエージェントをリクエストする	Request the feature phone user agent
+ガラケーのユーザーエージェントを有効化する	Enable the feature phone user agent
+ガラケー向けの軽くてシンプルなページが出るサイトがあります。	Some sites show light, simple pages for feature phones.
+ガラス	Glass
+ガラス(屈折あり)	Glass (with refraction)
+ガラス: 背景が透けて見える、すりガラスのような見た目です。\nシンプル: 白(ダークモードでは黒)の面で表示します。端末への負担が少なくなります。	Glass: a frosted-glass look where the background shows through.\nSimple: solid white (black in dark mode) surfaces. Easier on the device.
+ガラスのデザイン	Glass design
+ガラスの描画には、Kyant 氏のオープンソース ライブラリ「backdrop」を使用しています。	Glass rendering uses the open source library "backdrop" by Kyant.
+ガラスの縁で、背景がレンズを通したように曲がって見えるようにします	Make the background bend at the glass edges as if seen through a lens
+キャッシュされた画像とファイル	Cached images and files
+キャッシュを削除しました	Cache cleared
+キャッシュを消去	Clear cache
+キャンセル	Cancel
+キャンセルしました	Canceled
+キー 	Key 
+キー W A S D	Keys W A S D
+キーとして送る文字	Text to send as keys
+キーを表示	Show keys
+キーボード	Keyboard
+キーボードが接続されているときにテキスト カーソルを使ってページ内を移動する	Navigate pages with a text cursor when a keyboard is connected
+キーボードのキー…	Keyboard key…
+キーボードを表示	Show keyboard
+キーボードを閉じる	Close keyboard
+クラスを書き換えています… (	Rewriting classes… (
+クリア	Clear
+クリック	Click
+クリップボードからのデータの読み取り	Get data from the clipboard
+クリップボードへのデータの書き込み	Input data to the clipboard
+クレイ	Clay
+クレジットカードの保存を提案します(セキュリティ コードは保存しません)	Offer to save credit cards (security codes are not saved)
+グラデーションにする	Use a gradient
+グリッド表示	Grid view
+グリーン	Green
+グループ	Group
+グループにまとめるタブを選択	Choose tabs to group
+グループの色を変更	Change group color
+グループの色を編集	Change group color
+グループを作成	Create group
+グループを削除	Delete group
+グループを解除	Ungroup
+グループを閉じる	Close group
+グループ名を編集	Rename group
+グレー	Gray
+グローバル プライバシー コントロール	Global Privacy Control
+ゲーム	Game
+ゲームパッド	Gamepad
+ゲームパッド 	Gamepad 
+ゲームパッドのボタン…	Gamepad button…
+ゲームパッドの十字キー	Gamepad D-pad
+ゲームパッドの右スティック	Gamepad right stick
+ゲームパッドの左スティック	Gamepad left stick
+コサイン	cosine
+コピー	Copy
+コピーが完了しました	Copy complete
+コピーしたリンク	Copied link
+コピーしました	Copied
+コピーできませんでした	Couldn't copy
+コピーまたはカットしたファイルがありません	No files have been copied or cut
+コピーを作成	Make a copy
+コピーを作成しました	Copy made
+コピー中...	Copying...
+コピー中: 	Copying: 
+コピー中のファイル	Copying file
+コマンドライン引数	Command-line arguments
+コメント	Comment
+コンソール	Console
+コンテンツ	Content
+コントローラー	Controller
+コントローラー: ブラウザ操作	Controller: browser control
+コントローラー: ページ入力	Controller: page input
+コントローラーでブラウザを操作する	Control the browser with a controller
+コントローラーで動かすマウスカーソルを出す・しまう	Show or hide a mouse cursor you move with the controller
+コントローラーをページ入力に使う	Use the controller for page input
+コード	Code
+コーラル	Coral
+サイズでソート	Sort by size
+サイズ不明	Unknown size
+サイト	Site
+サイト (例: https://example.com)	Site (e.g. https://example.com)
+サイトからの通知	Notifications from sites
+サイトからアプリストアやアプリを起動する URL スキーム機能を有効化する	Allow sites to open app stores and apps with URL schemes
+サイトが	Ask before sites use
+サイトがポップアップを開こうとしたら確認します	Ask when a site tries to open a pop-up
+サイトごと	By site
+サイトでの操作	Website activity
+サイトに	Don't allow sites to use
+サイトによっては、対応するアプリ(YouTube、地図など)で開くように作られています。ブラウザで開きたい場合は、設定 →「帯域幅の管理」→「URLスキーム」をオフにしてください。	Some sites are built to open in a matching app (YouTube, Maps, etc.). To open them in the browser, turn off Settings → "Bandwidth management" → "URL schemes".
+サイトによっては、広告を表示したり、望まないページに移動させたりするためにポップアップを使用します。	Some sites use pop-ups to show ads or send you to pages you didn't want.
+サイトによる Cookie の保存と読み取りを許可する	Allow sites to save and read cookies
+サイトにサードパーティ Cookie の使用を許可する	Allow the site to use third-party cookies
+サイトの URL	Site URL
+サイトの URL を正しく入力してください (https://… または http://…)	Enter the site URL correctly (https://… or http://…)
+サイトのアドレスを入力してください	Enter a site address
+サイトの内容	Website content
+サイトの安全性に問題がある場合に警告を表示する	Show a warning when there's a problem with a site's security
+サイトの権限を許可・ブロックすると、ここに表示されます。	Sites you allow or block permissions for appear here.
+サイトの設定	Site settings
+サイトの証明書に問題があるときの警告です。銀行やショッピングなど大切な情報を入力するサイトでは、先へ進まずに戻ることをおすすめします。	This warning appears when there's a problem with a site's certificate. On sites where you enter important information, such as banking or shopping, we recommend going back instead of continuing.
+サイトの追加	Add site
+サイトは Cookie を使用して自サイトでの閲覧アクティビティを参照できます	Sites can use cookies to see your browsing activity on their own site
+サイトは JavaScript を使用できます	Sites can use JavaScript
+サイトは JavaScript を使用できません	Sites can't use JavaScript
+サイトは、オフラインでも使えるように、端末にデータを保存し続けることがあります。	Sites may keep storing data on the device so they work offline.
+サイトは、プリンタやスマート家電など、同じネットワーク上のデバイスに接続することがあります。	Sites may connect to devices on the same network, such as printers and smart appliances.
+サイトは、著作権で保護された動画や音楽を再生するために、デバイスの識別情報を使用することがあります。	Sites may use device identifiers to play copyright-protected video and music.
+サイトはサードパーティ Cookie を使用して、コンテンツや広告をカスタマイズしたり、他のサイトでのあなたのアクティビティを把握したりできます	Sites can use third-party cookies to personalize content and ads and to see your activity on other sites
+サイトはデバイスにデータを保存し続けられます	Sites can keep storing data on the device
+サイトはポップアップを開いたり、リダイレクトしたりできます	Sites can open pop-ups and redirect
+サイトはポップアップを開けません(おすすめ)	Sites can't open pop-ups (recommended)
+サイトは確認なしで使用できます	Sites can use it without asking
+サイトは通常、VR / AR のゲームや体験のために VR / AR デバイスとデータを使用します。	Sites usually use VR / AR devices and data for VR / AR games and experiences.
+サイトは通常、ビデオ通話などのコミュニケーション機能のためにカメラを使用します。	Sites usually use your camera for communication features such as video calls.
+サイトは通常、ビデオ通話や音声入力などのためにマイクを使用します。	Sites usually use your microphone for video calls, voice input, and more.
+サイトは通常、付近のニュースや天気など、地域に合わせた情報を表示するために位置情報を使用します。	Sites usually use your location to show local info such as nearby news or weather.
+サイトは通常、動画やゲームなどのインタラクティブな機能のために JavaScript を使用します。	Sites usually use JavaScript for interactive features such as video and games.
+サイトは通常、最新ニュースやチャットのメッセージを知らせるために通知を送信します。	Sites usually send notifications to tell you about breaking news or chat messages.
+サイトは速くなりますが、安全性は低下します	Sites are faster but less secure
+サイトは遅くなりますが、安全性が高まります	Sites are slower but more secure
+サイトへの未確認のサードパーティスクリプトの挿入	Inject unverified third-party scripts into sites
+サイトを押すと、このリストから削除します。	Tap a site to remove it from this list.
+サイトを追加	Add site
+サイトデータを削除	Delete site data
+サイトデータを削除しました	Site data deleted
+サイト情報	Site info
+サイト推移時に端末を少々振動させる	Vibrate briefly when moving between sites
+サイト追加	Add site
+サイン	sine
+サインイン画面などを、アプリの上にそのまま表示	Sign-in screens and more, shown right on top of the app
+サポート	Support
+サポートされていないファイル形式です	Unsupported file format
+サンド	Sand
+サードパーティ Cookie	Third-party cookies
+サードパーティ Cookie を使用するサイトは想定どおりに動作します	Sites that use third-party cookies work as expected
+サードパーティ Cookie を使用するサイト機能が動作しない可能性があります	Site features that use third-party cookies may not work
+サードパーティ Cookie を使用するサイト機能は想定どおりに動作します	Site features that use third-party cookies work as expected
+サードパーティの Cookie がブロックされています	Third-party cookies are blocked
+サードパーティの Cookie が許可されています	Third-party cookies are allowed
+サードパーティの Cookie をブロックする	Block third-party cookies
+サードパーティの Cookie をブロックする:	Block third-party cookies:
+サードパーティの Cookie を許可する	Allow third-party cookies
+サードパーティの Cookie を許可する:	Allow third-party cookies:
+サードパーティのアセット	Third-party assets
+サーバーが見つかりませんでした。	The server couldn't be found.
+サーバーに接続を拒否されました。	The server refused the connection.
+サービスの改善についてのご意見・ご要望、不具合のご報告などをお送りください。いただいた内容は開発者が確認します。	Send us your feedback, requests, or bug reports to help improve the service. The developer will review what you send.
+シアン	Cyan
+システム UI	System UI
+システムUI	System UI
+ショートカットを削除しました	Shortcut removed
+ショートカットを削除しますか?	Remove shortcut?
+ショートカットを追加できませんでした	Couldn't add the shortcut
+シンプル	Simple
+シークレット	Incognito
+シークレット タブで開く	Open in incognito tab
+シークレット タブのみ	Incognito tabs only
+シークレット タブのみ\nシークレット タブで HTTPS に切り替えます	Incognito tabs only\nSwitch to HTTPS in incognito tabs
+シークレット タブのページ	Page in an incognito tab
+シークレット タブのロックを解除	Unlock incognito tabs
+シークレット タブはロックされています	Incognito tabs are locked
+シークレット タブをすべて閉じる	Close all incognito tabs
+シークレット タブをロック	Lock incognito tabs
+シークレット モード	Incognito mode
+シークレットでも実行	Runs in incognito
+シークレットで使える拡張機能はありません	No extensions are available in incognito
+シークレットタブ	Incognito tab
+シークレットタブ: アドレスバー	Incognito tab: address bar
+シークレットタブでもこの拡張機能を使えるようにします	Allow this extension in incognito tabs
+シークレットモード	Incognito mode
+シークレットモードでは何が残らない？	What doesn't incognito mode keep?
+シークレットモードで実行する	Run in incognito
+スキップ	Skip
+スキップする時間	Skip duration
+スキャンをキャンセルしました	Scan canceled
+スクリプトを実行 · 実験的な機能	Run scripts · experimental
+スクリーンショット	Screenshot
+スクリーンショットの保存に失敗しました	Couldn't save the screenshot
+スクリーンショットの取得に失敗しました	Couldn't take a screenshot
+スクリーンショットや画面録画を行う場合は、こちらの機能を無効にしてください。\nまた、パスワード同様ブラウザ以外の「ツール」等では機能しません。	Turn this off if you want to take screenshots or record the screen.\nLike the password, it doesn't apply to "Tools" and other non-browser screens.
+スクリーンショットを保存しました: 	Screenshot saved: 
+スクリーンショット保存中にエラー: 	Error while saving screenshot: 
+スクリーンショット取得エラー: ビューサイズが無効	Screenshot error: invalid view size
+スクロールで隠れるバー	Bars that hide while scrolling
+スクロールモード: 左スティックでスクロールします	Scroll mode: scroll with the left stick
+スクロール時に下部メニューバーを自動的に隠す	Hide the bottom menu bar automatically while scrolling
+スタート	Start
+スタートページとボトムバーの見た目を選んでください。あとから設定の「デザイン」で変更できます。	Choose the look of the start page and bottom bar. You can change it later in Settings › "Design".
+スタートページに追加	Add to start page
+スタートページに追加しました	Added to start page
+スティック	Sticks
+スティックと十字キー	Sticks and D-pad
+ステップです。	 steps away from being a developer.
+ストアで詳細を見る	See details in the store
+ストレージ	Storage
+ストレージへのアクセス権限が必要です	Storage access permission is required
+ストレージへの保存が許可されなかったため、保存できません	Can't save because storage permission wasn't granted
+ストレージ容量が512MB未満のため、リソース保存を無効にします	Saving resources is disabled because less than 512 MB of storage is free
+ストレージ容量不足	Not enough storage
+ストレージ権限が許可されました。	Storage permission granted.
+ストーム	Storm
+スピーディーで快適なブラウジング体験を	A fast, comfortable browsing experience
+スロット	Slot
+スワイプで再読み込み	Swipe to refresh
+スワイプで再読み込み※	Swipe to refresh*
+スワイプで再読み込み、起動画面、振動など	Swipe to refresh, splash screen, vibration, and more
+ズーム	Zoom
+ズームボタンの表示	Show zoom buttons
+ズームボタンの表示とタップの表示は「ユーザー補助機能」に移動しました。	Zoom button and tap display settings moved to "Accessibility".
+ズームボタンを表示する	Show zoom buttons
+セキュア DNS	Secure DNS
+セキュア DNS を使用する	Use secure DNS
+セキュリティ	Security
+セキュリティ アップデート	Security update
+セキュリティ警告	Security warnings
+セットアップ	Setup
+セージ	Sage
+セーフ ブラウジング	Safe Browsing
+セーフ ブラウジングがオフになっています	Safe Browsing is off
+セーフ ブラウジングはオンになっています	Safe Browsing is on
+ゼロ除算	Division by zero
+ソフトウェア情報	Software information
+ソースや運営元を確認	Check the source and operator
+タイトル	Title
+タイピング	Typing
+タッチの速さ	Touch speed
+タッチ操作	Touch control
+タップしてもう一度読み込む	Tap to load again
+タップしてリーディングリストを見る	Tap to view reading list
+タップして入力	Tap to enter
+タップして生体認証	Tap for biometrics
+タップして編集	Tap to edit
+タップでクリック・2 本指タップで右クリック・2 本指でスクロール	Tap to click · two-finger tap to right-click · two fingers to scroll
+タップでクリック・長押しで右クリック・2 本指でスクロール	Tap to click · long-press to right-click · two fingers to scroll
+タップを表示	Show taps
+タップを視覚化	Visualize taps
+タブ	Tab
+タブがありません	No tabs
+タブとタブグループ	Tabs and tab groups
+タブの整理	Tab cleanup
+タブをグループにまとめる	Group tabs
+タブを切り替える	Switch tabs
+タブを切り替えるには、タブボタンをタップし、切り替えるタブを選択します。タブ一覧のメニューボタンから、すべてのタブを閉じることができます。	To switch tabs, tap the tab button and choose the tab to switch to. You can close all tabs from the menu button in the tab list.
+タブを検索	Search tabs
+タブを横にスワイプすると閉じられます。たくさんのタブは「タブグループ」にまとめると探しやすくなります。	Swipe a tab sideways to close it. Grouping lots of tabs into "tab groups" makes them easier to find.
+タブを追加	Add tab
+タブを閉じる	Close tab
+タブを非アクティブにしません	Tabs won't become inactive
+タブグループ	Tab groups
+タブグループ 	Tab group 
+タブグループのメニュー	Tab group menu
+タブグループの名前を変更	Rename tab group
+タブグループはありません\n\nメニューの「タブをグループにまとめる」で、タブに名前と色を付けてまとめられます	No tab groups\n\nUse "Group tabs" in the menu to give tabs a name and color and keep them together
+タブグループは自動的に保存され、閉じた後もタブ一覧の「タブグループ」から開き直せます	Tab groups are saved automatically and can be reopened from "Tab groups" in the tab list after you close them
+タブグループを削除しますか？	Delete tab group?
+タブグループを検索	Search tab groups
+タブグループを閉じる	Close tab group
+タンジェント	tangent
+ダイレクト	Direct
+ダウンロード	Download
+ダウンロード 	Download 
+ダウンロード ステータスはダウンロード画面で確認できます	Check download status on the Downloads screen
+ダウンロード ステータスは通知で表示されます	Download status is shown in notifications
+ダウンロード: 	Downloads: 
+ダウンロードが完了しました	Download complete
+ダウンロードが完了しました: 	Download complete: 
+ダウンロードが完了しました• 	Download complete • 
+ダウンロードしたファイルが壊れています。もう一度お試しください	The downloaded file is corrupted. Please try again
+ダウンロードしたファイルが見つからない	I can't find a downloaded file
+ダウンロードしたファイルはここに表示されます	Files you download appear here
+ダウンロードしたファイルは削除されません	Downloaded files won't be deleted
+ダウンロードしたファイルを調べ、ウイルスが見つかったら削除します	Scan downloaded files and delete them if a virus is found
+ダウンロードしたファイルを開く	Open files downloaded to your device
+ダウンロードしています...	Downloading...
+ダウンロードしています... 	Downloading... 
+ダウンロードしています… 	Downloading… 
+ダウンロードする前に確認する	Ask before downloading
+ダウンロードできませんでした	Couldn't download
+ダウンロードできませんでした (HTTP 	Couldn't download (HTTP 
+ダウンロードに失敗しました	Download failed
+ダウンロードに失敗しました。ネットワーク接続をご確認ください。繰り返し症状が続く場合は、ヘルプ画面のお問い合わせからご連絡ください。	Download failed. Check your network connection. If the problem keeps happening, contact us from the Help screen.
+ダウンロードの完了などが通知されません	You won't be notified of finished downloads and more
+ダウンロードは AirSky で開いてから行ってください	To download, open the page in AirSky first
+ダウンロードやサイトの通知を受け取れます	You can get download and site notifications
+ダウンロードをキャンセルしました	Download canceled
+ダウンロードを中止しますか?	Cancel the download?
+ダウンロードを再開しました	Download resumed
+ダウンロードを始めています…	Starting download…
+ダウンロードを検索	Search downloads
+ダウンロードを続行	Download anyway
+ダウンロードキャンセル	Download canceled
+ダウンロードフォルダ	Download folder
+ダウンロード中です…	Downloading…
+ダウンロード中のファイルは削除されます。	The file being downloaded will be deleted.
+ダウンロード履歴を全消去しました	Download history cleared
+ダウンロード履歴を削除	Delete download history
+ダウンロード履歴を削除しました	Download history deleted
+ダウンロード履歴を削除しますか？	Delete download history?
+ダウンロード設定	Download settings
+ダスク	Dusk
+ダブルタップでズーム	Double-tap to zoom
+ダーク	Dark
+ダークボタン	Dark button
+ダークモード	Dark mode
+チェック	Checkbox
+チェックボックス	Checkboxes
+チェックボックスを表示	Show checkboxes
+チェックボックスを非表示	Hide checkboxes
+チェック済みのアイテム 	Checked items 
+チャレンジパッドからのアクセスとして扱われます。	Treated as access from a Challenge Pad.
+チャレンジパッドの UA	Challenge Pad UA
+チャレンジパッドのユーザーエージェントを有効化する	Enable the Challenge Pad user agent
+チョーク	Chalk
+ツール	Tools
+ツールから「	Remove "
+ツールにショートカットを追加	Add shortcut to Tools
+ツールに追加	Add to Tools
+ツールに追加しました	Added to Tools
+ツールに追加すると、メニューのツール一覧からすぐに実行できます。	Add it to Tools to run it right away from the Tools list in the menu.
+ツールのショートカットを削除	Remove Tools shortcut
+ツールを使用する	Use tools
+ツールを起動するには、メニューボタン(A)を開き、ツール項目をタップします。	To start a tool, open the menu button (A) and tap Tools.
+ツールバー	Toolbar
+ツールバーのショートカット	Toolbar shortcut
+テキスト (.txt)	Text (.txt)
+テキスト カーソル	Text cursor
+テキストをコピーしました。	Text copied.
+テキストを編集	Edit text
+テキストファイルを読み込む	Import a text file
+テーマ	Theme
+テーマ (ライト / ダーク)	Theme (light / dark)
+テーマ、ボタン、ツールバーのショートカット	Theme, buttons, toolbar shortcut
+テーマとボタンの変更は、AirSky を再起動すると反映されます。	Theme and button changes take effect after restarting AirSky.
+テーマに合わせる	Match theme
+テーマのプレビュー	Theme preview
+テーマを選びましょう	Choose a theme
+デザイン	Design
+デザインの変更を反映するには再起動が必要です	A restart is needed to apply design changes
+デザインを元に戻す	Reset design
+デスクトップサイト	Desktop site
+デスクトップモード	Desktop mode
+デスクトップモード、ユーザーエージェント、バックグラウンド再生	Desktop mode, user agent, background playback
+デスクトップモードを有効化する	Enable desktop mode
+デスクトップ版で表示します	Showing the desktop version
+デバイスのテーマに合わせる	Match device theme
+デバイスの既定	Device default
+デバイス上のサイトデータ	Site data on device
+デバイス側でのダークモードの有無に関わらず、ダークモードにします.	Always use dark mode, regardless of the device's dark mode.
+デバイス側でのダークモードの有無に関わらず、ライトモードにします.	Always use light mode, regardless of the device's dark mode.
+デバイス側でのダークモードの設定に合わせて、自動的に変更されます.	Changes automatically to match the device's dark mode setting.
+デフォルト	Default
+デフォルトのズーム	Default zoom
+デフォルトのズーム (文字の大きさ)	Default zoom (text size)
+デフォルトのブラウザ	Default browser
+デフォルトのブラウザに設定しますか?	Set as default browser?
+デフォルトのブラウザに設定すると、他のアプリからサイトを開く時に AirSky で開くようになります。	When AirSky is your default browser, sites opened from other apps open in AirSky.
+デベロッパーになるまであと	You are now
+データの保存	Store data
+データの初期化	Reset data
+データを削除	Delete data
+データを削除しました	Data deleted
+データセーバー	Data Saver
+データベースや .env、設定ファイルも一緒に写します	Also copies databases, .env, and settings files
+データ使用状況	Data usage
+データ使用量	Data usage
+データ保護のため、最近(90 日以上)アクセスしていないサイトから位置情報やカメラなどの権限を自動的に削除します	To protect your data, automatically remove location, camera, and other permissions from sites you haven't visited recently (90+ days)
+データ収集	Data collection
+トップページ	Home page
+トラッキング防止	Tracking protection
+トラックパッド	Trackpad
+ドキュメント	Documents
+ドット	Dots
+ドットと背景の色が近いため、読み取れない場合があります	The dot and background colors are too similar and may not scan
+ドットの形	Dot shape
+ナビゲーション中のブラウザーアクティビティへのアクセス	Access browser activity during navigation
+ニコニコ	Niconico
+ネガポジ	Invert colors
+ネットワーク	Network
+ネットワークに接続されているかご確認のうえ、もう一度お試しください。	Check that you're connected to the network and try again.
+ネットワークに接続できないため、ダウンロードできませんでした。	Couldn't download because there's no network connection.
+ネットワークエラーが発生しました。	A network error occurred.
+ネットワーク接続の状態	Network connection status
+バグの報告	Bug report
+バックアップとリセット	Backup and reset
+バックグラウンドでタブを開きました。	Opened tab in the background.
+バックグラウンドで再生中の動画や音声を操作します	Control video and audio playing in the background
+バックグラウンド再生	Background playback
+バッテリー	Battery
+バッテリーの最大容量をいつでもチェック	Check your battery's maximum capacity anytime
+バッテリーの最大容量を確認できるツールを導入。健康度をいつでも確認できます。	Added a tool to check the battery's maximum capacity. Check its health anytime.
+バッテリー健康度	Battery health
+バッテリー健康度を確認	Check battery health
+バッテリー最大容量	Battery maximum capacity
+バッテリー残量低下の通知	Low battery notification
+バッテリー種別	Battery type
+バーが消えたときは	When the bars disappear
+バージョン	Version
+バージョン 	Version 
+バーチャル リアリティ(VR / AR)	Virtual reality (VR / AR)
+パイ	pi
+パスワード	Password
+パスワード が一致しません	Passwords don't match
+パスワード が違います	Wrong password
+パスワード でロックを解除	Unlock with password
+パスワード の保存に失敗しました	Couldn't save the password
+パスワード を入力してください	Enter your password
+パスワード を設定	Set password
+パスワード を設定しました	Password set
+パスワード マネージャー	Password manager
+パスワード:	Password:
+パスワード、お支払い方法、住所(本人確認で自動入力)	Passwords, payment methods, addresses (autofill after verification)
+パスワードがないと、パスワード保護機能は利用できません。	Password protection isn't available without a password.
+パスワードが違います	Wrong password
+パスワードで保護	Password protection
+パスワードで保護する機能を導入しました。また、アプリ履歴など外部から覗けないようにできる設定も追加し、大切な情報を守ります。	Added password protection. There's also a setting that keeps others from peeking from outside, such as in recent apps, to protect your important info.
+パスワードなどを保存して自動入力する	Save and autofill passwords and more
+パスワードの保存を提案しないサイトはありません。	There are no sites excluded from password saving.
+パスワードの設定	Password settings
+パスワードやクレジットカード情報などの機密情報はこのサイトに入力しないでください。悪意のあるユーザーに盗まれる可能性があります。	Don't enter sensitive info such as passwords or credit card numbers on this site. It could be stolen by malicious users.
+パスワードを保存しないサイト	Never-save sites
+パスワードを保存しました	Password saved
+パスワードを保存しますか？	Save password?
+パスワードを保存できませんでした	Couldn't save password
+パスワードを入力	Enter password
+パスワードを入力してください	Enter a password
+パスワードを変更する	Change password
+パスワードを更新しますか？	Update password?
+パスワードを編集	Edit password
+パスワードを設定	Set password
+パスワードを設定し、起動時に入力を求めるようにできます	Set a password to be asked for it at startup
+パスワードを追加	Add password
+パスワード保護機能を無効にしますか?	Turn off password protection?
+パスワード入力	Enter password
+パスワード設定 - AirSky	Password settings - AirSky
+パスワード認証 - AirSky	Password authentication - AirSky
+パソコン向けのページが表示されます。	Shows the computer version of pages.
+パッケージを入れています…	Installing packages…
+パッケージを入れる	Install packages
+パッケージを追加	Add packages
+パッケージを追加(pip)	Add packages (pip)
+ビルドの種類	Build type
+ビルド番号	Build number
+ピクチャ	Pictures
+ピンク	Pink
+ピーチ	Peach
+ファイル	File
+ファイル "	File "
+ファイルからインストール	Install from file
+ファイルから作成	Create from file
+ファイルが保存されました	File saved
+ファイルが削除されたか、移動されています	The file was deleted or moved
+ファイルが壊れているため、インストールできませんでした。	Couldn't install because the file is corrupted.
+ファイルが存在しません	The file doesn't exist
+ファイルが見つかりません	File not found
+ファイルが選択されていません	No file selected
+ファイルが選択されました: 	File selected: 
+ファイルが選択されませんでした。	No file was selected.
+ファイルとキーワードを選択してください。	Choose a file and a keyword.
+ファイルに保存	Save to file
+ファイルに出力	Export to file
+ファイルのダウンロードと、ダウンロード履歴の読み取りと変更	Download files and read and modify the browser's download history
+ファイルの中身を画像のピクセルに詰めて保存します。保存した DAT から元の画像に戻すこともできます。	Packs the file's contents into image pixels and saves it. You can also restore the original from a saved DAT.
+ファイルの作成に失敗しました	Couldn't create the file
+ファイルの保存に失敗しました	Couldn't save the file
+ファイルの変換に失敗しました	Couldn't convert the file
+ファイルの管理アプリ	File management app
+ファイルの読み込み中にエラーが発生しました。	An error occurred while loading the file.
+ファイルをもう一度ダウンロードしますか？	Download this file again?
+ファイルをダウンロード	Download file
+ファイルを作成	Create file
+ファイルを作成しました	File created
+ファイルを保存できません	Can't save the file
+ファイルを確かめています…	Checking files…
+ファイルを読み込めませんでした	Couldn't read the file
+ファイルを読めませんでした。	Couldn't read the file.
+ファイルを選ぶアプリがありません	No app to choose files
+ファイルを選べません	Can't choose a file
+ファイルを選択	Choose a file
+ファイルを選択してください。	Choose a file.
+ファイルを選択するボタン	Button to choose a file
+ファイルを開く	Open file
+ファイルを開けません	Can't open the file
+ファイルを開けません: 	Can't open the file: 
+ファイルアクセスを許可してください	Allow file access
+ファイルサイズ	File size
+ファイルマネージャ	File manager
+ファイルマネージャ バージョン 1.0.0 -Release	File Manager version 1.0.0 -Release
+ファイルマネージャーが見つかりませんでした。	No file manager found.
+ファイルマネージャーの改良	File manager improvements
+ファイル全体の読み込みに失敗しました	Couldn't read the whole file
+ファイル名	File name
+ファイル名で検索	Search by file name
+ファイル名を入力してください	Enter a file name
+ファイル名を検索	Search file names
+ファイル名・サイズ・保存先を確かめてから保存します	Check the file name, size, and location before saving
+ファイル名（例: note.txt）	File name (e.g. note.txt)
+ファイル容量がQRコードのサイズを超えています	The file is too large for a QR code
+ファイル選択	Choose file
+フォグ	Fog
+フォルダ	Folder
+フォルダ "	Folder "
+フォルダが既に存在します	Folder already exists
+フォルダごと追加	Add a whole folder
+フォルダの中に Python のファイル(.py)が見つかりません	No Python file (.py) found in the folder
+フォルダの作成	Create folder
+フォルダを作成しました	Folder created
+フォルダを作成できません: 	Can't create folder: 
+フォルダを編集	Edit folder
+フォルダを自分自身の中には貼り付けできません	A folder can't be pasted into itself
+フォルダを選ぶ	Choose a folder
+フォルダを選べません	Can't choose a folder
+フォルダ作成に失敗しました	Couldn't create the folder
+フォルダ作成失敗: 	Folder creation failed: 
+フォルダ名	Folder name
+フォルダ名:	Folder name:
+フォームを再送信しますか？	Resubmit form?
+ブックマーク	Bookmarks
+ブックマークから削除	Remove from bookmarks
+ブックマークに追加	Add bookmark
+ブックマークの読み取りと変更	Read and modify bookmarks
+ブックマークをインポート	Import bookmarks
+ブックマークをエクスポート	Export bookmarks
+ブックマークを保存	Save bookmark
+ブックマークを削除	Remove bookmark
+ブックマークを削除しました	Bookmark removed
+ブックマークを検索	Search bookmarks
+ブックマークを編集	Edit bookmark
+ブックマークを追加する	Add bookmarks
+ブックマークを追加するには、URLバーの横にある星ボタンから保存できます。	To add a bookmark, save it with the star button next to the URL bar.
+ブラウザで開く	Open in browser
+ブラウザの動作	Browser behavior
+ブラウザを開かずに、その場で開発者へ送信	Send to the developer right there, without opening a browser
+ブラウザアプリ	Browser app
+ブラウザーのタブの表示/非表示	Hide and show browser tabs
+ブラウザーのタブへのアクセス	Access browser tabs
+ブラウザーのプロキシ設定の制御	Control browser proxy settings
+ブラウザーの設定の読み取りと変更	Read and modify browser settings
+ブラウザ操作	Browser control
+ブラウザ操作の割り当てとカーソルの速さ	Browser control assignments and cursor speed
+ブラウザ設定	Browser settings
+ブラック	Black
+ブランド	Brand
+ブルー	Blue
+ブロック	Block
+ブロックしたサイト	Blocked sites
+ブロックしています	Blocked
+ブロックする	Block
+ブロッサム	Blossom
+プライバシー	Privacy
+プライバシーとセキュリティ	Privacy and security
+プライバシー設定の読み取りと変更	Read and modify privacy settings
+プリセット	Presets
+プリセットから配置	Layout from preset
+プリロードしません	Don't preload
+プレビュー	Preview
+プレビューを消す	Remove preview
+プレビューを非表示	Hide preview
+プログラムと、作業フォルダのデータ(データベース・設定ファイルなど)がすべて削除されます。	The program and all data in its work folder (databases, settings files, etc.) will be deleted.
+プログラムを停止しますか?	Stop the program?
+プログラムを終了しますか?	Quit the program?
+プログラムを追加	Add a program
+プログレスバーとは	What is the progress bar?
+プログレスバーとは何ですか?	What is the progress bar?
+プログレスバーのアニメーション	Progress bar animation
+プログレスバー進行時のアニメーションを有効化する	Animate the progress bar while loading
+プロジェクトのページ	Project page
+プロバイダを選択	Choose provider
+ヘルプ	Help
+ヘルプを検索	Search help
+ベースバンド	Baseband
+ペン	Pen
+ページ	Pages
+ページが崩れる・古いまま表示される	Pages look broken or out of date
+ページが翻訳されました	Page translated
+ページごとに切り替える場合は、URL バーの横のメニュー › PC 版サイト を使います。	To switch per page, use the menu next to the URL bar › Desktop site.
+ページのスクロール	Page scroll
+ページのスクロール時に拡大・縮小のボタンを表示します	Show zoom in/out buttons while scrolling a page
+ページのメニューの「ブックマークに追加」で保存したページが、ここに並びます	Pages you save with "Add bookmark" in the page menu appear here
+ページのメニューの「リーディングリストに追加」で、後で読みたいページをためておけます	Use "Add to reading list" in the page menu to collect pages to read later
+ページの一番上までスクロールします。	Scroll to the very top of the page.
+ページの上に半透明のボタンを重ねます。ボタンは好きな所に動かせて、キーボードのキー・ゲームパッドのボタン(A B X Y など)・マウスのボタンを割り当てられます。	Overlays semi-transparent buttons on the page. You can move the buttons anywhere and assign keyboard keys, gamepad buttons (A B X Y, etc.), or mouse buttons to them.
+ページの最上部で上から下にスワイプし、再読み込みする	Swipe down from the top of a page to reload it
+ページの準備ができたらお知らせ	Notify me when the page is ready
+ページの準備ができたらお知らせします	We'll let you know when the page is ready
+ページの準備ができました	Page is ready
+ページの準備を待っています	Waiting for pages to be ready
+ページの翻訳を提案する	Offer to translate pages
+ページの表示	Page display
+ページの読み込み時に問題が発生しました	There was a problem loading the page
+ページはいつでも メニュー › 翻訳 から日本語に翻訳できます。	You can translate a page into your language anytime from Menu › Translate.
+ページへのスクリプトの挿入	Inject scripts into pages
+ページをスクロールすると、画面を広く使うためにバーが隠れます。少し上へスクロールするか、ページの一番上まで戻ると再び表示されます。	Bars hide while you scroll to give you more room. Scroll up a little, or go back to the top of the page, to show them again.
+ページをダブルタップして拡大・縮小します	Double-tap a page to zoom in or out
+ページをプリロードする	Preload pages
+ページをプレビュー	Preview page
+ページを下へ読み進めると、画面を広く使うためにアドレスバーが自動で隠れます。	As you scroll down a page, the address bar hides automatically to give you more room.
+ページを保存	Save page
+ページを保存しています...	Saving page...
+ページを保存しました	Page saved
+ページを保存する	Save pages
+ページを保存することで、オフラインでも閲覧することができます。URLバーの横の星ボタンをタップすると、ページを保存できます。ファイルとして保存するには、ツール一覧にあるページ保存ツールを使います。	Saving a page lets you view it offline. Tap the star button next to the URL bar to save the page. To save it as a file, use the page saving tool in the Tools list.
+ページを取得できません	Can't get the page
+ページを少し上へスクロールします	Scroll the page up a little
+ページを少し下へスクロールします	Scroll the page down a little
+ページを拡大します	Zoom in on the page
+ページを操作するまで動画も再生しません	Don't play video until you interact with the page
+ページを縮小します	Zoom out of the page
+ページを翻訳しています...	Translating page...
+ページを翻訳できませんでした	Couldn't translate the page
+ページを読み込み直す	Reload the page
+ページを開いた時に、動画や音声を自動的に再生するかどうかを選びます。	Choose whether video and audio play automatically when you open a page.
+ページを開いているときやダウンロード中に、画面の上に出る細い線です。線が右端まで伸びると読み込みが終わった合図です。	The thin line at the top of the screen while a page is opening or downloading. When the line reaches the right edge, loading is done.
+ページを開くとこの拡張機能が動きます	This extension runs when you open pages
+ページ保存	Save page
+ページ保存の進行状況を表示します	Shows the progress of saving pages
+ページ保存キャンセルの通知	Notification when page saving is canceled
+ページ保存ツール	Page saving tool
+ページ保存中	Saving page
+ページ保存処理を実行中	Saving page
+ページ入力	Page input
+ページ入力のすべての割り当てを「そのまま」に戻します。	All page input assignments will be reset to "As is".
+ページ入力の割り当て	Page input assignments
+ページ入力モード	Page input mode
+ページ内を検索	Find in page
+ページ内検索	Find in page
+ページ内検索を閉じる	Close find in page
+ページ情報	Page info
+ホスト名の IP アドレスの確認	Look up IP addresses of host names
+ホワイト	White
+ホームページ	Homepage
+ホームページはシークレットタブでは使われません。	The home page isn't used in incognito tabs.
+ホーム画面に追加	Add to Home screen
+ホーム画面に追加しました	Added to Home screen
+ホーム画面への追加を確認してください	Confirm adding it to the Home screen
+ボタン	Buttons
+ボタン 	Button 
+ボタンでブラウザを操作します。SELECT + START でページ入力に切り替えます	Buttons control the browser. Press SELECT + START to switch to page input
+ボタンでメニュー・仮想マウス・戻る/進むなどのブラウザの操作をします。	Use buttons for browser actions such as the menu, virtual mouse, and back/forward.
+ボタンとスティックをページ(ゲーム)へ送ります。ブラウザのメニューや戻るは動きません。ボタンごとに、そのまま送る・キーボードのキーにする・別のボタンにすることができます。	Sends buttons and sticks to the page (games). Browser menus and Back don't respond. For each button you can send it as is, turn it into a keyboard key, or turn it into another button.
+ボタンの不透明度	Button opacity
+ボタンの割り当て	Button assignments
+ボタンの割り当て、仮想マウス、カーソルの速さ	Button assignments, virtual mouse, cursor speed
+ボタンの割り当てとカーソルの速さを最初の状態に戻します。	Button assignments and cursor speed will be reset.
+ボタンの文字(空なら割り当てから)	Button text (blank uses the assignment)
+ボタンをページへ送ります。SELECT + START でブラウザ操作に戻ります	Buttons go to the page. Press SELECT + START to return to browser control
+ボトムバーを表示	Show bottom bar
+ポイント	point
+ポップアップ	Pop-up
+ポップアップとリダイレクト	Pop-ups and redirects
+ポップアップをブロック	Block pop-ups
+ポップアップをブロックしました	Pop-up blocked
+ポップアップメニュー(Aozora メニュー)を開きます	Opens the pop-up menu (Aozora menu)
+マイク	microphone
+マイクの使用	Use your microphone
+マウス	Mouse
+マウスのスクロールモード	Mouse scroll mode
+マウスのボタン…	Mouse button…
+マウスの移動(視点)	Mouse movement (look)
+マウスを固定するページ	Pages that lock the mouse
+マウスポインタを非表示にしました	Mouse pointer hidden
+マーカー	Marker
+マークダウン	Markdown
+マークダウン: オフ	Markdown: off
+マークダウン: オン	Markdown: on
+マークダウンのプレビュー	Markdown preview
+ミドルネーム	Middle name
+ミュージック	Music
+ミント	Mint
+ムービー	Movies
+メッセージ	Message
+メディアの再生	Media playback
+メディアを再生中	Playing media
+メニュー	Menu
+メニューに「トップページ」を表示する	Show "Home page" in the menu
+メニューを開く	Open menu
+メニューボタン	Menu button
+メニューボタン(A)を押し、「設定」を押します。\nブラウザ設定から、各種設定が行えます。	Press the menu button (A), then press "Settings".\nYou can change various settings from the browser settings.
+メモ	Notes
+メモ_	Note_
+メモがありません	No notes
+メモを入力	Write a note
+メモを共有	Share note
+メモを固定しました	Note pinned
+メモを検索	Search notes
+メモ帳	Notepad
+メーカー	Manufacturer
+メールで送る	Send by email
+メールアドレス	Email address
+メールアドレスの形式が正しくありません	The email address format is invalid
+メールアプリが見つかりません	No email app found
+メールアプリを選択	Choose an email app
+モダンなデザインを意識しつつも、青空というコンセプトにふさわしい、水色、白色、黒色を基調としたデザインに。検索ページにて、時間帯によって壁紙が変わる機能も追加しました。	A modern design based on light blue, white, and black, fitting the blue-sky concept. The search page also gained wallpapers that change with the time of day.
+モダンスタイル	Modern style
+モデル	Model
+モバイル	Mobile
+モバイルデータ	Mobile data
+モバイルデータ または Wi-Fi を有効にする	Turn on mobile data or Wi-Fi
+モバイル版で表示します	Showing the mobile version
+モード: 	Mode: 
+ユーザーエージェント(UA)とは何ですか?	What is a user agent (UA)?
+ユーザーエージェント(UA)は、サイトを開くときにブラウザが自動で相手に渡す「自己紹介」のようなものです。サイトはこれを見て、スマホ向けとパソコン向けのどちらのページを出すかなどを決めています。	A user agent (UA) is like a "self-introduction" your browser automatically gives a site when opening it. Sites use it to decide, for example, whether to show the phone or computer version of a page.
+ユーザーエージェントとは	What is a user agent?
+ユーザーガイド	User guide
+ユーザー名	Username
+ユーザー補助機能	Accessibility
+ライセンス	License
+ライセンスとオープンソース ソフトウェア	Licenses and open source software
+ライト	Light
+ライトボタン	Light button
+ライトモード	Light mode
+ライト・ダーク、または端末の設定に合わせるかを選べます。次の画面では、スタートページとボトムバーの見た目を選びます。	Choose light, dark, or match the device. On the next screen, you'll choose the look of the start page and bottom bar.
+リスト アイテム	List item
+リストから削除	Remove from list
+リスト表示	List view
+リセット	Reset
+リソースデータも保存する	Also save resource data
+リソースフォルダ作成失敗	Couldn't create the resource folder
+リソース保存中です	Saving resources
+リソース抽出・ダウンロード中...	Extracting and downloading resources...
+リンク	Link
+リンクや画像の上で、指を少しの間押し続けます。	Press and hold on a link or image for a moment.
+リンクや画像をもっと便利に	More you can do with links and images
+リンクを AirSky で開く	Open links in AirSky
+リンクをコピー	Copy link
+リンクをコピーしました	Link copied
+リンクをダウンロード	Download link
+リンクを共有	Share link
+リンクを押すとアプリが開いてしまう	Tapping a link opens an app
+リンクアドレスをコピー	Copy link address
+リンクテキスト	Link text
+リンクテキストをコピー	Copy link text
+リンクテキストをコピーしました	Link text copied
+リンクメニュー	Link menu
+リンク先をダウンロード	Download link
+リンク先を新しいタブで開く	Open link in new tab
+リーディング リストに追加	Add to reading list
+リーディングモード	Reading mode
+リーディングモードを終了	Exit reading mode
+リーディングリスト	Reading list
+リーディングリストに追加	Add to reading list
+リーディングリストに追加しました	Added to reading list
+リーディングリストはここに表示されます	Your reading list appears here
+レスポンスが空です	Response is empty
+ログを保存しました！	Log saved!
+ログイン	Sign in
+ログイン情報	Login info
+ログイン情報・お支払い方法・住所を保存し、入力時に本人確認をして自動入力します	Save logins, payment methods, and addresses, and fill them in after verifying your identity
+ログイン時にパスワードの保存を提案します	Offer to save passwords when you sign in
+ロック	Lock
+ロックしません	Don't lock
+ロックの種類	Lock type
+ロックを解除	Unlock
+ローカル ネットワーク	Local network
+ローカル ネットワーク上のデバイスへのアクセス	Access devices on your local network
+ローカルにキャッシュしたコンテンツを消去する	Clear locally cached content
+・	•
+・1 本指で動かす: カーソルを動かす\n・タップ: クリック(2 回でダブルクリック)\n・2 本指でタップ: 右クリック\n・2 本指で動かす: スクロール\n・2 本指を広げる/狭める: 拡大・縮小\n・長押し、またはタップしてすぐ押し直して動かす: ドラッグ\n・3 本指でタップ: 中クリック	• Move one finger: move the cursor\n• Tap: click (twice to double-click)\n• Two-finger tap: right-click\n• Move two fingers: scroll\n• Spread/pinch two fingers: zoom in/out\n• Long press, or tap then quickly press again and move: drag\n• Three-finger tap: middle click
+・AirSky を操作する	• Use AirSky
+・System.in / System.out を使うコンソールのプログラム\n・Swing / AWT の画面(ボタン・文字欄・一覧・メニュー・描画・タイマーなど)\n・画面のタッチはマウス、キーのボタンは キーボードとして届きます\n・相対パスで開くファイルは、JAR ごとの作業フォルダに置かれます\n\nJavaFX、音声、ネイティブライブラリ(JNI)、一部の Swing 部品(JTable など)には対応していません。初めて実行する時は Android 用への変換に少し時間がかかります。	• Console programs that use System.in / System.out\n• Swing / AWT windows (buttons, text fields, lists, menus, drawing, timers, etc.)\n• Screen touches arrive as the mouse, and key buttons as the keyboard\n• Files opened with relative paths are placed in a work folder for each JAR\n\nJavaFX, audio, native libraries (JNI), and some Swing components (JTable, etc.) aren't supported. The first run takes a little time to convert for Android.
+・UAの意味を知る	• Learn what UA means
+・input() / print() を使うコンソールのプログラム\n・tkinter(ttk・Canvas・メニュー・ダイアログを含む)、wxPython、Flet の画面\n・SQLite のデータベース、.env(環境変数)、ini / json / toml などの設定ファイル\n  (プログラムのフォルダが作業フォルダになり、相対パスのファイルはここに作られます)\n・requirements.txt や pip でのパッケージの追加(Python だけで書かれたもの)\n・venv フォルダの中の site-packages も読み込みます\n\nC などで書かれた部分を含むパッケージ(numpy・Pillow など)や、PyQt・pygame などほかの GUI には対応していません。	• Console programs that use input() / print()\n• tkinter (including ttk, Canvas, menus, and dialogs), wxPython, and Flet windows\n• SQLite databases, .env (environment variables), and ini / json / toml settings files\n  (the program's folder becomes the work folder, and relative-path files are created there)\n• Adding packages with requirements.txt or pip (pure Python only)\n• site-packages inside a venv folder are also loaded\n\nPackages with parts written in C, etc. (numpy, Pillow, etc.) and other GUIs such as PyQt and pygame aren't supported.
+・お問い合わせからその他の質問やバグ報告を行う	• Ask other questions or report bugs via Contact us
+・タップ: その場所をクリック\n・指で動かす: ドラッグ\n・長押し: 右クリック\n・2 本指で動かす: スクロール\n・2 本指でタップ: 右クリック\n・2 本指を広げる/狭める: 拡大・縮小	• Tap: click there\n• Drag a finger: drag\n• Long press: right-click\n• Move two fingers: scroll\n• Two-finger tap: right-click\n• Spread/pinch two fingers: zoom in/out
+・パスワード設定の方法を知る	• Learn how to set a password
+・設定を開く方法を知る	• Learn how to open settings
+一時停止	Pause
+一時停止中 ・ 	Paused · 
+一画面	Single screen
+一致するタブはありません	No matching tabs
+一致するタブグループはありません	No matching tab groups
+一致するダウンロードはありません	No matching downloads
+一致するヘルプが見つかりませんでした。別の言葉で検索してみてください。	No matching help found. Try searching with different words.
+一致するメモはありません	No matching notes
+一覧から消します。ダウンロードしたファイルは削除されません	Removes them from the list. Downloaded files aren't deleted
+一部のファイルで失敗しました	Some files failed
+一部の機能が動作しない可能性があります。例外のサイトでは引き続きサードパーティ Cookie を使用できます。	Some features may not work. Sites in the exceptions can still use third-party cookies.
+上にスクロール	Scroll up
+上にページ、下に\nURL バーとボタン	Page on top,\nURL bar and buttons below
+上書き	Overwrite
+下からメニューが出てきます。	A menu slides up from the bottom.
+下にスクロール	Scroll down
+下に出てくる候補をタップするか、キーボードの決定キーで開きます。	Tap a suggestion that appears below, or press Enter on the keyboard.
+下のバーにある、数字の入った四角(タブボタン)をタップします。	Tap the square with a number (the tab button) on the bottom bar.
+下のバーの「<」ボタンでも 1 つ前のページに戻れます。	The "<" button on the bottom bar also takes you back one page.
+下のバーの再読み込みボタン(円を描く矢印)でも同じことができます。読み込み中は × に変わり、押すと中止できます。	The reload button on the bottom bar (circular arrow) does the same. While loading it changes to ×, which stops loading.
+下部メニューバーも隠したい場合は、設定 →「全般」→「下部メニューバーを自動的に隠す」を使います。	To hide the bottom menu bar too, use Settings → "General" → "Auto-hide the bottom menu bar".
+下部メニューバーを自動的に隠す	Auto-hide the bottom menu bar
+不明	Unknown
+不正なパスです: 	Invalid path: 
+不正な文字: 	Invalid character: 
+不透明度 	Opacity 
+両方残す	Keep both
+並べ替え	Sort
+中	M
+中の 	The 
+中クリック	Middle click
+中止	Cancel download
+中止しました	Canceled
+中止する	Cancel update
+丸	Round
+乗算	times
+予期しない文字: 	Unexpected character: 
+二画面	Dual screen
+今すぐ確認	Check now
+今のボタンの配置と割り当ては「	The current button layout and assignments will be replaced with "
+今回はしない	Not now
+今後このような記事を減らします	We'll show fewer articles like this
+今日	Today
+今日 ・ 	Today · 
+今日の合計 	Today's total 
+他のアプリとのメッセージのやり取り	Exchange messages with other apps
+以前のバージョンで保存したページ(.mht)は開けません	Pages saved with an older version (.mht) can't be opened
+以前の履歴	Older history
+仮想コントローラー	Virtual controller
+仮想コントローラーの設定	Virtual controller settings
+仮想コントローラーを表示	Show virtual controller
+仮想マウス	Virtual mouse
+仮想マウスの設定	Virtual mouse settings
+仮想マウスをやめる	Stop virtual mouse
+仮想マウスをオフにしました	Virtual mouse off
+仮想マウスをオンにしました	Virtual mouse on
+仮想マウスを使う	Use virtual mouse
+仮想マウスモードの切り替え	Toggle virtual mouse mode
+件)	 items)
+件数: 	Matches: 
+件数: 0	Matches: 0
+任意の権限	Optional permissions
+任意の設定	Optional settings
+伏せ字に戻す	Hide again
+会社名	Company
+位置情報	Location
+位置情報、カメラ、JavaScript などの権限	Location, camera, JavaScript, and other permissions
+位置情報の権限設定	Location permission settings
+位置情報へのアクセス	Access your location
+位置情報へのアクセスを要求したサイトはありません	No sites have requested access to your location
+位置情報やカメラなどを許可しているサイトはありません	No sites are allowed location, camera, or similar permissions
+位置情報を有効にする	Enable location
+位置情報アクセスをクリア	Clear location access
+低温	Cold
+住所	Address
+住所 •••••	Address •••••
+住所の自動入力に使います	Used to autofill addresses
+住所を保存しました	Address saved
+住所を保存しますか？	Save address?
+住所を保存できませんでした	Couldn't save address
+住所を入力	Fill in address
+住所を入力してください	Enter an address
+住所を更新	Update address
+住所を更新しますか？	Update address?
+住所を編集	Edit address
+住所を追加	Add address
+余白	Margin
+作成	Create
+作成者	Author
+作成者: 	Author: 
+作業フォルダ	Work folder
+作業フォルダ/	Work folder/
+作業フォルダにファイルを追加	Add files to the work folder
+作業フォルダを作れません	Can't create the work folder
+作業フォルダを書き出す(.zip)	Export work folder (.zip)
+使っているブラウザの種類とバージョン	The type and version of the browser you're using
+使用しない	Never
+使用に必要な設定やファイルを確認しています...	Checking settings and files needed to get started...
+例: input.txt 10 "two words"	e.g. input.txt 10 "two words"
+例: requests python-dotenv	e.g. requests python-dotenv
+例外から削除	Remove from exceptions
+例外として許可しない限り、サイトはサードパーティ Cookie を使用してコンテンツや広告をカスタマイズしたり、他のサイトでのあなたのアクティビティを把握したりすることはできません	Unless you allow an exception, sites can't use third-party cookies to personalize content and ads or see your activity on other sites
+例外のサイトを追加	Add site exception
+例外をすべて削除	Delete all exceptions
+例外を設定したサイトはありません	No sites with exceptions
+例：https://example.com	e.g. https://example.com
+例：マイサイト	e.g. My site
+保存	Save
+保存: 	Saved: 
+保存されたページはありません。	No saved pages.
+保存したお支払い方法はありません。	No saved payment methods.
+保存したカードを使用	Use a saved card
+保存したパスワード	Saved passwords
+保存したパスワードはありません。サイトにログインすると保存を提案します。	No saved passwords. AirSky offers to save one when you sign in to a site.
+保存したパスワード・お支払い方法・住所がすべて削除されます。元に戻すことはできません。	All saved passwords, payment methods, and addresses will be deleted. This can't be undone.
+保存したパスワード・お支払い方法・住所と暗号鍵をすべて削除します	Delete all saved passwords, payment methods, addresses, and encryption keys
+保存したページ	Saved pages
+保存したページが見つかりません	Saved page not found
+保存した住所はありません。右上の「+」から追加できます。	No saved addresses. Add one with "+" at the top right.
+保存した住所を使用	Use a saved address
+保存した情報	Saved info
+保存した情報は端末内で暗号化され、Android Keystore の鍵で保護されます。パスワードやカード番号などは、表示・自動入力のたびに生体認証(または画面ロック)での本人確認が必要で、確認するまでは伏せ字で表示されます。\n端末に生体認証を追加・変更したり画面ロックを解除したりすると、安全のため保存した情報は読み出せなくなります。\nシークレット タブでは保存を提案しません。	Saved info is encrypted on the device and protected with an Android Keystore key. Each time passwords, card numbers, and similar data are shown or autofilled, you must verify with biometrics (or the screen lock); until then they're masked.\nFor safety, saved info becomes unreadable if you add or change biometrics on the device or remove the screen lock.\nSaving isn't offered in incognito tabs.
+保存した情報をすべて削除	Delete all saved info
+保存した情報を使用するには本人確認が必要です	Verify your identity to use saved info
+保存した情報を削除	Delete saved info
+保存した情報を削除しました	Saved info deleted
+保存した情報を編集	Edit saved info
+保存した情報を表示	Show saved info
+保存した情報を読み出せません	Can't read saved info
+保存して戻る	Save and go back
+保存しない	Don't save
+保存しました	Saved
+保存しました: 	Saved: 
+保存できませんでした	Couldn't save
+保存と自動入力の対象	What to save and autofill
+保存に失敗: 	Save failed: 
+保存に失敗しました	Save failed
+保存に失敗しました: 	Save failed: 
+保存を取り消しました	Save undone
+保存データ・許可を管理	Manage stored data and permissions
+保存中にエラーが発生しました	An error occurred while saving
+保存中はバックキーが無効です	Back is disabled while saving
+保存先	Save to
+保存先: 	Save to: 
+保存先と履歴	Location and history
+保存先を作成できません	Couldn't create the destination
+保存先を変更	Change location
+保存先を開けません	Couldn't open the destination
+保存先フォルダを作成できません	Couldn't create the destination folder
+保存先：	Saved to: 
+保存完了：\n	Saved:\n
+保存済ページ	Saved pages
+保護されたコンテンツ	Protected content
+保護されたコンテンツ(DRM)の再生	Play protected content (DRM)
+保護された接続	Secure connection
+保護された通信	Secure connection
+保護されていない通信	Not secure
+保護なし(おすすめしません)	No protection (not recommended)
+保護なし(おすすめしません)\n危険なサイトなどから保護されません	No protection (not recommended)\nYou won't be protected from dangerous sites
+個人を特定できる情報	Personally identifying information
+個人データ	Personal data
+個人データを販売・共有しないようサイトに伝えます	Tell sites not to sell or share your personal data
+個人的なやり取り	Personal communications
+停止	Stop
+停止しています…	Stopping…
+停止して保存	Stop and save
+停止しました	Stopped
+健康の情報	Health information
+元に戻す	Undo
+充電されていない状態でバッテリー残量が20%を切った場合、残量低下の通知を表示する	Show a low battery notification when the battery drops below 20% and isn't charging
+充電していません	Not charging
+充電してください	Please charge
+充電中	Charging
+充電完了	Fully charged
+充電状態	Charging status
+入れたパッケージは、このプログラムだけで使えます(C などで書かれた部分を含むものは使えないことがあります)。\n\n	Installed packages can be used only by this program (packages that include parts written in C, etc., may not work).\n\n
+入れる	Install
+入れ直す	Reinstall
+入力	Input
+入力: 	Input: 
+入力した住所を暗号化して保存します。使用する時に本人確認が必要です。	The address you entered will be stored encrypted. You'll need to verify your identity to use it.
+入力した内容が保存されない可能性があります。	Changes you made may not be saved.
+入力して送信 (System.in)	Type and send (System.in)
+入力して送信 (input())	Type and send (input())
+入力の割り当て	Input assignment
+入力を待っています	Waiting for input
+入力内容を破棄しますか？	Discard your message?
+入力文字種	Character set
+入力欄に入れる	Insert into the input field
+全画面表示の解除	Exit full screen
+全般	General
+共有	Share
+共有できません: 	Can't share: 
+共有できませんでした	Couldn't share
+共有できるアプリがありません	No app to share with
+共有シートの QR コードも、長押しすると画像としてコピーできます。	The QR code in the share sheet can also be copied as an image with a long press.
+共有・QR コード	Share · QR code
+共通名: 	Common name: 
+共通名：	Common name:
+内容	Message
+内容が長すぎて QR コードにできません。誤り訂正を下げると入る場合があります	The content is too long for a QR code. Lowering error correction may help it fit
+内容は本人確認をするまで伏せ字で表示されます。	Contents are masked until you verify your identity.
+内容を表示するには本人確認が必要です。	Verify your identity to show the contents.
+内訳	Breakdown
+再度認証できます。	You can authenticate again.
+再生	Play
+再生できませんでした	Couldn't play
+再生とアプリ	Playback and apps
+再計測する	Measure again
+再試行	Retry
+再読み込み	Reload
+再読込	Reload
+再起動	Restart
+再送信	Resubmit
+再開	Resume
+写真を撮る	Take photo
+処理がキャンセルされました\nアプリを終了します。	Processing was canceled\nThe app will close.
+処理開始...	Starting...
+分後	 min
+分後にやり直して下さい	 minutes until you can try again
+切り替えられませんでした	Couldn't switch
+初期の言語	Initial language
+初期化エラー: 	Initialization error: 
+初期設定にリセット	Reset settings
+判別	Identify
+利用できません	Unavailable
+利用規約	Terms of use
+利用規約が新しくなりました。AirSky を引き続きご利用いただくには、内容をご確認のうえ同意してください。	The terms of use have been updated. To keep using AirSky, please review and agree to them.
+利用規約に同意いただけない場合、AirSky をご利用いただけません。アプリを終了しますか?	If you don't agree to the terms of use, you can't use AirSky. Exit the app?
+利用規約に同意しない	Don't agree to the terms
+利用規約は、あとから「設定 › AirSky Browser について › 法的情報」でいつでも確認できます。	You can review the terms of use anytime in "Settings › About AirSky Browser › Legal information".
+削除	Delete
+削除が完了しました	Delete complete
+削除しました	Deleted
+削除する履歴はありません	No history to delete
+削除できなかった項目があります	Some items couldn't be deleted
+削除できませんでした	Couldn't delete
+削除をキャンセルしました	Delete canceled
+削除中...	Deleting...
+削除中: 	Deleting: 
+削除確認	Confirm delete
+前のページに戻る	Go back to the previous page
+前のページへ戻ります	Go back to the previous page
+前の一致	Previous match
+前へ	Previous
+割り当てなし	Not assigned
+割り当てを戻しますか?	Reset assignments?
+割り当てを解除	Remove assignment
+割る	divided by
+劣化	Dead
+劣化が進行	Degraded
+動画	Videos
+動画 	Video 
+動画などの全画面表示を終わらせます	Exit full screen for videos and more
+動画の字幕の表示方法(Android の設定)	How video captions are shown (Android settings)
+動画や音声を自動的に再生します	Play video and audio automatically
+動画を撮る	Record video
+動画を閉じると音も止まってしまう	Sound stops when I close a video
+区切り線	Divider
+十字キー	D-pad
+十字キー 	D-pad 
+十字キー ←	D-pad ←
+十字キー ↑	D-pad ↑
+十字キー →	D-pad →
+十字キー ↓	D-pad ↓
+十字キー 決定	D-pad center
+危険なサイトの可能性があります	This site may be dangerous
+危険なサイトやダウンロードから保護されています	You're protected from dangerous sites and downloads
+取り消し線	Strikethrough
+取り込めませんでした	Couldn't import
+取得できません	Unavailable
+受信(ダウンロード)	Received (download)
+古いファイルを削除できません	Can't delete the old file
+古い順	Oldest first
+可能な限り HTTPS で接続します	Connects with HTTPS whenever possible
+右かっこ	right parenthesis
+右クリック	Right-click
+右スティック	Right stick
+合計	Total
+合計 	Total 
+同じ	Same
+同じページを開いているタブやグループを、非アクティブなタブに移動します	Move tabs and groups that have the same page open to inactive tabs
+同じ名前のファイルがある時に確認する	Ask when a file with the same name exists
+同じ名前のファイルが存在します	A file with the same name exists
+同名のZIPファイルが既に存在します	A ZIP file with the same name already exists
+同名のファイルが既に存在します	A file with the same name already exists
+同意しない	Disagree
+同意する	Agree
+名	First name
+名前	Name
+名前でソート	Sort by name
+名前の変更	Rename
+名前や電話番号、場所などの個人情報は含まれません	It doesn't include personal info such as your name, phone number, or location
+名前を付けて保存	Save as
+名前を変更	Rename
+名前順	By name
+名義	Name on card
+名義 (例: TARO AOZORA)	Name on card (e.g. TARO AOZORA)
+名義 •••••  有効期限 ••/••	Name •••••  Expires ••/••
+四角	Square
+回線速度の検測用に 100MB のPNGファイルをダウンロードします。モバイルデータや従量制課金接続の場合、通信料が発生する場合があります。ダウンロードは20秒後、自動的に停止します。	A 100 MB PNG file will be downloaded to measure connection speed. Data charges may apply on mobile data or metered connections. The download stops automatically after 20 seconds.
+図形描画	Drawing
+図形描画付きの新しいメモ	New note with drawing
+固定	Pin
+固定を解除	Unpin
+固定を解除しました	Unpinned
+固定済み	Pinned
+国	Country
+圧縮	Compress
+圧縮するファイルが選択されていません	No files selected to compress
+圧縮をキャンセルしました	Compression canceled
+圧縮レベル:	Compression level:
+圧縮中...	Compressing...
+圧縮中: 	Compressing: 
+圧縮中にエラー: 	Error while compressing: 
+地区	District
+基本の操作	Basics
+基本設定	Basics
+報告	Report
+塗りつぶし	Fill
+壁紙を設定	Set wallpaper
+壁紙を選択	Choose wallpaper
+変換	Convert
+変換した結果を保存できません	Can't save the converted result
+変換できませんでした:\n	Couldn't convert:\n
+変換の結果が空でした	The conversion result was empty
+変換中にエラーが発生しました	An error occurred while converting
+変換中はバックキーが無効です	Back is disabled while converting
+変更	Change
+変更を元に戻しました	Change undone
+変更を反映するには再起動が必要です	A restart is needed to apply the change
+変更失敗	Rename failed
+変更履歴はありません。	No changelog.
+変更成功	Renamed
+変更済み	Changed
+外部ディスプレイやタスク一覧から、アプリの内容が閲覧できないように遮断します	Prevent the app's content from being seen on external displays or in recent apps
+大	L
+大きさ	Size
+大切な情報をパスワードと PIN で守る	Protect important info with a password and PIN
+太字	Bold
+好きな色を作る	Make your own color
+始める	Get started
+姓	Last name
+字幕	Captions
+安全	Safety
+安全でない接続のページには、カード情報を自動入力できません	Card info can't be autofilled on pages with an insecure connection
+安全でない接続を許可しています	Insecure connections are allowed
+安全な AirSky のページを表示しています	You're viewing a secure AirSky page
+安全なパスワードを生成して使用	Generate and use a secure password
+安全な接続ができませんでした	Couldn't connect securely
+安全に関する概要	Safety overview
+安全チェック	Safety check
+安全上の理由でブロックされています	Blocked for safety reasons
+完了	Done
+実行	Run
+実行するクラス	Class to run
+実行するファイル	File to run
+実行するファイル: 	File to run: 
+実行するファイルが見つかりません: 	File to run not found: 
+実行するファイルを変更(	Change the file to run (
+実行中	Running
+実際の例	Example
+容量の制限なくデータを保存	Store unlimited data
+対応アプリが見つかりません	No compatible app found
+対数	logarithm
+小	S
+小さな丸	Small dots
+小数点	point
+少し上へスクロールすると、バーがまた出てきます。	Scroll up a little and the bars come back.
+屈折を有効にする	Enable refraction
+展開が完了しました	Extraction complete
+展開したファイルを移動できません	Can't move the extracted files
+展開しています…	Extracting…
+展開に失敗しました: 	Extraction failed: 
+展開をキャンセルしました	Extraction canceled
+展開中...	Extracting...
+展開中: 	Extracting: 
+展開先を作成できません	Can't create the destination
+履歴	History
+履歴、Cookie、サイトデータ、キャッシュを削除します	Delete history, cookies, site data, and cache
+履歴から候補を削除しますか？	Remove the suggestion from history?
+履歴から消去	Remove from history
+履歴はありません	Nothing found
+履歴を削除	Delete history
+履歴を削除しました	History deleted
+履歴を検索	Search history
+履歴を消去	Clear history
+履歴を消去しました	History cleared
+履歴消去	Clear history
+左かっこ	left parenthesis
+左クリック	Left click
+左スティック	Left stick
+左スティック: 仮想マウスのカーソルを動かします(スクロールモードと、仮想マウスを使っていない時はページのスクロール)。\n右スティック: ページをスクロールします。\n十字キー: 仮想マウスの間はカーソルを動かし、それ以外は項目を選びます。\nクリック・右クリックのボタンは、仮想マウスを使っていない時は普段の決定ボタンとして使えます。割り当てていない B ボタンは「戻る」になります。	Left stick: moves the virtual mouse cursor (scrolls the page in scroll mode or when the virtual mouse is off).\nRight stick: scrolls the page.\nD-pad: moves the cursor while the virtual mouse is on; otherwise selects items.\nWhen the virtual mouse is off, the click and right-click buttons work as normal confirm buttons. An unassigned B button acts as "Back".
+左スティックでカーソルの代わりにページをスクロールします	Scroll the page with the left stick instead of moving the cursor
+市区町村	City
+帯域幅の管理	Bandwidth management
+常に安全な接続を使用しています	Always using secure connections
+常に安全な接続を使用する	Always use secure connections
+常に安全な接続を使用する (HTTPS)	Always use secure connections (HTTPS)
+常に許可	Always allow
+平方根	square root
+年	/
+年月日	Date
+広告ブロックなどの機能を追加できます	Add features such as ad blocking
+引く	minus
+引っ張って更新	Pull to refresh
+引数を指定して実行	Run with arguments
+引用	Quote
+強制的にズームを有効にする	Force enable zoom
+強力	Strict
+強力\nより多くのトラッカーやフィンガープリント採取をブロックします。一部のサイトが動作しない場合があります	Strict\nBlocks more trackers and fingerprinting. Some sites may not work
+強化\n指定したプロバイダのセキュア DNS を優先して使います	Increased\nPrefer secure DNS from the selected provider
+強化(	Increased (
+形式エラー	Format error
+待機中	Waiting
+後で	Later
+後で読むページ	Pages to read later
+従来のスタイル	Classic style
+必要な権限	Required permissions
+情報	Info
+戻す	Restore
+戻りすぎたときは「>」ボタンで進めます。	If you went back too far, go forward with the ">" button.
+戻る	Back
+戻る操作のいろいろ	Ways to go back
+戻れない時は、リンクが新しいタブで開いている可能性があります。タブボタンから元のタブを選んでください。	If you can't go back, the link may have opened in a new tab. Pick the original tab from the tab button.
+技術・操作のデータ	Technical and interaction data
+技術・操作のデータを開発者と共有する	Share technical and interaction data with the developer
+押すと「常に安全な接続を使用する」を設定できます	Tap to set "Always use secure connections"
+押すとオンにします	Tap to turn on
+押すと確認・変更できます	Tap to review or change
+拡大	Zoom in
+拡張機能	Extensions
+拡張機能が入っていません	No extensions installed
+拡張機能の使用状況の監視とテーマの管理	Monitor extension usage and manage themes
+拡張機能の改善のために使われます	Used to improve the extension
+拡張機能の設定	Extension settings
+拡張機能の設定ページを開きます	Open the extension's settings page
+拡張機能は Firefox のアドオンストアから入れられます。.xpi ファイルを開いてインストールすることもできます。	You can get extensions from Firefox's add-on store. You can also open an .xpi file to install it.
+拡張機能をインストールできませんでした。	Couldn't install the extension.
+拡張機能を探す	Find extensions
+拡張機能を管理	Manage extensions
+拡張機能を読み込んでいます…	Loading extension…
+括弧が閉じられていません	Unclosed parenthesis
+指紋:	Fingerprints:
+指紋や顔など、端末に登録した生体認証で解除します	Unlock with fingerprint, face, or other biometrics enrolled on the device
+振動	Vibration
+掛ける	times
+接続がタイムアウトしました。	The connection timed out.
+接続したコントローラー	Connected controller
+接続する(安全ではありません)	Connect anyway (not secure)
+接続を確認しています	Checking the connection
+描いた内容を保存しますか？	Save your drawing?
+操作した時だけ、今のタブにアクセス	Access the current tab only when you use the extension
+操作と表示	Navigation and display
+操作を選択	Choose an action
+改善の提案(任意)	Suggestions (optional)
+放電中	Discharging
+数字だけ	Numbers
+数字の 1(ｲﾁ) です	It's the digit 1 (one)
+整理しておく場所	A place to organize
+文字: 	Chars: 
+文字が小さくて読みにくい	Text is too small to read
+文字の大きさ、ズーム、字幕	Text size, zoom, captions
+文字や URL を入れると、ここに QR コードが出ます	Enter text or a URL and a QR code appears here
+文字を画像に	Text to image
+文字を画像に変換	Text to Image
+文字・数字・記号で解除します	Unlock with letters, numbers, and symbols
+文字列や URL を入力	Enter text or a URL
+斜体	Italic
+新しいPINを入力してください	Enter a new PIN
+新しいウィンドウで開く	Open in new window
+新しいシークレットタブ	New incognito tab
+新しいタブ	New tab
+新しいタブで画像を開く	Open image in new tab
+新しいタブで開く	Open in new tab
+新しいタブをグループで開く	Open new tab in group
+新しいタブグループ	New tab group
+新しいダウンロード	New downloads
+新しいバージョンがある場合、起動時のダイアログと通知でお知らせする	When a new version is available, tell me with a dialog at startup and a notification
+新しいパスワード	New password
+新しいパスワード(確認)	New password (confirm)
+新しいファイルを作成	Create new file
+新しいフォルダ	New folder
+新しいフォルダ...	New folder...
+新しいメモ	New note
+新しいリスト	New list
+新しい順	Newest first
+新機能	What's new
+新規作成	New
+既定の割り当てに戻しますか?	Restore default assignments?
+既定の割り当てに戻す	Restore default assignments
+既定の動作	Default behavior
+既定の動作(	Default (
+既定の動作を使用(	Use default (
+既知のトラッカーによる Cookie は引き続きブロックされます	Cookies from known trackers are still blocked
+既読 ・ 	Read · 
+既読にする	Mark as read
+日	∅
+日ごとの使用量	Usage by day
+日付不明	Unknown date
+日本語	Japanese
+日本語 → 英語 の順にページを表示するようサイトに伝えます	Ask sites to show pages in Japanese → English order
+日本語に翻訳	Translate
+日本語を優先	Prefer Japanese
+日本語入力(端末のキーボード)	System keyboard (IME)
+昇順 / 降順	Ascending / descending
+明るいドットに暗い背景は、読み取れないアプリがあります	Some apps can't read light dots on a dark background
+明るさ	Brightness
+昨日	Yesterday
+昨日 ・ 	Yesterday · 
+時間ごとの使用量	Usage by hour
+暗号化:	Encryption:
+暗号化認証サービスの提供	Provide cryptographic authentication services
+暗号鍵を作成できないため、この端末では使用できません	Can't be used on this device because an encryption key couldn't be created
+更新	Update
+更新する	Update
+更新を確認	Check for updates
+更新を確認しています…	Checking for updates…
+更新情報を表示	Show what's new
+更新日でソート	Sort by date modified
+書き出しました	Exported
+書き出し先を開けません	Can't open the export destination
+書き出せませんでした	Couldn't export
+書き出せませんでした: 	Couldn't export: 
+書き込み権限が必要です	Write permission required
+最初に確認する	Ask first
+最大\n常にセキュア DNS を使います。使えない時はサイトに接続しません	Max\nAlways use secure DNS. Don't connect to sites when it isn't available
+最大 8 桁の数字で解除します	Unlock with a number of up to 8 digits
+最大(	Max (
+最小化	Minimize
+最小化できません	Can't minimize
+最後に、通信環境を確認してから AirSky を起動します。	Finally, AirSky will check your connection and then start.
+最新バージョン 	The latest version 
+最新バージョンのアプリ(100MB 以上)をダウンロードします。モバイルデータや従量制課金接続の場合、通信料が発生する場合があります。	The latest version of the app (over 100 MB) will be downloaded. Data charges may apply on mobile data or metered connections.
+最新バージョンを確認しています...	Checking for the latest version...
+最終更新日	Last updated
+最近の検索	Recent searches
+最近の閲覧履歴、Cookie、関連データの消去	Clear recent browsing history, cookies, and related data
+最近閉じたタブへのアクセス	Access recently closed tabs
+最速	Fastest
+最適化を行い、ラグを削減しました。また、ZIP 展開、閲覧機能を搭載し、ZIP ファイルの操作はこのファイルマネージャー 1 つで完結するようになりました。ホーム画面で、アイコン長押しでファイルマネージャーを開くこともできます。	Optimized to reduce lag. ZIP extraction and browsing were also added, so this one file manager handles all your ZIP files. You can also open the file manager by long-pressing the icon on the Home screen.
+最高	Best
+月	/
+有効	Enabled
+有効期間:	Validity period:
+有効期限	Expires
+有効期限 (年・4 桁)	Expiry (year, 4 digits)
+有効期限 (月)	Expiry (month)
+有効期限: 	Expires: 
+有効期限の年は 4 桁で入力してください	Enter the expiry year as 4 digits
+有効期限の月は 1〜12 で入力してください	Enter the expiry month as 1–12
+有効期限：	Expires:
+有害なファイルの可能性があります	This file may be harmful
+未割り当て	Not assigned
+未接続	Not connected
+未知の識別子: 	Unknown identifier: 
+未設定	Not set
+未読 ・ 	Unread · 
+未読にする	Mark as unread
+本人確認が必要です	Verification required
+本人確認に失敗しました	Verification failed
+本人確認をして内容を表示します	Verify your identity to show the contents
+本人確認を使用できません	Identity verification isn't available
+本当にすべてのタブを閉じますか？	Close all tabs?
+検出された言語	Detected language
+検索	Search
+検索: 	Search: 
+検索した言葉	Search terms
+検索するキーワード	Keyword to search for
+検索または URL を入力	Search or type URL
+検索をクリア	Clear search
+検索を終了	Close search
+検索エンジン	Search engine
+検索エンジンの使用	Use search engines
+検索エンジンを選択	Choose search engine
+検索・URL を入力する	Search or enter a URL
+検索中: 	Searching: 
+検索欄・サイト・おすすめ記事	Search box, sites, and recommended articles
+検索結果	Search results
+検索結果 ・ 	Search results · 
+楽天ブックス	Rakuten Books
+楽天市場	Rakuten Ichiba
+標準	Normal
+標準(おすすめ)	Standard (recommended)
+標準(おすすめ)\nソーシャルメディアや広告のトラッカーをブロックします。ページは通常どおり表示されます	Standard (recommended)\nBlocks social media and ad trackers. Pages display normally
+標準プリロード: リンク先を先読みして、ページをすばやく開きます	Standard preloading: load linked pages ahead of time to open them faster
+標準保護機能\n危険なサイト・ダウンロード・拡張機能から保護します	Standard protection\nProtects against dangerous sites, downloads, and extensions
+標準保護機能: オン	Standard protection: on
+標準機能	Basic
+権限	Permissions
+権限がありません。ファイルを選択できません。	No permission. Can't choose a file.
+権限が必要です	Permission required
+権限が拒否されました。アプリの機能が制限されます。	Permission denied. Some app features will be limited.
+権限が許可されていません	Permission not granted
+権限とデータの設定は、拡張機能の設定でいつでも変更できます。	You can change permission and data settings anytime in the extension's settings.
+権限に問題は見受けられません	No permission issues found
+権限をリセット	Reset permissions
+権限を変更できませんでした	Couldn't change permissions
+権限を自動的に削除する	Remove permissions automatically
+機内モードをオフにする	Turn off airplane mode
+機能のリクエスト	Feature request
+次のページへ進みます	Go forward to the next page
+次の一致	Next match
+次へ	Next
+次をお試しください:	Try the following:
+次回から表示しない	Don't show again
+正しいURLを入力してください	Enter a valid URL
+正しいURLを入力してください。	Enter a valid URL.
+残り	Remaining
+毎回ロックの解除を求めます	Ask to unlock every time
+氏名	Full name
+水色・白・黒を基調にしたデザイン	A design based on light blue, white, and black
+決まった時刻に処理を実行	Run tasks at scheduled times
+決定	OK
+法的情報	Legal information
+消しゴム	Eraser
+消す	Clear
+消去	Clear
+添付した写真や録音も削除されます。	Attached photos and recordings will also be deleted.
+温度	Temperature
+満充電	Fully charged
+準備ができました	All set
+準備しています…	Preparing…
+準備できませんでした: 	Couldn't prepare: 
+灰色	Gray
+無効	Disabled
+無効なデータです	Invalid data
+無効なファイル名です	Invalid file name
+無効なフォルダ名です（使用禁止文字が含まれています）	Invalid folder name (contains forbidden characters)
+無効な名前です（使用禁止文字あり）	Invalid name (contains forbidden characters)
+無効にする	Turn off
+無圧縮	No compression
+特別な権限はありません	No special permissions
+特別な権限は必要ありません	No special permissions required
+特大	XL
+現在の充電残量	Current charge level
+現在の推定最大容量	Current estimated maximum capacity
+現在の推定最大容量を計測します	Measures the current estimated maximum capacity
+現在保存処理中です	Already saving
+現在地へのアクセス	Access your location
+生体認証	Biometrics
+生体認証 でロックを解除	Unlock with biometrics
+生体認証 を使用できません\n端末に生体認証または画面ロックを設定してください	Biometrics can't be used\nSet up biometrics or a screen lock on the device
+生体認証 を確認	Confirm biometrics
+生体認証 を設定しました	Biometrics set up
+生体認証でロックを解除	Unlock with biometrics
+生体認証を使用できない時は、端末の画面ロック(PIN・パターンなど)でも解除できます。	When biometrics can't be used, you can also unlock with the device's screen lock (PIN, pattern, etc.).
+生体認証を使用できません	Biometrics can't be used
+画像	Images
+画像が保存されました	Image saved
+画像に変換	Convert to image
+画像のパスを取得できません	Can't get the image path
+画像の保存に失敗しました	Couldn't save image
+画像をTXTに変換	Image to TXT
+画像を保存	Save image
+画像を保存しました\n保存先: 	Image saved\nLocation: 
+画像を保存しました: 	Image saved: 
+画像を保存できませんでした	Couldn't save image
+画像を共有	Share image
+画像を文字に	Image to text
+画像を文字に変換	Image to Text
+画像を縮小	Shrink image
+画像を表示	Show images
+画像を表示しません(データ使用量を節約)	Don't show images (save data)
+画像を読み込めません	Can't load the image
+画像を選べるアプリがありません	No app to choose images
+画像を選択	Choose image
+画像・動画を追加	Add image or video
+画像・動画を選ぶ	Choose image or video
+画像付きの新しいメモ	New note with image
+画面	Screen
+画面にマウスカーソルを出し、リモートデスクトップのようにタッチで操作します。マウス前提のサイト(カーソルを合わせると開くメニュー、右クリック、ドラッグ)も使えます。	Shows a mouse cursor on screen that you control by touch, like remote desktop. Works on sites designed for a mouse (hover menus, right-click, dragging).
+画面の下にキーボードを出したままにします。入力欄が無いゲームやタイピングサイト(寿司打など)でも、押したキーがページに届きます。	Keeps a keyboard at the bottom of the screen. Keys you press reach the page even in games or typing sites without an input field (such as Sushida).
+画面の使い方を選びましょう	Choose how to use your screens
+画面の端から内側へスワイプする(ジェスチャー操作)か、端末の戻るボタンを押します。	Swipe in from the edge of the screen (gesture navigation) or press the device's Back button.
+画面を 2 つ持つ端末(AYN Thor など)では、2 つの画面をつなげてページを表示できます。上の画面でスクロールしたページは、そのまま下の画面へ流れていきます。	On devices with two screens (such as AYN Thor), pages can span both screens. Pages you scroll on the top screen flow right into the bottom screen.
+画面を 2 つ持つ端末(AYN Thor など)向け。上の画面にページ、下の画面にページの続きと URL バー・ボトムバーを表示します	For devices with two screens (such as AYN Thor). Shows the page on the top screen, and the rest of the page plus the URL bar and bottom bar on the bottom screen
+画面をタップした位置を表示します	Show where you tap on the screen
+画面ロックを使用して、開いているシークレット タブを表示します	Use the screen lock to view open incognito tabs
+画面上のアドレスバーをタップします。	Tap the address bar at the top of the screen.
+画面共有	screen sharing
+画面右下の△ボタンを押すことで表示させることもできます。	You can also show them with the △ button at the bottom right.
+画面密度 (ro.sf.lcd_density)	Screen density (ro.sf.lcd_density)
+留まる	Stay
+番号付きリスト	Numbered list
+番地・建物名	Street address
+異常	Failure
+発行: 	Issued: 
+発行先\n	Issued to\n
+発行先:	Issued to:
+発行者:	Issued by:
+発行：	Issued:
+白	White
+直線	Line
+矢印	Arrow
+矢印キー	Arrow keys
+矢印キー + Z / X	Arrow keys + Z / X
+矢印ボタン	Arrow buttons
+破棄	Discard
+確認	Confirm
+確認PIN を入力してください	Enter the confirmation PIN
+移動	Move
+移動が完了しました	Move complete
+移動する	Leave
+移動中...	Moving...
+種類	Type
+稼働時間	Uptime
+積分の下限と上限が必要です	The integral needs lower and upper limits
+積分記法の形式が正しくありません	Invalid integral notation
+空き容量が少ない時などに、サイトのデータが削除されることがあります	Site data may be deleted, for example when storage runs low
+空のメモを破棄しました	Empty note discarded
+端末	Device
+端末: 	Device: 
+端末が操作されていないかの確認	Check whether the device is idle
+端末とアプリの情報を添付する	Attach device and app info
+端末に合わせる	Match device
+端末に指紋が登録されていないため使用できません	Not available because no fingerprints are enrolled on the device
+端末に指紋や顔などの生体認証が登録されていないため使用できません	Not available because no fingerprint, face, or other biometrics are enrolled on the device
+端末に画面ロック(PIN・パターン・パスワード)が設定されていないため使用できません	Not available because the device has no screen lock (PIN, pattern, or password)
+端末に画面ロックが設定されていないため使用できません	Not available because the device has no screen lock
+端末の「デフォルトのアプリ」の画面が開きます。「ブラウザアプリ」で AirSky を選んでください。設定しない場合は、そのまま「次へ」を押してください。	The device's "Default apps" screen opens. Choose AirSky under "Browser app". If you don't want to set it, just tap "Next".
+端末のデータ使用量の設定を開く	Open the device's data usage settings
+端末のファイルから .jar を選びます	Choose a .jar from your device's files
+端末の容量の 	Using 
+端末の文字サイズに合わせる	Match device font size
+端末の日付と時刻が正しいか確認する	Check that the device's date and time are correct
+端末の本人確認を使用できないため使用できません	Not available because device verification can't be used
+端末の状態	Device status
+端末の生体認証や画面ロックが変更されたため、保存した情報を読み出せなくなりました。設定の「自動入力とパスワード」から保存した情報を削除して、もう一度保存してください。	Saved info can no longer be read because the device's biometrics or screen lock changed. Delete the saved info from "Autofill and passwords" in Settings, and save it again.
+端末の種類(スマホ・タブレット・パソコン)と OS(Android など)	The type of device (phone, tablet, computer) and OS (Android, etc.)
+端末の言語が日本語なら日本語、それ以外は英語で表示します	Japanese if the device language is Japanese, otherwise English
+端末の言語に合わせる	Match device language
+端末の設定に合わせる	Match device settings
+端末を共有する場合は、パスワードの設定をおすすめします	If you share this device, we recommend setting a password
+端末を起動してからの合計	Total since device startup
+端末内の AI モデルのダウンロードと実行	Download and run AI models on your device
+端末情報	Device info
+第 1 章: 窓の向こうのブラウザ	Chapter 1: The Browser Beyond the Window
+箇条書き	Bulleted list
+管理	Manage
+紫	Purple
+累乗	power
+終了	Quit
+終了しました	Finished
+終了しました (コード 	Finished (code 
+組織: 	Organization: 
+組織単位: 	Organizational unit: 
+組織単位：	Organizational unit:
+組織：	Organization:
+結果	Result
+結果がここに表示されます	The result appears here
+結果が表示されます	Results will appear here
+統合する	Merge
+続けて送信するには、あと 	To send again, please wait 
+続ける	Continue
+続行	Continue
+緑	Green
+線の太さ	Stroke width
+編集	Edit
+編集: 	Edited: 
+編集モードに入りました	Entered edit mode
+縮小	Zoom out
+置き換える	Replace
+署名を確認できないため無効になっています	Disabled because the signature couldn't be verified
+翻訳	Translation
+翻訳...	Translate...
+翻訳するページが見つかりません	No page to translate
+翻訳に対応した言語を取得できませんでした	Couldn't get the languages available for translation
+翻訳の設定	Translation settings
+翻訳データをダウンロードできませんでした	Couldn't download translation data
+翻訳中にエラーが発生しました	An error occurred while translating
+翻訳元の言語	Translate from
+翻訳元の言語を変更（現在: 	Change source language (current: 
+翻訳先の言語	Translate to
+翻訳先の言語を変更（現在: 	Change target language (current: 
+背景	Background
+背景のプレビュー	Background preview
+背景をクリア	Clear background
+背景色	Background color
+自分好みに設定しましょう	Make it yours
+自動入力	Autofill
+自動入力とパスワード	Autofill and passwords
+自動入力はオフになっています。設定の「自動入力とパスワード」でオンにできます。	Autofill is off. You can turn it on in Settings › Autofill and passwords.
+自動再生	Autoplay
+自動再生 (音声)	Autoplay (sound)
+自動設定	Automatic
+自動設定\n使用できる場合はセキュア DNS を使い、使えない時は通常の DNS を使います	Automatic\nUse secure DNS when available, and regular DNS otherwise
+自然対数	natural logarithm
+自然対数の底	e
+興味なし	Not interested
+良好	Good
+色	Color
+色の形式が正しくありません	Invalid color format
+色を作る	Make a color
+色を入力 (#RRGGBB)	Enter a color (#RRGGBB)
+色を選ぶ	Choose a color
+色相	Hue
+英語 → 日本語 の順にページを表示するようサイトに伝えます	Ask sites to show pages in English → Japanese order
+英語だけ	Letters
+英語を優先	Prefer English
+茶	Brown
+葉っぱ	Leaf
+著作権者	Copyright holder
+表示しない	Don't show
+表示する	Show
+表示できる情報がありません	No information to show
+表示の切り替え	Switch view
+表示設定	Display settings
+複数のページを行き来する	Move between several pages
+複数ファイルに分割:	Split into multiple files:
+複数選択	Select multiple
+見たいタブをタップすると、そのページに切り替わります。	Tap the tab you want to switch to that page.
+見たページはここに日付ごとに並びます	Pages you visit appear here, grouped by date
+見た目のテーマの変更	Change the visual theme
+見た目を選択	Choose a look
+見つかりませんでした	Nothing found
+見出し	Heading
+見分けにくい文字(I・1・l・O・0 など)を 1 文字入れると、何の文字かを調べます。	Enter one hard-to-tell character (I, 1, l, O, 0, etc.) to find out which character it is.
+角の目印	Corner markers
+角の目印の形	Corner marker shape
+角丸	Rounded
+角度の単位: ラジアン (RAD)	Angle unit: radians (RAD)
+角度の単位: 度 (DEG)	Angle unit: degrees (DEG)
+解決しない時は開発者に連絡できます	If that doesn't solve it, you can contact the developer
+解除	Release
+解除: Esc キー・戻る操作・3 本指でタップ	To release: Esc key · Back · three-finger tap
+解除してから 	For 
+言葉を入れると検索、アドレスを入れるとそのサイトが直接開きます。	Words start a search; an address opens that site directly.
+言語	Language
+言語を切り替えますか?	Switch language?
+計測中	Measuring
+計算	Calculation
+計算する	Calculate
+記号	Symbols
+設定	Settings
+設定 →「バックグラウンド再生」をオンにすると、ホーム画面に戻ったり画面を消したりしても再生が続きます。通知から一時停止・停止もできます。	Turn on Settings → "Background playback" to keep playing after going to the Home screen or turning off the screen. You can also pause or stop from the notification.
+設定する	Set
+設定をデフォルト値に戻しますか?\n(ブックマーク・履歴・タブは消えません)	Restore settings to their defaults?\n(Bookmarks, history, and tabs won't be deleted)
+設定をデフォルト値に戻す	Restore settings to their defaults
+設定をリセットしました	Settings reset
+設定を変更できませんでした	Couldn't change the setting
+設定を開く	Open settings
+設定画面が開けませんでした	Couldn't open settings
+設定項目を検索	Search settings
+設計容量	Design capacity
+許可	Allow
+許可されています	Allowed
+許可されていません	Not allowed
+許可したサイト	Allowed sites
+許可する	Allow
+証明書	Certificate
+証明書の情報がありません	No certificate information
+証明書の有効期限: 	Certificate expires: 
+証明書情報	Certificate info
+証明書情報は, このサイトでは利用できません。	Certificate information isn't available for this site.
+証明書情報は、このサイトでは利用できません。	Certificate information isn't available for this site.
+評価	Rating
+詳細	Details
+詳細設定	Advanced
+認証がキャンセルされました	Authentication canceled
+認証しました	Authenticated
+認証できませんでした	Couldn't authenticate
+認証後の一定時間はロックをスキップする	Skip the lock for a while after unlocking
+認証後の一定時間パスワード要求をスキップする	Skip the password for a while after authenticating
+認証情報	Authentication information
+認証情報を入力	Enter credentials
+誤り訂正	Error correction
+説明・バージョン・作成者など	Description, version, author, and more
+説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明	Description
+読み込みを中止	Stop loading
+読み込み中です。	Loading.
+読み込んでいます…	Loading…
+読込	Load
+読込中...	Loading...
+調べたい言葉、または「example.com」のようなアドレスを入力します。	Type what you want to look up, or an address like "example.com".
+警告	Warning
+貼り付け	Paste
+貼り付けるものがありません	Nothing to paste
+質問	Question
+赤	Red
+起動	Startup
+起動しています	Starting
+起動してから	Since startup
+起動できませんでした	Couldn't start
+起動時にパスワードを求めます	Ask for a password at startup
+起動時にパスワードを要求する(推奨)	Require a password at startup (recommended)
+起動時にロックを要求する(推奨)	Require unlock at startup (recommended)
+起動画面	Splash screen
+起動画面や起動音を消す	Turn off the splash screen and startup sound
+起動画面や起動音を消すには、\nブラウザ設定の「アプリ設定の項目」から「起動画面」「起動音」のチェックを外すことで消すことができます。	To turn off the splash screen and startup sound,\nuncheck "Splash screen" and "Startup sound" in the app settings section of the browser settings.
+起動画面・起動音	Splash screen / startup sound
+起動音	Startup sound
+超圧縮	Ultra
+足す	plus
+軽量でシンプルなブラウザ	A lightweight, simple browser
+返信が必要な場合のみ入力してください	Enter only if you need a reply
+返信先(任意)	Reply-to (optional)
+追加	Add
+追加した JAR	Added JARs
+追加したプログラム	Added programs
+追加したプログラムと、そのデータ(作業フォルダ)は残ります。もう一度使う時はダウンロードし直します。	Added programs and their data (work folders) are kept. You'll download it again to use it next time.
+追加したメモがここに表示されます	Notes you add appear here
+追加する部品	Part to add
+追加できませんでした	Couldn't add
+送る	Send
+送信	Send
+送信(アップロード)	Sent (upload)
+送信しました	Sent
+送信できませんでした	Couldn't send
+送信中...	Sending...
+透明	Transparent
+透明度	Opacity
+途中で切断されました	Disconnected partway through
+通信のブロックと書き換え	Block and modify network requests
+通信の監視	Monitor network requests
+通信内容の書き換え	Modify network responses
+通常	Normal
+通常: 指を離した時に 1 文字入力  ゲーム: 押している間キーを押したまま(矢印キー付き)  タイピング: 触れた瞬間にローマ字のキーを送る	Normal: types one character when you lift your finger  Game: holds the key while pressed (with arrow keys)  Typing: sends the key the moment you touch
+通知	Notifications
+通知 (サイト)	Notifications (sites)
+通知に問題は見受けられません	No notification issues found
+通知の表示	Display notifications
+通知権限がありません	No notification permission
+通知権限が拒否されました。通知が表示されない可能性があります。	Notification permission was denied. Notifications may not be shown.
+進み具合が見える専用の画面で最新版に	Get the latest version on a dedicated screen that shows progress
+進む	Forward
+過去 1 時間	Last hour
+過去 30 日間	Last 30 days
+過去 7 日間	Last 7 days
+過熱	Overheated
+過電圧	Over voltage
+選択	Select
+選択されたファイル: なし	Selected file: none
+選択をやめる	Stop selecting
+選択モードが解除されました	Selection mode off
+選択モードになりました	Selection mode on
+郵便番号	Postal code
+都道府県	State / Prefecture
+配置と割り当てを編集	Edit layout and assignments
+配置を置き換えますか?	Replace the layout?
+重複するタブをアーカイブする	Archive duplicate tabs
+金融・支払いの情報	Financial and payment information
+録音	Record audio
+録音 	Audio 
+録音が短すぎます	Recording too short
+録音しています…	Recording…
+録音を削除	Delete recording
+録音を削除しますか？	Delete recording?
+録音を始められませんでした	Couldn't start recording
+録音付きの新しいメモ	New note with recording
+長押しすると、ツールやホーム画面へのショートカット、.env の編集、パッケージの追加などができます。ツールに追加したプログラムは、ツールの一覧で長押しするとショートカットを削除できます。	Long-press for shortcuts to Tools or the Home screen, editing .env, adding packages, and more. For programs added to Tools, long-press them in the Tools list to remove the shortcut.
+長押しすると、ツールやホーム画面へのショートカットの追加、削除ができます。ツールに追加した JAR は、ツールの一覧で長押しするとショートカットを削除できます。	Long-press to add a shortcut to Tools or the Home screen, or to delete. For JARs added to Tools, long-press them in the Tools list to remove the shortcut.
+長押しメニュー	Long-press menu
+長押しメニューへの項目の追加	Add items to the long-press menu
+閉じる	Close
+開いていたタブがなくなった	My open tabs are gone
+開いているすべてのタブのテキストの読み取り	Read the text of all open tabs
+開いているシークレット タブを表示するには、画面ロックを解除してください	Unlock the screen to view your open incognito tabs
+開いているタブが一覧で表示されます。	Your open tabs are shown in a list.
+開く	Open
+開く (	Open (
+開く: 	Open: 
+開けるアプリがありません	No app can open it
+開始	Start
+開発ツールを拡張してタブのデータにアクセス	Extend developer tools to access your data in open tabs
+開発者によると、この拡張機能はデータ収集を必要としません。	The developer says this extension doesn't require data collection.
+開発者によると、この拡張機能は次のデータを収集します: 	The developer says this extension collects the following data: 
+関数を表示	Show functions
+関数機能	Advanced
+閲覧の履歴	Browsing activity
+閲覧履歴	Browsing history
+閲覧履歴の読み取り	Read your browsing history
+閲覧履歴へのアクセス	Access browsing history
+閲覧履歴データを削除	Delete browsing data
+閲覧履歴データを削除しました	Browsing data deleted
+閲覧履歴・Cookie・サイトのデータは、シークレットのタブをすべて閉じると消去されます。ダウンロードしたファイルやブックマークは残ります。	Browsing history, cookies, and site data are cleared when you close all incognito tabs. Downloaded files and bookmarks are kept.
+閲覧時に、トラッキングしないよう求めるリクエストをサイトに送信します	Ask sites not to track you while browsing
+除算	divided by
+階乗	factorial
+電卓	Calculator
+電圧	Voltage
+電池	Battery
+電池が残り少なくなっています。	Battery is running low.
+電池の健全性	Battery health
+電池の温度	Battery temperature
+電池の状態	Battery status
+電池やネットワークなどの情報のステータス	Battery, network, and other status information
+電池残量	Battery level
+電波状況を確認する	Check the signal
+電話番号	Phone number
+青	Blue
+青空のもとで	Under the Blue Sky
+青空を意識	Inspired by the blue sky
+非アクティブなタブ	Inactive tabs
+非アクティブなタブ、	Inactive tabs,
+非アクティブなタブとグループは、3 か月間使用しないと閉じられます	Inactive tabs and groups are closed if unused for 3 months
+非アクティブなタブのメニュー	Inactive tabs menu
+非アクティブなタブの設定	Inactive tabs settings
+非アクティブなタブは、タブ一覧の一番上の「非アクティブなタブ」からいつでも開けます。開くと通常のタブに戻ります。シークレットタブは対象になりません。	You can open inactive tabs anytime from "Inactive tabs" at the top of the tab list. Opening one makes it a regular tab again. Incognito tabs aren't included.
+非アクティブなタブをすべて閉じますか？	Close all inactive tabs?
+非アクティブなタブを閉じました	Inactive tabs closed
+非アクティブなタブを閉じる	Close inactive tabs
+非アクティブにするまでの期間	Time until tabs become inactive
+非充電	Not charging
+音の出る動画は、ページを操作するまで再生しません(おすすめ)	Don't play video with sound until you interact with the page (recommended)
+音声	Audio
+音声と動画をブロック	Block audio and video
+音声と動画を許可	Allow audio and video
+音声のみブロック	Block audio only
+項目を押すとコピーします(クリップボードは 1 分後に消去します)。	Tap an item to copy it (the clipboard is cleared after 1 minute).
+項目数: 	Items: 
+項目数: -	Items: -
+高くすると汚れや欠けに強くなりますが、模様が細かくなります	Higher values resist dirt and damage better, but the pattern gets finer
+高度な設定	Advanced settings
+高速	Fast
+鮮やかさ	Saturation
+黄	Yellow
+黒	Black
+（選択不可）	 (unavailable)
+）	)
+＋	+
+📥  端末のファイルを取り込む…	📥  Import a file from the device…
+🪪 セキュリティ証明書	🪪 Security certificate
+元の言語で表示	Show original
+このサイトの翻訳を再開する	Offer translation for this site again
+このサイトでも翻訳を提案します	Translation will be offered for this site
+隠しファイルを表示	Show hidden files
+隠しファイルを表示します	Showing hidden files
+隠しファイルを表示しません	Hiding hidden files
+ファイルマネージャ バージョン 1.1.0 -Release	File Manager version 1.1.0 -Release
+タブレット	Tablet
+タブレットのショートカット 1	Tablet shortcut 1
+タブレットのショートカット 2	Tablet shortcut 2
+(ボタンを長押ししても変更できます)	 (you can also long-press the button to change it)
+パソコンのブラウザのように、タブを上に並べ、URL バーとボトムバーを 1 本のツールバーにまとめます	Like a desktop browser: tabs along the top, and the URL bar and bottom bar combined into one toolbar
+タブを上に並べ、URL バーとボトムバーを 1 本のツールバーにまとめます(パソコンのブラウザと同じ)	Tabs along the top, with the URL bar and bottom bar combined into one toolbar (like a desktop browser)
+アクティビティを起動	Launch activity
+アクティビティの一覧から選ぶ	Choose from activity list
+このアプリの画面をすべて表示します	Shows every screen in this app
+クラス名は「com.airsky.browser.SettingsActivity」「.SettingsActivity」「SettingsActivity」のどれでも入力できます。ほかのアプリは「パッケージ名/クラス名」で指定します。	Enter the class as "com.airsky.browser.SettingsActivity", ".SettingsActivity" or "SettingsActivity". For another app, use "package/class".
+ブラウザ	Browser
+データ	Data
+フラグ	Flags
+次に起動した時、最初の動画をもう一度再生します	Plays the intro movie again on next launch
+初期化しました	Reset
+クラス名	Class name
+クラス名を入力してください	Enter a class name
+この名前のアクティビティは見つかりません。	No activity with this name was found.
+このアクティビティは外から開けません(exported=false など)。	This activity can't be opened from outside (exported=false, etc.).
+アクティビティ	Activities
+Aozora のデータが入っていません。	The file contains no Aozora data.
+引っ越しファイルの情報が読めません。	Can't read the transfer file information.
+引っ越しファイルが大きすぎます。	The transfer file is too large.
+引っ越しファイルを読み込めませんでした。	Couldn't read the transfer file.
+引っ越しファイルの形式が正しくありません。	The transfer file format is invalid.
+Aozora の設定を読み込めませんでした。	Couldn't read the Aozora settings.
+データの反映中にエラーが発生しました。	An error occurred while applying the data.
+引っ越せるデータが見つかりませんでした。	No data that can be transferred was found.
+Aozora から AirSky へ	From Aozora to AirSky
+Aozora からデータを引っ越ししますか？	Move your data from Aozora?
+Aozora のブックマーク・履歴・開いていたタブ・保存したページ・ダウンロード履歴・設定を AirSky に移します。\n\n引っ越しが終わると AirSky を再起動して、セットアップに進みます。	Your Aozora bookmarks, history, open tabs, saved pages, download history and settings will be moved to AirSky.\n\nWhen it's done, AirSky restarts and continues to setup.
+ファイルへのアクセスを許可してください	Allow file access
+Aozora が書き出した引っ越しファイル(ダウンロード/Aozora/.Aozora-西暦.az)を読み込むために、ファイルへのアクセスが必要です。\n\n許可しない場合は、引っ越しファイルを自分で選ぶこともできます。	File access is needed to read the transfer file Aozora exported (Download/Aozora/.Aozora-YEAR.az).\n\nIf you don't allow it, you can pick the transfer file yourself.
+ファイルを選ぶ	Choose file
+引っ越さない	Don't move
+引っ越しファイルを選んでください	Choose the transfer file
+ダウンロード/Aozora にある .Aozora-西暦.az を選んでください。	Choose .Aozora-YEAR.az in Download/Aozora.
+ファイルを選ぶ画面を開けませんでした。	Couldn't open the file picker.
+ダウンロード/Aozora に引っ越しファイル(.Aozora-西暦.az)が見つかりませんでした。	No transfer file (.Aozora-YEAR.az) was found in Download/Aozora.
+選んだファイルは引っ越しファイル(.Aozora-西暦.az)ではありません。	The chosen file isn't a transfer file (.Aozora-YEAR.az).
+引っ越ししています...	Moving your data...
+不明なエラー	Unknown error
+Aozora のデータを AirSky に移しました。	Your Aozora data was moved to AirSky.
+ダウンロード履歴	Download history
+AirSky を再起動して、セットアップに進みます。	AirSky will restart and continue to setup.
+引っ越しが完了しました	Move complete
+引っ越しに失敗しました	Couldn't move your data
+途中まで移したデータが残らないよう、AirSky のデータをすべて削除して再起動します。	To avoid leaving partially moved data, all AirSky data will be deleted and AirSky will restart.
+データを削除しています...	Deleting data...
+タブレットのバーの位置	Tablet bar position
+上	Top
+タブとツールバーを画面の上に表示します。メニューやメッセージも上に出ます	Shows tabs and the toolbar at the top. Menus and messages also appear at the top
+下	Bottom
+タブとツールバーを画面の下に表示します。片手で持った時にも指が届きます	Shows tabs and the toolbar at the bottom, within reach when holding it in one hand
+翻訳するか尋ねる	Ask before translating
+ほかの言語のページを開いた時に「このページを翻訳しますか？」と尋ねます	Asks "Translate this page?" when you open a page in another language
+自動で翻訳する	Translate automatically
+ほかの言語のページを開いたら、尋ねずにすぐ翻訳します(端末内で翻訳します)	Translates pages in other languages right away without asking (on-device)
+起動する	Launch
+美しさと安定性を両立させたブラウザ	A browser that brings beauty and stability together
+準備しています	Preparing
+ダウンロードを準備しています...	Preparing download...
+ダウンロード完了	Download complete
+ウイルスを検出しました	Virus detected
+ダウンロード中	Downloading
+ファイルは保存されませんでした	The file was not saved
+ダウンロード一覧	Downloads
+ページを翻訳しました	Page translated
+カーソルを隠している時の速さ	Speed while the cursor is hidden
+タッチ・マウス・コントローラーで視点を動かす速さです。ふつうのカーソルの最大の 2 倍まで速くできます。	How fast touch, mouse, and controller move the view. Can go up to twice the normal cursor's maximum speed.
+ (最大)	 (Max)
+ (とても速い)	 (Very fast)
+Aozora 以外からの引っ越しの誘導にご注意下さい！	Beware of being led to move data from anything other than Aozora!
+Aozora から AirSky へデータを引っ越すよう求められました。\n\nAozora 以外のアプリやウェブサイトから引っ越しを勧められた場合は、操作を続けないでください。\n\nほかのブラウザからの引っ越しは、思わぬ損害を招いたとしても一切の責任を負えません！	You were asked to move data from Aozora to AirSky.\n\nIf an app or website other than Aozora suggested this move, do not continue.\n\nWe accept no responsibility whatsoever for any unexpected damage caused by moving data from other browsers!
+既存のデータが上書きされます	Your existing data will be overwritten
+引っ越しの際、既存のデータを削除してデータが上書きされます！\n\nAirSky のブックマーク・履歴・タブ・設定などはすべて削除され、Aozora のデータに置き換わります。元に戻すことはできません。	Moving deletes your existing data and overwrites it!\n\nAll AirSky bookmarks, history, tabs, settings and other data will be deleted and replaced with your Aozora data. This can't be undone.
+同意して引っ越す	Agree and move
+既存のデータは削除していません。AirSky を終了します。	Your existing data was not deleted. AirSky will now close.
+引っ越しファイルを読み込めませんでした。ファイルが壊れている可能性があります。	Couldn't read the transfer file. It may be damaged.
+AirSky Browser の引っ越しファイルではありません。	This isn't an AirSky Browser transfer file.
+新しい版の AirSky Browser で作られた引っ越しファイルです。この端末の AirSky Browser を更新してから、もう一度お試しください。	This transfer file was made by a newer version of AirSky Browser. Update AirSky Browser on this device and try again.
+データを反映できませんでした。	Couldn't apply the data.
+引っ越しファイルが見つかりません。	The transfer file wasn't found.
+引っ越しを中止しますか?	Stop the transfer?
+データの受け渡しを途中でやめます。どちらの端末のデータも変わりません。	The transfer will stop. Data on both devices stays as it is.
+中止する	Stop
+データの引っ越し	Transfer data
+別の端末の AirSky Browser と、タブや履歴、ブックマーク、設定などをまるごとやりとりします。	Move your tabs, history, bookmarks, settings and more to or from AirSky Browser on another device.
+このデバイスから送る	Send from this device
+今の端末のデータを新しい端末へ	Move this device's data to a new device
+このデバイスで受け取る	Receive on this device
+前の端末のデータをこの端末へ	Bring data from your old device to this one
+引っ越せるもの	What's transferred
+タブ一覧	Tabs
+フォルダ・リーディングリストも含む	Including folders and the reading list
+サイトの設定・デザイン・コントローラーなど	Site settings, design, controller and more
+タブごとのページ遷移	Per-tab navigation
+各タブの「戻る」「進む」の履歴	Each tab's back and forward history
+メモ・その他	Notes and more
+メモ帳・サイトのアイコン・タブの画像など	Notepad, site icons, tab previews and more
+ご自身で引っ越すもの	Move these yourself
+壁紙	Wallpaper
+新しい端末のスタートページで「壁紙を設定」から設定し直してください	Set it again from "Set wallpaper" on the start page of the new device
+Python の環境とアプリ	Python environment and apps
+ツール › Python で作業フォルダを書き出し(.zip)、新しい端末で追加し直してください	Export the work folder (.zip) in Tools › Python, then add it again on the new device
+Java の環境とアプリ	Java environment and apps
+追加した .jar ファイルを新しい端末に送り、ツール › Java で追加し直してください	Send your .jar files to the new device and add them again in Tools › Java
+パスワードとアプリのロック	Passwords and app lock
+この端末の鍵で保護されているため移せません。新しい端末で設定し直してください	These are protected by this device's keys and can't be moved. Set them up again on the new device
+Cookie とログイン状態	Cookies and sign-ins
+新しい端末で、サイトにもう一度ログインしてください	Sign in to sites again on the new device
+開けませんでした	Couldn't open
+送る方法を選ぶ	Choose how to send
+受け取る端末でも 設定 › データの引っ越し を開き、「このデバイスで受け取る」を選んでください。	On the receiving device, open Settings › Transfer data too and choose "Receive on this device".
+同じ Wi-Fi の端末に、いちばん速く送ります	Fastest, to a device on the same Wi-Fi
+ペア設定した端末に直接送ります	Send directly to a paired device
+引っ越しファイルにまとめて、Quick Share などで送ります	Pack into a transfer file and send with Quick Share and more
+データをまとめられませんでした	Couldn't pack your data
+空き容量が足りないか、ファイルを読み込めませんでした。	There isn't enough free space, or a file couldn't be read.
+データをまとめています	Packing your data
+タブ・履歴・ブックマーク・設定などを 1 つにまとめています。	Putting tabs, history, bookmarks, settings and more into one file.
+Wi-Fi に接続されていません	Not connected to Wi-Fi
+両方の端末を同じ Wi-Fi に接続してから、もう一度お試しください。Wi-Fi が無い場所では Bluetooth か Quick Share をお使いください。	Connect both devices to the same Wi-Fi and try again. Without Wi-Fi, use Bluetooth or Quick Share.
+待ち受けを始められませんでした	Couldn't start waiting for a connection
+送信しています	Sending
+画面を閉じずに、そのままお待ちください。	Keep this screen open and wait.
+接続が切れました。受け取る端末で、もう一度 QR コードを読み取ってください。	The connection was lost. Scan the QR code again on the receiving device.
+QR コードを読み取ってください	Scan this QR code
+受け取る端末で「このデバイスで受け取る」›「QR コードを読み取る」を選び、この QR コードを読み取ってください。両方の端末を同じ Wi-Fi に接続しておいてください。	On the receiving device, choose "Receive on this device" › "Scan QR code" and scan this code. Keep both devices on the same Wi-Fi.
+この端末は Bluetooth に対応していません	This device doesn't support Bluetooth
+Bluetooth をオンにしてください	Turn on Bluetooth
+Bluetooth を使うには「付近のデバイス」の許可が必要です	Bluetooth needs the "Nearby devices" permission
+送り先を選ぶ	Choose where to send
+受け取る端末で「このデバイスで受け取る」›「Bluetooth で受け取る」を開いてから、その端末を選んでください。	On the receiving device, open "Receive on this device" › "Receive via Bluetooth", then choose it here.
+ペア設定済みの端末がありません。下の「新しい端末をペア設定」から、受け取る端末とペア設定してください。	No paired devices. Pair with the receiving device from "Pair new device" below.
+ペア設定済みの端末	Paired devices
+新しい端末をペア設定	Pair new device
+Bluetooth の設定を開きます	Opens Bluetooth settings
+%s に接続しています	Connecting to %s
+受け取る端末で「Bluetooth で受け取る」を開いておいてください。	Keep "Receive via Bluetooth" open on the receiving device.
+%s へ送っています。画面を閉じずにお待ちください。	Sending to %s. Keep this screen open.
+接続できませんでした	Couldn't connect
+受け取る端末で「Bluetooth で受け取る」を開いているか、端末が近くにあるかを確認して、もう一度お試しください。	Check that "Receive via Bluetooth" is open on the receiving device and that it's nearby, then try again.
+Quick Share で送る	Send with Quick Share
+共有の画面で Quick Share を選び、受け取る端末を選んでください。	In the share screen, choose Quick Share and pick the receiving device.
+1. この端末から共有	1. Share from this device
+2. 受け取る端末で受け入れる	2. Accept on the receiving device
+ファイルは「ダウンロード」フォルダに保存されます	The file is saved to the Downloads folder
+3. 受け取る端末の AirSky で開く	3. Open it in AirSky on the receiving device
+設定 › データの引っ越し ›「このデバイスで受け取る」›「ファイルから受け取る」で、このファイルを選びます	Choose this file in Settings › Transfer data › "Receive on this device" › "Receive from a file"
+Quick Share を開く	Open Quick Share
+ほかのアプリで共有(Bluetooth など)	Share with another app (Bluetooth and more)
+引っ越しファイルを送る	Send transfer file
+受け取る端末で内容を確認して「引っ越す」を押すと、引っ越しが完了します。	Review the contents on the receiving device and tap "Transfer" to finish.
+受け取る方法を選ぶ	Choose how to receive
+送る端末で選んだ方法と同じものを選んでください。受け取ったデータは、確認してから反映します。	Choose the same method as on the sending device. You can review the data before it's applied.
+QR コードを読み取る	Scan QR code
+送る端末に表示された QR コードをカメラで読み取ります	Scan the QR code shown on the sending device
+Bluetooth で受け取る	Receive via Bluetooth
+送る端末から、この端末を選んでもらいます	Choose this device on the sending device
+ファイルから受け取る	Receive from a file
+Quick Share などで受け取った .airsky ファイルを選びます	Pick the .airsky file you received with Quick Share or another app
+送る端末に表示された QR コードを読み取ってください	Scan the QR code shown on the sending device
+接続しています	Connecting
+%s に接続しています…	Connecting to %s…
+両方の端末が同じ Wi-Fi に接続されているかを確認して、もう一度 QR コードを読み取ってください。	Check that both devices are on the same Wi-Fi, then scan the QR code again.
+Bluetooth で待っています	Waiting on Bluetooth
+送る端末で「このデバイスから送る」›「Bluetooth」を選び、この端末を選んでください。	On the sending device, choose "Send from this device" › "Bluetooth", then pick this device.
+この端末の名前	This device's name
+送る端末の一覧に出てこない時は、先に Bluetooth の設定で 2 台をペア設定してください。	If it doesn't appear on the sending device, pair the two devices in Bluetooth settings first.
+Bluetooth の設定	Bluetooth settings
+受信しています	Receiving
+%s から受け取っています。画面を閉じずにお待ちください。	Receiving from %s. Keep this screen open.
+Bluetooth で待ち受けられませんでした	Couldn't wait on Bluetooth
+Bluetooth がオンになっているかを確認して、もう一度お試しください。	Check that Bluetooth is on and try again.
+ファイルを選べませんでした	Couldn't pick a file
+ファイルを読み込んでいます	Reading the file
+引っ越しファイルの中身を確認しています。	Checking the transfer file.
+受け取りました	Received
+引っ越しできないファイルです	This file can't be used
+このデータで引っ越しますか?	Transfer this data?
+%s のデータです。	Data from %s.
+この端末の AirSky のタブ・履歴・ブックマーク・設定などは、受け取ったデータに置き換わります。壁紙・Python・Java・パスワード・アプリのロックはそのまま残ります。	AirSky's tabs, history, bookmarks, settings and more on this device will be replaced by the received data. Wallpaper, Python, Java, passwords and app lock stay as they are.
+引っ越す	Transfer
+引っ越しています	Transferring
+AirSky を再起動してデータを反映します…	Restarting AirSky to apply the data…
+空き容量が足りない可能性があります。	There may not be enough free space.
+もう一度、送る端末から送り直してください。	Send it again from the sending device.
+%s のデータを引き継ぎました。	Your data from %s is here.
+AirSky を開く	Open AirSky
+引っ越しを完了できませんでした	Couldn't finish the transfer
+QR コードが古いか、別の端末のものです。送る端末に表示されている QR コードを読み取り直してください。	The QR code is out of date or from another device. Scan the code shown on the sending device again.
+受け取る端末の空き容量が足りません。不要なファイルを消してから、もう一度お試しください。	The receiving device doesn't have enough free space. Delete files you don't need and try again.
+受け取る端末の空き容量が足りません。	The receiving device doesn't have enough free space.
+データが途中で壊れました。もう一度お試しください。	The data was damaged during the transfer. Try again.
+受け取る端末でキャンセルされました。	It was canceled on the receiving device.
+接続が切れました。2 台の端末を近くに置いて、もう一度お試しください。	The connection was lost. Keep the two devices close together and try again.
+もう一度	Try again
+引っ越しの QR コードではありません	This isn't a transfer QR code
+別の端末の AirSky Browser にデータを移す	Move data to AirSky Browser on another device
+Bluetooth・QR コード・Quick Share で引っ越し	Transfer with Bluetooth, QR code or Quick Share
+ステータスバーの電池	Status bar battery
+% で表示	Show as %
+アイコンで表示	Show as icon
+アイコンと % で表示	Show icon and %

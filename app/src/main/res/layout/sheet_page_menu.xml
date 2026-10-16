@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- URL バー横のボタンで開く総合メニュー。下へスワイプ・外側のタップで閉じる -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="16dp"
+    android:paddingBottom="16dp">
+
+    <View
+        android:layout_width="36dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="12dp"
+        android:alpha="0.6"
+        android:background="@drawable/bg_page_menu_handle"
+        android:tag="sheet_handle" />
+
+    <!-- 見ているページ -->
+    <LinearLayout
+        android:id="@+id/pm_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="4dp"
+        android:paddingBottom="12dp">
+        <TextView
+            android:id="@+id/pm_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/pm_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- 更新・共有(独立したボタン) -->
+    <LinearLayout
+        android:id="@+id/pm_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/pm_reload"
+            style="@style/PageMenuTopButton"
+            android:layout_marginEnd="6dp"
+            android:contentDescription="@string/i18n_32ac152be1">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_pm_reload" />
+            <TextView
+                style="@style/PageMenuTopButtonText"
+                android:text="@string/i18n_32ac152be1" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/pm_share"
+            style="@style/PageMenuTopButton"
+            android:layout_marginStart="6dp"
+            android:contentDescription="@string/i18n_8cfef1099a">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_pm_share" />
+            <TextView
+                style="@style/PageMenuTopButtonText"
+                android:text="@string/i18n_8cfef1099a" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ページを残す -->
+    <LinearLayout
+        android:id="@+id/pm_group_save"
+        style="@style/PageMenuGroup">
+        <LinearLayout
+            android:id="@+id/pm_bookmark"
+            style="@style/PageMenuRow">
+            <ImageView
+                android:id="@+id/pm_bookmark_icon"
+                style="@style/PageMenuRowIcon"
+                android:src="@drawable/ic_pm_bookmark" />
+            <TextView
+                android:id="@+id/pm_bookmark_text"
+                style="@style/PageMenuRowText"
+                android:text="@string/i18n_ea526faad0" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/pm_reading"
+            style="@style/PageMenuRow">
+            <ImageView
+                style="@style/PageMenuRowIcon"
+                android:src="@drawable/ic_bm_reading"
+                android:tint="?attr/colorOnSurface" />
+            <TextView
+                style="@style/PageMenuRowText"
+                android:text="@string/i18n_fb07b9abbf" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/pm_offline"
+            style="@style/PageMenuRow">
+            <ImageView
+                style="@style/PageMenuRowIcon"
+                android:src="@drawable/ic_pm_offline" />
+            <TextView
+                style="@style/PageMenuRowText"
+                android:text="@string/i18n_00a8345ab5" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/pm_startpage"
+            style="@style/PageMenuRow">
+            <ImageView
+                style="@style/PageMenuRowIcon"
+                android:src="@drawable/ic_pm_startpage" />
+            <TextView
+                style="@style/PageMenuRowText"
+                android:text="@string/i18n_5211af9e50" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/pm_homescreen"
+            style="@style/PageMenuRow">
+            <ImageView
+                style="@style/PageMenuRowIcon"
+                android:src="@drawable/ic_pm_homescreen" />
+            <TextView
+                style="@style/PageMenuRowText"
+                android:text="@string/i18n_9507a0a16c" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ページの見方 -->
+    <LinearLayout
+        android:id="@+id/pm_group_view"
+        style="@style/PageMenuGroup">
+        <LinearLayout
+            android:id="@+id/pm_find"
+            style="@style/PageMenuRow">
+            <ImageView
+                style="@style/PageMenuRowIcon"
+                android:src="@drawable/ic_pm_find" />
+            <TextView
+                style="@style/PageMenuRowText"
+                android:text="@string/i18n_9836aec779" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/pm_desktop"
+            style="@style/PageMenuRow"
+            android:paddingEnd="10dp">
+            <ImageView
+                style="@style/PageMenuRowIcon"
+                android:src="@drawable/ic_pm_desktop" />
+            <TextView
+                style="@style/PageMenuRowText"
+                android:text="@string/i18n_39918670dc" />
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/pm_desktop_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:importantForAccessibility="no" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/pm_translate"
+            style="@style/PageMenuRow">
+            <ImageView
+                style="@style/PageMenuRowIcon"
+                android:src="@drawable/ic_pm_translate" />
+            <TextView
+                android:id="@+id/pm_translate_text"
+                style="@style/PageMenuRowText"
+                android:text="@string/i18n_133f706453" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/pm_reader"
+            style="@style/PageMenuRow">
+            <ImageView
+                style="@style/PageMenuRowIcon"
+                android:src="@drawable/ic_pm_reader" />
+            <TextView
+                android:id="@+id/pm_reader_text"
+                style="@style/PageMenuRowText"
+                android:text="@string/i18n_f60f443ef0" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

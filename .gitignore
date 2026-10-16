@@ -1,0 +1,27 @@
+# Gradle / build outputs
+.gradle/
+.kotlin/
+build/
+**/build/
+app/release/
+*.apk
+*.aab
+
+# IDE / local machine
+.idea/
+*.iml
+local.properties
+.claude/
+.DS_Store
+
+# Signing keys
+*.jks
+*.keystore
+*.p12
+
+# Heap dumps
+*.hprof
+
+# Unused / duplicate files
+使用しないクラス/
+/arity-2.1.2.jar

@@ -1,0 +1,654 @@
+<resources>
+    <string name="app_name">AirSky Browser</string>
+    <!-- ホーム画面のアイコンの名前(長い正式名称は切れるので通称) -->
+    <string name="launcher_name">AirSky Browser</string>
+    <string name="k_dessert_case">Dessert Case</string>
+    <dimen name="k_dessert_case_cell_size">192dp</dimen>
+    <string name="version">4.0.0</string>
+    <string name="build">AT40A</string>
+    <string name="password_key"></string>
+    <string name="new_tab">New tab</string>
+
+    <string name="websiteSettings">Website settings</string>
+    <string name="geoSettings">Location permission settings</string>
+    <string name="tool_back">Back</string>
+    <string name="tool">Tools</string>
+    <string name="download">Download</string>
+    <string name="txtphoto">Text to Image</string>
+    <string name="asciiart">Image to TXT</string>
+    <string name="pagedlTools">Page saving tool</string>
+    <string name="calculator">Calculator</string>
+    <string name="qrcodeTools">Create QR code</string>
+    <string name="settings">Settings</string>
+    <string name="history">History</string>
+    <string name="deviceinfo">Device info</string>
+    <string name="legal">Legal information</string>
+    <string name="devicestatus">Device status</string>
+    <string name="theme">Theme</string>
+    <string name="browserSettings">Browser settings</string>
+    <string name="backupandreset">Backup and reset</string>
+    <string name="secretmode">Incognito mode</string>
+    <string name="htmleditor">HTML Editor</string>
+    <string name="notepad">Notepad</string>
+    <string name="scanqrcode">Scan QR code</string>
+    <string name="filemanager">File manager</string>
+    <string name="filemanager_long">File management app</string>
+    <string name="general">General</string>
+    <string name="privacyandsecurity">Privacy and security</string>
+    <string name="advancedsettings">Advanced settings</string>
+    <string name="bandwidthmanagement">Bandwidth management</string>
+
+
+
+    <!-- Help: Saved Page -->
+    <string name="help_savedpage_title">Save pages</string>
+    <string name="help_savedpage_detail">Saving a page lets you view it offline. Tap the star button next to the URL bar to save the page. To save it as a file, use the page saving tool in the Tools list.</string>
+
+    <!-- Help: Bookmark -->
+    <string name="help_bookmark_title">Add bookmarks</string>
+    <string name="help_bookmark_detail">To add a bookmark, save it with the star button next to the URL bar.</string>
+
+    <!-- Help: Tools -->
+    <string name="help_tools_title">Use tools</string>
+    <string name="help_tools_detail">To start a tool, open the menu button (A) and tap Tools.</string>
+
+    <!-- Help: Switch Tab -->
+    <string name="help_switchtab_title">Switch tabs</string>
+    <string name="help_switchtab_detail">To switch tabs, tap the tab button and choose the tab to switch to. You can close all tabs from the menu button in the tab list.</string>
+
+    <!-- Boot Screen -->
+    <string name="help_boot_title">Turn off the splash screen and startup sound</string>
+    <string name="help_boot_detail">To turn off the splash screen and startup sound,\nuncheck \"Splash screen\" and \"Startup sound\" in the app settings section of the browser settings.</string>
+
+    <!-- Settings -->
+    <string name="help_settings_title">Open settings</string>
+    <string name="help_settings_detail">Press the menu button (A), then press \"Settings\".\nYou can change various settings from the browser settings.</string>
+
+    <!-- UA -->
+    <string name="help_ua_title">What is a UA?</string>
+    <string name="help_ua_detail">A UA (user agent) is information about your device that\'s passed to a website when you visit it.</string>
+
+    <!-- Contact Waiting -->
+    <string name="help_contact_wait">Please wait...</string>
+
+
+    <string-array name="theme_options">
+        <item>Light mode</item>
+        <item>Dark mode</item>
+        <item>Device default</item>
+    </string-array>
+    <string-array name="popupbutton_options">
+        <item>Light button</item>
+        <item>Dark button</item>
+        <item>Match device theme</item>
+    </string-array>
+    <string-array name="arrowbutton_options">
+        <item>Classic style</item>
+        <item>System UI</item>
+        <item>Modern style</item>
+    </string-array>
+    <string name="cannot_get_image_path">Can\'t get the image path</string>
+    <string name="cannot_load_image">Can\'t load the image</string>
+    <string name="convert_ascii_art">Convert to ASCII art</string>
+    <string name="file_not_selected">No file selected</string>
+    <string name="file_save_failed">Couldn\'t save the file</string>
+    <string name="file_save_success">File saved</string>
+    <string name="file_saved_path">Saved to: </string>
+    <string name="need_storage_permission">Storage access permission is required</string>
+    <string name="save_text">Save to file</string>
+    <string name="select_image">Choose image</string>
+    <string name="save_color">Save colors</string>
+    <string name="error" msgid="9197457880925804499">Error</string>
+    <string name="digit0" msgid="8069590963464434135">"0"</string>
+    <string name="digit1" msgid="8535041374797804029">"1"</string>
+    <string name="digit2" msgid="8977354203154316247">"2"</string>
+    <string name="digit3" msgid="148544090755132760">"3"</string>
+    <string name="digit4" msgid="2199490603838247678">"4"</string>
+    <string name="digit5" msgid="7568514524384173087">"5"</string>
+    <string name="digit6" msgid="6705952561049362551">"6"</string>
+    <string name="digit7" msgid="658125644218958447">"7"</string>
+    <string name="digit8" msgid="3134686906411558886">"8"</string>
+    <string name="digit9" msgid="765379157698748031">"9"</string>
+    <string name="del" msgid="6248896117422989693">Delete</string>
+    <string name="clear" msgid="8103610981407459768">Clear</string>
+    <string name="sin" msgid="6793866152659175277">"sin"</string>
+    <string name="cos" msgid="6901841853098114414">"cos"</string>
+    <string name="tan" msgid="7957459816738554960">"tan"</string>
+    <string name="e" msgid="1377847800971731483">"e"</string>
+    <string name="ln" msgid="6888500680285403344">"ln"</string>
+    <string name="lg" msgid="873623857385418182">"log"</string>
+    <string name="leftParen" msgid="4850643713953092099">"("</string>
+    <string name="rightParen" msgid="3177971166159324016">")"</string>
+    <string name="basic" msgid="7691469861698059753">Basic</string>
+    <string name="advanced" msgid="7122495413742976492">Advanced</string>
+    <string name="clear_history" msgid="8458043980601165012">Clear history</string>
+    <string name="text_copied_toast" msgid="5801480710472541833">Text copied.</string>
+    <string name="leftParenDesc" msgid="8446428211982811379">left parenthesis</string>
+    <string name="rightParenDesc" msgid="9133691645148976523">right parenthesis</string>
+    <string name="factorialDesc" msgid="9217024218012761574">factorial</string>
+    <string name="lnDesc" msgid="1052579286300842270">natural logarithm</string>
+    <string name="lgDesc" msgid="6490920451513731160">logarithm</string>
+    <string name="sqrtDesc" msgid="2247252128762219267">square root</string>
+    <string name="divDesc" msgid="7442623079124315427">divided by</string>
+    <string name="mulDesc" msgid="9003016819648670694">times</string>
+    <string name="plusDesc" msgid="3145322700823848264">plus</string>
+    <string name="minusDesc" msgid="5033462008907390900">minus</string>
+    <string name="dotDesc" msgid="5253752241630161722">point</string>
+    <string name="powerDesc" msgid="9034898318444176910">power</string>
+    <string name="delDesc" msgid="8211175878012032240">Delete</string>
+    <string name="clearDesc" msgid="8015748901120751476">Clear</string>
+    <string name="tanDesc" msgid="2055554933130702423">tangent</string>
+    <string name="sinDesc" msgid="6563285042235077204">sine</string>
+    <string name="cosDesc" msgid="4048942450207926538">cosine</string>
+    <string name="eDesc" msgid="6709583372168924068">e</string>
+    <string name="piDesc" msgid="8838151606775021517">pi</string>
+    <string name="equalDesc" msgid="4164435100263313101">equals</string>
+    <string-array name="operatorDescs">
+        <item msgid="7903565108986789641">left parenthesis</item>
+        <item msgid="1688156211934459752">right parenthesis</item>
+        <item msgid="6664829080840305856">factorial</item>
+        <item msgid="2880199289575144121">natural logarithm</item>
+        <item msgid="4398774906998694599">logarithm</item>
+        <item msgid="1791869359785943266">square root</item>
+        <item msgid="6833720171974254459">divided by</item>
+        <item msgid="2646574635189709515">times</item>
+        <item msgid="3487936384379753697">plus</item>
+        <item msgid="8608534484562258856">minus</item>
+        <item msgid="3456824579675198186">point</item>
+        <item msgid="4528629783180278651">power</item>
+        <item msgid="4050948027333760159">tangent</item>
+        <item msgid="8716478860618683850">sine</item>
+        <item msgid="3203211483560707480">cosine</item>
+        <item msgid="8587490959348493065">pi</item>
+        <item msgid="8134315487552198394">equals</item>
+    </string-array>
+    <string name="div">\u00f7</string>
+    <string name="mul">\u00d7</string>
+    <string name="plus">+</string>
+    <string name="minus">\u2212</string>
+    <string name="dot">.</string>
+    <string name="equal">=</string>
+    <string translate="false" name="sin_mathematical_value">sin</string>
+    <string translate="false" name="cos_mathematical_value">cos</string>
+    <string translate="false" name="tan_mathematical_value">tan</string>
+    <string name="pi">\u03c0</string>
+    <string translate="false" name="e_mathematical_value">e</string>
+    <string translate="false" name="ln_mathematical_value">ln</string>
+    <string translate="false" name="lg_mathematical_value">lg</string>
+    <string name="sqrt">\u221a</string>
+    <string name="power">^</string>
+    <string name="factorial">!</string>
+    <string-array name="operators" translatable="false">
+        <item>(</item>
+        <item>)</item>
+        <item>!</item>
+        <item>ln</item>
+        <item>log</item>
+        <item>\u221a</item>
+        <item>\u00f7</item>
+        <item>\u00d7</item>
+        <item>+</item>
+        <item>\u2212</item>
+        <item>.</item>
+        <item>^</item>
+        <item>tan</item>
+        <item>sin</item>
+        <item>cos</item>
+        <item>\u03c0</item>
+        <item>=</item>
+    </string-array>
+    <string name="header_title">Battery maximum capacity</string>
+    <string name="header_subtitle">Measures the current estimated maximum capacity</string>
+    <string name="label_health">Battery health</string>
+    <string name="label_design_capacity">Design capacity</string>
+    <string name="label_current_capacity">Current estimated maximum capacity</string>
+    <string name="label_level">Current charge level</string>
+    <string name="label_voltage">Voltage</string>
+    <string name="label_temperature">Temperature</string>
+    <string name="label_technology">Battery type</string>
+    <string name="label_status">Charging status</string>
+    <string name="btn_refresh">Measure again</string>
+    <string name="note_text">* This value is an estimate from the device\'s system information and may differ somewhat from an actual battery diagnosis. For a more accurate value, measure when the battery is nearly full.</string>
+    <string name="status_charging">Charging</string>
+    <string name="status_discharging">Discharging</string>
+    <string name="status_full">Fully charged</string>
+    <string name="status_not_charging">Not charging</string>
+    <string name="status_unknown">Unknown</string>
+    <string name="value_unavailable">Unavailable</string>
+    
+    <!-- レイアウト・メニューの文字(i18n_ はソースの日本語のハッシュ) -->
+    <string name="i18n_00a8345ab5">Save for offline</string>
+    <string name="i18n_013b0e6a1e">Image to Text</string>
+    <string name="i18n_016866b749">Time until tabs become inactive</string>
+    <string name="i18n_0170df9448">Require a password at startup (recommended)</string>
+    <string name="i18n_01d9eba07b">Shrink to 50%</string>
+    <string name="i18n_028c4b1422">You can open inactive tabs anytime from \"Inactive tabs\" at the top of the tab list. Opening one makes it a regular tab again. Incognito tabs aren\'t included.</string>
+    <string name="i18n_029c0df654">Settings</string>
+    <string name="i18n_02a974f4f2">❌️ This certificate isn\'t from a trusted certificate authority.</string>
+    <string name="i18n_02c1ac0f8b">Archive name:</string>
+    <string name="i18n_02e915b7b2">More</string>
+    <string name="i18n_02f16797e3">When off, a number is added after the name when saving</string>
+    <string name="i18n_03c6339b9e">Enter URL</string>
+    <string name="i18n_045dc6067d">Close find in page</string>
+    <string name="i18n_048aed0506">AirSky can change the UA to another device\'s and tell sites \"I\'m viewing on a different device\".</string>
+    <string name="i18n_04e4761d18">Shrink image</string>
+    <string name="i18n_05397c957a">A user agent (UA) is like a \"self-introduction\" your browser automatically gives a site when opening it. Sites use it to decide, for example, whether to show the phone or computer version of a page.</string>
+    <string name="i18n_057a922a8f">Tap for biometrics</string>
+    <string name="i18n_05bd6287d8">Higher values resist dirt and damage better, but the pattern gets finer</string>
+    <string name="i18n_05c5a22678">Data usage</string>
+    <string name="i18n_05dfb886b5">New tab group</string>
+    <string name="i18n_06e9d8cacb">Expires:</string>
+    <string name="i18n_076862b049">You can change this anytime later in Settings.</string>
+    <string name="i18n_08be07b9d6">Shrink to 25%</string>
+    <string name="i18n_0939130f69">Sort by name</string>
+    <string name="i18n_095e938e2a">Stop</string>
+    <string name="i18n_0a6450455c">HTML Editor</string>
+    <string name="i18n_0a778faf5a">Add a new tab to this group</string>
+    <string name="i18n_0aa82f1b32">Folder</string>
+    <string name="i18n_0be186f6c8">Arrow buttons</string>
+    <string name="i18n_0c36909842">Encryption:</string>
+    <string name="i18n_0c4a55a675">Results will appear here</string>
+    <string name="i18n_0cd8524f19">Block third-party cookies</string>
+    <string name="i18n_0d2241b0d5">Close tab</string>
+    <string name="i18n_0dacac2eb5">User guide</string>
+    <string name="i18n_0e032e88c3">Next</string>
+    <string name="i18n_0e21d3fe2b">Email address</string>
+    <string name="i18n_0e4e8c2861">Export bookmarks</string>
+    <string name="i18n_0ee942b53c">Allow third-party cookies</string>
+    <string name="i18n_1024e1910f">*Depending on the site, swipe to refresh may prevent scrolling.</string>
+    <string name="i18n_102afe791f">With animation</string>
+    <string name="i18n_11fc30b793">Battery is running low.</string>
+    <string name="i18n_12196ac590">Tabs you haven\'t used for a while and duplicate tabs are grouped under \"Inactive tabs\" at the top of the tab list, keeping your tab list tidy.</string>
+    <string name="i18n_121c5e57e6">The device\'s \"Default apps\" screen opens. Choose AirSky under \"Browser app\". If you don\'t want to set it, just tap \"Next\".</string>
+    <string name="i18n_133f706453">Translation</string>
+    <string name="i18n_13ce9e1069">AirSky is a lightweight web browser.\nIt\'s comfortable to use and has an interface that works on a wide range of devices.</string>
+    <string name="i18n_147e25c7d7">Certificate info</string>
+    <string name="i18n_1514328ac5">No sites have requested access to your location</string>
+    <string name="i18n_15b5cca5bf">Eraser</string>
+    <string name="i18n_15fb3e005d">App info</string>
+    <string name="i18n_166b4570fd">Sites you visit may embed content from other sites (images, ads, text, etc.). Cookies set by these other sites are called \"third-party cookies\".</string>
+    <string name="i18n_179fc0a36c">Sort by size</string>
+    <string name="i18n_17dfdf8433">Welcome</string>
+    <string name="i18n_17f2dd96a9">More options</string>
+    <string name="i18n_1854d4b189">Group tabs</string>
+    <string name="i18n_189bb6cc93">Data collection</string>
+    <string name="i18n_18be449531">No folders here\nCreate one with the button at the top right</string>
+    <string name="i18n_19ea2c4414">Auto-hide the bottom menu bar</string>
+    <string name="i18n_19ff2e4705">When AirSky is your default browser, sites opened from other apps open in AirSky.</string>
+    <string name="i18n_1a39dcc51a">More settings</string>
+    <string name="i18n_1a45106386">Password settings - AirSky</string>
+    <string name="i18n_1a544d0e56">Saving a page lets you view it offline. Tap the star button next to the URL bar to save the page. To save it as a file, use the page saving tool in the Tools list.</string>
+    <string name="i18n_1aa3f84abb">Question</string>
+    <string name="i18n_1aaa25c351">Check MD5</string>
+    <string name="i18n_1abe2ef165">File</string>
+    <string name="i18n_1bf287cddc">Fill</string>
+    <string name="i18n_1c0ad10acb">Use a gradient</string>
+    <string name="i18n_1c75965b81">Edit bookmark</string>
+    <string name="i18n_1cc06e9fa5">Margin</string>
+    <string name="i18n_1e6ec02b80">Delete site data</string>
+    <string name="i18n_1eef06557b">Tab</string>
+    <string name="i18n_1ef8fd2113">Pin</string>
+    <string name="i18n_1fd8563fcf">Search settings</string>
+    <string name="i18n_202faeaeb6">File manager</string>
+    <string name="i18n_20b0d9e708">Text to Image</string>
+    <string name="i18n_20c3b06003">Example of a progress bar advancing in 10% steps</string>
+    <string name="i18n_20c86957b3">New folder</string>
+    <string name="i18n_210bba5b86">Incognito</string>
+    <string name="i18n_2239856d9e">License</string>
+    <string name="i18n_238d7e9e6f">Tab group menu</string>
+    <string name="i18n_2402424d1a">Delete all</string>
+    <string name="i18n_24397c81a0">SHA-256 fingerprint:</string>
+    <string name="i18n_24aca3c516">Send by email</string>
+    <string name="i18n_24bd3eb25f">The type of device (phone, tablet, computer) and OS (Android, etc.)</string>
+    <string name="i18n_255919c212">Launch AirSky</string>
+    <string name="i18n_26f91f53aa">New incognito tab</string>
+    <string name="i18n_28709322a4">To add a bookmark, save it with the star button next to the URL bar.</string>
+    <string name="i18n_291f746242">New password</string>
+    <string name="i18n_2b2e227642">Display settings</string>
+    <string name="i18n_2b4c324620">Clear search</string>
+    <string name="i18n_2c63961453">Packs the file\'s contents into image pixels and saves it. You can also restore the original from a saved DAT.</string>
+    <string name="i18n_2d33dc66f5">Date</string>
+    <string name="i18n_2d44b9f0e9">Enter text or a URL</string>
+    <string name="i18n_2d711b09bd">Message</string>
+    <string name="i18n_2d8c2abb8f">What is the progress bar?</string>
+    <string name="i18n_2e283ed25a">Accept cookies</string>
+    <string name="i18n_2e305a713d">History</string>
+    <string name="i18n_2e849ebe64">Bookmarks</string>
+    <string name="i18n_2e9e3cad7d">Convert</string>
+    <string name="i18n_2f02d461f7">Comment</string>
+    <string name="i18n_2f10e12ec9">Search tabs</string>
+    <string name="i18n_2f54e208a3">Identify</string>
+    <string name="i18n_2f6abf599e">↓ Download</string>
+    <string name="i18n_2f97db95d7">Background color</string>
+    <string name="i18n_3142b93d29">It doesn\'t include personal info such as your name, phone number, or location</string>
+    <string name="i18n_31b97e0ca4">Recommended by Mozilla</string>
+    <string name="i18n_3229560176">Your message (required)</string>
+    <string name="i18n_32a1aafd07">Line</string>
+    <string name="i18n_32ac152be1">Update</string>
+    <string name="i18n_332cd920e5">Show keys</string>
+    <string name="i18n_3434b56fa6">Create folder</string>
+    <string name="i18n_3446669ced">Select multiple</string>
+    <string name="i18n_3598affcb5">By site</string>
+    <string name="i18n_3609f958a3">None</string>
+    <string name="i18n_367195966a">Enter only if you need a reply</string>
+    <string name="i18n_36dd800709">Choose how to use your screens</string>
+    <string name="i18n_37c854729f">Optional settings</string>
+    <string name="i18n_38f92dc11f">Change group color</string>
+    <string name="i18n_38fc53214b">Release here to remove from the group</string>
+    <string name="i18n_39918670dc">Desktop site</string>
+    <string name="i18n_39bc671795">Apply to all files</string>
+    <string name="i18n_39c3e13266">Switch tabs</string>
+    <string name="i18n_3aa80a87c1">Search bookmarks</string>
+    <string name="i18n_3b063f4554">Feature phone UA</string>
+    <string name="i18n_3cbd5284c2">Validity period:</string>
+    <string name="i18n_3e84170084">0% done</string>
+    <string name="i18n_3f20fe0452">Tools</string>
+    <string name="i18n_40602b0b6f">Make it yours</string>
+    <string name="i18n_41180905fa">Use a desktop User-Agent</string>
+    <string name="i18n_421594d303">Skip the password for a while after authenticating</string>
+    <string name="i18n_421bc3084a">Shows the computer version of pages.</string>
+    <string name="i18n_438578b18d">The type and version of the browser you\'re using</string>
+    <string name="i18n_444d5c3a22">• Ask other questions or report bugs via Contact us</string>
+    <string name="i18n_44ad009400">Enable location</string>
+    <string name="i18n_44c181b949">New note with drawing</string>
+    <string name="i18n_450020e44b">Check the source and operator</string>
+    <string name="i18n_4633cdbb53">Page saving tool</string>
+    <string name="i18n_46b9019fc9">Animate the progress bar while loading</string>
+    <string name="i18n_4776e45965">Unlock with biometrics</string>
+    <string name="i18n_47ccea2c3b">Split into multiple files:</string>
+    <string name="i18n_47d37a0689">Starting</string>
+    <string name="i18n_49f076899a">Saved pages</string>
+    <string name="i18n_4a622f127b">Back</string>
+    <string name="i18n_4bdfe7e594">Password</string>
+    <string name="i18n_4c6be86cbb">Save image</string>
+    <string name="i18n_4ca65593a2">Feature request</string>
+    <string name="i18n_5043de34de">Details</string>
+    <string name="i18n_504f323702">New list</string>
+    <string name="i18n_50b8b62b5a">Import bookmarks</string>
+    <string name="i18n_50dc60cdb2">Personal data</string>
+    <string name="i18n_50e7cdb49b">What happens if I switch the UA?</string>
+    <string name="i18n_5211af9e50">Add to start page</string>
+    <string name="i18n_527e4f74fa">Corner markers</string>
+    <string name="i18n_53cdc81a97">Breakdown</string>
+    <string name="i18n_53ce4ff188">Screenshot</string>
+    <string name="i18n_540721e834">Organizational unit:</string>
+    <string name="i18n_548092e620">On devices with two screens (such as AYN Thor), pages can span both screens. Pages you scroll on the top screen flow right into the bottom screen. On tablets, you can use a PC-style layout with tabs along the top.</string>
+    <string name="i18n_54b7c050f2">Result</string>
+    <string name="i18n_561f6fcf8c">AirSky can\'t be used</string>
+    <string name="i18n_567093ef25">Manage stored data and permissions</string>
+    <string name="i18n_58c16095d8">Scan downloaded files and delete them if a virus is found</string>
+    <string name="i18n_5ab5c66df3">Search downloads</string>
+    <string name="i18n_5ac1714aee">Previous</string>
+    <string name="i18n_5acfead3f2">Close all</string>
+    <string name="i18n_5b39c69d97">Button to choose a file</string>
+    <string name="i18n_5b9e23e23e">Name</string>
+    <string name="i18n_5bbfc433b5">Extensions</string>
+    <string name="i18n_5bd343f0ad">Notes you add appear here</string>
+    <string name="i18n_5bdba18f82">Sort by date modified</string>
+    <string name="i18n_5c50823a58">Single screen</string>
+    <string name="i18n_5dce862819">Close</string>
+    <string name="i18n_604365c7f9">Name</string>
+    <string name="i18n_6043834f93">Not secure</string>
+    <string name="i18n_609f4828bc">Copying file</string>
+    <string name="i18n_617821f331">Console</string>
+    <string name="i18n_61c826fdd4">Sites that use third-party cookies work as expected</string>
+    <string name="i18n_61fa355807">You can change any of these later in Settings.</string>
+    <string name="i18n_620172650a">File name</string>
+    <string name="i18n_630a02b200">Previous match</string>
+    <string name="i18n_63ab3ab10c">Turn ON to allow location permission</string>
+    <string name="i18n_64c204d7f4">What is a user agent?</string>
+    <string name="i18n_64f04c1ece">Nothing found</string>
+    <string name="i18n_6540a4a343">Current traffic</string>
+    <string name="i18n_654283028f">Notify me about updates</string>
+    <string name="i18n_65b68b0f0e">Save page</string>
+    <string name="i18n_65be33879c">Quit</string>
+    <string name="i18n_6621358883">App name</string>
+    <string name="i18n_670479bfcb">Inactive tabs</string>
+    <string name="i18n_67948a56be">Java Runner</string>
+    <string name="i18n_67dcd77f9a">Required permissions</string>
+    <string name="i18n_682686888d">Enter a password</string>
+    <string name="i18n_688f2aa484">Data stored by this site</string>
+    <string name="i18n_69e28f9335">Selected file: none</string>
+    <string name="i18n_6b2dfe0665">Done</string>
+    <string name="i18n_6b5d0a585e">Issued:</string>
+    <string name="i18n_6b6bb779f7">Enable the feature phone user agent</string>
+    <string name="i18n_6b756923d7">Delete download history</string>
+    <string name="i18n_6cffc45dc2">To start a tool, open the menu button (A) and tap Tools.</string>
+    <string name="i18n_6e1f8704e9">Help</string>
+    <string name="i18n_6ef3498296">Cancel</string>
+    <string name="i18n_6f0851c8a3">Treated as access from a Challenge Pad.</string>
+    <string name="i18n_6f5ba33c94">Clear all</string>
+    <string name="i18n_6f7f8cd936">Some features may not work. Sites in the exceptions can still use third-party cookies.</string>
+    <string name="i18n_70cbbd2035">Reset AZ_MOV flag (isFirstMov)</string>
+    <string name="i18n_720293fec6">Error correction</string>
+    <string name="i18n_725baa82a5">AirSky (window 2)</string>
+    <string name="i18n_72bdc2cc57">Reload</string>
+    <string name="i18n_73235ec2ee">Redo</string>
+    <string name="i18n_73375a948b">Compression level:</string>
+    <string name="i18n_736bd0653a">What is a user agent (UA)?</string>
+    <string name="i18n_73b61ede9f">Search notes</string>
+    <string name="i18n_7578865c94">Edit</string>
+    <string name="i18n_761a80f854">Getting started</string>
+    <string name="i18n_767f37644b">Choose file</string>
+    <string name="i18n_769cbe6cac">Close search</string>
+    <string name="i18n_773efdc83f">Keyword to search for</string>
+    <string name="i18n_774de6dc52">Run JavaScript</string>
+    <string name="i18n_77d0d6a051">Title</string>
+    <string name="i18n_7a6b62db7e">What\'s new</string>
+    <string name="i18n_7b02563202">Website settings</string>
+    <string name="i18n_7b0e90f775">Choose a file</string>
+    <string name="i18n_7b20aa864f">QR code preview</string>
+    <string name="i18n_7cfcf6aeeb">Some sites show light, simple pages for feature phones.</string>
+    <string name="i18n_7d779235f9">Corner marker shape</string>
+    <string name="i18n_7dc3a57449">Add</string>
+    <string name="i18n_7dfc0c6080">Finally, AirSky will check your connection and then start.</string>
+    <string name="i18n_7e2fb1a43e">Add site</string>
+    <string name="i18n_7ee3e7f241">Let\'s get started</string>
+    <string name="i18n_81b94b6b1a">Close window</string>
+    <string name="i18n_822f7bcff0">Clear all cookies</string>
+    <string name="i18n_83f17eb2ff">Create file</string>
+    <string name="i18n_84e12abe98">Measuring</string>
+    <string name="i18n_858a38d441">Markdown preview</string>
+    <string name="i18n_858efb3aeb">Enable JavaScript</string>
+    <string name="i18n_85e7b0c9a2">Square</string>
+    <string name="i18n_85fb67df82">A file with the same name exists</string>
+    <string name="i18n_876cdfed39">Desktop mode</string>
+    <string name="i18n_886045c716">Tab groups</string>
+    <string name="i18n_88b4e96ec4">Also save resource data</string>
+    <string name="i18n_88ca7ff384">Enter one character</string>
+    <string name="i18n_89398dfd0b">Site URL</string>
+    <string name="i18n_89b8f6a5b5">Export to file</string>
+    <string name="i18n_89ea7f5238">File size</string>
+    <string name="i18n_8afec33e0b">Send us your feedback, requests, or bug reports to help improve the service. The developer will review what you send.</string>
+    <string name="i18n_8b16ec71e1">Scan QR code</string>
+    <string name="i18n_8bd4dabd5b">Drawing</string>
+    <string name="i18n_8c40544310">Password:</string>
+    <string name="i18n_8ca5cfbe0f">Page on top,\nURL bar and buttons below</string>
+    <string name="i18n_8cfef1099a">Share</string>
+    <string name="i18n_8d074b48e9">Add site exception</string>
+    <string name="i18n_8d18931417">Dots</string>
+    <string name="i18n_8d3355dac6">Files you download appear here</string>
+    <string name="i18n_8e1b944f43">Background</string>
+    <string name="i18n_8e5871e71e">Find in page</string>
+    <string name="i18n_8f2b96bb28">Allow the site to use third-party cookies</string>
+    <string name="i18n_8f2b992c8c">• Learn how to set a password</string>
+    <string name="i18n_8f65f4ad1f">Menu button</string>
+    <string name="i18n_8f7541d8f7">Grep keyword field</string>
+    <string name="i18n_8fcf17682a">It advances in 10% steps. Less motion and a lighter display.</string>
+    <string name="i18n_9013ced74d">Menu</string>
+    <string name="i18n_904e8027c8">Sort</string>
+    <string name="i18n_90ee2e996a">Choose light, dark, or match the device. On the next screen, you\'ll choose the look of the start page and bottom bar.</string>
+    <string name="i18n_90fb57b7e2">Dual screen</string>
+    <string name="i18n_9122c53716">Color</string>
+    <string name="i18n_915b864f52">Swipe to refresh*</string>
+    <string name="i18n_91c479c17e">Invalid URL format</string>
+    <string name="i18n_91ec029098">Run grep -i</string>
+    <string name="i18n_91ef66f187">Close tab group</string>
+    <string name="i18n_9219fc8ca4">Start</string>
+    <string name="i18n_92220bcb95">Open the device\'s data usage settings</string>
+    <string name="i18n_9250736aba">Stroke width</string>
+    <string name="i18n_93134f365c">Don\'t show again</string>
+    <string name="i18n_935cf9b3c8">Without animation</string>
+    <string name="i18n_937a08e9ea">Move tabs and groups that have the same page open to inactive tabs</string>
+    <string name="i18n_940876a28f">Terms of use</string>
+    <string name="i18n_9507a0a16c">Add to Home screen</string>
+    <string name="i18n_9836aec779">Find in page</string>
+    <string name="i18n_98a693278e">To switch tabs, tap the tab button and choose the tab to switch to. You can close all tabs from the menu button in the tab list.</string>
+    <string name="i18n_9d130df895">Invert colors</string>
+    <string name="i18n_9d5195dab9">Round</string>
+    <string name="i18n_9d87ee27d9">Thank you for contacting us.\nWe\'ll use your feedback to improve the app.</string>
+    <string name="i18n_9db1a7ca81">Search file names</string>
+    <string name="i18n_9ed2b3f089">Bug report</string>
+    <string name="i18n_9f004d30af">It grows smoothly, so progress looks natural.</string>
+    <string name="i18n_a00cd25304">Save pages</string>
+    <string name="i18n_a160b00775">Set</string>
+    <string name="i18n_a21311bad6">Virus scan</string>
+    <string name="i18n_a357042f51">Search or type URL</string>
+    <string name="i18n_a49a8235be">Clear cache</string>
+    <string name="i18n_a595d9537a">New downloads</string>
+    <string name="i18n_a5e07aee5b">Tab cleanup</string>
+    <string name="i18n_a5fb25153d">Background preview</string>
+    <string name="i18n_a67e32620f">New password (confirm)</string>
+    <string name="i18n_a6bda899ca">Save and go back</string>
+    <string name="i18n_a782c4614f">Choose a theme</string>
+    <string name="i18n_a7d2a6a1a6">Extension settings</string>
+    <string name="i18n_a7d84685ef">Minimize</string>
+    <string name="i18n_a83737fc21">This setting isn\'t used because cookies are turned off. (Settings › Privacy and security › Accept cookies)</string>
+    <string name="i18n_a83bf56236">Reply-to (optional)</string>
+    <string name="i18n_aa476020c3">Suggestions (optional)</string>
+    <string name="i18n_ab71ffd002">✅ The certificate is valid.</string>
+    <string name="i18n_abbf8de431">Cookies and site data</string>
+    <string name="i18n_abc8d12256">Changing the UA can make some sites display incorrectly or prevent signing in. If you run into trouble, change it back. You can change it anytime in Settings › Browser behavior.</string>
+    <string name="i18n_ac9d4a5661">Marker</string>
+    <string name="i18n_ad328765ed">Dot shape</string>
+    <string name="i18n_ad44d10e40">Send</string>
+    <string name="i18n_adec63cad5">Move here</string>
+    <string name="i18n_af1a1012cb">I, 1, l checker</string>
+    <string name="i18n_b062ae49eb">Visualize taps</string>
+    <string name="i18n_b0932a8638">Set password</string>
+    <string name="i18n_b1156ee2b3">Example</string>
+    <string name="i18n_b116872cef">Window</string>
+    <string name="i18n_b16a6edf51">Type and send (input())</string>
+    <string name="i18n_b1c3a51d9a">Browser app</string>
+    <string name="i18n_b3dd9ec898">AirSky Browser is a lightweight, simple, open source browser.\nSet a few things up and get started.</string>
+    <string name="i18n_b415e13a86">Restore image from DAT</string>
+    <string name="i18n_b46c47d054">Ascending / descending</string>
+    <string name="i18n_b540124d4c">What is the progress bar?</string>
+    <string name="i18n_b542647128">Site info</string>
+    <string name="i18n_b5a8f2aef3">Everything on\none screen</string>
+    <string name="i18n_b5c114d9d1">New tab</string>
+    <string name="i18n_b72081771a">Open settings</string>
+    <string name="i18n_b866f5b3e3">Issued to:</string>
+    <string name="i18n_b8b055e535">New note with recording</string>
+    <string name="i18n_b8ff73111d">Theme preview</string>
+    <string name="i18n_b998f01860">Python Runner</string>
+    <string name="i18n_ba6b939c1a">Removes them from the list. Downloaded files aren\'t deleted</string>
+    <string name="i18n_bae3d05089">Use tools</string>
+    <string name="i18n_bb2c923feb">Close all tabs</string>
+    <string name="i18n_bcd6d6ccd7">The app wallpaper is the same as the start page wallpaper. Change it with the wallpaper button at the top right of the start page.</string>
+    <string name="i18n_bce4a42e18">See details in the store</string>
+    <string name="i18n_bcfe1dd3e8">A fast, comfortable browsing experience</string>
+    <string name="i18n_be39b94562">Reset data</string>
+    <string name="i18n_be5fbbe34c">Save</string>
+    <string name="i18n_bf45dd063f">Create from file</string>
+    <string name="i18n_bf6e977b60">Organization:</string>
+    <string name="i18n_c004a0b6e3">Download folder</string>
+    <string name="i18n_c272d47ef2">Paste</string>
+    <string name="i18n_c38186b4e0">Using AirSky</string>
+    <string name="i18n_c44c52c444">Pen</string>
+    <string name="i18n_c50fc3ae40">• Learn how to open settings</string>
+    <string name="i18n_c5aee1d902">No matching tabs</string>
+    <string name="i18n_c641686dbc">Error: couldn\'t get it</string>
+    <string name="i18n_c64f099da4">Enter text or a URL and a QR code appears here</string>
+    <string name="i18n_c6577c2e90">Delete</string>
+    <string name="i18n_c8757ba398">Let\'s go over how to use AirSky.</string>
+    <string name="i18n_c8c64044e3">Incognito tab</string>
+    <string name="i18n_c904209067">Don\'t split</string>
+    <string name="i18n_c90e2ef499">You can review the terms of use anytime in \"Settings › About AirSky Browser › Legal information\".</string>
+    <string name="i18n_c959bee4e8">You can change this later in \"Settings\" → \"Design\" → \"Screen\".</string>
+    <string name="i18n_c977d7c57c">Page info</string>
+    <string name="i18n_c979cde6b7">Password authentication - AirSky</string>
+    <string name="i18n_c9fe1e0cdb">Search history</string>
+    <string name="i18n_cc9595f3e9">Sent</string>
+    <string name="i18n_cc96a4a98c">List item</string>
+    <string name="i18n_ce75933eab">Search by file name</string>
+    <string name="i18n_cf06918210">Clear location access</string>
+    <string name="i18n_d04d1c9e12">Calculator</string>
+    <string name="i18n_d158ebcfd7">Block pop-ups</string>
+    <string name="i18n_d1c5ff179f">Load</string>
+    <string name="i18n_d2cd10cd30">You can get extensions from Firefox\'s add-on store. You can also open an .xpi file to install it.</string>
+    <string name="i18n_d2cf1cfd48">Switch view</string>
+    <string name="i18n_d33dd6ae84">Check the file name, size, and location before saving</string>
+    <string name="i18n_d34227740f">The thin line at the top of the screen while a page is opening or downloading. When the line reaches the right edge, loading is done.</string>
+    <string name="i18n_d3e343346f">Support</string>
+    <string name="i18n_d400b4829a">Reset design</string>
+    <string name="i18n_d48925e66a">Add bookmarks</string>
+    <string name="i18n_d69be82991">Long-press the URL to copy</string>
+    <string name="i18n_d800e8eb9d">A lightweight, simple browser</string>
+    <string name="i18n_d8eb1d7b68">Enable desktop mode</string>
+    <string name="i18n_d955752cbf">Ask before downloading</string>
+    <string name="i18n_da488507a7">Security warnings</string>
+    <string name="i18n_da79536016">Third-party cookies</string>
+    <string name="i18n_db67c09fd8">Inactive tabs and groups are closed if unused for 3 months</string>
+    <string name="i18n_db693ad589">Undo</string>
+    <string name="i18n_dc4775226e">Arrow</string>
+    <string name="i18n_dcecd2726e">Enter web address</string>
+    <string name="i18n_de4364003e">Issued by:</string>
+    <string name="i18n_deba64e8e6">Clear</string>
+    <string name="i18n_ded567564f">Remove from exceptions</string>
+    <string name="i18n_df28873ab1">Find extensions</string>
+    <string name="i18n_df828aef1c">Write a note</string>
+    <string name="i18n_e1f348b517">Reset</string>
+    <string name="i18n_e286336961">Usage by day</string>
+    <string name="i18n_e29596e63b">New</string>
+    <string name="i18n_e334d8acd3">More actions</string>
+    <string name="i18n_e34ae5b130">• Learn what UA means</string>
+    <string name="i18n_e5ab98fd66">Report</string>
+    <string name="i18n_e78ad4a459">Markdown</string>
+    <string name="i18n_e7e6869091">Archive duplicate tabs</string>
+    <string name="i18n_e83c98cb0a">Set as default browser?</string>
+    <string name="i18n_e84e1edfad">Type</string>
+    <string name="i18n_ea526faad0">Add bookmark</string>
+    <string name="i18n_ea84e95e8d">Button to run the MD5 check</string>
+    <string name="i18n_ea88053e5b">Location permission settings</string>
+    <string name="i18n_ea9e98ddcc">Challenge Pad UA</string>
+    <string name="i18n_eb85f50fd9">Create QR code</string>
+    <string name="i18n_ebf3d62729">Next match</string>
+    <string name="i18n_ec659588b3">The result appears here</string>
+    <string name="i18n_ed23d4d7eb">About this page</string>
+    <string name="i18n_edd67af5de">Before using AirSky, please review the terms of use. Tapping \"Agree\" means you agree to the terms of use.</string>
+    <string name="i18n_ee162c8592">Notepad</string>
+    <string name="i18n_ee9a8e5bd6">↑ Upload</string>
+    <string name="i18n_ef64f67446">New note</string>
+    <string name="i18n_f2336cd98f">New note with image</string>
+    <string name="i18n_f2e148c10d">Description</string>
+    <string name="i18n_f37b0b56be">• Use AirSky</string>
+    <string name="i18n_f45fc37fb9">Stop selecting</string>
+    <string name="i18n_f4a035bb56">Close all incognito tabs</string>
+    <string name="i18n_f53c58fc73">General</string>
+    <string name="i18n_f5c1d3991b">Attach device and app info</string>
+    <string name="i18n_f5c670ca99">Pages you visit appear here, grouped by date</string>
+    <string name="i18n_f60f443ef0">Reading mode</string>
+    <string name="i18n_f6484c39a2">Example of a smoothly growing progress bar</string>
+    <string name="i18n_f6af6d49cc">Close inactive tabs automatically after 3 months</string>
+    <string name="i18n_f6b01a6a6b">Type and send (System.in)</string>
+    <string name="i18n_f70b41b7c1">All set</string>
+    <string name="i18n_f81fd2e4c5">Download</string>
+    <string name="i18n_f883de6ee1">What does it tell sites?</string>
+    <string name="i18n_f991d9fd93">SHA-1 fingerprint:</string>
+    <string name="i18n_fab2f044f1">Button to run grep</string>
+    <string name="i18n_fae1ccddd2">Translate</string>
+    <string name="i18n_fb07b9abbf">Add to reading list</string>
+    <string name="i18n_fb3a8e4f34">Ask when a file with the same name exists</string>
+    <string name="i18n_fb44f3ab22">Enter one hard-to-tell character (I, 1, l, O, 0, etc.) to find out which character it is.</string>
+    <string name="i18n_fb646e2fe9">Download settings</string>
+    <string name="i18n_fc01e180ec">Fingerprints:</string>
+    <string name="i18n_fc0d49c347">Search</string>
+    <string name="i18n_fc4d2f2594">Open in new tab</string>
+    <string name="i18n_fd016c117d">PIN settings - AirSky</string>
+    <string name="i18n_fd5f55ae92">Common name:</string>
+    <string name="i18n_fd604ef92d">Show bottom bar</string>
+    <string name="i18n_fdbc77bd19">Safety</string>
+    <string name="i18n_ff5932fd7b">Convert to image</string>
+    <string name="i18n_ffcad92658">Error: couldn\'t show it</string>
+</resources>

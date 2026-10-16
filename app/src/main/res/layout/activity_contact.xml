@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- お問い合わせ(アプリ内で送信する) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/ToolRoot">
+
+    <include layout="@layout/include_tool_header" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/tool_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:id="@+id/tool_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="24dp">
+
+            <!-- フォーム -->
+            <LinearLayout
+                android:id="@+id/contactForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/ToolCardSummary"
+                    android:layout_marginBottom="12dp"
+                    android:paddingHorizontal="8dp"
+                    android:text="@string/i18n_8afec33e0b" />
+
+                <TextView
+                    style="@style/ToolSectionLabel"
+                    android:text="@string/i18n_e84e1edfad" />
+
+                <LinearLayout
+                    style="@style/ToolCard"
+                    android:paddingVertical="12dp">
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/contactType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:chipSpacingHorizontal="8dp"
+                        app:selectionRequired="true"
+                        app:singleSelection="true">
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/typeComment"
+                            style="@style/Widget.Material3.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="@string/i18n_2f02d461f7" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/typeQuestion"
+                            style="@style/Widget.Material3.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/i18n_1aa3f84abb" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/typeBug"
+                            style="@style/Widget.Material3.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/i18n_9ed2b3f089" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/typeFeature"
+                            style="@style/Widget.Material3.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/i18n_4ca65593a2" />
+                    </com.google.android.material.chip.ChipGroup>
+                </LinearLayout>
+
+                <TextView
+                    style="@style/ToolSectionLabel"
+                    android:text="@string/i18n_2d711b09bd" />
+
+                <LinearLayout style="@style/ToolCard">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/contactMessageLayout"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/i18n_3229560176"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="4000">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/contactMessage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="top|start"
+                            android:inputType="textMultiLine|textCapSentences"
+                            android:maxLength="4000"
+                            android:minLines="5" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/contactSuggestionLayout"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:hint="@string/i18n_aa476020c3">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/contactSuggestion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="top|start"
+                            android:inputType="textMultiLine|textCapSentences"
+                            android:maxLength="2000"
+                            android:minLines="2" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <TextView
+                    style="@style/ToolSectionLabel"
+                    android:text="@string/i18n_a83bf56236" />
+
+                <LinearLayout style="@style/ToolCard">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/contactNameLayout"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/i18n_604365c7f9">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/contactName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
+                            android:maxLength="100"
+                            android:singleLine="true" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/contactEmailLayout"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:hint="@string/i18n_0e21d3fe2b"
+                        app:helperText="@string/i18n_367195966a">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/contactEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"
+                            android:maxLength="254"
+                            android:singleLine="true" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ToolCard"
+                    android:paddingVertical="8dp">
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/contactAttachDevice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:minHeight="56dp"
+                        android:text="@string/i18n_f5c1d3991b"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/contactDeviceInfo"
+                        style="@style/ToolCardSummary"
+                        android:layout_marginBottom="12dp"
+                        android:fontFamily="monospace"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/contactPrivacy"
+                    style="@style/ToolCardSummary"
+                    android:layout_marginTop="4dp"
+                    android:paddingHorizontal="8dp"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- 送信完了 -->
+            <LinearLayout
+                android:id="@+id/contactDone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="48dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:background="@drawable/bg_tool_icon_circle"
+                    android:importantForAccessibility="no"
+                    android:padding="24dp"
+                    android:src="@drawable/ic_ct_check"
+                    android:tint="?attr/colorOnPrimaryContainer" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/i18n_cc9595f3e9"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="24sp" />
+
+                <TextView
+                    style="@style/ToolCardSummary"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:paddingHorizontal="24dp"
+                    android:text="@string/i18n_9d87ee27d9" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- 下のボタン -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end|center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp">
+
+        <Button
+            android:id="@+id/contactMail"
+            style="@style/ToolButton.Outlined"
+            android:layout_width="wrap_content"
+            android:text="@string/i18n_24aca3c516"
+            app:icon="@drawable/ic_ct_mail" />
+
+        <Button
+            android:id="@+id/contactSend"
+            style="@style/ToolButton"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/i18n_ad44d10e40"
+            app:icon="@drawable/ic_ct_send" />
+    </LinearLayout>
+</LinearLayout>

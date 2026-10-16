@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pixel 風の画面の下のバーに置く、文字だけのボタン(「戻る」「同意しない」など) -->
+<com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.Material3.Button.TextButton"
+    android:layout_width="wrap_content"
+    android:layout_height="56dp"
+    android:paddingHorizontal="20dp"
+    android:textSize="15sp"
+    app:cornerRadius="28dp" />

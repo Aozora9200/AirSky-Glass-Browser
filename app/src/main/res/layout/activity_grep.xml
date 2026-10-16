@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- grep -i / MD5(Pixel の設定アプリ風) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/ToolRoot">
+
+    <include layout="@layout/include_tool_header" />
+
+    <LinearLayout
+        android:id="@+id/tool_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="16dp">
+
+        <LinearLayout style="@style/ToolCard">
+
+            <Button
+                android:id="@+id/selectFileButton"
+                style="@style/ToolButton.Tonal"
+                android:layout_width="match_parent"
+                android:contentDescription="@string/i18n_5b39c69d97"
+                android:text="@string/i18n_767f37644b"
+                app:icon="@drawable/ic_ext_file" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/ToolTextField"
+                android:layout_marginTop="12dp"
+                android:hint="@string/i18n_773efdc83f">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/grepInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/i18n_8f7541d8f7"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/grepButton"
+                    style="@style/ToolButton"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/i18n_fab2f044f1"
+                    android:text="@string/i18n_91ec029098"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/md5Button"
+                    style="@style/ToolButton.Outlined"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/i18n_ea84e95e8d"
+                    android:text="@string/i18n_1aaa25c351" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_tool_card"
+            android:clipToOutline="true"
+            android:fillViewport="true">
+
+            <TextView
+                android:id="@+id/resultTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:longClickable="true"
+                android:padding="20dp"
+                android:scrollbars="vertical"
+                android:text="@string/i18n_0c4a55a675"
+                android:textColor="?attr/colorOnSurface"
+                android:textIsSelectable="true"
+                android:textSize="13sp" />
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

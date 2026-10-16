@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- I or 1 or l(紛らわしい文字の判別。Pixel の設定アプリ風) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ToolRoot">
+
+    <include layout="@layout/include_tool_header" />
+
+    <LinearLayout
+        android:id="@+id/tool_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp">
+
+        <LinearLayout style="@style/ToolCard">
+
+            <TextView
+                style="@style/ToolCardSummary"
+                android:layout_marginBottom="16dp"
+                android:text="@string/i18n_fb44f3ab22" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/ToolTextField"
+                android:hint="@string/i18n_88ca7ff384">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editIor1orl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:inputType="text"
+                    android:maxLength="1"
+                    android:textSize="28sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/buttonCheck"
+                style="@style/ToolButton"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:text="@string/i18n_2f54e208a3" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ToolCard"
+            android:background="@drawable/bg_tool_card_low">
+
+            <TextView
+                style="@style/ToolSectionLabel"
+                android:paddingStart="0dp"
+                android:paddingTop="0dp"
+                android:text="@string/i18n_54b7c050f2" />
+
+            <TextView
+                android:id="@+id/textViewResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/i18n_ec659588b3"
+                android:textColor="?attr/colorOnSurface"
+                android:textIsSelectable="true"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

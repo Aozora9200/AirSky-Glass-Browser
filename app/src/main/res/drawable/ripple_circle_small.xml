@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 押した時の波紋を、ボタンの中央の円の中だけに出す(URL バー横のメニューボタン用) -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?android:attr/colorControlHighlight">
+    <item
+        android:id="@android:id/mask"
+        android:width="36dp"
+        android:height="36dp"
+        android:gravity="center">
+        <shape android:shape="oval">
+            <solid android:color="@android:color/white" />
+        </shape>
+    </item>
+</ripple>

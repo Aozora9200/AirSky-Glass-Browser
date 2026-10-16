@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ヘルプ(Chrome のヘルプのような構成を、Pixel の設定アプリ風の見た目で) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ToolRoot">
+
+    <include layout="@layout/include_tool_header" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/tool_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:id="@+id/tool_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="32dp" />
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

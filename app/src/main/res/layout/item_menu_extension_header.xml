@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Aozora メニューの「拡張機能」の行(タップで入っている拡張機能を開閉) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/PageMenuRow"
+    android:layout_height="wrap_content"
+    android:minHeight="60dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <ImageView
+        android:id="@+id/mxIcon"
+        style="@style/PageMenuRowIcon"
+        android:src="@drawable/ic_ext_puzzle" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/mxTitle"
+            style="@style/PageMenuRowText"
+            android:layout_width="match_parent"
+            android:text="@string/i18n_5bbfc433b5" />
+
+        <TextView
+            android:id="@+id/mxSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mxChip"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/bg_ext_info_chip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="6dp">
+
+        <TextView
+            android:id="@+id/mxCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnSecondaryContainer"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/mxArrow"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="2dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_ext_expand"
+            app:tint="?attr/colorOnSecondaryContainer" />
+    </LinearLayout>
+</LinearLayout>

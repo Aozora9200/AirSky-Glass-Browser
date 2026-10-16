@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ダウンロード一覧の日付の見出し。左に色の付いた短い線を置く(「たった今」「今日 ・ 2026年10月4日」など) -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dlHeader"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawableStart="@drawable/bg_dl_header_mark"
+    android:drawablePadding="10dp"
+    android:gravity="center_vertical"
+    android:paddingStart="8dp"
+    android:paddingTop="22dp"
+    android:paddingEnd="8dp"
+    android:paddingBottom="10dp"
+    android:textColor="?attr/colorPrimary"
+    android:textSize="14sp"
+    android:textStyle="bold" />

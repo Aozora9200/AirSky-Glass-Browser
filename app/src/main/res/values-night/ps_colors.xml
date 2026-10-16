@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ps_page_bg">#16171C</color>
+    <color name="ps_card_bg">#24262C</color>
+    <color name="ps_search_bg">#2B2D33</color>
+    <color name="ps_tone_blue_bg">#284777</color>
+    <color name="ps_tone_blue_fg">#D9E2FF</color>
+    <color name="ps_tone_green_bg">#1D4D2C</color>
+    <color name="ps_tone_green_fg">#C8EFD0</color>
+    <color name="ps_tone_orange_bg">#5A3415</color>
+    <color name="ps_tone_orange_fg">#FFDCC2</color>
+    <color name="ps_tone_pink_bg">#593E5A</color>
+    <color name="ps_tone_pink_fg">#FDD7FA</color>
+    <color name="ps_tone_teal_bg">#124D52</color>
+    <color name="ps_tone_teal_fg">#BDEDF0</color>
+    <color name="ps_tone_gray_bg">#3A3B41</color>
+    <color name="ps_tone_gray_fg">#E3E2E9</color>
+    <color name="ps_tone_red_bg">#6B2723</color>
+    <color name="ps_tone_red_fg">#FFDAD6</color>
+    <color name="ps_tone_purple_bg">#45386B</color>
+    <color name="ps_tone_purple_fg">#E9DDFF</color>
+    <color name="ps_ok">#6DD58C</color>
+    <color name="ps_warn">#FFB870</color>
+</resources>

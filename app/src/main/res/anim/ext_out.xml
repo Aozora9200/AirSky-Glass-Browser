@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 拡張機能の画面の行き来(Material の共有軸: 横へ少しずれながらフェード) -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:interpolator/fast_out_slow_in"
+    android:shareInterpolator="true">
+    <translate
+        android:duration="300"
+        android:fromXDelta="0%"
+        android:toXDelta="-10%" />
+    <alpha
+        android:duration="90"
+        android:startOffset="0"
+        android:fromAlpha="1.0"
+        android:toAlpha="0.0" />
+</set>

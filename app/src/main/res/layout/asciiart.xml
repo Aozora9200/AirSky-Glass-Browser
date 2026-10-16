@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 画像を文字(アスキーアート)に変換(Pixel の設定アプリ風) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ToolRoot">
+
+    <include layout="@layout/include_tool_header" />
+
+    <LinearLayout
+        android:id="@+id/tool_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="16dp">
+
+        <LinearLayout style="@style/ToolCard">
+
+            <LinearLayout style="@style/ToolCardRow">
+
+                <ImageView
+                    style="@style/ToolCardIcon"
+                    android:src="@drawable/ic_tool_image" />
+
+                <TextView
+                    android:id="@+id/selectedFilePath"
+                    style="@style/ToolCardSummary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:ellipsize="middle"
+                    android:singleLine="true"
+                    android:text="@string/file_not_selected" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/selectImageButton"
+                    style="@style/ToolButton.Tonal"
+                    android:layout_width="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:text="@string/select_image" />
+
+                <Button
+                    android:id="@+id/convertButton"
+                    style="@style/ToolButton"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:text="@string/convert_ascii_art" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ToolCard"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp">
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/saveText"
+                style="@style/ToolSwitch"
+                android:checked="true"
+                android:text="@string/save_text" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/saveColorSwitch"
+                style="@style/ToolSwitch"
+                android:text="@string/save_color" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/savedFilePath"
+            style="@style/ToolCardSummary"
+            android:layout_marginBottom="8dp"
+            android:paddingHorizontal="8dp"
+            android:text="" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_tool_card"
+            android:clipToOutline="true">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true">
+
+                <TextView
+                    android:id="@+id/asciiTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:padding="16dp"
+                    android:scrollbars="horizontal"
+                    android:singleLine="false"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="8sp" />
+            </HorizontalScrollView>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

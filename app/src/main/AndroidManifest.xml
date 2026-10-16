@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- パスキー: Android 14 以降の認証情報マネージャーに、ブラウザとしてサイトの代わりに問い合わせる -->
+    <uses-permission android:name="android.permission.CREDENTIAL_MANAGER_SET_ORIGIN" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- Devices running Android 13 (API level 33) or higher -->
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+
+    <!-- To handle the reselection within the app on devices running Android 14
+         or higher if your app targets Android 14 (API level 34) or higher.  -->
+    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
+    <!-- データの引っ越し(Bluetooth) -->
+    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-feature android:name="android.hardware.bluetooth" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <uses-feature android:name="android.hardware.microphone" android:required="false" />
+
+    <queries>
+        <!-- カメラ -->
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <!-- ギャラリー -->
+        <intent>
+            <action android:name="android.intent.action.GET_CONTENT" />
+        </intent>
+        <intent>
+            <action android:name="android.provider.MediaStore.RECORD_SOUND"/>
+        </intent>
+
+        <!-- PDFを開くアプリ -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:mimeType="application/pdf" />
+        </intent>
+
+        <!-- 一般的なファイルビューア（動画・画像など） -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:mimeType="*/*" />
+        </intent>
+    </queries>
+
+    <!-- android:launchMode="singleTop" -->
+
+    <application
+        android:name=".AozoraApplication"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:theme="@style/Theme.AozoraBrowser"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_aozora"
+        android:label="@string/app_name"
+        android:localeConfig="@xml/locales_config"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:launchMode="singleTop"
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop"
+            android:exported="true"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="stateHidden|adjustNothing"
+            android:configChanges="orientation|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:mimeType="text/html" />
+            </intent-filter>
+            <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
+            <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing" android:value="true"/>
+        </activity>
+        <activity
+            android:name=".BootingActivity"
+            android:label="@string/launcher_name"
+            android:exported="true"
+            android:theme="@style/Theme.AozoraBrowser">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+        </activity>
+        <!-- 設定(Pixel 風。PixelSettingsActivity) -->
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/settings"
+            android:icon="@drawable/ic_app_settings"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".SearchEngineSettingsActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".AutofillSettingsActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false" />
+        <activity
+            android:name=".AutofillListActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false" />
+        <activity
+            android:name=".AutofillEntryActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false" />
+        <activity
+            android:name=".PrivacySettingsActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".SafetyCheckActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".HomepageSettingsActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".DesignSettingsActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".ControllerSettingsActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".PadMappingActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".AccessibilitySettingsActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".SiteSettingsActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".SitePermissionActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".SiteDetailActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".LanguageSettingsActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".GeneralSettingsActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".BrowserBehaviorSettingsActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <!-- 非アクティブなタブの設定 -->
+        <activity
+            android:name=".InactiveTabsSettingsActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".CookieSettingsActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".WebSiteSettingsActivity"
+            android:label="@string/websiteSettings"
+            android:icon="@drawable/ic_app_settings"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Base.Theme.AozoraApp"/>
+        <activity
+            android:name=".GeoSettingsActivity"
+            android:label="@string/geoSettings"
+            android:icon="@drawable/ic_app_settings"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Base.Theme.AozoraApp"/>
+        <activity
+            android:name=".ToolsActivity"
+            android:label="@string/tool"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".SetupActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Theme.Aozora.Setup"/>
+        <activity
+            android:name=".HelpActivity"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".AozoraHelp"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".HelpCenterActivity"
+            android:theme="@style/Base.Theme.AozoraTools"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+        <activity
+            android:name=".NewFeatures"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".DataUsage"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".HelpProgress"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <!-- 利用規約(法的情報から読む・規約が新しくなった時に同意してもらう) -->
+        <activity
+            android:name=".TermsActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <!-- ガラスのデザインの設定(初回セットアップでも開く) -->
+        <activity
+            android:name=".GlassSettingsActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".SetupProgress"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <!-- アップデートの通知から開く、新しいバージョンのダウンロード画面 -->
+        <activity
+            android:name=".UpdateActivity"
+            android:exported="false"
+            android:configChanges="orientation|keyboardHidden|screenSize|uiMode"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <!-- アプリ内のお問い合わせ -->
+        <activity
+            android:name=".ContactActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <!-- 他のアプリのサインインなどで開く簡易ブラウザ(Custom Tabs)。Intent は MainActivity が受け取って渡す。
+             最小化(ピクチャー イン ピクチャー)した時の小窓のタスクに、Aozora のほかの画面が入らないよう
+             taskAffinity を空にする(呼び出し元アプリのタスクに重なって開くのは変わらない) -->
+        <activity
+            android:name=".CustomTabActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboardHidden|uiMode"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:taskAffinity=""
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <!-- 他のアプリに Custom Tabs を提供できることを知らせる -->
+        <service
+            android:name=".AozoraCustomTabsService"
+            android:exported="true"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="android.support.customtabs.action.CustomTabsService" />
+            </intent-filter>
+        </service>
+        <activity
+            android:name=".SetupResult"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".DownloadListActivity"
+            android:icon="@drawable/ic_app_download"
+            android:label="@string/download"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".DownloadSettingsActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".CharCheckActivity"
+            android:label="I or 1 or l"
+            android:icon="@drawable/ic_app_ior1orl"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".TextToImageActivity"
+            android:label="@string/txtphoto"
+            android:icon="@drawable/ic_app_text_to_image"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".ImageToTextActivity"
+            android:label="@string/asciiart"
+            android:icon="@drawable/ic_app_image_to_text"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".PageDownloadActivity"
+            android:label="@string/pagedlTools"
+            android:icon="@drawable/ic_app_page_save"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".SimpleCalculatorActivity"
+            android:label="@string/calculator"
+            android:icon="@drawable/ic_app_calculator"
+            android:theme="@style/Base.Theme.AozoraApp"/>
+
+        <activity
+            android:name=".Calculator"
+            android:label="@string/calculator"
+            android:icon="@drawable/ic_app_calculator"
+            android:theme="@style/Base.Theme.AozoraTools"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.APP_CALCULATOR"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".QrCodeActivity"
+            android:label="@string/qrcodeTools"
+            android:icon="@drawable/ic_app_qr"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".PageHistoryActivity"
+            android:label="@string/history"
+            android:configChanges="orientation|screenSize"
+            android:icon="@drawable/transparent_vector"
+            android:screenOrientation="unspecified"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".AppInfoActivity"
+            android:label="@string/deviceinfo"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:icon="@drawable/ic_app_settings"
+            android:screenOrientation="unspecified"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".LegalActivity"
+            android:label="@string/legal"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:icon="@drawable/ic_app_settings"
+            android:screenOrientation="unspecified"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".DeviceStatusActivity"
+            android:label="@string/devicestatus"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:icon="@drawable/ic_app_settings"
+            android:screenOrientation="unspecified"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".OssLicensesActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".ResetActivity"
+            android:label="@string/backupandreset"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:icon="@drawable/ic_app_settings"
+            android:screenOrientation="unspecified"
+            android:theme="@style/Base.Theme.AozoraApp"/>
+        <!-- 「新しいウィンドウで開く」の 2 つ目のウィンドウ(別のタスク。分割画面では並べて出す) -->
+        <activity
+            android:name=".WindowActivity"
+            android:label="@string/i18n_725baa82a5"
+            android:launchMode="singleTask"
+            android:taskAffinity="${applicationId}.window2"
+            android:resizeableActivity="true"
+            android:exported="false"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="stateHidden|adjustNothing"
+            android:configChanges="orientation|screenSize"/>
+        <activity
+            android:name=".SecretActivity"
+            android:label="@string/secretmode"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AozoraBrowser"
+            android:windowSoftInputMode="stateHidden|adjustNothing"
+            android:configChanges="orientation|screenSize"/>
+        <!-- JAR 実行ツール。プログラムはブラウザと別のプロセス(:jvm)で動かし、終わったらプロセスごと閉じる -->
+        <activity
+            android:name=".JarToolActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Base.Theme.AozoraTools" />
+        <!-- Python 実行ツール。Python は内蔵のシェルから別のプロセスとして動かし、画面を閉じると終わらせる -->
+        <activity
+            android:name=".PyToolActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Base.Theme.AozoraTools" />
+        <activity
+            android:name=".PyRunActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboard|keyboardHidden|navigation|uiMode|density"
+            android:exported="false"
+            android:label="@string/i18n_b998f01860"
+            android:launchMode="singleTask"
+            android:taskAffinity="${applicationId}.python"
+            android:theme="@style/Base.Theme.AozoraTools"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <!-- ホーム画面のショートカットから Java / Python のプログラムを始める入口(画面なし。合言葉を確かめる) -->
+        <activity
+            android:name=".ProgramShortcutActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:noHistory="true"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.NoDisplay" />
+        <activity
+            android:name=".JarRunActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboard|keyboardHidden|navigation|uiMode|density"
+            android:exported="false"
+            android:label="@string/i18n_67948a56be"
+            android:launchMode="singleTask"
+            android:process=":jvm"
+            android:taskAffinity="${applicationId}.jvm"
+            android:theme="@style/Base.Theme.AozoraTools"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".ExecActivity"
+            android:label="exec"
+            android:icon="@drawable/ic_app_settings"
+            android:theme="@style/Base.Theme.AozoraApp"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:configChanges="orientation|screenSize"/>
+        <activity
+            android:name=".GrepMd5Activity"
+            android:label="grep-i/md5"
+            android:icon="@drawable/ic_app_search_file"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".HtmlEditorActivity"
+            android:label="@string/htmleditor"
+            android:icon="@drawable/ic_app_html"
+            android:theme="@style/Base.Theme.AozoraTools"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="file" />
+            <data android:scheme="content" />
+            <data android:mimeType="text/html" />
+        </intent-filter>
+        </activity>
+        <activity
+            android:name=".NotepadActivity"
+            android:label="@string/notepad"
+            android:icon="@drawable/ic_app_notepad"
+            android:theme="@style/Base.Theme.AozoraTools"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".NoteEditActivity"
+            android:label="@string/notepad"
+            android:theme="@style/Base.Theme.AozoraTools"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".DrawingActivity"
+            android:label="@string/i18n_8bd4dabd5b"
+            android:screenOrientation="unspecified"
+            android:theme="@style/Base.Theme.AozoraTools" />
+        <activity
+            android:name=".QrCameraActivity"
+            android:label="@string/scanqrcode"
+            android:icon="@drawable/ic_app_qr_scan"
+            android:theme="@style/Base.Theme.AozoraApp"/>
+        <activity
+            android:name=".QrCaptureActivity"
+            android:screenOrientation="fullUser"
+            android:stateNotNeeded="true"
+            android:theme="@style/Base.Theme.AozoraTools" />
+        <activity
+            android:name=".FileManager"
+            android:label="@string/filemanager"
+            android:icon="@drawable/ic_app_files"
+            android:theme="@style/Base.Theme.AozoraApp"/>
+        <activity
+            android:name=".BookmarksActivity"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".SavedPagesActivity"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".BookmarkEditActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".BookmarkFolderPickerActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <!-- 拡張機能の管理。.xpi ファイルを開いた時もここでインストールの確認を出す -->
+        <activity
+            android:name=".ExtensionsActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:label="@string/i18n_5bbfc433b5"
+            android:theme="@style/Base.Theme.AozoraTools">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:mimeType="application/x-xpinstall" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:host="*" />
+                <data android:mimeType="*/*" />
+                <data android:pathPattern=".*\\.xpi" />
+                <data android:pathPattern=".*\\..*\\.xpi" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ExtensionDetailActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".DebugActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <!-- イースターエッグ(Android 4.4 KitKat / Dessert Case)
+             移植元: https://github.com/hushenghao/AndroidEasterEggs/tree/main/eggs/KitKat -->
+        <activity
+            android:name=".kitkat.PlatLogoActivity"
+            android:exported="false"
+            android:icon="@drawable/k_platlogo"
+            android:label="@string/k_dessert_case"
+            android:theme="@android:style/Theme.Wallpaper.NoTitleBar.Fullscreen"/>
+        <activity
+            android:name=".kitkat.DessertCase"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:hardwareAccelerated="true"
+            android:icon="@drawable/k_platlogo"
+            android:label="@string/k_dessert_case"
+            android:launchMode="singleInstance"
+            android:screenOrientation="locked"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"/>
+        <!-- a gallery of delicious treats -->
+        <service
+            android:name=".kitkat.DessertCaseDream"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/k_platlogo"
+            android:label="@string/k_dessert_case"
+            android:permission="android.permission.BIND_DREAM_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.dreams.DreamService" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name=".DownloadActionReceiver"
+            android:exported="false" />
+        <receiver
+            android:name=".ProgramShortcuts$Added"
+            android:exported="false" />
+
+        <provider android:name="androidx.core.content.FileProvider" android:authorities="com.airsky.browser.fileprovider" android:exported="false" android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"/>
+        </provider>
+
+
+
+
+
+        <!-- Aozora からのデータの引っ越し(初回起動時、オープニングの後) -->
+        <!-- データの引っ越し(端末どうし) -->
+        <activity
+            android:name=".DeviceMigrationActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".AozoraMigrationActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+        <activity
+            android:name=".IntroMovieActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AozoraBrowser"/>
+
+        <activity
+            android:name=".LockSettingsActivity"
+            android:launchMode="singleTop"
+            android:exported="false"
+            android:theme="@style/Base.Theme.AozoraTools"/>
+
+        <activity
+            android:name=".PasswordSettingActivity"
+            android:launchMode="singleTop"
+            android:exported="false"
+            android:theme="@style/Theme.AozoraBrowser"/>
+
+        <activity
+            android:name=".PinSettingActivity"
+            android:launchMode="singleTop"
+            android:exported="false"
+            android:theme="@style/Theme.AozoraBrowser"/>
+
+        <activity
+            android:name=".PasswordActivity"
+            android:launchMode="singleTop"
+            android:exported="false"
+            android:theme="@style/Theme.AozoraBrowser"/>
+
+        <activity
+            android:name=".LockedOutActivity"
+            android:launchMode="singleTop"
+            android:exported="false"
+            android:theme="@style/Theme.AozoraBrowser"/>
+
+        <activity
+            android:name=".BatteryCapacity"
+            android:launchMode="singleTop"
+            android:icon="@drawable/ic_battery"
+            android:exported="false"
+            android:theme="@style/Theme.Aozora.Battery"/>
+        <!-- 「ページの準備ができたらお知らせ」: 待っている間プロセスを生かしておく -->
+        <service
+            android:name=".PageReadyWaitService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+        <!-- アプリを開いていない間のアップデートの確認(1 日 1 回) -->
+        <service
+            android:name=".UpdateCheckJobService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <!-- バックグラウンド再生: ページの動画・音声をアプリの外でも再生し続ける -->
+        <service
+            android:name=".MediaPlaybackService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
+    </application>
+
+</manifest>

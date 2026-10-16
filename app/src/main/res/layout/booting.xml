@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  起動画面(Pixel 風)。背景(壁紙と、その上の半透明の幕)は従来のまま。
+  中央: 丸い下地に入ったアイコンと、広がる輪 / 名前 / 4 色の点(読み込み中)
+  下: 細い角丸の進み具合と作者名
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/framebackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/setupback"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop" />
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000"
+        android:importantForAccessibility="no" />
+
+    <LinearLayout
+        android:id="@+id/splash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:clipChildren="false">
+
+            <View
+                android:id="@+id/splashRing"
+                android:layout_width="136dp"
+                android:layout_height="136dp"
+                android:layout_gravity="center"
+                android:alpha="0"
+                android:background="@drawable/bg_boot_ring" />
+
+            <FrameLayout
+                android:id="@+id/splashIconBox"
+                android:layout_width="136dp"
+                android:layout_height="136dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_boot_icon"
+                android:elevation="6dp">
+
+                <ImageView
+                    android:id="@+id/splashIcon"
+                    android:layout_width="88dp"
+                    android:layout_height="88dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/app_name"
+                    android:src="@mipmap/aozora" />
+            </FrameLayout>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="-0.01"
+            android:text="@string/app_name"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.02"
+            android:text="@string/i18n_d800e8eb9d"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:id="@+id/splashDots"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="28dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/bg_boot_dot"
+                android:backgroundTint="#4285F4" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/bg_boot_dot"
+                android:backgroundTint="#EA4335" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/bg_boot_dot"
+                android:backgroundTint="#FBBC04" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/bg_boot_dot"
+                android:backgroundTint="#34A853" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/booting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/i18n_47d37a0689"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/splashFooter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="40dp">
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/booting_progress"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="0"
+            app:indicatorColor="?attr/colorPrimary"
+            app:trackColor="#33FFFFFF"
+            app:trackCornerRadius="3dp"
+            app:trackThickness="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.06"
+            android:text="Created by Hatsukari"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <com.airsky.browser.TouchEffectView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        android:focusable="false" />
+</FrameLayout>

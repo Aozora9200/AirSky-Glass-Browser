@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- メモ一覧(Google Keep 風): 上に検索バー、メモのカードを 2 列で、下に新規作成のバーと + ボタン -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ntRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:fitsSystemWindows="true">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ntList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingStart="8dp"
+        android:paddingTop="76dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="96dp" />
+
+    <!-- メモが無い時 -->
+    <LinearLayout
+        android:id="@+id/ntEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="48dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/ntEmptyIcon"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:alpha="0.5"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_nt_note_bulb"
+            app:tint="?attr/colorPrimary" />
+
+        <TextView
+            android:id="@+id/ntEmptyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/i18n_5bd343f0ad"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- 検索バー -->
+    <LinearLayout
+        android:id="@+id/ntSearchBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_tool_search"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="4dp">
+
+        <ImageButton
+            android:id="@+id/ntBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/tool_back"
+            android:src="@drawable/ic_si_back" />
+
+        <EditText
+            android:id="@+id/ntSearch"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="@string/i18n_73b61ede9f"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingHorizontal="4dp"
+            android:singleLine="true"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurfaceVariant"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/ntLayout"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_d2cf1cfd48"
+            android:src="@drawable/ic_nt_list" />
+
+        <ImageButton
+            android:id="@+id/ntMore"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_02e915b7b2"
+            android:src="@drawable/ic_nt_more" />
+    </LinearLayout>
+
+    <!-- 選択中のバー(長押しで出る) -->
+    <LinearLayout
+        android:id="@+id/ntSelectBar"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="?attr/colorSurfaceContainerHigh"
+        android:elevation="3dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/ntSelClose"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_f45fc37fb9"
+            android:src="@drawable/ic_nt_close" />
+
+        <TextView
+            android:id="@+id/ntSelCount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/ntSelPin"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_1ef8fd2113"
+            android:src="@drawable/ic_nt_pin_outline" />
+
+        <ImageButton
+            android:id="@+id/ntSelColor"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_2f97db95d7"
+            android:src="@drawable/ic_nt_palette" />
+
+        <ImageButton
+            android:id="@+id/ntSelExport"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_89b8f6a5b5"
+            android:src="@drawable/ic_nt_export" />
+
+        <ImageButton
+            android:id="@+id/ntSelDelete"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_c6577c2e90"
+            android:src="@drawable/ic_nt_delete" />
+    </LinearLayout>
+
+    <!-- 下のバー: 新しいリスト・図形描画・録音・画像 -->
+    <LinearLayout
+        android:id="@+id/ntBottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_gravity="bottom"
+        android:background="?attr/colorSurfaceContainer"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="96dp">
+
+        <ImageButton
+            android:id="@+id/ntNewList"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_504f323702"
+            android:src="@drawable/ic_nt_checkbox" />
+
+        <ImageButton
+            android:id="@+id/ntNewDrawing"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_44c181b949"
+            android:src="@drawable/ic_nt_brush" />
+
+        <ImageButton
+            android:id="@+id/ntNewAudio"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_b8b055e535"
+            android:src="@drawable/ic_nt_mic" />
+
+        <ImageButton
+            android:id="@+id/ntNewImage"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_f2336cd98f"
+            android:src="@drawable/ic_nt_image" />
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ntFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="36dp"
+        android:contentDescription="@string/i18n_ef64f67446"
+        android:src="@drawable/ic_ts_add"
+        app:fabCustomSize="64dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Aozora.Medium" />
+</FrameLayout>

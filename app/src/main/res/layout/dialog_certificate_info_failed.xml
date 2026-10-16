@@ -1,0 +1,63 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 証明書有効表示 -->
+        <TextView
+            android:id="@+id/tvValid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/i18n_02a974f4f2"
+            android:textStyle="bold"
+            android:paddingBottom="12dp"/>
+
+        <!-- 発行先 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/i18n_b866f5b3e3"
+            android:textStyle="bold"/>
+        <TextView android:id="@+id/tvIssuedToCN" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/i18n_fd5f55ae92" />
+        <TextView android:id="@+id/tvIssuedToO" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/i18n_bf6e977b60" />
+        <TextView android:id="@+id/tvIssuedToOU" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/i18n_540721e834" />
+
+        <!-- 発行者 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/i18n_de4364003e"
+            android:textStyle="bold"
+            android:paddingTop="8dp"/>
+        <TextView android:id="@+id/tvIssuedByCN" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/i18n_fd5f55ae92" />
+        <TextView android:id="@+id/tvIssuedByO" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/i18n_bf6e977b60" />
+        <TextView android:id="@+id/tvIssuedByOU" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/i18n_540721e834" />
+
+        <!-- 有効期間 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/i18n_3cbd5284c2"
+            android:textStyle="bold"
+            android:paddingTop="8dp"/>
+        <TextView android:id="@+id/tvValidFrom" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/i18n_6b5d0a585e" />
+        <TextView android:id="@+id/tvValidUntil" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/i18n_06e9d8cacb" />
+
+        <!-- 指紋 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/i18n_fc01e180ec"
+            android:textStyle="bold"
+            android:paddingTop="8dp"/>
+        <TextView android:id="@+id/tvSHA256" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/i18n_24397c81a0" />
+        <TextView android:id="@+id/space1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+        <TextView android:id="@+id/tvSHA1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/i18n_f991d9fd93" />
+
+    </LinearLayout>
+</ScrollView>

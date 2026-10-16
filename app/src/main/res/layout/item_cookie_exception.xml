@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- サードパーティ Cookie の例外のサイト 1 件 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <View
+        style="@style/SiteInfoDivider"
+        android:layout_marginHorizontal="20dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="72dp"
+        android:orientation="horizontal"
+        android:paddingStart="36dp"
+        android:paddingEnd="12dp">
+        <ImageView
+            android:id="@+id/ce_icon"
+            style="@style/SiteInfoRowIcon"
+            android:src="@drawable/ic_si_globe" />
+        <TextView
+            android:id="@+id/ce_host"
+            style="@style/SiteInfoRowTitle"
+            android:ellipsize="start"
+            android:singleLine="true" />
+        <ImageButton
+            android:id="@+id/ce_remove"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_ded567564f"
+            android:src="@drawable/ic_si_close" />
+    </LinearLayout>
+</LinearLayout>

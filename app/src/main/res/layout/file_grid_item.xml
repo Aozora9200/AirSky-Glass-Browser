@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ファイルマネージャのグリッド表示のタイル(大きいアイコン・名前・サイズ) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:minHeight="128dp"
+    android:orientation="vertical"
+    android:paddingHorizontal="6dp"
+    android:paddingVertical="10dp">
+
+    <ImageView
+        android:id="@+id/imageIcon"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:padding="2dp"
+        android:scaleType="fitCenter" />
+
+    <TextView
+        android:id="@+id/textFileName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="2"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/textFileSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textSize="11sp" />
+</LinearLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pixel 風の設定画面(PixelSettingsActivity)の色 -->
+<resources>
+    <color name="ps_page_bg">#EEEDF1</color>
+    <color name="ps_card_bg">#FFFFFF</color>
+    <color name="ps_search_bg">#FFFFFF</color>
+    <!-- トップの設定一覧のアイコンの丸(カテゴリごとに色を変える) -->
+    <color name="ps_tone_blue_bg">#D9E2FF</color>
+    <color name="ps_tone_blue_fg">#0B3E8F</color>
+    <color name="ps_tone_green_bg">#C8EFD0</color>
+    <color name="ps_tone_green_fg">#0B5226</color>
+    <color name="ps_tone_orange_bg">#FFDCC2</color>
+    <color name="ps_tone_orange_fg">#6E3500</color>
+    <color name="ps_tone_pink_bg">#FDD7FA</color>
+    <color name="ps_tone_pink_fg">#5E1660</color>
+    <color name="ps_tone_teal_bg">#BDEDF0</color>
+    <color name="ps_tone_teal_fg">#004F54</color>
+    <color name="ps_tone_gray_bg">#E3E2E6</color>
+    <color name="ps_tone_gray_fg">#303136</color>
+    <color name="ps_tone_red_bg">#FFDAD6</color>
+    <color name="ps_tone_red_fg">#8C1D18</color>
+    <color name="ps_tone_purple_bg">#E9DDFF</color>
+    <color name="ps_tone_purple_fg">#41297A</color>
+    <color name="ps_ok">#1E8E3E</color>
+    <color name="ps_warn">#C26401</color>
+</resources>

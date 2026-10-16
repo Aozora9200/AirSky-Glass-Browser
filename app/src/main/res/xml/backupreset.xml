@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
+    <PreferenceCategory
+        android:title="@string/i18n_2e849ebe64">
+
+        <Preference
+            android:key="bookmark_export_key"
+            android:title="@string/i18n_0e4e8c2861" />
+        <Preference
+            android:key="bookmark_import_key"
+            android:title="@string/i18n_50b8b62b5a" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/i18n_50dc60cdb2">
+
+        <Preference
+            android:key="reset"
+            android:title="@string/i18n_be39b94562" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

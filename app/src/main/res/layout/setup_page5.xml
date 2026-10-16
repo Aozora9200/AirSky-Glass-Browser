@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- セットアップ 6: 完了 -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/setup_lottie"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:contentDescription="@null"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/lottie_check" />
+
+        <TextView
+            style="@style/Aozora.Setup.Headline"
+            android:gravity="center"
+            android:text="@string/i18n_f70b41b7c1" />
+
+        <TextView
+            style="@style/Aozora.Setup.Body"
+            android:gravity="center"
+            android:text="@string/i18n_7dfc0c6080" />
+    </LinearLayout>
+</ScrollView>

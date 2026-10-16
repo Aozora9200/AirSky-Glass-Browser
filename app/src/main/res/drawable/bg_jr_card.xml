@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- JAR 実行画面のコンソール・ウィンドウの下地(Pixel の設定のカード) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/ps_card_bg" />
+    <corners android:radius="26dp" />
+</shape>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ページ保存ツール(Pixel の設定アプリ風) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/ToolRoot">
+
+    <include layout="@layout/include_tool_header" />
+
+    <LinearLayout
+        android:id="@+id/tool_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="16dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/ToolTextField"
+            android:layout_marginBottom="12dp"
+            android:hint="@string/i18n_03c6339b9e"
+            app:startIconDrawable="@drawable/ic_omni_globe">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/urlInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textUri"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            style="@style/ToolCard"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp">
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/jsSwitch"
+                style="@style/ToolSwitch"
+                android:text="@string/i18n_774de6dc52" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/resourceZipSwitch"
+                style="@style/ToolSwitch"
+                android:text="@string/i18n_88b4e96ec4" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/pcUaSwitch"
+                style="@style/ToolSwitch"
+                android:text="@string/i18n_41180905fa" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/saveButton"
+            style="@style/ToolButton"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="12dp"
+            android:text="@string/i18n_65b68b0f0e"
+            app:icon="@drawable/ic_tool_save" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_tool_card"
+            android:clipToOutline="true">
+
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

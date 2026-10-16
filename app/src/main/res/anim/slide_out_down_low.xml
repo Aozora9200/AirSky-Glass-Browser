@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ツールなどの画面を閉じる時のアニメーション。
+    少しだけ上へ持ち上がって(ため)から、縮みながら軽く傾いて勢いよく下へ落ちていく。
+-->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shareInterpolator="false"
+    android:zAdjustment="top">
+
+    <!-- 上へ 4% ほど持ち上がってから、加速して画面の下へ -->
+    <translate
+        android:duration="340"
+        android:fromYDelta="0%"
+        android:toYDelta="105%"
+        android:interpolator="@anim/anticipate_soft" />
+
+    <!-- 落ちながら少し縮む(奥へ離れていく感じ) -->
+    <scale
+        android:duration="340"
+        android:fromXScale="1.0"
+        android:fromYScale="1.0"
+        android:toXScale="0.88"
+        android:toYScale="0.88"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:interpolator="@android:interpolator/fast_out_linear_in" />
+
+    <!-- 落ちる勢いで少しだけ傾く -->
+    <rotate
+        android:duration="340"
+        android:fromDegrees="0"
+        android:toDegrees="4"
+        android:pivotX="50%"
+        android:pivotY="0%"
+        android:interpolator="@android:interpolator/accelerate_cubic" />
+
+    <!-- 持ち上がっている間ははっきり見せ、落ち始めてから消える -->
+    <alpha
+        android:startOffset="110"
+        android:duration="230"
+        android:fromAlpha="1.0"
+        android:toAlpha="0.0"
+        android:interpolator="@android:interpolator/accelerate_quad" />
+</set>

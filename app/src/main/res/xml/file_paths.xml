@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path name="external_files" path="."/>
+    <cache-path name="zip_preview" path="zip_preview/" />
+    <cache-path name="shared" path="shared/" />
+    <files-path name="notes" path="notes/" />
+</paths>

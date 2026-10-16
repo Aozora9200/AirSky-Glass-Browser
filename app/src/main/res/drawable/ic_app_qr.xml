@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- QR コード作成 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp" android:height="48dp"
+    android:viewportWidth="48" android:viewportHeight="48">
+    <path android:fillColor="#FF37474F" android:pathData="M24,2a22,22 0,1 1,0,44a22,22 0,1 1,0,-44z"/>
+    <group android:translateX="10.8" android:translateY="10.8" android:scaleX="1.1" android:scaleY="1.1">
+        <path android:fillColor="#FFFFFFFF" android:pathData="M3,11h8V3H3V11zM5,5h4v4H5V5zM3,21h8v-8H3V21zM5,15h4v4H5V15zM13,3v8h8V3H13zM19,9h-4V5h4V9zM19,19h2v2h-2zM13,13h2v2h-2zM15,15h2v2h-2zM13,17h2v2h-2zM15,19h2v2h-2zM17,17h2v2h-2zM17,13h2v2h-2zM19,15h2v2h-2z"/>
+    </group>
+</vector>

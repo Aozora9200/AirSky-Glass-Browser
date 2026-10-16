@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 拡張機能の画面のカードの 1 行(アイコン・見出し・説明・右端のスイッチ等) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ExtRow">
+
+    <ImageView
+        android:id="@+id/erIcon"
+        style="@style/ExtRowIcon" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/erTitle"
+            style="@style/ExtRowTitle" />
+
+        <TextView
+            android:id="@+id/erSummary"
+            style="@style/ExtRowSummary"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/erSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:clickable="false"
+        android:focusable="false"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/erChevron"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="12dp"
+        android:alpha="0.6"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_si_chevron"
+        android:visibility="gone" />
+</LinearLayout>

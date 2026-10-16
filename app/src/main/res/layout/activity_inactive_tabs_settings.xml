@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  非アクティブなタブの設定(Pixel の設定風)。
+  上: 大きな見出しとアイコン / 期間の選択(つながった角丸のカード) / 重複・自動で閉じるのスイッチ
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/it_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurfaceContainer"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="16dp">
+        <ImageButton
+            android:id="@+id/it_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_4a622f127b"
+            android:src="@drawable/ic_si_back" />
+        <TextView
+            android:id="@+id/it_bar_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:alpha="0"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@string/i18n_670479bfcb"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/it_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="32dp">
+
+            <!-- 大きな見出し(スクロールすると上のバーに移る) -->
+            <TextView
+                android:id="@+id/it_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:paddingHorizontal="12dp"
+                android:text="@string/i18n_670479bfcb"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="36sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_cs_card"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="20dp">
+                <FrameLayout
+                    android:id="@+id/it_hero"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_it_hero">
+                    <ImageView
+                        android:id="@+id/it_hero_icon"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_ts_inactive"
+                        android:tint="?attr/colorOnPrimaryContainer" />
+                </FrameLayout>
+                <TextView
+                    style="@style/SiteInfoParagraph"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:text="@string/i18n_12196ac590"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/it_period_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="10dp"
+                android:paddingHorizontal="20dp"
+                android:text="@string/i18n_016866b749"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- 期間の選択肢(コードで並べる) -->
+            <LinearLayout
+                android:id="@+id/it_periods"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="10dp"
+                android:paddingHorizontal="20dp"
+                android:text="@string/i18n_a5e07aee5b"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/it_duplicates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_cs_card_top"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:minHeight="88dp"
+                android:orientation="horizontal"
+                android:paddingVertical="16dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+                <ImageView
+                    android:id="@+id/it_duplicates_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="20dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_it_copy"
+                    android:tint="?attr/colorOnSurfaceVariant" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/it_duplicates_title"
+                        style="@style/CookieOptionTitle"
+                        android:text="@string/i18n_e7e6869091" />
+                    <TextView
+                        android:id="@+id/it_duplicates_summary"
+                        style="@style/CookieOptionSummary"
+                        android:text="@string/i18n_937a08e9ea" />
+                </LinearLayout>
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/it_duplicates_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:importantForAccessibility="no" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/it_auto_close"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/bg_cs_card_bottom"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:minHeight="88dp"
+                android:orientation="horizontal"
+                android:paddingVertical="16dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+                <ImageView
+                    android:id="@+id/it_auto_close_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="20dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_it_auto_delete"
+                    android:tint="?attr/colorOnSurfaceVariant" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/it_auto_close_title"
+                        style="@style/CookieOptionTitle"
+                        android:text="@string/i18n_f6af6d49cc" />
+                    <TextView
+                        android:id="@+id/it_auto_close_summary"
+                        style="@style/CookieOptionSummary"
+                        android:text="@string/i18n_db67c09fd8" />
+                </LinearLayout>
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/it_auto_close_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:importantForAccessibility="no" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="16dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_si_info"
+                    android:tint="?attr/colorOnSurfaceVariant" />
+                <TextView
+                    style="@style/SiteInfoParagraph"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/i18n_028c4b1422"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- メモの手書き・図形描画 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurfaceContainer"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp">
+
+        <ImageButton
+            android:id="@+id/drBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/tool_back"
+            android:src="@drawable/ic_si_back" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="@string/i18n_8bd4dabd5b"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/drUndo"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_db693ad589"
+            android:src="@drawable/ic_nt_undo" />
+
+        <ImageButton
+            android:id="@+id/drRedo"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_73235ec2ee"
+            android:src="@drawable/ic_nt_redo" />
+
+        <ImageButton
+            android:id="@+id/drClear"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_6f5ba33c94"
+            android:src="@drawable/ic_nt_delete" />
+
+        <Button
+            android:id="@+id/drDone"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/i18n_6b2dfe0665" />
+    </LinearLayout>
+
+    <com.airsky.browser.DrawingView
+        android:id="@+id/drCanvas"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="12dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_tool_card"
+        android:clipToOutline="true"
+        android:elevation="1dp" />
+
+    <!-- 道具 -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:scrollbars="none">
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/drTools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <Button
+                android:id="@+id/drPen"
+                style="@style/DrawTool"
+                android:contentDescription="@string/i18n_c44c52c444"
+                app:icon="@drawable/ic_nt_pen" />
+
+            <Button
+                android:id="@+id/drMarker"
+                style="@style/DrawTool"
+                android:contentDescription="@string/i18n_ac9d4a5661"
+                app:icon="@drawable/ic_nt_marker" />
+
+            <Button
+                android:id="@+id/drEraser"
+                style="@style/DrawTool"
+                android:contentDescription="@string/i18n_15b5cca5bf"
+                app:icon="@drawable/ic_nt_eraser" />
+
+            <Button
+                android:id="@+id/drLine"
+                style="@style/DrawTool"
+                android:contentDescription="@string/i18n_32a1aafd07"
+                app:icon="@drawable/ic_nt_line" />
+
+            <Button
+                android:id="@+id/drArrow"
+                style="@style/DrawTool"
+                android:contentDescription="@string/i18n_dc4775226e"
+                app:icon="@drawable/ic_nt_arrow" />
+
+            <Button
+                android:id="@+id/drRect"
+                style="@style/DrawTool"
+                android:contentDescription="@string/i18n_85e7b0c9a2"
+                app:icon="@drawable/ic_nt_rect" />
+
+            <Button
+                android:id="@+id/drOval"
+                style="@style/DrawTool"
+                android:contentDescription="@string/i18n_9d5195dab9"
+                app:icon="@drawable/ic_nt_oval" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp">
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/drWidth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/i18n_9250736aba"
+            android:stepSize="1"
+            app:tickVisible="false"
+            android:value="4"
+            android:valueFrom="1"
+            android:valueTo="24" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/drFill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/i18n_1bf287cddc" />
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="12dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/drColors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp" />
+    </HorizontalScrollView>
+</LinearLayout>

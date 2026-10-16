@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 非アクティブなタブの設定で、続けて並べるカードの途中(Pixel の設定のように角を小さくつなげる) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="?attr/colorSurfaceContainerLowest" />
+    <corners android:radius="4dp" />
+</shape>

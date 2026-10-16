@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- URL バー横のファビコンで開くページ情報(画面の上に浮かぶカード)。各ページはカードの中で切り替える -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/si_window"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:paddingStart="8dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="8dp"
+    android:paddingBottom="16dp">
+<androidx.core.widget.NestedScrollView
+    android:id="@+id/si_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_site_info_panel"
+    android:clipToOutline="true"
+    android:elevation="8dp">
+<LinearLayout
+    android:id="@+id/si_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="4dp"
+    android:paddingBottom="16dp">
+
+    <!-- 見出し -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="24dp"
+        android:paddingEnd="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/i18n_c977d7c57c"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/si_close"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ripple_circle_small"
+            android:contentDescription="@string/i18n_5dce862819"
+            android:src="@drawable/ic_si_close" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/si_pages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- ===== トップ ===== -->
+        <LinearLayout
+            android:id="@+id/si_page_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <!-- 接続の状態のカード(色で安全かどうかを見せる。押すと詳しく) -->
+            <LinearLayout
+                android:id="@+id/si_row_connection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_si_hero"
+                android:clickable="true"
+                android:clipToOutline="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:minHeight="88dp"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingTop="14dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="14dp">
+
+                <FrameLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_si_favicon">
+
+                    <ImageView
+                        android:id="@+id/si_favicon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_si_globe" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/si_host"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="start"
+                        android:singleLine="true"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/si_connection_icon"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginEnd="6dp"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_si_lock" />
+
+                        <TextView
+                            android:id="@+id/si_connection_title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/si_connection_chevron"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="8dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_si_chevron" />
+            </LinearLayout>
+
+            <!-- Cookie・このページについて(2 枚のタイル) -->
+            <LinearLayout
+                android:id="@+id/si_tiles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/si_divider_cookies"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp" />
+
+                <LinearLayout
+                    android:id="@+id/si_row_cookies"
+                    style="@style/SiteInfoTile"
+                    android:layout_marginEnd="4dp">
+
+                    <FrameLayout style="@style/SiteInfoTileIconBg">
+                        <ImageView
+                            style="@style/SiteInfoTileIcon"
+                            android:src="@drawable/ic_si_cookie" />
+                    </FrameLayout>
+
+                    <TextView
+                        style="@style/SiteInfoTileTitle"
+                        android:text="@string/i18n_abbf8de431" />
+
+                    <TextView
+                        style="@style/SiteInfoTileSummary"
+                        android:text="@string/i18n_567093ef25" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/si_divider_about"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp" />
+
+                <LinearLayout
+                    android:id="@+id/si_row_about"
+                    style="@style/SiteInfoTile"
+                    android:layout_marginStart="4dp">
+
+                    <FrameLayout style="@style/SiteInfoTileIconBg">
+                        <ImageView
+                            style="@style/SiteInfoTileIcon"
+                            android:src="@drawable/ic_si_info" />
+                    </FrameLayout>
+
+                    <TextView
+                        style="@style/SiteInfoTileTitle"
+                        android:text="@string/i18n_ed23d4d7eb" />
+
+                    <TextView
+                        style="@style/SiteInfoTileSummary"
+                        android:text="@string/i18n_450020e44b" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== 接続 ===== -->
+        <LinearLayout
+            android:id="@+id/si_page_security"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <include
+                android:id="@+id/si_security_bar"
+                layout="@layout/item_site_info_back" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="24dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="8dp">
+                <ImageView
+                    android:id="@+id/si_sec_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="32dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_si_lock" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/si_sec_text"
+                        style="@style/SiteInfoParagraph" />
+                    <TextView
+                        android:id="@+id/si_sec_cert"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:paddingVertical="4dp"
+                        android:text="@string/i18n_147e25c7d7"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/si_sec_text2"
+                        style="@style/SiteInfoParagraph"
+                        android:layout_marginTop="16dp" />
+                    <TextView
+                        android:id="@+id/si_sec_text3"
+                        style="@style/SiteInfoParagraph"
+                        android:layout_marginTop="16dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== Cookie とサイトデータ ===== -->
+        <LinearLayout
+            android:id="@+id/si_page_cookies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <include
+                android:id="@+id/si_cookies_bar"
+                layout="@layout/item_site_info_back" />
+
+            <TextView
+                android:id="@+id/si_cookie_text"
+                style="@style/SiteInfoParagraph"
+                android:layout_marginTop="4dp"
+                android:paddingHorizontal="24dp" />
+
+            <LinearLayout
+                android:id="@+id/si_row_site_exception"
+                style="@style/SiteInfoRow"
+                android:layout_marginTop="12dp"
+                android:paddingEnd="16dp">
+                <ImageView
+                    style="@style/SiteInfoRowIcon"
+                    android:src="@drawable/ic_si_web" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/i18n_da79536016"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/si_site_exception_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/si_site_exception_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:importantForAccessibility="no" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/SiteInfoRow"
+                android:layout_marginTop="4dp"
+                android:background="@null"
+                android:clickable="false"
+                android:focusable="false"
+                android:paddingEnd="12dp">
+                <ImageView
+                    style="@style/SiteInfoRowIcon"
+                    android:src="@drawable/ic_si_storage" />
+                <TextView
+                    style="@style/SiteInfoRowTitle"
+                    android:text="@string/i18n_688f2aa484" />
+                <ImageButton
+                    android:id="@+id/si_cookie_delete"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/i18n_1e6ec02b80"
+                    android:src="@drawable/ic_si_delete"
+                    android:tint="?attr/colorPrimary" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>
+</androidx.core.widget.NestedScrollView>
+</FrameLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 「このページについて」(Google の searchviewer)をその場で見せるシート -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ap_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="36dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:alpha="0.6"
+        android:background="@drawable/bg_page_menu_handle"
+        android:tag="sheet_handle" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:id="@+id/ap_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="20dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_si_info" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:text="@string/i18n_ed23d4d7eb"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="20sp" />
+        <ImageButton
+            android:id="@+id/ap_open"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_fc4d2f2594"
+            android:src="@drawable/ic_si_open" />
+        <ImageButton
+            android:id="@+id/ap_close"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_5dce862819"
+            android:src="@drawable/ic_si_close" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <FrameLayout
+            android:id="@+id/ap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/ap_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="false" />
+    </FrameLayout>
+</LinearLayout>

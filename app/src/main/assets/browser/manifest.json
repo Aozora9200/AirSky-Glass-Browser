@@ -1,0 +1,44 @@
+{
+  "manifest_version": 2,
+  "name": "AirSky Browser Core",
+  "version": "1.0.13",
+  "description": "AirSky の内蔵ページと GeckoView 連携用の組み込み拡張機能",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "browser@aozora.app"
+    }
+  },
+  "permissions": [
+    "nativeMessaging",
+    "nativeMessagingFromContent",
+    "geckoViewAddons",
+    "storage",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
+  "content_security_policy": "script-src 'self' https://use.fontawesome.com; object-src 'self'",
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.yahoo.co.jp/*", "*://s.yimg.jp/images/yvpub/*"],
+      "js": ["ua_override.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["desktop_touch.js", "pointerlock.js", "notranslate.js"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["Readability.js", "reader.js", "bridge.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

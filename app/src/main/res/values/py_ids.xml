@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Python の GUI: 部品に付ける、Python 側の部品の印 -->
+    <item name="py_node" type="id" />
+    <!-- メニューのコンソール: 大きなカードの印とアイコン -->
+    <item name="am_big_card" type="id" />
+    <item name="am_big_icon" type="id" />
+</resources>

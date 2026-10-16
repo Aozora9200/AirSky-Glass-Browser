@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Material 3 カラーロール（ライト）。ブランドカラー #2D6CDF を起点にしたスキーム -->
+<resources>
+    <color name="md_primary">#2D6CDF</color>
+    <color name="md_on_primary">#FFFFFF</color>
+    <color name="md_primary_container">#D9E2FF</color>
+    <color name="md_on_primary_container">#001945</color>
+    <color name="md_secondary">#575E71</color>
+    <color name="md_on_secondary">#FFFFFF</color>
+    <color name="md_secondary_container">#DBE2F9</color>
+    <color name="md_on_secondary_container">#141B2C</color>
+    <color name="md_tertiary">#725572</color>
+    <color name="md_on_tertiary">#FFFFFF</color>
+    <color name="md_tertiary_container">#FDD7FA</color>
+    <color name="md_on_tertiary_container">#2A122C</color>
+    <color name="md_error">#BA1A1A</color>
+    <color name="md_on_error">#FFFFFF</color>
+    <color name="md_error_container">#FFDAD6</color>
+    <color name="md_on_error_container">#410002</color>
+    <color name="md_background">#FAF9FD</color>
+    <color name="md_on_background">#1A1B20</color>
+    <color name="md_surface">#FAF9FD</color>
+    <color name="md_on_surface">#1A1B20</color>
+    <color name="md_surface_variant">#E1E2EC</color>
+    <color name="md_on_surface_variant">#44474F</color>
+    <color name="md_surface_container_lowest">#FFFFFF</color>
+    <color name="md_surface_container_low">#F4F3F7</color>
+    <color name="md_surface_container">#EEEDF1</color>
+    <color name="md_surface_container_high">#E8E7EB</color>
+    <color name="md_surface_container_highest">#E3E2E6</color>
+    <color name="md_outline">#74777F</color>
+    <color name="md_outline_variant">#C4C6D0</color>
+</resources>

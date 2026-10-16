@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Aozora メニューのタイル 1 つ(アイコンの角丸の下地と名前) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dp"
+    android:layout_height="100dp"
+    android:layout_margin="4dp"
+    android:layout_weight="1"
+    android:background="@drawable/bg_menu_tile"
+    android:clickable="true"
+    android:clipToOutline="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/am_tile_icon_bg"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_menu_tile_icon">
+
+        <ImageView
+            android:id="@+id/am_tile_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/am_tile_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:paddingHorizontal="4dp"
+        android:singleLine="true"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="13sp" />
+</LinearLayout>

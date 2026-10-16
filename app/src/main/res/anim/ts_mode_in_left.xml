@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- シークレットのタブ一覧 → 通常のタブ一覧: 通常の一覧が左(切り替えボタンの並びと同じ向き)から入る -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:interpolator/decelerate_cubic"
+    android:shareInterpolator="true">
+    <translate
+        android:duration="320"
+        android:fromXDelta="-30%"
+        android:toXDelta="0%" />
+    <alpha
+        android:duration="240"
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0" />
+</set>

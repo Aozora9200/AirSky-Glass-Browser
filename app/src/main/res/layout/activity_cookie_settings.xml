@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- サードパーティ Cookie の設定(Chromium の設定画面に合わせた見た目) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cs_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurfaceContainer"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="16dp">
+        <ImageButton
+            android:id="@+id/cs_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="20dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_4a622f127b"
+            android:src="@drawable/ic_si_back" />
+        <TextView
+            android:id="@+id/cs_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="24dp">
+
+            <!-- ===== 許可/ブロックと例外 ===== -->
+            <LinearLayout
+                android:id="@+id/cs_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/SiteInfoParagraph"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="24dp"
+                    android:paddingHorizontal="20dp"
+                    android:text="@string/i18n_166b4570fd" />
+
+                <TextView
+                    android:id="@+id/cs_disabled_note"
+                    style="@style/SiteInfoParagraph"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/bg_cs_card"
+                    android:padding="20dp"
+                    android:text="@string/i18n_a83737fc21"
+                    android:textColor="?attr/colorError"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_cs_card_top"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/cs_allow"
+                        style="@style/CookieOption">
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/cs_allow_radio"
+                            style="@style/CookieOptionRadio" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                style="@style/CookieOptionTitle"
+                                android:text="@string/i18n_0ee942b53c" />
+                            <TextView
+                                style="@style/CookieOptionSummary"
+                                android:text="@string/i18n_61c826fdd4" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <View style="@style/CookieOptionDivider" />
+                    <ImageButton
+                        android:id="@+id/cs_allow_detail"
+                        style="@style/CookieOptionDetail" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/bg_cs_card_bottom"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/cs_block"
+                        style="@style/CookieOption">
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/cs_block_radio"
+                            style="@style/CookieOptionRadio" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                style="@style/CookieOptionTitle"
+                                android:text="@string/i18n_0cd8524f19" />
+                            <TextView
+                                style="@style/CookieOptionSummary"
+                                android:text="@string/i18n_6f7f8cd936" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <View style="@style/CookieOptionDivider" />
+                    <ImageButton
+                        android:id="@+id/cs_block_detail"
+                        style="@style/CookieOptionDetail" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_cs_card"
+                    android:clipToOutline="true"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/cs_add"
+                        style="@style/SiteInfoRow"
+                        android:minHeight="72dp">
+                        <ImageView
+                            style="@style/SiteInfoRowIcon"
+                            android:layout_marginStart="12dp"
+                            android:src="@drawable/ic_si_add"
+                            app:tint="?attr/colorPrimary" />
+                        <TextView
+                            style="@style/SiteInfoRowTitle"
+                            android:text="@string/i18n_8d074b48e9"
+                            android:textColor="?attr/colorPrimary" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/cs_exceptions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ===== 各選択肢の説明 ===== -->
+            <LinearLayout
+                android:id="@+id/cs_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:visibility="gone">
+                <TextView
+                    android:id="@+id/cs_detail_heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="18sp" />
+                <LinearLayout
+                    android:id="@+id/cs_detail_rows"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+        </FrameLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

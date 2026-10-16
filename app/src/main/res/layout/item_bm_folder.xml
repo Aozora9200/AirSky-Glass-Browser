@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ブックマークのフォルダの行。左に角丸のタイル(左上にアイコン、右下に中身の数) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:minHeight="84dp"
+    android:orientation="horizontal"
+    android:paddingStart="16dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="20dp"
+    android:paddingBottom="8dp">
+
+    <FrameLayout
+        android:id="@+id/bmTile"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@drawable/bg_bm_tile">
+
+        <ImageView
+            android:id="@+id/bmTileIcon"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_gravity="top|start"
+            android:layout_margin="11dp"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:id="@+id/bmTileCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="9dp"
+            android:fontFeatureSettings="tnum"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/bmTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/bmSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="13sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/bmChevron"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:alpha="0.7"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_si_chevron"
+        app:tint="?attr/colorOnSurfaceVariant" />
+</LinearLayout>

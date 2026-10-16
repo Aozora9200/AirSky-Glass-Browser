@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  拡張機能のインストール確認(下から出るシート)。
+  見出し: アイコン・名前・作成者 / 必要な権限のカード / データ収集のカード / 任意の設定 / キャンセル・追加
+-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/eiRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="20dp">
+
+        <View
+            android:layout_width="36dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:alpha="0.6"
+            android:background="@drawable/bg_page_menu_handle"
+            android:tag="sheet_handle" />
+
+        <!-- アイコン(後ろで淡い光の輪が広がる) -->
+        <FrameLayout
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp">
+
+            <View
+                android:id="@+id/eiHalo"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:background="@drawable/bg_ext_halo" />
+
+            <ImageView
+                android:id="@+id/eiIcon"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="center"
+                android:importantForAccessibility="no"
+                android:scaleType="fitCenter" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/eiTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/eiSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/eiBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_ext_chip"
+            android:drawableStart="@drawable/ic_ext_star"
+            android:drawablePadding="6dp"
+            android:drawableTint="?attr/colorOnTertiaryContainer"
+            android:gravity="center"
+            android:paddingStart="10dp"
+            android:paddingEnd="12dp"
+            android:text="@string/i18n_31b97e0ca4"
+            android:textColor="?attr/colorOnTertiaryContainer"
+            android:textSize="13sp"
+            android:visibility="gone" />
+
+        <!-- 必要な権限 -->
+        <TextView
+            android:id="@+id/eiPermHeader"
+            style="@style/ExtSectionHeader"
+            android:text="@string/i18n_67dcd77f9a" />
+
+        <LinearLayout
+            android:id="@+id/eiPermissions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <!-- データ収集 -->
+        <TextView
+            style="@style/ExtSectionHeader"
+            android:text="@string/i18n_189bb6cc93" />
+
+        <LinearLayout
+            android:id="@+id/eiData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <!-- 任意の設定 -->
+        <TextView
+            style="@style/ExtSectionHeader"
+            android:text="@string/i18n_37c854729f" />
+
+        <LinearLayout
+            android:id="@+id/eiOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <TextView
+            android:id="@+id/eiMore"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:drawableEnd="@drawable/ic_ext_open"
+            android:drawablePadding="6dp"
+            android:drawableTint="?attr/colorPrimary"
+            android:gravity="center"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="@string/i18n_bce4a42e18"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/eiCancel"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:text="@string/i18n_6ef3498296"
+                android:textSize="16sp"
+                app:cornerRadius="28dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/eiAdd"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:text="@string/i18n_7dc3a57449"
+                android:textSize="16sp"
+                app:cornerRadius="28dp"
+                app:icon="@drawable/ic_si_add"
+                app:iconGravity="textStart" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 新機能(Pixel の「新機能」・ヒント アプリ風) -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 一覧 -->
+    <LinearLayout style="@style/ToolRoot">
+
+        <include layout="@layout/include_tool_header" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/tool_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false">
+
+            <LinearLayout
+                android:id="@+id/tool_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingBottom="32dp" />
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+    <!-- 詳細(左右にスワイプして順に見る) -->
+    <LinearLayout
+        android:id="@+id/nfDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorSurfaceContainer"
+        android:clickable="true"
+        android:fitsSystemWindows="true"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="16dp">
+
+            <ImageButton
+                android:id="@+id/nfDetailClose"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/i18n_5dce862819"
+                android:src="@drawable/ic_ct_close" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/nfDetailCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/nfPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="16dp">
+
+            <Button
+                android:id="@+id/nfPrev"
+                style="@style/ToolButton.Outlined"
+                android:layout_width="wrap_content"
+                android:text="@string/i18n_4a622f127b" />
+
+            <LinearLayout
+                android:id="@+id/nfDots"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" />
+
+            <Button
+                android:id="@+id/nfNext"
+                style="@style/ToolButton"
+                android:layout_width="wrap_content"
+                android:text="@string/i18n_0e032e88c3"
+                app:iconGravity="end" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

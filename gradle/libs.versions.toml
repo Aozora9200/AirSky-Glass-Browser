@@ -1,0 +1,25 @@
+
+[versions]
+androidGradlePlugin = "8.13.2"
+googleOssLicensesPlugin = "0.10.7"
+dagger = "2.56.2"
+daggerCompiler = "2.56.2"
+hiltCore = "2.56.2"
+kotlin = "2.3.10"
+composeBom = "2026.03.00"
+backdrop = "1.0.6"
+[libraries]
+dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger" }
+dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "daggerCompiler" }
+hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "hiltCore" }
+
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+compose-ui = { group = "androidx.compose.ui", name = "ui" }
+compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+backdrop = { group = "io.github.kyant0", name = "backdrop", version.ref = "backdrop" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+google-oss-licenses = { id = "com.google.android.gms.oss-licenses-plugin", version.ref = "googleOssLicensesPlugin" }

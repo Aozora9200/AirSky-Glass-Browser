@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ダウンロード一覧の種類で絞り込むチップ。丸い札で、選ぶと濃い色になる(アイコンはそのまま) -->
+<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.Material3.Chip.Filter"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:checkable="true"
+    android:textSize="14sp"
+    app:checkedIconVisible="false"
+    app:chipBackgroundColor="@color/dl_chip_bg"
+    app:chipCornerRadius="100dp"
+    app:chipIconSize="18dp"
+    app:chipIconTint="@color/dl_chip_fg"
+    app:chipMinHeight="38dp"
+    app:chipStrokeWidth="0dp"
+    android:textColor="@color/dl_chip_fg" />

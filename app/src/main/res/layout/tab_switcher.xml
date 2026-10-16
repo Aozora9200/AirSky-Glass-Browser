@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- タブ一覧(Chrome 風のタブスイッチャー)。MainActivity の上に重ねて表示する。
+     上部の切り替えは 通常のタブ / タブグループ / シークレットタブ の順。 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tabSwitcherRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:visibility="gone">
+
+    <View
+        android:id="@+id/tsBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/tsContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- ヘッダー: 新しいタブ / 通常・シークレット切替 / メニュー -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <ImageButton
+                android:id="@+id/tsNewTab"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="start|center_vertical"
+                android:contentDescription="@string/i18n_b5c114d9d1"
+                android:scaleType="center"
+                android:src="@drawable/ic_ts_add" />
+
+            <LinearLayout
+                android:id="@+id/tsSegment"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:padding="4dp">
+
+                <FrameLayout
+                    android:id="@+id/tsSegNormal"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/i18n_1eef06557b">
+
+                    <TextView
+                        android:id="@+id/tsTabCount"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/tsSegGroups"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/i18n_886045c716">
+
+                    <ImageView
+                        android:id="@+id/tsGroupsIcon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_tg_groups" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/tsSegSecret"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/i18n_c8c64044e3">
+
+                    <ImageView
+                        android:id="@+id/tsSecretIcon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_ts_incognito" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/tsMenu"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="end|center_vertical"
+                android:contentDescription="@string/i18n_9013ced74d"
+                android:scaleType="center"
+                android:src="@drawable/ic_ts_more" />
+        </FrameLayout>
+
+        <!-- タブ検索 -->
+        <LinearLayout
+            android:id="@+id/tsSearchBar"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="8dp">
+
+            <ImageView
+                android:id="@+id/tsSearchIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_ts_search" />
+
+            <EditText
+                android:id="@+id/tsSearchField"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/i18n_2f10e12ec9"
+                android:imeOptions="actionSearch|flagNoExtractUi"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/tsSearchClear"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/i18n_2b4c324620"
+                android:src="@drawable/ic_ts_close"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/tsDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tsGrid"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="24dp"
+                android:scrollbars="none" />
+
+            <!-- タブグループの一覧(切り替えで「タブグループ」を選んだ時) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tsGroupList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="24dp"
+                android:scrollbars="none"
+                android:visibility="gone" />
+
+            <!-- 何も無い時の表示(タブグループが無い時はアニメーション付き) -->
+            <LinearLayout
+                android:id="@+id/tsEmptyBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.airsky.browser.TabGroupEmptyView
+                    android:id="@+id/tsEmptyArt"
+                    android:layout_width="220dp"
+                    android:layout_height="150dp"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:id="@+id/tsEmpty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingStart="32dp"
+                    android:paddingEnd="32dp"
+                    android:text="@string/i18n_c5aee1d902"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- タブグループを開いた時のパネル(グループのタブだけを並べる) -->
+    <FrameLayout
+        android:id="@+id/tsGroupOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <View
+            android:id="@+id/tsGroupScrim"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#66000000" />
+
+        <LinearLayout
+            android:id="@+id/tsGroupPanel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="108dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="72dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp">
+
+                <ImageButton
+                    android:id="@+id/tsGroupBack"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="start|center_vertical"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/i18n_91ef66f187"
+                    android:src="@drawable/ic_si_back" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/tsGroupAdd"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/i18n_0a778faf5a"
+                        android:src="@drawable/ic_ts_add" />
+
+                    <ImageButton
+                        android:id="@+id/tsGroupMenu"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/i18n_238d7e9e6f"
+                        android:src="@drawable/ic_ts_more" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- 色の丸と名前(丸を押すと色を選ぶ / 名前はその場で書き換えられる) -->
+            <LinearLayout
+                android:id="@+id/tsGroupTitleRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="72dp"
+                android:orientation="horizontal"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp">
+
+                <View
+                    android:id="@+id/tsGroupDot"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@string/i18n_38f92dc11f" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/tsGroupTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:imeOptions="actionDone|flagNoExtractUi"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:textSize="26sp" />
+
+                    <View
+                        android:id="@+id/tsGroupTitleLine"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 色の選択(「グループの色を編集」・色の丸で、名前の代わりに出す) -->
+            <FrameLayout
+                android:id="@+id/tsGroupPalette"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp"
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tsGroupGrid"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:clipToPadding="false"
+                android:paddingStart="10dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="16dp"
+                android:scrollbars="none" />
+
+            <!-- 非アクティブなタブの一覧の一番下の「すべて閉じる」 -->
+            <FrameLayout
+                android:id="@+id/tsInactiveFooter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="16dp"
+                android:visibility="gone">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/tsInactiveCloseAll"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="@string/i18n_5acfead3f2"
+                    android:textSize="15sp"
+                    app:icon="@drawable/ic_tg_close"
+                    app:iconGravity="textStart" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- グループのタブをパネルの外へドラッグした時の案内 -->
+        <TextView
+            android:id="@+id/tsGroupDropHint"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="52dp"
+            android:alpha="0"
+            android:gravity="center"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/i18n_38fc53214b"
+            android:textSize="14sp" />
+    </FrameLayout>
+</FrameLayout>

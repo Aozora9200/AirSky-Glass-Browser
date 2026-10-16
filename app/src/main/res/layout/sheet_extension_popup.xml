@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 拡張機能のポップアップ。見出し(アイコン・名前・設定・閉じる)の下にポップアップのページを出す -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingEnd="8dp">
+
+        <ImageView
+            android:id="@+id/epIcon"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:id="@+id/epTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/epSettings"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/ripple_circle_small"
+            android:contentDescription="@string/i18n_a7d2a6a1a6"
+            android:padding="12dp"
+            android:src="@drawable/ic_menu_settings"
+            app:tint="?attr/colorOnSurfaceVariant" />
+
+        <ImageView
+            android:id="@+id/epClose"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/ripple_circle_small"
+            android:contentDescription="@string/i18n_5dce862819"
+            android:padding="12dp"
+            android:src="@drawable/ic_ts_close"
+            app:tint="?attr/colorOnSurfaceVariant" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/epContent"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_ext_popup_frame"
+        android:clipToOutline="true" />
+</LinearLayout>

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 他のアプリ(サインインなど)から開かれる簡易ブラウザ(Custom Tabs) -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ctRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface">
+
+    <LinearLayout
+        android:id="@+id/ctContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/ctToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorSurfaceContainer">
+
+            <!-- 通常のツールバー -->
+            <LinearLayout
+                android:id="@+id/ctBar"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp">
+
+                <ImageButton
+                    android:id="@+id/ctClose"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/i18n_5dce862819"
+                    android:src="@drawable/ic_ct_close" />
+
+                <ImageButton
+                    android:id="@+id/ctMinimize"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/i18n_a7d84685ef"
+                    android:src="@drawable/ic_ct_minimize" />
+
+                <LinearLayout
+                    android:id="@+id/ctTitleArea"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp">
+
+                    <TextView
+                        android:id="@+id/ctTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif-medium"
+                        android:singleLine="true"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="16sp"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ctSecurity"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_marginEnd="4dp"
+                            android:contentDescription="@string/i18n_6043834f93"
+                            android:src="@drawable/ic_ct_not_secure"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/ctDomain"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="start"
+                            android:singleLine="true"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/ctAction"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:scaleType="centerInside"
+                    android:visibility="gone" />
+
+                <ImageButton
+                    android:id="@+id/ctShare"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/i18n_8cfef1099a"
+                    android:src="@drawable/ic_ct_share" />
+
+                <ImageButton
+                    android:id="@+id/ctMenu"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/i18n_17f2dd96a9"
+                    android:src="@drawable/ic_ct_more" />
+            </LinearLayout>
+
+            <!-- ページ内検索 -->
+            <LinearLayout
+                android:id="@+id/ctFindBar"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:visibility="gone">
+
+                <ImageButton
+                    android:id="@+id/ctFindClose"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/i18n_045dc6067d"
+                    android:src="@drawable/ic_ct_back" />
+
+                <EditText
+                    android:id="@+id/ctFindQuery"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="@string/i18n_8e5871e71e"
+                    android:imeOptions="actionSearch"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingStart="8dp"
+                    android:singleLine="true"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/ctFindCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textSize="13sp" />
+
+                <ImageButton
+                    android:id="@+id/ctFindPrev"
+                    android:layout_width="44dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/i18n_5ac1714aee"
+                    android:src="@drawable/ic_ct_up" />
+
+                <ImageButton
+                    android:id="@+id/ctFindNext"
+                    android:layout_width="44dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/i18n_0e032e88c3"
+                    android:src="@drawable/ic_ct_minimize" />
+            </LinearLayout>
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/ctProgress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:indeterminate="false"
+                android:max="100"
+                android:visibility="invisible"
+                app:indicatorColor="?attr/colorPrimary"
+                app:trackColor="@android:color/transparent"
+                app:trackCornerRadius="0dp"
+                app:trackThickness="3dp" />
+        </FrameLayout>
+
+        <View
+            android:id="@+id/ctDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?attr/colorOutlineVariant" />
+
+        <FrameLayout
+            android:id="@+id/ctWebContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <!-- 最小化(ピクチャー イン ピクチャー)中に表示するカード -->
+    <FrameLayout
+        android:id="@+id/ctPip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FF080808"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/ctPipIcon"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="28dp"
+            android:alpha="0.6"
+            android:contentDescription="@null" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="28dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <TextView
+                android:id="@+id/ctPipTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="#99FFFFFF"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/ctPipDomain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="start"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="#80FFFFFF"
+                android:textSize="11sp" />
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="?attr/colorOnSurfaceVariant">
+    <!-- 上下に並んだ 2 つの画面。下の画面の下端にバー -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M4,2h16a2,2 0,0 1,2 2v6a2,2 0,0 1,-2 2h-16a2,2 0,0 1,-2 -2v-6a2,2 0,0 1,2 -2zM4,4v6h16v-6zM6,13h12a2,2 0,0 1,2 2v5a2,2 0,0 1,-2 2h-12a2,2 0,0 1,-2 -2v-5a2,2 0,0 1,2 -2zM6,15v5h12v-5zM8,17.5h8v1.5h-8z" />
+</vector>

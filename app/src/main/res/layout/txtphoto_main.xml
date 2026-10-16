@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 文字を画像に変換(Pixel の設定アプリ風) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ToolRoot">
+
+    <include layout="@layout/include_tool_header" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/tool_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:id="@+id/tool_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="24dp">
+
+            <LinearLayout style="@style/ToolCard">
+
+                <LinearLayout style="@style/ToolCardRow">
+
+                    <ImageView
+                        style="@style/ToolCardIcon"
+                        android:src="@drawable/ic_ext_file" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ToolCardTitle"
+                            android:text="@string/i18n_1abe2ef165" />
+
+                        <TextView
+                            android:id="@+id/filePathView"
+                            style="@style/ToolCardSummary"
+                            android:text="@string/i18n_69e28f9335" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/selectFileButton"
+                    style="@style/ToolButton.Tonal"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/i18n_7b0e90f775" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/ToolSectionLabel"
+                android:text="@string/i18n_2e9e3cad7d" />
+
+            <LinearLayout style="@style/ToolCard">
+
+                <TextView
+                    style="@style/ToolCardSummary"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/i18n_2c63961453" />
+
+                <Button
+                    android:id="@+id/convertButton"
+                    style="@style/ToolButton"
+                    android:layout_width="match_parent"
+                    android:enabled="false"
+                    android:text="@string/i18n_ff5932fd7b" />
+
+                <Button
+                    android:id="@+id/revertButton"
+                    style="@style/ToolButton.Tonal"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:enabled="false"
+                    android:text="@string/i18n_b415e13a86" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/ToolSectionLabel"
+                android:text="@string/i18n_04e4761d18" />
+
+            <LinearLayout
+                style="@style/ToolCard"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/resize25Button"
+                    style="@style/ToolButton.Outlined"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:text="@string/i18n_08be07b9d6" />
+
+                <Button
+                    android:id="@+id/resize50Button"
+                    style="@style/ToolButton.Outlined"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:text="@string/i18n_01d9eba07b" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

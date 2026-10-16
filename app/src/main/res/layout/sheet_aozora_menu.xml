@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ボトムバーの Aozora ボタンで開くメニュー。下へスワイプ・外側のタップで閉じる。
+  上: よく使う画面へのタイル / 下: 設定などの行
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/am_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:paddingHorizontal="12dp"
+    android:paddingBottom="16dp">
+
+    <View
+        android:id="@+id/am_handle"
+        android:layout_width="36dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="8dp"
+        android:alpha="0.6"
+        android:background="@drawable/bg_page_menu_handle"
+        android:tag="sheet_handle" />
+
+    <LinearLayout
+        android:id="@+id/am_header"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp">
+
+        <!-- ツール一覧を開いている時だけ、ロゴの代わりに出す -->
+        <ImageButton
+            android:id="@+id/am_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_4a622f127b"
+            android:src="@drawable/ic_si_back"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/am_logo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:importantForAccessibility="no"
+            android:src="@mipmap/ic_aozora" />
+
+        <TextView
+            android:id="@+id/am_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="AirSky"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/am_secret"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:background="@drawable/bg_menu_secret_chip"
+            android:gravity="center"
+            android:paddingHorizontal="12dp"
+            android:text="@string/i18n_210bba5b86"
+            android:textColor="?attr/colorOnTertiaryContainer"
+            android:textSize="13sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- メニュー本体とツール一覧を切り替える(高さはコードで動かす) -->
+    <FrameLayout
+        android:id="@+id/am_pages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false">
+
+        <LinearLayout
+            android:id="@+id/am_main_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:orientation="vertical">
+
+            <!-- タイル(3 列。行はコードで作る) -->
+            <LinearLayout
+                android:id="@+id/am_tiles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:clipChildren="false"
+                android:orientation="vertical" />
+
+            <!-- 拡張機能(入っている拡張機能を開閉して使う。開閉の動きはコードで付ける) -->
+            <LinearLayout
+                android:id="@+id/am_extensions"
+                style="@style/PageMenuGroup"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:visibility="gone" />
+
+            <!-- 行 -->
+            <LinearLayout
+                android:id="@+id/am_rows"
+                style="@style/PageMenuGroup"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp" />
+        </LinearLayout>
+
+        <!-- ツール一覧(「ツール」を押すとメニューの中でこちらに切り替わる。中身はコードで作る) -->
+        <LinearLayout
+            android:id="@+id/am_tools_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:orientation="vertical"
+            android:visibility="gone" />
+    </FrameLayout>
+</LinearLayout>

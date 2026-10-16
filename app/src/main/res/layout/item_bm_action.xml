@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ブックマークの操作シートの 1 行 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/PageMenuRow">
+
+    <ImageView
+        android:id="@+id/bmActionIcon"
+        style="@style/PageMenuRowIcon" />
+
+    <TextView
+        android:id="@+id/bmActionLabel"
+        style="@style/PageMenuRowText" />
+</LinearLayout>

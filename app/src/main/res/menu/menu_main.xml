@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/i18n_3f20fe0452">
+        <menu>
+            <item
+                android:id="@+id/action_txtphoto"
+                android:title="@string/i18n_20b0d9e708" />
+            <item
+                android:id="@+id/action_asciiart"
+                android:title="@string/i18n_013b0e6a1e" />
+            <item
+                android:id="@+id/action_pgdl"
+                android:title="@string/i18n_4633cdbb53" />
+            <item
+                android:id="@+id/action_num"
+                android:title="@string/i18n_d04d1c9e12" />
+            <item
+                android:id="@+id/action_qr"
+                android:title="@string/i18n_eb85f50fd9" />
+            <item
+                android:id="@+id/action_ior1orl"
+                android:title="@string/i18n_af1a1012cb" />
+            <item
+                android:id="@+id/action_exec"
+                android:title="exec" />
+            <item
+                android:id="@+id/action_grep"
+                android:title="grep-i/md5"/>
+            <item
+                android:id="@+id/action_htmlview"
+                android:title="@string/i18n_0a6450455c"/>
+            <item
+                android:id="@+id/action_notepad"
+                android:title="@string/i18n_ee162c8592"/>
+            <item
+                android:id="@+id/action_qrcamera"
+                android:title="@string/i18n_8b16ec71e1"/>
+            <item
+                android:id="@+id/action_File"
+                android:title="@string/i18n_202faeaeb6"/>
+            <item
+                android:id="@+id/tool_close"
+                android:title="@string/i18n_5dce862819" />
+        </menu>
+    </item>
+    <item android:title="@string/i18n_2b2e227642">
+        <menu>
+            <item
+                android:id="@+id/action_negapoji"
+                android:title="@string/i18n_9d130df895" />
+            <item
+                android:id="@+id/action_translate"
+                android:title="@string/i18n_fae1ccddd2" />
+            <item
+                android:id="@+id/display_close"
+                android:title="@string/i18n_5dce862819" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/action_screenshot"
+        android:title="@string/i18n_53ce4ff188" />
+    <item android:title="@string/i18n_029c0df654">
+        <menu>
+            <item
+                android:id="@+id/action_settings"
+                android:title="@string/i18n_1a39dcc51a" />
+            <item
+                android:id="@+id/settings_close"
+                android:title="@string/i18n_5dce862819" />
+        </menu>
+    </item>>
+    <item
+        android:id="@+id/action_close"
+        android:title="@string/i18n_5dce862819" />
+</menu>

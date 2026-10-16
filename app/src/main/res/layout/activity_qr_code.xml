@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- QR コードの作成(Pixel の設定アプリ風)。形と色を選ぶと上のプレビューにすぐ反映する -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/ToolRoot">
+
+    <include layout="@layout/include_tool_header" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/tool_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:id="@+id/tool_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="16dp">
+
+            <!-- プレビュー -->
+            <LinearLayout
+                style="@style/ToolCard"
+                android:gravity="center_horizontal"
+                android:padding="24dp">
+
+                <FrameLayout
+                    android:id="@+id/qrPreviewBox"
+                    android:layout_width="240dp"
+                    android:layout_height="240dp"
+                    android:background="@drawable/bg_tool_card_low"
+                    android:clipToOutline="true">
+
+                    <ImageView
+                        android:id="@+id/qrPreview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/i18n_7b20aa864f"
+                        android:scaleType="fitCenter" />
+
+                    <TextView
+                        android:id="@+id/qrPlaceholder"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="24dp"
+                        android:text="@string/i18n_c64f099da4"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="14sp" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/qrWarn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:drawablePadding="6dp"
+                    android:gravity="center"
+                    android:textColor="?attr/colorError"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <!-- 中身 -->
+            <LinearLayout style="@style/ToolCard">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/qrInputLayout"
+                    style="@style/ToolTextField"
+                    android:hint="@string/i18n_2d44b9f0e9"
+                    app:counterEnabled="true"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/qrInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine|textUri"
+                        android:maxLines="6" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/qrFileChip"
+                    style="@style/Widget.Material3.Chip.Input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:chipIcon="@drawable/ic_ext_file" />
+
+                <Button
+                    android:id="@+id/qrFile"
+                    style="@style/ToolButton.Tonal"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/i18n_bf45dd063f"
+                    app:icon="@drawable/ic_tool_folder" />
+            </LinearLayout>
+
+            <!-- 形 -->
+            <TextView
+                style="@style/ToolSectionLabel"
+                android:text="@string/i18n_ad328765ed" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:scrollbars="none">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/qrDotGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="4dp"
+                    app:selectionRequired="true"
+                    app:singleLine="true"
+                    app:singleSelection="true" />
+            </HorizontalScrollView>
+
+            <TextView
+                style="@style/ToolSectionLabel"
+                android:text="@string/i18n_7d779235f9" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:scrollbars="none">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/qrEyeGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="4dp"
+                    app:selectionRequired="true"
+                    app:singleLine="true"
+                    app:singleSelection="true" />
+            </HorizontalScrollView>
+
+            <!-- 色 -->
+            <TextView
+                style="@style/ToolSectionLabel"
+                android:text="@string/i18n_9122c53716" />
+
+            <LinearLayout style="@style/ToolCard">
+
+                <TextView
+                    style="@style/ToolCardSummary"
+                    android:layout_marginTop="0dp"
+                    android:text="@string/i18n_8d18931417" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/qrFgColors"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/qrGradient"
+                    style="@style/ToolSwitch"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/i18n_1c0ad10acb" />
+
+                <HorizontalScrollView
+                    android:id="@+id/qrFg2Box"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/qrFg2Colors"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+
+                <TextView
+                    style="@style/ToolCardSummary"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/i18n_527e4f74fa" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/qrEyeColors"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+
+                <TextView
+                    style="@style/ToolCardSummary"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/i18n_8e1b944f43" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/qrBgColors"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+            </LinearLayout>
+
+            <!-- 詳細 -->
+            <TextView
+                style="@style/ToolSectionLabel"
+                android:text="@string/i18n_5043de34de" />
+
+            <LinearLayout style="@style/ToolCard">
+
+                <TextView
+                    style="@style/ToolCardTitle"
+                    android:text="@string/i18n_720293fec6" />
+
+                <TextView
+                    style="@style/ToolCardSummary"
+                    android:text="@string/i18n_05bd6287d8" />
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/qrEcGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <Button
+                        android:id="@+id/qrEcL"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="L 7%" />
+
+                    <Button
+                        android:id="@+id/qrEcM"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="M 15%" />
+
+                    <Button
+                        android:id="@+id/qrEcQ"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Q 25%" />
+
+                    <Button
+                        android:id="@+id/qrEcH"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="H 30%" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <TextView
+                    style="@style/ToolCardTitle"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/i18n_1cc06e9fa5" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/qrMargin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stepSize="1"
+            app:tickVisible="false"
+                    android:valueFrom="0"
+                    android:valueTo="8" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/qrReset"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/i18n_d400b4829a" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- 下の操作ボタン -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurfaceContainer"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="12dp">
+
+        <Button
+            android:id="@+id/qrShare"
+            style="@style/ToolButton.Tonal"
+            android:layout_width="0dp"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:text="@string/i18n_8cfef1099a"
+            app:icon="@drawable/ic_omni_share" />
+
+        <Button
+            android:id="@+id/qrSave"
+            style="@style/ToolButton"
+            android:layout_width="0dp"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:text="@string/i18n_4c6be86cbb"
+            app:icon="@drawable/ic_msg_download" />
+    </LinearLayout>
+</LinearLayout>

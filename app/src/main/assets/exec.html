@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>EXEC</title>
+  <style>
+    /* Pixel(Material 3)のダークテーマの色 */
+    :root {
+      --bg: #111318;
+      --surface: #191c21;
+      --surface-hi: #22262c;
+      --surface-top: #2c3037;
+      --outline: #3a3f47;
+      --fg: #e2e2e9;
+      --dim: #8e9199;
+      --primary: #a8c7fa;
+      --on-primary: #062e6f;
+      --primary-container: #284777;
+      --green: #6dd58c;
+      --green-container: #0f5223;
+      --err: #ffb4ab;
+      --err-container: #5c1a17;
+      --info: #f8c86d;
+      --path: #7fcfff;
+      --ease: cubic-bezier(.2, 0, 0, 1);
+      --ease-emph: cubic-bezier(.05, .7, .1, 1);
+      --mono: "JetBrains Mono", "Roboto Mono", "Droid Sans Mono", "Noto Sans Mono CJK JP", monospace;
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body {
+      margin: 0; height: 100%;
+      background: var(--bg); color: var(--fg);
+      font-family: "Google Sans", "Roboto", "Noto Sans JP", sans-serif;
+    }
+    body { display: flex; flex-direction: column; overflow: hidden; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ---- 上のバー ---- */
+    #titlebar {
+      display: flex; align-items: center; gap: 12px; flex: none;
+      padding: 10px 12px 10px 8px; min-height: 64px;
+      animation: drop .45s var(--ease-emph) both;
+    }
+    .icon-btn {
+      width: 48px; height: 48px; border-radius: 50%; border: none; background: transparent;
+      color: var(--fg); display: grid; place-items: center; flex: none;
+      transition: background-color .2s var(--ease), transform .15s var(--ease);
+    }
+    .icon-btn:active { background: var(--surface-top); transform: scale(.92); }
+    .icon-btn svg { width: 24px; height: 24px; fill: currentColor; }
+    #titleBox { flex: 1; min-width: 0; }
+    #titleMain { font-size: 22px; line-height: 28px; letter-spacing: 0; }
+    #titleName {
+      font-family: var(--mono); font-size: 12px; color: var(--dim); margin-top: 1px;
+      overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+      transition: color .3s var(--ease);
+    }
+    /* 状態の丸(起動中=黄・待機中=緑・実行中=青) */
+    #state {
+      display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-left: 8px;
+      vertical-align: middle; background: var(--info); transition: background-color .3s var(--ease);
+    }
+    #state.idle { background: var(--green); }
+    #state.busy { background: var(--primary); animation: pulse 1.1s ease-in-out infinite; }
+    #rootChip {
+      display: none; flex: none; height: 32px; padding: 0 14px 0 10px; border-radius: 8px;
+      border: 1px solid var(--outline); background: transparent; color: var(--fg);
+      font-size: 13px; font-weight: 500; align-items: center; gap: 6px;
+      transition: background-color .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease), transform .15s var(--ease);
+    }
+    #rootChip svg { width: 18px; height: 18px; fill: currentColor; transition: transform .35s var(--ease-emph); }
+    #rootChip.on { background: var(--err-container); border-color: transparent; color: var(--err); }
+    #rootChip.on svg { transform: rotate(-12deg) scale(1.08); }
+    #rootChip:active { transform: scale(.95); }
+
+    /* ---- 画面(出力 + 入力行)は角の丸いカード ---- */
+    #card {
+      flex: 1; min-height: 0; margin: 0 12px; border-radius: 28px; background: var(--surface);
+      display: flex; flex-direction: column; overflow: hidden;
+      animation: rise .5s .05s var(--ease-emph) both;
+    }
+    #screen {
+      flex: 1; overflow-y: auto; overflow-x: hidden; padding: 16px 18px 20px;
+      font-family: var(--mono); font-size: 13.5px; line-height: 1.55;
+      white-space: pre-wrap; word-break: break-all; scroll-behavior: auto;
+    }
+    .line { min-height: 1.55em; }
+    #log .line { animation: lineIn .22s var(--ease) both; }
+    .out { color: var(--fg); }
+    .err { color: var(--err); }
+    .info { color: var(--info); }
+    .sys { color: var(--dim); }
+    .stdin { color: var(--path); }
+    .user { color: var(--green); font-weight: 600; }
+    .root .user { color: var(--err); }
+    .path { color: var(--path); font-weight: 600; }
+    .exit-ng {
+      display: inline-block; color: var(--err); background: var(--err-container);
+      border-radius: 6px; padding: 0 8px; margin: 2px 0; font-size: 12px;
+    }
+    #banner {
+      color: var(--primary); line-height: 1.15; margin-bottom: 10px; font-size: 11px;
+      background: linear-gradient(90deg, var(--primary), var(--green));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: bannerIn .7s .15s var(--ease-emph) both;
+    }
+    .intro { color: var(--dim); animation: lineIn .4s var(--ease) both; }
+    #intro1 { animation-delay: .3s; }
+    #intro2 { animation-delay: .4s; }
+
+    #inputLine { display: flex; flex-wrap: wrap; align-items: baseline; }
+    /* 長いフォルダ名のプロンプトは折り返し、入力欄が狭くなりすぎたら次の行へ回す */
+    #inputLine .ps { flex: 0 1 auto; min-width: 0; overflow-wrap: anywhere; transition: opacity .2s var(--ease); }
+    #command {
+      flex: 1 1 8em; min-width: 8em; margin: 0; padding: 0;
+      background: transparent; border: none; outline: none;
+      color: var(--fg); font: inherit; caret-color: var(--primary);
+    }
+    #inputLine.busy .ps { color: var(--dim); }
+
+    /* 実行中のコマンド行の右に出す、くるくる */
+    .spin::after {
+      content: ""; display: inline-block; width: 11px; height: 11px; margin-left: 8px; vertical-align: -1px;
+      border: 2px solid var(--primary); border-right-color: transparent; border-radius: 50%;
+      animation: rot .7s linear infinite;
+    }
+
+    /* 実行中は細い進捗バーを上に流す */
+    #progress {
+      height: 3px; flex: none; background: transparent; position: relative; overflow: hidden;
+      opacity: 0; transition: opacity .25s var(--ease);
+    }
+    #progress.on { opacity: 1; }
+    #progress::before {
+      content: ""; position: absolute; top: 0; bottom: 0; left: -40%; width: 40%; border-radius: 3px;
+      background: var(--primary); animation: indet 1.2s var(--ease) infinite;
+    }
+
+    /* ---- 補助キー(丸い小さなボタン) ---- */
+    #keys {
+      flex: none; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;
+      padding: 12px 12px 4px;
+      animation: rise .5s .12s var(--ease-emph) both;
+    }
+    #keys::-webkit-scrollbar { display: none; }
+    #keys button {
+      flex: none; min-width: 52px; height: 40px; padding: 0 14px; border: none; border-radius: 20px;
+      background: var(--surface-hi); color: var(--fg); font-family: var(--mono); font-size: 13px; font-weight: 600;
+      transition: border-radius .25s var(--ease), background-color .2s var(--ease), transform .15s var(--ease);
+    }
+    #keys button:active { border-radius: 10px; background: var(--surface-top); transform: scale(.94); }
+    #keys button.danger { color: var(--err); }
+
+    /* ---- 下の入力欄の代わりの「送信」ボタン ---- */
+    #bottom {
+      flex: none; display: flex; align-items: center; gap: 12px;
+      padding: 8px 12px calc(12px + env(safe-area-inset-bottom));
+      animation: rise .5s .18s var(--ease-emph) both;
+    }
+    #hint {
+      flex: 1; min-width: 0; height: 56px; border-radius: 28px; background: var(--surface-hi);
+      display: flex; align-items: center; padding: 0 20px; color: var(--dim); font-size: 14px;
+      overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    }
+    #hint span { overflow: hidden; text-overflow: ellipsis; }
+    #send {
+      width: 56px; height: 56px; flex: none; border: none; border-radius: 16px;
+      background: var(--primary-container); color: var(--primary); display: grid; place-items: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 8px 3px rgba(0,0,0,.15);
+      transition: border-radius .3s var(--ease), background-color .3s var(--ease), color .3s var(--ease), transform .15s var(--ease);
+    }
+    #send svg { width: 24px; height: 24px; fill: currentColor; transition: transform .3s var(--ease-emph), opacity .2s; }
+    #send:active { transform: scale(.92); }
+    /* 実行中は丸くなって ■(止める)に変わる */
+    #send.busy { border-radius: 28px; background: var(--err-container); color: var(--err); }
+    #send .stop { position: absolute; opacity: 0; transform: scale(.4) rotate(-90deg); }
+    #send.busy .go { opacity: 0; transform: scale(.4) rotate(90deg); }
+    #send.busy .stop { opacity: 1; transform: none; }
+    #send > span { position: relative; width: 24px; height: 24px; display: grid; place-items: center; }
+    #send > span svg { position: absolute; }
+
+    #toast {
+      position: fixed; left: 50%; bottom: 96px; transform: translate(-50%, 24px) scale(.96);
+      background: #e2e2e9; color: #2e3036; padding: 12px 18px; border-radius: 8px; max-width: 86%;
+      font-size: 14px; opacity: 0; pointer-events: none;
+      transition: opacity .2s var(--ease), transform .35s var(--ease-emph);
+      box-shadow: 0 2px 6px rgba(0,0,0,.3);
+    }
+    #toast.show { opacity: 1; transform: translate(-50%, 0) scale(1); }
+
+    @keyframes drop { from { opacity: 0; transform: translateY(-12px); } }
+    @keyframes rise { from { opacity: 0; transform: translateY(24px); } }
+    @keyframes lineIn { from { opacity: 0; transform: translateY(6px); } }
+    @keyframes bannerIn { from { opacity: 0; letter-spacing: .4em; filter: blur(4px); } }
+    @keyframes rot { to { transform: rotate(360deg); } }
+    @keyframes pulse { 50% { transform: scale(1.5); opacity: .55; } }
+    @keyframes indet { 0% { left: -40%; width: 30%; } 60% { width: 50%; } 100% { left: 110%; width: 30%; } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="titlebar">
+    <button class="icon-btn" id="backBtn" onclick="Android.exit()" aria-label="Back">
+      <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+    </button>
+    <div id="titleBox">
+      <div id="titleMain">EXEC<span id="state"></span></div>
+      <div id="titleName">sh</div>
+    </div>
+    <button id="rootChip" onclick="toggleRoot()">
+      <svg viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+      <span id="rootLabel">root</span>
+    </button>
+  </div>
+
+  <div id="card">
+    <div id="progress"></div>
+    <div id="screen">
+<div id="banner"> ___  _  _  ___  ___
+| __|\ \/ /| __|/ __|
+| _|  >  < | _|| (__
+|___|/_/\_\|___|\___|</div><div class="line intro" id="intro1">AirSky EXEC — Android の本物のシェル(sh)につながっています。</div><div class="line intro" id="intro2">「help」で使い方を表示。↑↓ で履歴、^C で実行中のコマンドを止めます。</div>
+<div id="log"></div><div id="inputLine" class="busy"><span class="ps" id="ps"></span><input type="text" id="command"
+      autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="send"></div>
+    </div>
+  </div>
+
+  <div id="keys">
+    <button class="danger" onclick="stopCommand()">^C</button>
+    <button onclick="historyMove(-1)">↑</button>
+    <button onclick="historyMove(1)">↓</button>
+    <button onclick="insertText('|')">|</button>
+    <button onclick="insertText('/')">/</button>
+    <button onclick="insertText('-')">-</button>
+    <button onclick="insertText('~/')">~/</button>
+    <button onclick="insertText('&amp;&amp; ')">&amp;&amp;</button>
+    <button onclick="clearScreen()">clear</button>
+  </div>
+  <div id="bottom">
+    <div id="hint"><span id="hintText"></span></div>
+    <button id="send" onclick="sendOrStop()" aria-label="Run">
+      <span>
+        <svg class="go" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="stop" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>
+      </span>
+    </button>
+  </div>
+  <div id="toast"></div>
+
+  <script>
+    // アプリが英語表示の時は ?hl=en を付けて開かれる。
+    // 英語の文には ' が入るので、文字列は " で囲む(' で囲むと全体が動かなくなる)
+    var EN = location.search.indexOf("hl=en") >= 0;
+    function T(ja, en) { return EN ? en : ja; }
+    if (EN) {
+      document.documentElement.lang = "en";
+      document.getElementById("intro1").textContent = "AirSky EXEC — connected to Android's real shell (sh).";
+      document.getElementById("intro2").textContent = "Type \"help\" for usage. ↑↓ for history, ^C stops the running command.";
+    }
+    var screenEl = document.getElementById("screen");
+    var logEl = document.getElementById("log");
+    var input = document.getElementById("command");
+    var inputLine = document.getElementById("inputLine");
+    var psEl = document.getElementById("ps");
+    var rootChip = document.getElementById("rootChip");
+    var stateEl = document.getElementById("state");
+    var sendBtn = document.getElementById("send");
+    var progressEl = document.getElementById("progress");
+    var hintText = document.getElementById("hintText");
+    var MAX_LINES = 5000;
+    // シェルの状態
+    var running = true;       // コマンド実行中(起動中も含む)。この間の入力はコマンドの標準入力になる
+    var connected = false;    // シェルが目印を返してきた(使える状態になった)
+    var runningLine = null;
+    var isRoot = false;
+    var userName = "";
+    var cwd = "";
+    // 改行が来ていない出力の行(続きを同じ行に足す)
+    var openLines = { out: null, err: null };
+    var cmdHistory = [];
+    var historyIndex = 0;
+    try { cmdHistory = JSON.parse(localStorage.getItem("exec_history") || "[]"); } catch (e) { cmdHistory = []; }
+    historyIndex = cmdHistory.length;
+
+    function stripAnsi(s) {
+      return String(s).replace(/\x1b\[[0-9;?]*[ -\/]*[@-~]/g, "").replace(/\x1b[\]P^_][^\x07\x1b]*(\x07|\x1b\\)?/g, "").replace(/\x1b./g, "");
+    }
+
+    var home = "";
+    try { home = Android.getHome() || ""; } catch (e) {}
+    // アプリのフォルダは /data/user/0/... と /data/data/... の 2 通りで見える
+    var homes = [home, home.replace(/^\/data\/user\/0\//, "/data/data/")];
+    function shortPath(p) {
+      for (var i = 0; i < homes.length; i++) {
+        var h = homes[i];
+        if (h && (p === h || p.indexOf(h + "/") === 0)) return "~" + p.substring(h.length);
+      }
+      return p;
+    }
+
+    function renderPrompt(target) {
+      target.innerHTML = "";
+      target.classList.toggle("root", isRoot);
+      var u = document.createElement("span"); u.className = "user"; u.textContent = (userName || (isRoot ? "root" : "shell")) + "@android";
+      var c = document.createElement("span"); c.textContent = ":";
+      var p = document.createElement("span"); p.className = "path"; p.textContent = cwd ? shortPath(cwd) : "~";
+      var d = document.createElement("span"); d.textContent = isRoot ? "# " : "$ ";
+      target.appendChild(u); target.appendChild(c); target.appendChild(p); target.appendChild(d);
+    }
+
+    function updateTitle() {
+      document.getElementById("titleName").textContent =
+        (isRoot ? "su" : "sh") + " · " + (userName || "…") + (cwd ? " · " + shortPath(cwd) : "");
+      rootChip.classList.toggle("on", isRoot);
+      document.getElementById("rootLabel").textContent = isRoot ? T("root を終了", "Exit root") : "root";
+    }
+
+    function updateInputLine() {
+      inputLine.classList.toggle("busy", running);
+      stateEl.className = !connected ? "" : (running ? "busy" : "idle");
+      sendBtn.classList.toggle("busy", running && connected);
+      progressEl.classList.toggle("on", running && connected && !!runningLine);
+      if (running) {
+        // 実行中の入力は、動いているコマンドへ送る
+        psEl.innerHTML = "";
+        psEl.textContent = "› ";
+        hintText.textContent = connected ? T("実行中 — 入力はコマンドへ送られます", "Running — input goes to the command")
+                                         : T("シェルを起動しています…", "Starting the shell…");
+      } else {
+        renderPrompt(psEl);
+        hintText.textContent = T("コマンドを入力して ▶ で実行", "Type a command and tap ▶");
+      }
+    }
+
+    function scrollBottom() { screenEl.scrollTop = screenEl.scrollHeight; }
+
+    function trimLog() {
+      var extra = logEl.childNodes.length - MAX_LINES;
+      for (var i = 0; i < extra; i++) logEl.removeChild(logEl.firstChild);
+    }
+
+    function addLine(text, cls) {
+      var div = document.createElement("div");
+      div.className = "line " + (cls || "out");
+      div.textContent = text;
+      logEl.appendChild(div);
+      trimLog();
+      scrollBottom();
+      return div;
+    }
+
+    function closeOpenLines() { openLines.out = null; openLines.err = null; }
+
+    // ---- ネイティブ側(ExecActivity)から呼ばれる ----
+
+    // シェルの出力。newline=false なら行の途中(続きが来たら同じ行に足す)
+    function appendChunk(text, stderr, newline) {
+      var key = stderr ? "err" : "out";
+      text = stripAnsi(text);
+      var line = openLines[key];
+      if (line && line.parentNode) {
+        line.textContent += text;
+      } else {
+        line = addLine(text, stderr ? "err" : "out");
+      }
+      openLines[key] = newline ? null : line;
+      scrollBottom();
+    }
+
+    // アプリからのお知らせ("ERROR: " "INFO: " で始まる)
+    function appendOutput(message) {
+      closeOpenLines();
+      String(message).replace(/\n$/, "").split("\n").forEach(function (l) {
+        if (l.indexOf("ERROR: ") === 0) addLine(l.substring(7), "err");
+        else if (l.indexOf("INFO: ") === 0) addLine(l.substring(6), "info");
+        else addLine(l, "out");
+      });
+    }
+
+    function onShellStarting(root) {
+      running = true;
+      connected = false;
+      isRoot = !!root;
+      userName = "";
+      closeOpenLines();
+      addLine(root ? T("su を起動しています(ルート権限の許可を求めています)…", "Starting su (requesting root permission)…") : T("sh を起動しています…", "Starting sh…"), "sys");
+      updateTitle();
+      updateInputLine();
+    }
+
+    function onShellReady(root, user) {
+      isRoot = !!root;
+      connected = true;
+      userName = user || (root ? "root" : "");
+      addLine(T((root ? "ルート権限のシェル" : "シェル") + "に接続しました(ユーザー: " + (userName || "不明") + ")", "Connected to " + (root ? "a root shell" : "the shell") + " (user: " + (userName || "unknown") + ")"), "sys");
+      updateTitle();
+      updateInputLine();
+    }
+
+    function onShellExited(root) {
+      running = true;
+      connected = false;
+      if (runningLine) runningLine.classList.remove("spin");
+      runningLine = null;
+      updateInputLine();
+    }
+
+    function onCommandFinished(code, newCwd) {
+      closeOpenLines();
+      if (runningLine) runningLine.classList.remove("spin");
+      if (code !== 0 && code !== null && code !== undefined && runningLine) addLine(T("終了コード ", "exit code ") + code, "exit-ng");
+      if (newCwd) cwd = newCwd;
+      running = false;
+      runningLine = null;
+      updateTitle();
+      updateInputLine();
+      input.focus();
+      scrollBottom();
+    }
+
+    function showToast(message) {
+      var t = document.getElementById("toast");
+      t.textContent = message;
+      t.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(function () { t.classList.remove("show"); }, 1800);
+    }
+
+    // ---- 入力 ----
+    function echoCommand(cmd) {
+      var div = document.createElement("div");
+      div.className = "line";
+      renderPrompt(div);
+      var c = document.createElement("span"); c.textContent = cmd;
+      div.appendChild(c);
+      logEl.appendChild(div);
+      trimLog();
+      return div;
+    }
+
+    function rememberHistory(trimmed) {
+      if (!trimmed) return;
+      if (cmdHistory[cmdHistory.length - 1] !== trimmed) cmdHistory.push(trimmed);
+      if (cmdHistory.length > 200) cmdHistory = cmdHistory.slice(-200);
+      try { localStorage.setItem("exec_history", JSON.stringify(cmdHistory)); } catch (e) {}
+    }
+
+    function sendOrStop() {
+      if (running && connected && runningLine && !input.value) stopCommand();
+      else submit();
+    }
+
+    function submit() {
+      var cmd = input.value;
+      input.value = "";
+      historyIndex = cmdHistory.length;
+      if (running) {
+        // 動いているコマンド(read・cat など)への入力
+        closeOpenLines();
+        addLine(cmd, "stdin");
+        Android.sendLine(cmd);
+        scrollBottom();
+        return;
+      }
+      closeOpenLines();
+      var line = echoCommand(cmd);
+      var trimmed = cmd.trim();
+      rememberHistory(trimmed);
+      historyIndex = cmdHistory.length;
+      if (!trimmed) { scrollBottom(); return; }
+
+      // アプリ側で処理するコマンド
+      if (trimmed === "clear" || trimmed === "cls") { clearScreen(); return; }
+      if (trimmed === "help") {
+        (EN ? ["This is Android's real shell (sh). Shell features such as cd, variables, pipes (|), and redirection work as usual.",
+         "Example commands:",
+         "  ls -l          list files",
+         "  cd <dir>       change folder",
+         "  getprop        device properties",
+         "  ps -A | head   running processes",
+         "  ping -c 3 <host>",
+         "App commands:",
+         "  su / root      switch to a root shell (rooted devices only)",
+         "  exit           leave root / close EXEC",
+         "  help / clear / history",
+         "Lines you type while a command runs are sent to it as input. Stop it with ^C (twice to force stop).",
+         "This isn't a terminal (TTY), so full-screen commands such as vi and top don't work."]
+        : ["Android の本物のシェル(sh)です。cd・変数・パイプ(|)・リダイレクトなど、シェルの機能がそのまま使えます。",
+         "使えるコマンドの例:",
+         "  ls -l          ファイルの一覧",
+         "  cd <dir>       フォルダを移動",
+         "  getprop        端末のプロパティ",
+         "  ps -A | head   動いているプロセス",
+         "  ping -c 3 <host>",
+         "アプリ側のコマンド:",
+         "  su / root      ルート権限のシェルに切り替える(ルート化された端末のみ)",
+         "  exit           root を抜ける / EXEC を閉じる",
+         "  help / clear / history",
+         "実行中に入力した行は、そのコマンドへの入力になります。止める時は ^C(2 回目は強制終了)。",
+         "端末(TTY)ではないため、vi や top などの全画面のコマンドは使えません。"]).forEach(function (l) { addLine(l, "sys"); });
+        return;
+      }
+      if (trimmed === "history") {
+        cmdHistory.forEach(function (h, i) { addLine(("   " + (i + 1)).slice(-4) + "  " + h, "sys"); });
+        return;
+      }
+      if (trimmed === "su" || trimmed === "root") {
+        if (isRoot) { addLine(T("すでにルート権限のシェルです", "Already a root shell"), "sys"); return; }
+        startRoot();
+        return;
+      }
+      if (trimmed === "exit") {
+        if (isRoot) {
+          // root のシェルを終える(終わると普通のシェルに戻る)
+          running = true;
+          updateInputLine();
+          Android.sendLine("exit");
+        } else {
+          Android.exit();
+        }
+        return;
+      }
+
+      running = true;
+      runningLine = line;
+      line.classList.add("spin");
+      updateInputLine();
+      Android.sendLine(cmd);
+    }
+
+    function startRoot() {
+      if (!Android.isRootAvailable()) {
+        addLine(T("su が見つかりません。この端末はルート化されていないようです", "su not found. This device does not appear to be rooted"), "err");
+        return;
+      }
+      Android.startRoot();
+    }
+
+    function toggleRoot() {
+      if (isRoot) {
+        Android.startUser();
+      } else {
+        startRoot();
+      }
+      input.focus();
+    }
+
+    function stopCommand() {
+      if (!running) {
+        // 実行中でなければ、入力中の行を取り消す(シェルの ^C と同じ)
+        echoCommand(input.value + "^C");
+        input.value = "";
+        historyIndex = cmdHistory.length;
+        scrollBottom();
+        return;
+      }
+      Android.interrupt();
+    }
+
+    function historyMove(dir) {
+      if (!cmdHistory.length) return;
+      historyIndex = Math.max(0, Math.min(cmdHistory.length, historyIndex + dir));
+      input.value = historyIndex < cmdHistory.length ? cmdHistory[historyIndex] : "";
+      input.focus();
+      var n = input.value.length;
+      input.setSelectionRange(n, n);
+    }
+
+    function insertText(s) {
+      var start = input.selectionStart == null ? input.value.length : input.selectionStart;
+      var end = input.selectionEnd == null ? start : input.selectionEnd;
+      input.value = input.value.slice(0, start) + s + input.value.slice(end);
+      input.focus();
+      input.setSelectionRange(start + s.length, start + s.length);
+    }
+
+    function clearScreen() {
+      logEl.innerHTML = "";
+      closeOpenLines();
+      var b = document.getElementById("banner");
+      if (b) b.style.display = "none";
+      Array.prototype.slice.call(document.querySelectorAll("#screen > .line")).forEach(function (n) { n.remove(); });
+      input.focus();
+    }
+
+    input.addEventListener("keydown", function (e) {
+      // 一部の IME は Enter を key ではなく keyCode 13 だけで知らせる
+      if (e.key === "Enter" || e.keyCode === 13) { e.preventDefault(); submit(); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); historyMove(-1); }
+      else if (e.key === "ArrowDown") { e.preventDefault(); historyMove(1); }
+      else if (e.key === "c" && e.ctrlKey) { e.preventDefault(); stopCommand(); }
+      else if (e.key === "l" && e.ctrlKey) { e.preventDefault(); clearScreen(); }
+    });
+    // ソフトキーボードの「送信」が keydown を出さずに改行だけを入れてくる場合
+    input.addEventListener("beforeinput", function (e) {
+      if (e.inputType === "insertLineBreak" || e.inputType === "insertParagraph") { e.preventDefault(); submit(); }
+    });
+    screenEl.addEventListener("click", function () {
+      if (!window.getSelection().toString()) input.focus();
+    });
+    document.getElementById("hint").addEventListener("click", function () { input.focus(); });
+
+    try { if (Android.isRootAvailable()) rootChip.style.display = "inline-flex"; } catch (e) {}
+    updateTitle();
+    updateInputLine();
+    Android.start();
+    setTimeout(function () { input.focus(); }, 350);
+  </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- セットアップ 4: 自分好みに設定(壁紙・動作の切り替え・アップデートのお知らせ) -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:scrollbars="none">
+
+    <LinearLayout style="@style/Aozora.Setup.Page">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/setup_lottie"
+            style="@style/Aozora.Setup.Illustration"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/lottie_setup_tune" />
+
+        <TextView
+            style="@style/Aozora.Setup.Headline"
+            android:text="@string/i18n_40602b0b6f" />
+
+        <TextView
+            style="@style/Aozora.Setup.Body"
+            android:text="@string/i18n_61fa355807" />
+
+        <!-- カード1：壁紙(スタートページと同じ) -->
+        <androidx.cardview.widget.CardView
+            style="@style/Aozora.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <androidx.cardview.widget.CardView
+                    style="@style/Aozora.Card.Inner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/background_example_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:background="@drawable/bg_pressable"
+                        android:contentDescription="@string/i18n_a5fb25153d"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/setupback" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    style="@style/Aozora.Text.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:paddingHorizontal="4dp"
+                    android:text="@string/i18n_bcd6d6ccd7" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- カード2：動作の切り替え -->
+        <androidx.cardview.widget.CardView
+            style="@style/Aozora.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="4dp"
+                android:paddingTop="8dp">
+
+                <CheckBox
+                    android:id="@+id/setup_checkbox_swipe"
+                    style="@style/Aozora.Switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/i18n_915b864f52" />
+
+                <CheckBox
+                    android:id="@+id/setup_checkbox_bottom"
+                    style="@style/Aozora.Switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/i18n_19ea2c4414" />
+
+                <CheckBox
+                    android:id="@+id/setup_checkbox_update"
+                    style="@style/Aozora.Switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/i18n_654283028f" />
+
+                <CheckBox
+                    android:id="@+id/setup_checkbox_desktop"
+                    style="@style/Aozora.Switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/i18n_d8eb1d7b68" />
+
+                <CheckBox
+                    android:id="@+id/setup_checkbox_ua"
+                    style="@style/Aozora.Switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/i18n_6b6bb779f7" />
+
+                <Button
+                    android:id="@+id/setup_help_ua"
+                    style="@style/Aozora.Button.Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:drawableLeft="@drawable/ic_help_primary"
+                    android:text="@string/i18n_736bd0653a" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            style="@style/Aozora.Text.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/i18n_1024e1910f" />
+    </LinearLayout>
+</ScrollView>

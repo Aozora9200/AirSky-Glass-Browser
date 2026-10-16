@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- セットアップ: タブレットのイラスト(横長の画面。上にタブとツールバー、下にページ) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="136dp"
+    android:viewportWidth="120"
+    android:viewportHeight="136">
+    <!-- 本体(横長) -->
+    <path
+        android:fillColor="#34343A"
+        android:strokeColor="#8E9099"
+        android:strokeWidth="2"
+        android:pathData="M10,30h100a8,8 0,0 1,8 8v62a8,8 0,0 1,-8 8h-100a8,8 0,0 1,-8 -8v-62a8,8 0,0 1,8 -8z" />
+    <!-- タブ(選択中のタブは明るく) -->
+    <path
+        android:fillColor="#DBE2F9"
+        android:pathData="M12,38h26a2,2 0,0 1,2 2v6h-30v-6a2,2 0,0 1,2 -2z" />
+    <path
+        android:fillColor="#5D6170"
+        android:pathData="M44,38h22a2,2 0,0 1,2 2v6h-26v-6a2,2 0,0 1,2 -2z M72,40h4v4h-4z" />
+    <!-- ツールバー(ボタンと URL バー) -->
+    <path
+        android:fillColor="#DBE2F9"
+        android:pathData="M10,46h100v12h-100z" />
+    <path
+        android:fillColor="#4B5468"
+        android:pathData="M14,50h4v4h-4z M21,50h4v4h-4z M28,50h4v4h-4z M38,49h46a3,3 0,0 1,0 6h-46a3,3 0,0 1,0 -6z M90,50h4v4h-4z M97,50h4v4h-4z M104,50h3v4h-3z" />
+    <!-- ページ -->
+    <path
+        android:fillColor="#ADC6FF"
+        android:pathData="M14,64h40a3,3 0,0 1,3 3v28a3,3 0,0 1,-3 3h-40a3,3 0,0 1,-3 -3v-28a3,3 0,0 1,3 -3z" />
+    <path
+        android:fillColor="#5D6170"
+        android:pathData="M63,66h44v4h-44z M63,75h38v4h-38z M63,84h42v4h-42z M63,93h30v4h-30z" />
+</vector>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- URL バーの中のサイト情報(Favicon)ボタンの波紋。枠からはみ出さない大きさの円 -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?android:attr/colorControlHighlight">
+    <item
+        android:id="@android:id/mask"
+        android:width="30dp"
+        android:height="30dp"
+        android:gravity="center">
+        <shape android:shape="oval">
+            <solid android:color="@android:color/white" />
+        </shape>
+    </item>
+</ripple>

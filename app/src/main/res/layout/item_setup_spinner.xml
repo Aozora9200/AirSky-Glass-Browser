@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- セットアップのテーマ選択(閉じている時の表示)。暗いカードの上でも読めるよう、文字色を固定する -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ellipsize="end"
+    android:fontFamily="sans-serif"
+    android:singleLine="true"
+    android:textColor="@color/setup_on_card"
+    android:textSize="16sp" />

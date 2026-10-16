@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- タブレット UI のツールバーのショートカット(既定はブックマーク・リーディングモード) -->
+    <item name="action_shortcut_tablet1" type="id" />
+    <item name="action_shortcut_tablet2" type="id" />
+    <!-- タブ一覧のカードで動いている拡大縮小アニメーション(View のタグ) -->
+    <item name="tsCardScaleAnimator" type="id" />
+    <!-- アプリ側の画面の壁紙(AppWallpaper)の読み込み・時間帯の切り替え(View のタグ) -->
+    <item name="app_wallpaper_token" type="id" />
+    <item name="app_wallpaper_timer" type="id" />
+    <item name="app_wallpaper_detach" type="id" />
+    <!-- コントローラー操作で選んでいる項目の枠(FocusHighlight, ウィンドウの DecorView のタグ) -->
+    <item name="focus_highlight" type="id" />
+    <!-- タブレット UI でシートを上から出す細工をしたか(TopSheet, シートの CoordinatorLayout のタグ) -->
+    <item name="top_sheet_installed" type="id" />
+</resources>

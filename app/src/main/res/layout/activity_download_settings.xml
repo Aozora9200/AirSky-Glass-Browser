@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ダウンロード設定。見出しごとに、名前・説明・スイッチの行を並べる -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="16dp">
+
+        <ImageButton
+            android:id="@+id/dsBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/i18n_4a622f127b"
+            android:src="@drawable/ic_si_back"
+            app:tint="?attr/colorOnSurface" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:text="@string/i18n_fb646e2fe9"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="26sp" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/dsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="24dp">
+
+            <TextView
+                style="@style/SettingHeader"
+                android:text="@string/i18n_a595d9537a" />
+
+            <LinearLayout
+                android:id="@+id/dsFolder"
+                style="@style/SettingRow">
+                <LinearLayout style="@style/SettingRowTexts">
+                    <TextView
+                        style="@style/SettingRowTitle"
+                        android:text="@string/i18n_c004a0b6e3" />
+                    <TextView
+                        android:id="@+id/dsFolderSummary"
+                        style="@style/SettingRowSummary" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dsAsk"
+                style="@style/SettingRow">
+                <LinearLayout style="@style/SettingRowTexts">
+                    <TextView
+                        style="@style/SettingRowTitle"
+                        android:text="@string/i18n_d955752cbf" />
+                    <TextView
+                        style="@style/SettingRowSummary"
+                        android:text="@string/i18n_d33dd6ae84" />
+                </LinearLayout>
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/dsAskSwitch"
+                    style="@style/SettingRowSwitch" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dsDuplicate"
+                style="@style/SettingRow">
+                <LinearLayout style="@style/SettingRowTexts">
+                    <TextView
+                        style="@style/SettingRowTitle"
+                        android:text="@string/i18n_fb3a8e4f34" />
+                    <TextView
+                        style="@style/SettingRowSummary"
+                        android:text="@string/i18n_02f16797e3" />
+                </LinearLayout>
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/dsDuplicateSwitch"
+                    style="@style/SettingRowSwitch" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/SettingHeader"
+                android:text="@string/i18n_fdbc77bd19" />
+
+            <LinearLayout
+                android:id="@+id/dsScan"
+                style="@style/SettingRow">
+                <LinearLayout style="@style/SettingRowTexts">
+                    <TextView
+                        style="@style/SettingRowTitle"
+                        android:text="@string/i18n_a21311bad6" />
+                    <TextView
+                        style="@style/SettingRowSummary"
+                        android:text="@string/i18n_58c16095d8" />
+                </LinearLayout>
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/dsScanSwitch"
+                    style="@style/SettingRowSwitch" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/SettingHeader"
+                android:text="@string/i18n_f53c58fc73" />
+
+            <LinearLayout
+                android:id="@+id/dsClear"
+                style="@style/SettingRow">
+                <LinearLayout style="@style/SettingRowTexts">
+                    <TextView
+                        style="@style/SettingRowTitle"
+                        android:text="@string/i18n_6b756923d7" />
+                    <TextView
+                        style="@style/SettingRowSummary"
+                        android:text="@string/i18n_ba6b939c1a" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

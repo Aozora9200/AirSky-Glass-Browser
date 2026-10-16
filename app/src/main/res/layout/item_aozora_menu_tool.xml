@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Aozora メニューのツール一覧のタイル 1 つ(角丸のアイコンと名前。1 行に 4 つ) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:background="@drawable/bg_menu_tool_tile"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    android:paddingBottom="10dp">
+
+    <FrameLayout
+        android:id="@+id/am_tool_icon_bg"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:background="@drawable/bg_menu_tool_icon">
+
+        <ImageView
+            android:id="@+id/am_tool_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/am_tool_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lineSpacingMultiplier="0.95"
+        android:maxLines="2"
+        android:minLines="2"
+        android:paddingHorizontal="2dp"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="12sp" />
+</LinearLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- サイト情報シートの下位ページの見出し(タップでひとつ前のページへ戻る) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="12dp"
+    android:paddingEnd="24dp">
+    <ImageButton
+        android:id="@+id/si_back_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_dl_action"
+        android:backgroundTint="?attr/colorSecondaryContainer"
+        android:contentDescription="@string/i18n_4a622f127b"
+        android:foreground="@drawable/ripple_circle_small"
+        android:src="@drawable/ic_si_back"
+        android:tint="?attr/colorOnSecondaryContainer" />
+    <TextView
+        android:id="@+id/si_back_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+</LinearLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- リンクの長押しメニューの行 1 つ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/PageMenuRow">
+
+    <ImageView
+        android:id="@+id/lm_row_icon"
+        style="@style/PageMenuRowIcon" />
+
+    <TextView
+        android:id="@+id/lm_row_label"
+        style="@style/PageMenuRowText" />
+</LinearLayout>
