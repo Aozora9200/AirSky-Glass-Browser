@@ -45,6 +45,8 @@ public class DesignSettingsActivity extends PixelSettingsActivity {
 
     /** 再起動しないと反映されない変更をしたか。 */
     private boolean changed = false;
+    /** 画面の上に固定したプレビューの入れ物。 */
+    private FrameLayout previewHolder;
 
     @NonNull
     @Override
@@ -56,6 +58,21 @@ public class DesignSettingsActivity extends PixelSettingsActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) changed = savedInstanceState.getBoolean(STATE_CHANGED, false);
+        // プレビューが上にスクロールして見えなくならないよう、上のバーの下に固定する
+        previewHolder = new FrameLayout(this);
+        previewHolder.setPadding(dp(16), dp(4), dp(16), dp(10));
+        setPinnedHeader(previewHolder);
+    }
+
+    private void showPreview(int popup, int arrow) {
+        View preview = buildPreview(popup, arrow);
+        GradientDrawable bg = new GradientDrawable();
+        bg.setCornerRadius(dp(26));
+        bg.setColor(ContextCompat.getColor(this, R.color.ps_card_bg));
+        preview.setBackground(bg);
+        previewHolder.removeAllViews();
+        previewHolder.addView(preview, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
     }
 
     @Override
@@ -70,9 +87,11 @@ public class DesignSettingsActivity extends PixelSettingsActivity {
         int popup = getSharedPreferences(POPUP_PREFS, MODE_PRIVATE).getInt(KEY_POPUP, 2);
         int arrow = getSharedPreferences(ARROW_PREFS, MODE_PRIVATE).getInt(KEY_ARROW, 1);
 
-        gap();
-        card(buildPreview(popup, arrow));
+        int mode = TabletUi.mode(this);
+        // プレビューは画面の上に固定してあるので、下の項目を変えるとすぐに見た目が変わる
+        showPreview(popup, arrow);
 
+        // プレビューに映る見た目の項目を先に並べる
         header(Lang.t("テーマ"));
         card(buildThemeTiles(theme));
         SharedPreferences adv = getSharedPreferences("AdvancedBrowserPrefs", MODE_PRIVATE);
@@ -82,71 +101,6 @@ public class DesignSettingsActivity extends PixelSettingsActivity {
                     adv.edit().putBoolean("dark_mode", on).apply();
                     GeckoEngine.get(this).applyColorScheme();
                 });
-
-        header(Lang.t("ガラス"));
-        row(R.drawable.ic_ps_glass, Lang.t("ガラスのデザイン"), GlassSettingsActivity.summary(this),
-                () -> startActivity(GlassSettingsActivity.intent(this))).chevron();
-
-        header(Lang.t("画面"));
-        int mode = TabletUi.mode(this);
-        radioRow(R.drawable.ic_ps_single_screen, Lang.t("一画面"), Lang.t("URL バーとボトムバーを、ページと同じ画面に表示します"),
-                mode == TabletUi.MODE_SINGLE, () -> setScreenMode(TabletUi.MODE_SINGLE));
-        radioRow(R.drawable.ic_ps_dual_screen, Lang.t("二画面"),
-                Lang.t("画面を 2 つ持つ端末(AYN Thor など)向け。上の画面にページ、下の画面にページの続きと URL バー・ボトムバーを表示します"),
-                mode == TabletUi.MODE_DUAL, () -> setScreenMode(TabletUi.MODE_DUAL));
-        radioRow(R.drawable.ic_ps_tablet, Lang.t("タブレット"),
-                Lang.t("パソコンのブラウザのように、タブを上に並べ、URL バーとボトムバーを 1 本のツールバーにまとめます"),
-                mode == TabletUi.MODE_TABLET, () -> setScreenMode(TabletUi.MODE_TABLET));
-        if (mode == TabletUi.MODE_TABLET) {
-            header(Lang.t("タブレットのバーの位置"));
-            boolean bottom = TabletUi.barsAtBottom(this);
-            radioRow(R.drawable.ic_ps_bars_top, Lang.t("上"),
-                    Lang.t("タブとツールバーを画面の上に表示します。メニューやメッセージも上に出ます"),
-                    !bottom, () -> setTabletBarsBottom(false));
-            radioRow(R.drawable.ic_ps_bars_bottom, Lang.t("下"),
-                    Lang.t("タブとツールバーを画面の下に表示します。片手で持った時にも指が届きます"),
-                    bottom, () -> setTabletBarsBottom(true));
-        }
-        if (mode == TabletUi.MODE_DUAL && !DualScreen.hasSecondScreen(this)) {
-            note(Lang.t("この端末では 2 つ目の画面が見つかりません。二画面を選んでいても、2 つ目の画面が使える時だけ二画面で表示します。"));
-        }
-
-        header(Lang.t("ツールバー"));
-        ToolbarShortcut.Option sc = ToolbarShortcut.current(this);
-        row(sc.icon, Lang.t("ツールバーのショートカット"), sc.label + Lang.t("(URL バーの横のボタンを長押ししても変更できます)"),
-                () -> ToolbarShortcut.showPicker(this, this::rebuild)).chevron();
-        if (mode == TabletUi.MODE_TABLET) {
-            ToolbarShortcut.Option sc1 = ToolbarShortcut.current(this, ToolbarShortcut.SLOT_TABLET_1);
-            row(sc1.icon, Lang.t("タブレットのショートカット 1"), sc1.label + Lang.t("(ボタンを長押ししても変更できます)"),
-                    () -> ToolbarShortcut.showPicker(this, ToolbarShortcut.SLOT_TABLET_1, this::rebuild)).chevron();
-            ToolbarShortcut.Option sc2 = ToolbarShortcut.current(this, ToolbarShortcut.SLOT_TABLET_2);
-            row(sc2.icon, Lang.t("タブレットのショートカット 2"), sc2.label + Lang.t("(ボタンを長押ししても変更できます)"),
-                    () -> ToolbarShortcut.showPicker(this, ToolbarShortcut.SLOT_TABLET_2, this::rebuild)).chevron();
-        }
-
-        header(Lang.t("ステータスバーの電池"));
-        int battery = StatusBattery.style(this);
-        String[] batteryLabels = {Lang.t("% で表示"), Lang.t("アイコンで表示"), Lang.t("アイコンと % で表示")};
-        int[] batteryStyles = {StatusBattery.STYLE_PERCENT, StatusBattery.STYLE_ICON, StatusBattery.STYLE_ICON_PERCENT};
-        for (int i = 0; i < batteryLabels.length; i++) {
-            final int value = batteryStyles[i];
-            Row r = radioRow(R.drawable.ic_ps_none, batteryLabels[i], null, battery == value, () -> {
-                StatusBattery.setStyle(this, value);
-                rebuild();
-            });
-            if (value == StatusBattery.STYLE_PERCENT) {
-                r.icon.setImageResource(R.drawable.ic_ps_battery);
-                r.icon.setImageTintList(ColorStateList.valueOf(attrColor(com.google.android.material.R.attr.colorOnSurface)));
-            } else {
-                StatusBattery.IconDrawable d = new StatusBattery.IconDrawable(this);
-                d.setColors(attrColor(com.google.android.material.R.attr.colorOnSurface),
-                        attrColor(androidx.appcompat.R.attr.colorError));
-                d.setLevel(70, false);
-                r.icon.setImageTintList(null);
-                r.icon.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-                r.icon.setImageDrawable(d);
-            }
-        }
 
         header(Lang.t("メニューボタン"));
         String[] popups = {Lang.t("ライトボタン"), Lang.t("ダークボタン"), Lang.t("テーマに合わせる")};
@@ -181,7 +135,72 @@ public class DesignSettingsActivity extends PixelSettingsActivity {
                 r.icon.setScaleType(ImageView.ScaleType.CENTER);
             }
         }
-        note(Lang.t("テーマとボタンの変更は、AirSky を再起動すると反映されます。"));
+        header(Lang.t("ツールバー"));
+        ToolbarShortcut.Option sc = ToolbarShortcut.current(this);
+        row(sc.icon, Lang.t("ツールバーのショートカット"), sc.label + Lang.t("(URL バーの横のボタンを長押ししても変更できます)"),
+                () -> ToolbarShortcut.showPicker(this, this::rebuild)).chevron();
+        if (mode == TabletUi.MODE_TABLET) {
+            ToolbarShortcut.Option sc1 = ToolbarShortcut.current(this, ToolbarShortcut.SLOT_TABLET_1);
+            row(sc1.icon, Lang.t("タブレットのショートカット 1"), sc1.label + Lang.t("(ボタンを長押ししても変更できます)"),
+                    () -> ToolbarShortcut.showPicker(this, ToolbarShortcut.SLOT_TABLET_1, this::rebuild)).chevron();
+            ToolbarShortcut.Option sc2 = ToolbarShortcut.current(this, ToolbarShortcut.SLOT_TABLET_2);
+            row(sc2.icon, Lang.t("タブレットのショートカット 2"), sc2.label + Lang.t("(ボタンを長押ししても変更できます)"),
+                    () -> ToolbarShortcut.showPicker(this, ToolbarShortcut.SLOT_TABLET_2, this::rebuild)).chevron();
+        }
+
+        note(Lang.t("テーマとボタンの変更は、アプリを再起動すると反映されます。"));
+
+        // ここから下は画面の構成など(プレビューには映らない)
+        header(Lang.t("画面"));
+        radioRow(R.drawable.ic_ps_single_screen, Lang.t("一画面"), Lang.t("URL バーとボトムバーを、ページと同じ画面に表示します"),
+                mode == TabletUi.MODE_SINGLE, () -> setScreenMode(TabletUi.MODE_SINGLE));
+        radioRow(R.drawable.ic_ps_dual_screen, Lang.t("二画面"),
+                Lang.t("画面を 2 つ持つ端末(AYN Thor など)向け。上の画面にページ、下の画面にページの続きと URL バー・ボトムバーを表示します"),
+                mode == TabletUi.MODE_DUAL, () -> setScreenMode(TabletUi.MODE_DUAL));
+        radioRow(R.drawable.ic_ps_tablet, Lang.t("タブレット"),
+                Lang.t("パソコンのブラウザのように、タブを上に並べ、URL バーとボトムバーを 1 本のツールバーにまとめます"),
+                mode == TabletUi.MODE_TABLET, () -> setScreenMode(TabletUi.MODE_TABLET));
+        if (mode == TabletUi.MODE_TABLET) {
+            header(Lang.t("タブレットのバーの位置"));
+            boolean bottom = TabletUi.barsAtBottom(this);
+            radioRow(R.drawable.ic_ps_bars_top, Lang.t("上"),
+                    Lang.t("タブとツールバーを画面の上に表示します。メニューやメッセージも上に出ます"),
+                    !bottom, () -> setTabletBarsBottom(false));
+            radioRow(R.drawable.ic_ps_bars_bottom, Lang.t("下"),
+                    Lang.t("タブとツールバーを画面の下に表示します。片手で持った時にも指が届きます"),
+                    bottom, () -> setTabletBarsBottom(true));
+        }
+        if (mode == TabletUi.MODE_DUAL && !DualScreen.hasSecondScreen(this)) {
+            note(Lang.t("この端末では 2 つ目の画面が見つかりません。二画面を選んでいても、2 つ目の画面が使える時だけ二画面で表示します。"));
+        }
+
+        header(Lang.t("ガラス"));
+        row(R.drawable.ic_ps_glass, Lang.t("ガラスのデザイン"), GlassSettingsActivity.summary(this),
+                () -> startActivity(GlassSettingsActivity.intent(this))).chevron();
+
+        header(Lang.t("ステータスバーの電池"));
+        int battery = StatusBattery.style(this);
+        String[] batteryLabels = {Lang.t("% で表示"), Lang.t("アイコンで表示"), Lang.t("アイコンと % で表示")};
+        int[] batteryStyles = {StatusBattery.STYLE_PERCENT, StatusBattery.STYLE_ICON, StatusBattery.STYLE_ICON_PERCENT};
+        for (int i = 0; i < batteryLabels.length; i++) {
+            final int value = batteryStyles[i];
+            Row r = radioRow(R.drawable.ic_ps_none, batteryLabels[i], null, battery == value, () -> {
+                StatusBattery.setStyle(this, value);
+                rebuild();
+            });
+            if (value == StatusBattery.STYLE_PERCENT) {
+                r.icon.setImageResource(R.drawable.ic_ps_battery);
+                r.icon.setImageTintList(ColorStateList.valueOf(attrColor(com.google.android.material.R.attr.colorOnSurface)));
+            } else {
+                StatusBattery.IconDrawable d = new StatusBattery.IconDrawable(this);
+                d.setColors(attrColor(com.google.android.material.R.attr.colorOnSurface),
+                        attrColor(androidx.appcompat.R.attr.colorError));
+                d.setLevel(70, false);
+                r.icon.setImageTintList(null);
+                r.icon.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                r.icon.setImageDrawable(d);
+            }
+        }
     }
 
     /** 一画面・二画面・タブレット。タブレット UI に切り替える/やめる時は再起動が必要。 */
@@ -207,7 +226,7 @@ public class DesignSettingsActivity extends PixelSettingsActivity {
     private View buildPreview(int popup, int arrow) {
         LinearLayout box = new LinearLayout(this);
         box.setOrientation(LinearLayout.VERTICAL);
-        box.setPadding(dp(16), dp(16), dp(16), dp(16));
+        box.setPadding(dp(16), dp(12), dp(16), dp(12));
 
         int onSurface = attrColor(com.google.android.material.R.attr.colorOnSurface);
         int container = attrColor(com.google.android.material.R.attr.colorSurfaceContainerHigh);
@@ -248,15 +267,15 @@ public class DesignSettingsActivity extends PixelSettingsActivity {
         box.addView(bar);
 
         // ページの代わり(線を何本か)
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             View line = new View(this);
             GradientDrawable g = new GradientDrawable();
             g.setCornerRadius(dp(4));
             g.setColor(container);
             line.setBackground(g);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                    i == 2 ? dp(160) : ViewGroup.LayoutParams.MATCH_PARENT, dp(10));
-            lp.topMargin = dp(i == 0 ? 18 : 8);
+                    i == 1 ? dp(160) : ViewGroup.LayoutParams.MATCH_PARENT, dp(8));
+            lp.topMargin = dp(i == 0 ? 12 : 6);
             box.addView(line, lp);
         }
 
@@ -300,8 +319,8 @@ public class DesignSettingsActivity extends PixelSettingsActivity {
         m.setScaleType(ImageView.ScaleType.FIT_CENTER);
         m.setPadding(dp(10), dp(10), dp(10), dp(10));
         bottom.addView(m, weighted());
-        LinearLayout.LayoutParams bLp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(52));
-        bLp.topMargin = dp(22);
+        LinearLayout.LayoutParams bLp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(48));
+        bLp.topMargin = dp(14);
         box.addView(bottom, bLp);
         return box;
     }
@@ -420,14 +439,13 @@ public class DesignSettingsActivity extends PixelSettingsActivity {
             return;
         }
         new MaterialAlertDialogBuilder(this)
-                .setMessage(Lang.t("デザインの変更を反映するには再起動が必要です"))
-                .setPositiveButton(Lang.t("キャンセル"), null)
-                .setNegativeButton(Lang.t("再起動"), (d, w) -> {
+                .setMessage(Lang.t("デザインの変更を反映するには、アプリの再起動が必要です"))
+                .setPositiveButton(Lang.t("再起動"), (d, w) -> {
                     getSharedPreferences("AppPrefs", MODE_PRIVATE).edit().putBoolean("rebootApp", true).apply();
                     finish();
                     overridePendingTransition(0, 0);
                 })
-                .setNeutralButton(Lang.t("後で"), (d, w) -> finish())
+                .setNegativeButton(Lang.t("後で"), (d, w) -> finish())
                 .show();
     }
 

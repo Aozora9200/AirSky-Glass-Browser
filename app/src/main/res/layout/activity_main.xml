@@ -336,15 +336,6 @@
         </LinearLayout>
         </com.airsky.browser.GlassBottomBar>
 
-        <ZoomControls
-            android:id="@+id/simpleZoomControl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:alpha="0.6"
-            android:layout_marginBottom="60dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp" />
 
     <!-- ボトムバーを隠している間に出す「▲」。ページの上でも見えるよう、影付きの丸ボタンにする -->
     <ImageButton

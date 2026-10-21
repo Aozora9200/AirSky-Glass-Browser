@@ -33,14 +33,19 @@
             android:textSize="16dp" />
         <TextClock
             android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:textAlignment="textStart" />
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|start"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textAlignment="textStart"
+            android:textSize="16dp" />
         <TextView
             android:id="@+id/sitename"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="25dp"
             android:text="@string/i18n_fd016c117d"
+            android:gravity="center"
             android:ellipsize="end"
             android:singleLine="true"
             android:textAlignment="center"

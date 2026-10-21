@@ -25,7 +25,7 @@ import java.util.Scanner;
  */
 public class SafetyCheckActivity extends PixelSettingsActivity {
 
-    private static final String RELEASE_API = "https://api.github.com/repos/Aozora9200/Aozora-Browser/releases/latest";
+    private static final String RELEASE_API = "https://api.github.com/repos/Aozora9200/AirSky-Glass-Browser/releases/latest";
 
     /** null = 確認中、"" = 確認できなかった、それ以外 = 最新のバージョン。 */
     @Nullable private String latestVersion;
@@ -75,7 +75,8 @@ public class SafetyCheckActivity extends PixelSettingsActivity {
         status(https ? R.drawable.ic_ps_check_circle : R.drawable.ic_ps_info,
                 https ? Lang.t("常に安全な接続を使用しています") : Lang.t("安全でない接続を許可しています"),
                 https ? Lang.t("可能な限り HTTPS で接続します") : Lang.t("押すと「常に安全な接続を使用する」を設定できます"),
-                https ? Boolean.TRUE : null, https ? null : () -> open(PrivacySettingsActivity.class));
+                https ? Boolean.TRUE : null, https ? null
+                        : () -> openFocused(this, PrivacySettingsActivity.class, PrivacySettingsActivity.FOCUS_HTTPS));
         // 権限
         int sites = SitePermissions.countSensitiveAllowed(this);
         status(R.drawable.ic_ps_check_circle,
@@ -99,7 +100,8 @@ public class SafetyCheckActivity extends PixelSettingsActivity {
         status(locked ? R.drawable.ic_ps_check_circle : R.drawable.ic_ps_info,
                 locked ? Lang.t("AirSky はパスワードで保護されています") : Lang.t("AirSky にパスワードが設定されていません"),
                 locked ? Lang.t("起動時にパスワードを求めます") : Lang.t("端末を共有する場合は、パスワードの設定をおすすめします"),
-                locked ? Boolean.TRUE : null, () -> open(PrivacySettingsActivity.class));
+                locked ? Boolean.TRUE : null,
+                () -> openFocused(this, PrivacySettingsActivity.class, PrivacySettingsActivity.FOCUS_PASSWORD));
 
         gap();
         row(R.drawable.ic_ps_refresh, Lang.t("今すぐ確認"), null, this::recheck);

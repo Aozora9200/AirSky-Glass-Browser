@@ -343,6 +343,16 @@ public class GeckoPromptDelegate implements PromptDelegate {
 
     @Nullable private PageUrlResolver pageUrlResolver;
 
+    /**
+     * ページのダイアログ・ファイル選択を受け持つ画面(ブラウザ本体・カスタムタブ)。
+     * 拡張機能のポップアップのように、タブ以外の GeckoSession でも同じ処理を使うためのもの。
+     * ファイル選択の結果は、その画面の onActivityResult からこの delegate へ渡される。
+     */
+    public interface Host {
+        @Nullable
+        GeckoPromptDelegate getPromptDelegate();
+    }
+
     public void setPageUrlResolver(@Nullable PageUrlResolver r) {
         pageUrlResolver = r;
     }

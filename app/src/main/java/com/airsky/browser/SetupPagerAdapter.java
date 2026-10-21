@@ -161,6 +161,7 @@ public class SetupPagerAdapter extends PagerAdapter {
         CheckBox desktopcheck = view.findViewById(R.id.setup_checkbox_desktop);
         CheckBox uacheck = view.findViewById(R.id.setup_checkbox_ua);
         CheckBox bottomcheck = view.findViewById(R.id.setup_checkbox_bottom);
+        CheckBox fixedUrlCheck = view.findViewById(R.id.setup_checkbox_fixed_url);
         CheckBox swipecheck = view.findViewById(R.id.setup_checkbox_swipe);
         CheckBox updatecheck = view.findViewById(R.id.setup_checkbox_update);
         SharedPreferences browserPrefs = activity.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -168,6 +169,10 @@ public class SetupPagerAdapter extends PagerAdapter {
 
         swipecheck.setChecked(prefs.getBoolean("isSwipeReload", true));
         bottomcheck.setChecked(prefs.getBoolean("hidebottom", true));
+        // アドレスバーを固定(既定はオフ)。固定するとスクロールでバーが隠れないので、下部バーの自動非表示も効かない
+        boolean fixedUrl = BrowserPrefs.isUrlBarFixed(activity);
+        fixedUrlCheck.setChecked(fixedUrl);
+        bottomcheck.setEnabled(!fixedUrl);
         updatecheck.setChecked(prefs.getBoolean(UpdateChecker.KEY_ENABLED, true));
         boolean desk = browserPrefs.getBoolean(KEY_DESKUA_ENABLED, false);
         desktopcheck.setChecked(desk);
@@ -175,6 +180,10 @@ public class SetupPagerAdapter extends PagerAdapter {
 
         swipecheck.setOnCheckedChangeListener((b, on) -> prefs.edit().putBoolean("isSwipeReload", on).apply());
         bottomcheck.setOnCheckedChangeListener((b, on) -> prefs.edit().putBoolean("hidebottom", on).apply());
+        fixedUrlCheck.setOnCheckedChangeListener((b, on) -> {
+            BrowserPrefs.setUrlBarFixed(activity, on);
+            bottomcheck.setEnabled(!on);
+        });
         updatecheck.setOnCheckedChangeListener((b, on) ->
                 prefs.edit().putBoolean(UpdateChecker.KEY_ENABLED, on).apply());
         // デスクトップモードとガラケーの UA はどちらか一方だけ

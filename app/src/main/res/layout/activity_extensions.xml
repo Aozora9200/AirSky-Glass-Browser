@@ -38,6 +38,35 @@
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="40sp" />
 
+            <!-- [Firefox 拡張機能] [Coara Browser 拡張機能] の切り替え(文字はコードで入れる) -->
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/exKind"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:checkedButton="@+id/exKindFirefox"
+                app:selectionRequired="true"
+                app:singleSelection="true">
+
+                <Button
+                    android:id="@+id/exKindFirefox"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxLines="2"
+                    android:ellipsize="end" />
+
+                <Button
+                    android:id="@+id/exKindCoara"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxLines="2"
+                    android:ellipsize="end" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
             <TextView
                 android:id="@+id/exBigSummary"
                 android:layout_width="match_parent"

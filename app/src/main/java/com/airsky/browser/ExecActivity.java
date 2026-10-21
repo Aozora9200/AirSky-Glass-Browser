@@ -45,6 +45,15 @@ public class ExecActivity extends AppCompatActivity {
      */
     private static final String SH_MARK = "\\036AZEXEC";
     private static final String SH_MARK_END = "\\037";
+    /**
+     * root(su)のシェルを使えるようにするか(AppPrefs)。Debug Menu からだけ切り替えられ、既定はオフ。
+     * su のシェルからはアプリや端末のデータを丸ごと読み書きできてしまうので、普段は見せない。
+     */
+    static final String PREF_ROOT_SHELL = "execRootShell";
+    /** 普通のシェルから su を直接呼ぶコマンド(su・/system/bin/su・su -c ... など)。 */
+    private static final java.util.regex.Pattern SU_COMMAND =
+            java.util.regex.Pattern.compile("(^|[\\s;&|(){}`$/'\"])su($|[\\s;&|(){}`'\"])");
+
     /** su のパスとして探す場所。 */
     private static final String[] SU_PATHS = {
             "/system/bin/su", "/system/xbin/su", "/sbin/su", "/su/bin/su",
@@ -194,7 +203,7 @@ public class ExecActivity extends AppCompatActivity {
         /** su を使える(ルート化されている)らしいか。 */
         @JavascriptInterface
         public boolean isRootAvailable() {
-            return findSu() != null;
+            return rootShellAllowed() && findSu() != null;
         }
 
         /** root のシェルに切り替える(su がルート権限を求める画面を出す)。 */
@@ -225,8 +234,16 @@ public class ExecActivity extends AppCompatActivity {
     // シェル
     // ------------------------------------------------------------------
 
+    private boolean rootShellAllowed() {
+        return getSharedPreferences("AppPrefs", MODE_PRIVATE).getBoolean(PREF_ROOT_SHELL, false);
+    }
+
     private void startShell(boolean root) {
         if (closing) return;
+        if (root && !rootShellAllowed()) {
+            js(Lang.t("appendOutput('ERROR: root のシェルは無効になっています')"));
+            return;
+        }
         String su = root ? findSu() : null;
         if (root && su == null) {
             js(Lang.t("appendOutput('ERROR: su が見つかりません。この端末はルート化されていないようです')"));
@@ -293,6 +310,11 @@ public class ExecActivity extends AppCompatActivity {
         if (s.busy) {
             // 実行中のコマンド(read・cat など)への入力
             writeRaw(s, line + "\n");
+            return;
+        }
+        if (!s.root && !rootShellAllowed() && SU_COMMAND.matcher(line).find()) {
+            js(Lang.t("appendOutput('ERROR: root のシェルは無効になっています')"));
+            js("onCommandFinished(1, null)");
             return;
         }
         s.busy = true;

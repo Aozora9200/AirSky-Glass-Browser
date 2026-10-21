@@ -36,6 +36,18 @@
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Aozora.Small</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Aozora.Medium</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Aozora.Large</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Aozora.MaterialAlertDialog</item>
+    </style>
+
+    <!--  ダイアログのリストは項目どうしの間隔を広めにする(押し間違えないように)  -->
+    <style name="ThemeOverlay.Aozora.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.Aozora</item>
+    </style>
+
+    <style name="MaterialAlertDialog.Aozora" parent="MaterialAlertDialog.Material3">
+        <item name="listItemLayout">@layout/dialog_list_item</item>
+        <item name="singleChoiceItemLayout">@layout/dialog_list_item_single</item>
+        <item name="multiChoiceItemLayout">@layout/dialog_list_item_multi</item>
     </style>
 
     <style name="ShapeAppearance.Aozora.Small" parent="ShapeAppearance.Material3.SmallComponent">

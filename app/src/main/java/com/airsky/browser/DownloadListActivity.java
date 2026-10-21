@@ -220,6 +220,53 @@ public class DownloadListActivity extends AppCompatActivity {
             Toast.makeText(this, Lang.t("ダウンロード履歴を全消去しました"), Toast.LENGTH_SHORT).show();
         }
         loadDownloadHistory();
+        handleRetryIntent(getIntent());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        handleRetryIntent(intent);
+    }
+
+    /** 通知の「再試行」から開かれた: 失敗したダウンロードをやり直す。 */
+    private void handleRetryIntent(@Nullable Intent intent) {
+        if (intent == null || !intent.hasExtra(AppDownloader.EXTRA_RETRY_URL)) return;
+        long id = intent.getLongExtra(AppDownloader.EXTRA_RETRY_ID, 0);
+        String url = intent.getStringExtra(AppDownloader.EXTRA_RETRY_URL);
+        intent.removeExtra(AppDownloader.EXTRA_RETRY_URL);
+        retryGecko(id, url);
+    }
+
+    /** 失敗したダウンロードの「再試行」。 */
+    private void retryDownload(DownloadItem item) {
+        if (item.downloadId > 0) {
+            // DownloadManager のダウンロードは、一時停止からの再開と同じく取り直す
+            resumeDownload(item);
+            return;
+        }
+        // 一覧からはすぐに消さない(やり直しが始まったら読み直して差し替わる。失敗したらそのまま残る)
+        retryGecko(item.downloadId, item.downloadUrl);
+    }
+
+    private boolean retryGecko(long id, @Nullable String url) {
+        return AppDownloader.retry(this, id, url, false, new AppDownloader.Observer() {
+            @Override
+            public void onStarted(long newId) {
+                if (!isDestroyed()) loadDownloadHistory();
+            }
+
+            @Override
+            public void onDiscarded() {
+                if (!isDestroyed()) loadDownloadHistory();
+            }
+        });
+    }
+
+    /** 失敗して、もう一度取得できるダウンロードか。 */
+    private static boolean canRetry(DownloadItem item) {
+        return item.threat == null && item.status == DownloadManager.STATUS_FAILED && !item.isActive()
+                && AppDownloader.canRetry(item.downloadUrl);
     }
 
     @Override
@@ -606,7 +653,8 @@ public class DownloadListActivity extends AppCompatActivity {
             case DownloadManager.STATUS_PENDING:
                 return Lang.t("待機中");
             case DownloadManager.STATUS_FAILED:
-                return Lang.t("ダウンロードに失敗しました");
+                return AppDownloader.canRetry(item.downloadUrl)
+                        ? Lang.t("ダウンロードに失敗しました ・ ↻ で再試行") : Lang.t("ダウンロードに失敗しました");
             case DownloadManager.STATUS_SUCCESSFUL:
                 if (!item.exists) return Lang.t("ファイルが削除されたか、移動されています");
                 String host = hostOf(item.downloadUrl);
@@ -657,6 +705,15 @@ public class DownloadListActivity extends AppCompatActivity {
             return;
         }
         if (item.isActive()) return;
+        if (canRetry(item)) {
+            new MaterialAlertDialogBuilder(this)
+                    .setTitle(Lang.t("ダウンロードに失敗しました"))
+                    .setMessage(item.title)
+                    .setPositiveButton(Lang.t("再試行"), (d, w) -> retryDownload(item))
+                    .setNegativeButton(Lang.t("キャンセル"), null)
+                    .show();
+            return;
+        }
         if (!item.exists) {
             Toast.makeText(this, Lang.t("ファイルが見つかりません"), Toast.LENGTH_SHORT).show();
             return;
@@ -680,8 +737,18 @@ public class DownloadListActivity extends AppCompatActivity {
             Toast.makeText(this, Lang.t("ダウンロードをキャンセルしました"), Toast.LENGTH_SHORT).show();
             return;
         }
+        if (canRetry(item)) {
+            retryDownload(item);
+            return;
+        }
+        showOtherMenu(anchor, item);
+    }
+
+    /** その他の操作(共有・削除など)のメニュー。 */
+    private void showOtherMenu(View anchor, DownloadItem item) {
         PopupMenu popup = new PopupMenu(this, anchor);
-        final int share = 1, delete = 2, cancel = 3, pause = 4, resume = 5;
+        final int share = 1, delete = 2, cancel = 3, pause = 4, resume = 5, retry = 6;
+        if (canRetry(item)) popup.getMenu().add(0, retry, 0, Lang.t("再試行"));
         if (item.isActive()) {
             if (item.isPaused) {
                 popup.getMenu().add(0, resume, 0, Lang.t("再開"));
@@ -715,6 +782,8 @@ public class DownloadListActivity extends AppCompatActivity {
                 adapter.notifyItemChanged(item);
             } else if (id == resume) {
                 resumeDownload(item);
+            } else if (id == retry) {
+                retryDownload(item);
             }
             return true;
         });
@@ -1222,11 +1291,20 @@ public class DownloadListActivity extends AppCompatActivity {
             }
 
             // ブラウザ経由のダウンロード中は、メニューの代わりにキャンセル(×)
+            // 失敗したダウンロードは、メニューの代わりに再試行(↻)。削除は長押しのメニューから
             boolean cancelOnly = running && item.downloadId < 0;
-            h.menu.setImageResource(cancelOnly ? R.drawable.ic_ts_close : R.drawable.ic_pm_more);
-            h.menu.setImageTintList(ColorStateList.valueOf(onVariant));
-            h.menu.setContentDescription(cancelOnly ? Lang.t("キャンセル") : Lang.t("その他の操作"));
+            boolean retry = canRetry(item);
+            h.menu.setImageResource(retry ? R.drawable.ic_ps_refresh
+                    : cancelOnly ? R.drawable.ic_ts_close : R.drawable.ic_pm_more);
+            h.menu.setImageTintList(ColorStateList.valueOf(retry
+                    ? MaterialColors.getColor(h.itemView, androidx.appcompat.R.attr.colorPrimary) : onVariant));
+            h.menu.setContentDescription(retry ? Lang.t("再試行")
+                    : cancelOnly ? Lang.t("キャンセル") : Lang.t("その他の操作"));
             h.menu.setOnClickListener(v -> showItemMenu(v, item));
+            h.menu.setOnLongClickListener(retry ? v -> {
+                showOtherMenu(v, item);
+                return true;
+            } : null);
             h.itemView.setOnClickListener(v -> onItemClicked(item));
         }
     }

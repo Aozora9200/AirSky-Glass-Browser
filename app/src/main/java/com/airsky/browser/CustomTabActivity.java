@@ -80,7 +80,8 @@ import java.util.concurrent.Executors;
  * 呼び出し元が指定したツールバーの色・閉じるボタンのアイコン・アクションボタン・メニュー項目にも対応する。
  * 「最小化」でピクチャー イン ピクチャーの小さなカードになり、呼び出し元アプリを操作できる。
  */
-public class CustomTabActivity extends AppCompatActivity implements GeckoTabView.WindowInsetsHost {
+public class CustomTabActivity extends AppCompatActivity implements GeckoTabView.WindowInsetsHost,
+        GeckoPromptDelegate.Host {
 
     /** MainActivity が受け取った Intent の呼び出し元パッケージ(リダイレクトで戻る先の判定用)。 */
     static final String EXTRA_CALLER_PACKAGE = "com.airsky.browser.extra.CT_CALLER";
@@ -106,6 +107,12 @@ public class CustomTabActivity extends AppCompatActivity implements GeckoTabView
 
     private GeckoTabView tab;
     private GeckoPromptDelegate promptDelegate;
+
+    @Nullable
+    @Override
+    public GeckoPromptDelegate getPromptDelegate() {
+        return promptDelegate;
+    }
     private GeckoPermissionDelegate permissionDelegate;
     private PageTranslator translator;
 

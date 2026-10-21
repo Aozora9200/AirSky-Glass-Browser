@@ -74,6 +74,10 @@ public class GeckoTabView extends GeckoView {
         default void onReaderModeChanged(GeckoTabView tab, boolean active, @Nullable String error) {}
         /** http/https 以外のスキーム。処理した(=Gecko で読み込まない)なら true。 */
         default boolean onExternalUrl(GeckoTabView tab, String url) { return false; }
+        /** 文字選択メニューの「ウェブ検索」: 選んだ言葉を新しいタブで検索する。 */
+        default void onSelectionWebSearch(GeckoTabView tab, String text) {}
+        /** 文字選択メニューの「翻訳」: 翻訳の検索語をプレビューで調べる。 */
+        default void onSelectionTranslate(GeckoTabView tab, String query) {}
         /**
          * 押したリンク {@code pageUrl} が Play ストアのアプリのページへ転送された(「アプリで開く」ボタンなど)。
          * インストール済みのアプリで開いたら true(Play ストアへは進まない)。
@@ -277,6 +281,7 @@ public class GeckoTabView extends GeckoView {
         }
         settings = new TabSettings();
         installDelegates();
+        installSelectionMenu(context);
         if (existing == null) {
             session.open(engine.getRuntime());
         }
@@ -287,12 +292,45 @@ public class GeckoTabView extends GeckoView {
             if (ext != null && !destroyed) {
                 session.getWebExtensionController().setMessageDelegate(ext, pageMessageDelegate, NATIVE_APP);
                 session.getWebExtensionController().setMessageDelegate(ext, inputMessageDelegate, NATIVE_APP_INPUT);
+                // Coara Browser 拡張機能(プラグイン)からの依頼
+                session.getWebExtensionController().setMessageDelegate(ext,
+                        CoaraPlugins.get(getContext()).tabFor(session).delegate, CoaraPlugins.NATIVE_APP);
             }
         });
     }
 
     public boolean isPrivateMode() {
         return privateMode;
+    }
+
+    /** 文字を選択した時のメニューに「翻訳」「ウェブ検索」「共有」を足す。 */
+    private void installSelectionMenu(@NonNull Context context) {
+        if (session.getSelectionActionDelegate() instanceof PageSelectionDelegate) return;
+        Context c = context;
+        while (c instanceof android.content.ContextWrapper && !(c instanceof android.app.Activity)) {
+            c = ((android.content.ContextWrapper) c).getBaseContext();
+        }
+        if (!(c instanceof android.app.Activity)) return;
+        session.setSelectionActionDelegate(new PageSelectionDelegate((android.app.Activity) c,
+                new PageSelectionDelegate.Callback() {
+                    @Override
+                    public void onWebSearch(@NonNull String text) {
+                        if (listener != null) listener.onSelectionWebSearch(GeckoTabView.this, text);
+                    }
+
+                    @Override
+                    public void onTranslate(@NonNull String query) {
+                        if (listener != null) listener.onSelectionTranslate(GeckoTabView.this, query);
+                    }
+
+                    @Nullable
+                    @Override
+                    public String currentUrl() {
+                        // 内蔵ページ(スタートページなど)の URL は共有しない
+                        String url = getUrl();
+                        return url != null && url.startsWith("http") ? url : null;
+                    }
+                }));
     }
 
     public void setListener(@Nullable Listener listener) {
@@ -1436,6 +1474,12 @@ public class GeckoTabView extends GeckoView {
                     appLinkCandidate = uri;
                     appLinkCandidateAt = SystemClock.uptimeMillis();
                 }
+                // 「常に安全な接続」がメインセッションのみの時は、シークレット以外で HTTP を HTTPS に切り替える
+                String upgraded = httpsUpgradeFor(request);
+                if (upgraded != null) {
+                    s.loadUri(upgraded);
+                    return GeckoResult.deny();
+                }
                 if (isWebScheme(uri)) {
                     applySiteJavaScript(uri);
                     return GeckoResult.allow();
@@ -1457,6 +1501,7 @@ public class GeckoTabView extends GeckoView {
             public GeckoResult<String> onLoadError(@NonNull GeckoSession s, @Nullable String uri,
                                                    @NonNull WebRequestError error) {
                 loading = false;
+                offerHttpFallback(uri);
                 String page = listener != null
                         ? listener.onLoadError(GeckoTabView.this, engine.toAppUrl(uri), error) : null;
                 return page != null ? GeckoResult.fromValue(page) : null;
@@ -1689,6 +1734,66 @@ public class GeckoTabView extends GeckoView {
         if (session.getSettings().getAllowJavascript() != js) {
             session.getSettings().setAllowJavascript(js);
         }
+    }
+
+    // ------------------------------------------------------------------
+    // 常に安全な接続(メインセッションのみ)
+    // ------------------------------------------------------------------
+
+    /** 直前に HTTPS に切り替えたホストと時刻(HTTP に戻す転送や、つながらない時の確認に使う)。 */
+    @Nullable private String httpsUpgradedHost;
+    private long httpsUpgradedAt;
+    /** HTTP のまま開くと決めたホスト(このタブの間だけ)。 */
+    private final java.util.Set<String> insecureAllowedHosts = new java.util.HashSet<>();
+
+    /** HTTPS に切り替えて読み込む URL。切り替えない時は null。 */
+    @Nullable
+    private String httpsUpgradeFor(@NonNull GeckoSession.NavigationDelegate.LoadRequest request) {
+        String uri = request.uri;
+        if (privateMode || uri == null || !uri.regionMatches(true, 0, "http://", 0, 7)) return null;
+        if (!BrowserPrefs.httpsOnlyMainSession(getContext())) return null;
+        String host = android.net.Uri.parse(uri).getHost();
+        if (host == null || isLocalHost(host) || insecureAllowedHosts.contains(host)) return null;
+        // HTTPS にしたらサイトが HTTP へ転送してきた: 切り替えを繰り返さないよう HTTP のまま開く
+        if (request.isRedirect && host.equals(httpsUpgradedHost)
+                && SystemClock.uptimeMillis() - httpsUpgradedAt < 15_000) {
+            insecureAllowedHosts.add(host);
+            return null;
+        }
+        httpsUpgradedHost = host;
+        httpsUpgradedAt = SystemClock.uptimeMillis();
+        return "https://" + uri.substring(7);
+    }
+
+    /** HTTPS に切り替えたページが開けなかった時、HTTP で開き直すか尋ねる。 */
+    private void offerHttpFallback(@Nullable String uri) {
+        if (uri == null || !uri.regionMatches(true, 0, "https://", 0, 8)) return;
+        String host = android.net.Uri.parse(uri).getHost();
+        if (host == null || !host.equals(httpsUpgradedHost)
+                || SystemClock.uptimeMillis() - httpsUpgradedAt > 60_000) return;
+        httpsUpgradedHost = null;
+        String http = "http://" + uri.substring(8);
+        post(() -> {
+            if (destroyed) return;
+            new com.google.android.material.dialog.MaterialAlertDialogBuilder(getContext())
+                    .setIcon(R.drawable.ic_si_warning)
+                    .setTitle(Lang.t("安全な接続を使用できません"))
+                    .setMessage(host + Lang.t(" は安全な接続(HTTPS)に対応していない可能性があります。\n"
+                            + "HTTP で開くと、送受信する情報が第三者に見られるおそれがあります。"))
+                    .setPositiveButton(Lang.t("HTTP で開く"), (d, w) -> {
+                        insecureAllowedHosts.add(host);
+                        session.loadUri(http);
+                    })
+                    .setNegativeButton(Lang.t("キャンセル"), null)
+                    .show();
+        });
+    }
+
+    private static boolean isLocalHost(@NonNull String host) {
+        String h = host.toLowerCase(java.util.Locale.ROOT);
+        return h.equals("localhost") || h.endsWith(".localhost") || h.endsWith(".local")
+                || h.startsWith("127.") || h.startsWith("10.") || h.startsWith("192.168.")
+                || h.matches("172\\.(1[6-9]|2\\d|3[01])\\..*") || h.equals("[::1]") || h.equals("::1");
     }
 
     private static boolean isWebScheme(@Nullable String uri) {

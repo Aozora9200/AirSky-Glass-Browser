@@ -23,4 +23,10 @@
     <color name="ps_tone_purple_fg">#41297A</color>
     <color name="ps_ok">#1E8E3E</color>
     <color name="ps_warn">#C26401</color>
+    <!-- ストレージ管理の帯の内訳 -->
+    <color name="ps_storage_app">#3F5FB8</color>
+    <color name="ps_storage_data">#00897B</color>
+    <color name="ps_storage_web">#E0772B</color>
+    <color name="ps_storage_cache">#8A5CD0</color>
+    <color name="ps_storage_track">#E1E2EC</color>
 </resources>

@@ -52,8 +52,6 @@ public class AccessibilitySettingsActivity extends PixelSettingsActivity {
 
         header(Lang.t("ズーム"));
         SharedPreferences app = getSharedPreferences("AppPrefs", MODE_PRIVATE);
-        switchRow(R.drawable.ic_ps_zoom, Lang.t("ズームボタンを表示する"), Lang.t("ページのスクロール時に拡大・縮小のボタンを表示します"),
-                app.getBoolean("zoomButton", true), on -> app.edit().putBoolean("zoomButton", on).apply());
         switchRow(R.drawable.ic_ps_zoom, Lang.t("強制的にズームを有効にする"), Lang.t("ウェブサイトのズーム防止リクエストを上書きします"),
                 BrowserPrefs.bool(this, BrowserPrefs.FORCE_ZOOM, false), on -> {
                     BrowserPrefs.put(this, BrowserPrefs.FORCE_ZOOM, on);

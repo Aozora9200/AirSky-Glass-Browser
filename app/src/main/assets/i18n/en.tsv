@@ -206,7 +206,7 @@ Android の設定で変更します	Change it in Android settings
 Android の設定の文字サイズで、ページの文字の大きさを決めます	Use the font size from Android settings to size text on pages
 Android バージョン	Android version
 Android 用に変換しています… (	Converting for Android… (
-App バージョン	App version
+アプリバージョン	App version
 Bingで検索	Search with Bing
 CT3UA / ガラケーUA	CT3UA / feature phone UA
 Cookie が無効になっているため、この設定は使われません。(設定 › プライバシーとセキュリティ › Cookieを受け入れる)	This setting isn't used because cookies are turned off. (Settings › Privacy and security › Accept cookies)
@@ -1621,7 +1621,7 @@ zip の中に Python のファイル(.py)が見つかりません	No Python file
 保存した住所はありません。右上の「+」から追加できます。	No saved addresses. Add one with "+" at the top right.
 保存した住所を使用	Use a saved address
 保存した情報	Saved info
-保存した情報は端末内で暗号化され、Android Keystore の鍵で保護されます。パスワードやカード番号などは、表示・自動入力のたびに生体認証(または画面ロック)での本人確認が必要で、確認するまでは伏せ字で表示されます。\n端末に生体認証を追加・変更したり画面ロックを解除したりすると、安全のため保存した情報は読み出せなくなります。\nシークレット タブでは保存を提案しません。	Saved info is encrypted on the device and protected with an Android Keystore key. Each time passwords, card numbers, and similar data are shown or autofilled, you must verify with biometrics (or the screen lock); until then they're masked.\nFor safety, saved info becomes unreadable if you add or change biometrics on the device or remove the screen lock.\nSaving isn't offered in incognito tabs.
+保存した情報は端末内で暗号化され、Android Keystore の鍵で保護されます。パスワードやカード番号などは、表示・自動入力のたびに生体認証(または画面ロック)での本人確認が必要で、確認するまでは表示されません。\n端末に生体認証を追加・変更したり画面ロックを解除したりすると、安全のため保存した情報は読み出せなくなります。\nシークレット タブでは保存を提案しません。	Saved info is encrypted on the device and protected with an Android Keystore key. Each time passwords, card numbers, and similar data are shown or autofilled, you must verify with biometrics (or the screen lock); until then they aren't shown.\nFor safety, saved info becomes unreadable if you add or change biometrics on the device or remove the screen lock.\nSaving isn't offered in incognito tabs.
 保存した情報をすべて削除	Delete all saved info
 保存した情報を使用するには本人確認が必要です	Verify your identity to use saved info
 保存した情報を削除	Delete saved info
@@ -2735,3 +2735,176 @@ Bluetooth・QR コード・Quick Share で引っ越し	Transfer with Bluetooth, 
 % で表示	Show as %
 アイコンで表示	Show as icon
 アイコンと % で表示	Show icon and %
+タップの表示は「ユーザー補助機能」に移動しました。	Tap display settings moved to "Accessibility".
+2 本の指で広げると拡大できます(ピンチアウト)。設定 →「ユーザー補助機能」→「デフォルトのズーム」で文字の大きさを変えることもできます。	Spread two fingers to zoom in (pinch out). You can also change the text size in Settings → "Accessibility" → "Default zoom".
+appendOutput('ERROR: root のシェルは無効になっています')	appendOutput('ERROR: The root shell is disabled')
+root のシェル(su)を使えるようにする	Allow the root shell (su)
+ルート化された端末で、EXEC から su のシェルに切り替えられるようにします	On rooted devices, lets EXEC switch to an su shell
+root のシェルを有効にしますか?	Enable the root shell?
+root のシェルからは、AirSky のデータ(パスワードや履歴を含む)や端末のシステムを制限なく読み書きできます。コマンドによっては AirSky や端末が正しく動かなくなることがあります。意味の分からないコマンドは実行しないでください。	A root shell can read and write AirSky's data (including passwords and history) and the device's system without restriction. Some commands can stop AirSky or the device from working properly. Don't run commands you don't understand.
+有効にする	Enable
+保存できるのは http:// または https:// のページだけです	Only http:// or https:// pages can be saved
+保存先を作成できませんでした	Couldn't create the save location
+画像を書き込めませんでした	Couldn't write the image
+保護なし(非推奨)	No protection (not recommended)
+保護なし(非推奨)\n危険なサイトなどから保護されません	No protection (not recommended)\nYou won't be protected from dangerous sites
+メインセッションのみ	Main session only
+オフ\nHTTP のサイトもそのまま開きます	Off\nOpens HTTP sites as they are
+メインセッションのみ\nシークレット タブ以外で HTTPS に切り替えます。シークレット タブでは HTTP を許可します	Main session only\nSwitches to HTTPS outside Incognito tabs. HTTP is allowed in Incognito tabs
+すべてのサイトの Cookie だけを消去する	Clear only the cookies of all sites
+Cookie をすべて消去しますか?	Clear all cookies?
+すべてのサイトの Cookie が削除され、多くのサイトからログアウトされます。\n\n閲覧履歴・キャッシュ・ブックマーク・保存したパスワード、サイトのその他のデータ(ローカル ストレージなど)は削除されません。	Cookies of all sites will be deleted, and you'll be signed out of most sites.\n\nBrowsing history, cache, bookmarks, saved passwords and other site data (such as local storage) won't be deleted.
+カスタム	Custom
+DNS over HTTPS のサーバーの URL を自分で入力します	Enter the URL of a DNS over HTTPS server yourself
+カスタム プロバイダ	Custom provider
+DNS over HTTPS (DoH) に対応したサーバーの URL を入力してください	Enter the URL of a server that supports DNS over HTTPS (DoH)
+https:// から始まる URL を入力してください	Enter a URL that starts with https://
+情報(パスワードやクレジットカード番号など)は、このサイトに送信される際に保護されます	Your information (for example, passwords or credit card numbers) is private when it is sent to this site
+暗号化されずに読み込まれた画像やスクリプトがあります	Some images or scripts were loaded without encryption
+このサイトの証明書を検証できませんでした	This site's certificate couldn't be verified
+パスワードやクレジットカード情報などは入力しないでください	Don't enter passwords or credit card details on this site
+Cookie をブロックしています	Cookies are blocked
+サードパーティ Cookie を許可しています	Third-party cookies are allowed
+サードパーティ Cookie をブロックしています	Third-party cookies are blocked
+ を許可しています	 allowed
+位置情報やカメラなどの権限を管理します	Manage permissions such as location and camera
+安全な接続を使用できません	Secure connection not available
+ は安全な接続(HTTPS)に対応していない可能性があります。\nHTTP で開くと、送受信する情報が第三者に見られるおそれがあります。	 may not support a secure connection (HTTPS).\nIf you open it over HTTP, others may be able to see the information you send and receive.
+HTTP で開く	Open over HTTP
+このダウンロードは再試行できません	This download can't be retried
+ダウンロードに失敗しました ・ ↻ で再試行	Download failed ・ tap ↻ to retry
+PIN は最大 8 桁までです。これ以上は入力できません	A PIN can be up to 8 digits. You can't enter any more
+速さ重視。問い合わせの記録を最小限にします	Focused on speed. Keeps as little query logging as possible
+安定性重視。世界中で使われている定番の DNS	Focused on reliability. The widely used standard DNS
+セキュリティ重視。危険なサイトのドメインをブロックします	Focused on security. Blocks domains of dangerous sites
+自分好みにカスタマイズできる DNS(設定は NextDNS のサイトで)	A DNS you can customize (configure it on the NextDNS website)
+広告・トラッカーのドメインをブロックします	Blocks ad and tracker domains
+AdGuard DNS(ファミリー)	AdGuard DNS (Family)
+広告に加えて、成人向けサイトもブロックします	Blocks adult sites as well as ads
+Cloudflare(マルウェア対策)	Cloudflare (Malware blocking)
+Cloudflare の速さに、危険なサイトのブロックを加えたもの	Cloudflare's speed plus blocking of dangerous sites
+Cloudflare(ファミリー)	Cloudflare (Family)
+危険なサイトと成人向けサイトをブロックします	Blocks dangerous sites and adult sites
+プライバシー重視。記録を残さず、フィルタもしません	Focused on privacy. No logging and no filtering
+Mullvad DNS(広告ブロック)	Mullvad DNS (Ad blocking)
+プライバシー重視で、広告・トラッカーもブロックします	Focused on privacy, and also blocks ads and trackers
+CleanBrowsing(ファミリー)	CleanBrowsing (Family)
+子ども向け。成人向けサイトをブロックし、セーフサーチを強制します	For kids. Blocks adult sites and enforces SafeSearch
+Cisco が運営。フィッシング サイトをブロックします	Run by Cisco. Blocks phishing sites
+日本の IIJ が運営。国内のサイトに速くつながりやすい	Run by IIJ in Japan. Often faster for sites in Japan
+最終アクセス日: 	Last visited: 
+ウェブ検索	Web search
+新しいグループにタブを追加	Add tab to new group
+グループにタブを追加	Add tab to group
+グループから削除	Remove from group
+他のタブを閉じる	Close other tabs
+グループに新しいタブを追加	Add new tab to group
+名前と色を変更	Change name and color
+グループを削除しますか?	Delete group?
+グループのタブもすべて閉じられ、グループは保存されません。	All tabs in the group will be closed, and the group won't be saved.
+タブとグループの一覧	Tabs and groups
+タブグループ: 	Tab group:
+テーマとボタンの変更は、アプリを再起動すると反映されます。	Changes to the theme and buttons take effect after you restart the app.
+デザインの変更を反映するには、アプリの再起動が必要です	To apply the design changes, you need to restart the app
+変更を反映するには、アプリの再起動が必要です	To apply the changes, you need to restart the app
+スタートページ	Start page
+ニュースを表示	Show news
+スタートページの下に、おすすめのニュース記事を表示します	Shows recommended news articles at the bottom of the start page
+相手の端末の AirSky が正規のアプリではないか、このアプリと署名が異なります。安全のため引っ越しを中止しました。両方の端末に公式の AirSky を入れて、もう一度お試しください。	The AirSky app on the other device isn't genuine or is signed differently from this app, so the move was stopped for safety. Install the official AirSky on both devices and try again.
+アプリ	App
+キャッシュ	Cache
+AirSky Browser が使用中	Used by AirSky Browser
+AirSky Browser と GeckoView のプログラム	AirSky Browser and GeckoView program files
+AirSky のデータをすべて削除	Delete all AirSky data
+AirSky のデータをすべて削除しますか?	Delete all AirSky data?
+Cookie とサイトのデータ・すべての設定	Cookies, site data, and all settings
+Cookie とサイトデータを削除しました	Cookies and site data deleted
+Cookie とサイトデータを消去	Clear cookies and site data
+Cookie とサイトデータを消去しますか?	Clear cookies and site data?
+Cookie、サイトのストレージ、閲覧履歴、拡張機能	Cookies, site storage, browsing history, extensions
+いらないファイルを削除	Delete files you no longer need
+しばらくしてからもう一度お試しください	Please wait a moment and try again
+すべてのデータ	All data
+ほとんどのサイトからログアウトします	Signs you out of most sites
+アプリをインストールした直後の状態に戻します	Returns the app to how it was right after installing
+キャッシュを消去しますか?	Clear cache?
+サイトのデータ	Site data
+ダウンロードしたファイル	Downloaded files
+データを削除できませんでした	Couldn't delete the data
+ブックマーク、パスワード、タブ、メモ、ツール、設定	Bookmarks, passwords, tabs, notes, tools, settings
+ブックマーク・閲覧履歴・開いているタブ	Bookmarks, browsing history, and open tabs
+メモ・ツール・拡張機能・保存したページ	Notes, tools, extensions, and saved pages
+ユーザーデータ	User data
+ログイン状態やデータはそのまま残ります	Sign-ins and data are kept
+一時ファイル。消しても必要な時に作り直されます	Temporary files. They're recreated when needed
+一時ファイルを削除します。ページの表示が最初だけ少し遅くなることがあります。	Deletes temporary files. Pages may load a little slower the first time.
+使用量、キャッシュとサイトデータの消去	Usage, clear cache and site data
+保存したパスワード・自動入力の情報	Saved passwords and autofill info
+別の端末に残したい場合は、先に「データの引っ越し」でバックアップしてください。	To keep your data on another device, back it up first with "Data transfer".
+削除しています…	Deleting…
+履歴・Cookie・キャッシュから選んで削除	Choose from history, cookies, and cache
+次のものがこの端末から完全に削除され、元に戻せません。	The following will be permanently deleted from this device. This can't be undone.
+消去しています…	Clearing…
+空き容量を増やす	Free up space
+端末の空き容量 %1$s / 全体 %2$s	Device free space %1$s / total %2$s
+計算しています…	Calculating…
+長押ししてすべて削除	Press and hold to delete everything
+すべてのサイトの Cookie と保存されたデータを削除します。ほとんどのサイトからログアウトします。\nブックマーク・パスワード・タブは消えません。	Deletes cookies and stored data for all sites. You'll be signed out of most sites.\nBookmarks, passwords, and tabs are kept.
+端末の設定の「データを削除」からこの画面を開いた場合も、ここで選んだものだけが消えます。すべてのデータを削除する時は、確認してからボタンを長押しした時だけ実行します。	Even when you open this screen from "Clear data" in the device settings, only what you choose here is deleted. Deleting all data only happens after you confirm and press and hold the button.
+ 件  ·  	  · 
+ 個の Coara Browser 拡張機能が入っています(有効 	 Coara Browser extensions installed (enabled: 
+.zip(plugin.xml)・.user.js・.user.css を選んでください	Choose a .zip (with plugin.xml), .user.js, or .user.css file
+: 	: 
+Coara Browser 拡張機能	Coara Browser extensions
+Coara Browser 用のプラグイン(plugin.xml を含む .zip)・ユーザースクリプト(.user.js)・ユーザースタイル(.user.css)を追加できます。	You can add Coara Browser plugins (.zip with plugin.xml), user scripts (.user.js), and user styles (.user.css).
+Coara Browser 用の拡張機能はまだ入っていません。ファイルから追加できます。	No Coara Browser extensions yet. You can add one from a file.
+Coara 用のプラグイン・ユーザースクリプトを使えます	Use Coara plugins and user scripts
+Firefox 拡張機能	Firefox extensions
+WebExtension(簡易)	WebExtension (lite)
+」の設定や記録が消えます。	" settings and records will be erased.
+このページで使える操作	Actions for this page
+このページで使える操作: 	Actions for this page: 
+クリップボードにコピー	Copy to clipboard
+ファイルから追加	Add from file
+プラグイン	Plugin
+ページを読み込み直してからお試しください	Reload the page and try again
+ユーザースクリプト	User script
+ユーザースタイル	User style
+ログ	Log
+ログはありません	No log entries
+ログを表示	Show log
+他のサイトとの通信	Connect to other sites
+作者	Author
+保存データ	Saved data
+保存データも一緒に削除されます。	Its saved data will be deleted too.
+保存データを消去	Clear saved data
+保存データを消去しますか?	Clear saved data?
+対象のサイト	Sites
+新しいタブを開く	Open new tabs
+更新しました: 	Updated: 
+更新しますか?: 	Update?: 
+最後のエラー	Last error
+注意:	Notes:
+無効の理由	Why it's off
+自動で無効になりました: 	Turned off automatically: 
+追加しました: 	Added: 
+追加しますか?: 	Add?: 
+通知を表示	Show notifications
+ 個のタブ)	 tabs)
+ 個のタブも閉じます。この操作は元に戻せません。	 tabs in these groups will also be closed. This can't be undone.
+ 個のタブグループを削除しますか？	 tab groups will be deleted. Continue?
+(	 (
+(閉じたグループ)	 (closed group)
+URL バーに言葉を入力して検索する時と、スタートページの検索欄で使われます。追加した検索エンジンは長押しで削除できます。	Used when you search from the URL bar and the start page search box. Long-press an added search engine to delete it.
+http:// か https:// で始まり、%s を含む URL を入力してください	Enter a URL that starts with http:// or https:// and contains %s
+この操作は元に戻せません。	This can't be undone.
+アドレスバーを固定する	Keep the address bar fixed
+グループの 	
+スクロールしてもアドレスバーと下部メニューバーを隠さない	Don't hide the address bar and bottom menu bar when scrolling
+タブグループを一括削除	Delete tab groups
+例: https://www.example.com/search?q=%s	Example: https://www.example.com/search?q=%s
+名前を入力してください	Enter a name
+検索 URL(言葉の場所を %s にする)	Search URL (use %s where the search words go)
+検索エンジンを追加	Add search engine
+検索結果のページの URL を登録します	Register the URL of a search results page
+追加した検索エンジン	Added search engines

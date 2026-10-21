@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "AirSky Browser Core",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "AirSky の内蔵ページと GeckoView 連携用の組み込み拡張機能",
   "browser_specific_settings": {
     "gecko": {
@@ -30,7 +30,7 @@
     },
     {
       "matches": ["<all_urls>"],
-      "js": ["desktop_touch.js", "pointerlock.js", "notranslate.js"],
+      "js": ["desktop_touch.js", "pointerlock.js", "notranslate.js", "coara_cs.js"],
       "run_at": "document_start",
       "all_frames": true,
       "match_about_blank": true

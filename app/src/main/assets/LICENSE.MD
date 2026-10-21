@@ -883,8 +883,8 @@ https://rive.app/marketplace/1030-7717-loader-icon/
 ** Coara Browser **
 copyrightHolder: © coara-chocomaru
 license: The Apache License, Version 2.0
-licenseUrl: https://github.com/coara-chocomaru/coara-browser/blob/main/LICENSE
-url: https://github.com/coara-chocomaru/coara-browser/
+licenseUrl: https://github.com/coara-chocomaru/coarabrowser/blob/main/LICENSE
+https://github.com/coara-chocomaru/coarabrowser
 These functions are integrated into the foundation of this app.
 
 私に技術提供してくれたこと、私をプログラマーの道へと導いてくれた Coara 氏に感謝

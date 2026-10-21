@@ -265,7 +265,8 @@ internal fun StartPage(state: StartPageState) {
                     Spacer(Modifier.height(28.dp))
                 }
             }
-            discoverFeed(state, colors, Modifier.appearing(progress, 0.36f))
+            // ニュース(おすすめ記事)は設定でオフにできる
+            if (state.newsEnabled) discoverFeed(state, colors, Modifier.appearing(progress, 0.36f))
             item(key = "bottom", contentType = "bottom") { Spacer(Modifier.height(32.dp)) }
         }
 
@@ -591,7 +592,7 @@ private fun SearchArea(state: StartPageState, colors: StartColors, backdrop: Bac
                     .glass(backdrop, RoundedCornerShape(18.dp), colors.glassStrong)
                     .padding(8.dp)
             ) {
-                SearchEngine.ALL.forEach { e ->
+                SearchEngine.all(LocalContext.current).forEach { e ->
                     val selected = e.key == engine.key
                     BasicText(
                         text = e.label,

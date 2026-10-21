@@ -1,8 +1,6 @@
 package com.airsky.browser;
 
 import android.Manifest;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -508,15 +506,7 @@ public class AozoraMigrationActivity extends AppCompatActivity {
 
     /** AirSky を起動し直す(プロセスごと。設定を読み直してセットアップから始める)。 */
     private void restart() {
-        Intent launch = getPackageManager().getLaunchIntentForPackage(getPackageName());
-        if (launch != null) {
-            launch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            PendingIntent pi = PendingIntent.getActivity(this, 0, launch,
-                    PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-            AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-            if (am != null) am.set(AlarmManager.RTC, System.currentTimeMillis() + 800, pi);
-        }
-        finishAffinity();
-        main.postDelayed(() -> System.exit(0), 400);
+        // Aozora のタスクの上で開かれているので、AirSky のタスクを新しく作って開き直す
+        RestartActivity.restart(this);
     }
 }

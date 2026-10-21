@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ダイアログのリストの 1 項目の高さと上下の余白 -->
+    <dimen name="dialog_list_item_min_height">56dp</dimen>
+    <dimen name="dialog_list_item_padding_vertical">12dp</dimen>
+</resources>

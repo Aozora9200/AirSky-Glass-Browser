@@ -6,6 +6,8 @@
         android:title="@string/i18n_05dfb886b5" />
     <item android:id="@+id/action_group_tabs"
         android:title="@string/i18n_1854d4b189" />
+    <item android:id="@+id/action_delete_groups"
+        android:title="@string/i18n_4585950080" />
     <item android:id="@+id/action_history"
         android:title="@string/i18n_2e305a713d" />
     <item android:id="@+id/action_bookmark"

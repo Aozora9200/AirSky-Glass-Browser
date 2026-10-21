@@ -29,10 +29,13 @@ internal data class SearchEngine(
     val label: String,
     val action: String,
     val param: String,
-    val placeholder: String
+    val placeholder: String,
+    /** 自分で追加した検索エンジンの検索 URL(%s を言葉に置き換える)。用意したものは null */
+    val template: String? = null
 ) {
     fun searchUrl(query: String): String =
-        "$action?$param=${URLEncoder.encode(query, "UTF-8")}"
+        template?.replace(BrowserPrefs.QUERY_PLACEHOLDER, URLEncoder.encode(query, "UTF-8"))
+            ?: "$action?$param=${URLEncoder.encode(query, "UTF-8")}"
 
     companion object {
         val ALL = listOf(
@@ -45,6 +48,14 @@ internal data class SearchEngine(
         )
 
         fun of(key: String?): SearchEngine = ALL.firstOrNull { it.key == key } ?: ALL[0]
+
+        /** 用意したもの + 設定で自分で追加したもの。 */
+        fun all(context: Context): List<SearchEngine> = ALL + BrowserPrefs.customEngines(context).map {
+            SearchEngine(it[0], it[1], it[3], "", Lang.f("%sで検索", it[1]), it[3])
+        }
+
+        fun of(key: String?, context: Context): SearchEngine =
+            all(context).firstOrNull { it.key == key } ?: ALL[0]
     }
 }
 
@@ -105,7 +116,7 @@ internal class StartPageStore(context: Context) {
     val wallpaperFile = File(appContext.filesDir, "start_page_wallpaper.jpg")
 
     var engine: SearchEngine
-        get() = SearchEngine.of(prefs.getString(KEY_ENGINE, null))
+        get() = SearchEngine.of(prefs.getString(KEY_ENGINE, null), appContext)
         set(value) = prefs.edit().putString(KEY_ENGINE, value.key).apply()
 
     fun loadCustomSites(): List<Shortcut> {

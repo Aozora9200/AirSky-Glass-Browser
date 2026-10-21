@@ -16,6 +16,14 @@ import org.mozilla.geckoview.StorageController;
  */
 public class PrivacySettingsActivity extends PixelSettingsActivity {
 
+    /** 安全チェックから開いた時に目立たせる行。 */
+    static final String FOCUS_HTTPS = "https";
+    static final String FOCUS_PASSWORD = "password";
+
+    /** 「常に安全な接続を使用する」の選択肢の並び(保存する値)。 */
+    private static final int[] HTTPS_ORDER = {BrowserPrefs.HTTPS_OFF, BrowserPrefs.HTTPS_SECRET,
+            BrowserPrefs.HTTPS_MAIN, BrowserPrefs.HTTPS_ALWAYS};
+
     @NonNull
     @Override
     protected CharSequence pageTitle() {
@@ -80,7 +88,7 @@ public class PrivacySettingsActivity extends PixelSettingsActivity {
         PasswordManager pm = new PasswordManager(this);
         row(R.drawable.ic_ps_lock, Lang.t("パスワードの設定"),
                 pm.isPasswordSet() ? Lang.t("起動時にパスワードを求めます") : Lang.t("パスワードを設定し、起動時に入力を求めるようにできます"),
-                this::openPasswordSettings);
+                this::openPasswordSettings).key(FOCUS_PASSWORD);
         SharedPreferences app = getSharedPreferences("AppPrefs", MODE_PRIVATE);
         switchRow(R.drawable.ic_ps_visibility_off, Lang.t("プレビューを非表示"),
                 Lang.t("外部ディスプレイやタスク一覧から、アプリの内容が閲覧できないように遮断します"),
@@ -101,32 +109,40 @@ public class PrivacySettingsActivity extends PixelSettingsActivity {
 
         header(Lang.t("セキュリティ"));
         boolean safe = BrowserPrefs.bool(this, BrowserPrefs.SAFE_BROWSING, true);
-        row(R.drawable.ic_ps_safety, Lang.t("セーフ ブラウジング"), safe ? Lang.t("標準保護機能: オン") : Lang.t("保護なし(おすすめしません)"),
+        row(R.drawable.ic_ps_safety, Lang.t("セーフ ブラウジング"), safe ? Lang.t("標準保護機能: オン") : Lang.t("保護なし(非推奨)"),
                 () -> choose(Lang.t("セーフ ブラウジング"), new String[]{
                         Lang.t("標準保護機能\n危険なサイト・ダウンロード・拡張機能から保護します"),
-                        Lang.t("保護なし(おすすめしません)\n危険なサイトなどから保護されません")},
+                        Lang.t("保護なし(非推奨)\n危険なサイトなどから保護されません")},
                         safe ? 0 : 1, i -> {
                             BrowserPrefs.put(this, BrowserPrefs.SAFE_BROWSING, i == 0);
                             BrowserPrefs.apply(this);
                         }));
         switchRow(R.drawable.ic_si_warning, Lang.t("セキュリティ警告"), Lang.t("サイトの安全性に問題がある場合に警告を表示する"),
                 app.getBoolean("securityAlert", true), on -> app.edit().putBoolean("securityAlert", on).apply());
-        String[] https = {Lang.t("オフ"), Lang.t("シークレット タブのみ"), Lang.t("すべてのタブ")};
-        int h = BrowserPrefs.integer(this, BrowserPrefs.HTTPS_ONLY, BrowserPrefs.HTTPS_OFF);
+        String[] https = {Lang.t("オフ"), Lang.t("シークレット タブのみ"), Lang.t("メインセッションのみ"), Lang.t("すべてのタブ")};
+        int stored = BrowserPrefs.integer(this, BrowserPrefs.HTTPS_ONLY, BrowserPrefs.HTTPS_OFF);
+        int found = 0;
+        for (int k = 0; k < HTTPS_ORDER.length; k++) if (HTTPS_ORDER[k] == stored) found = k;
+        final int h = found;
         row(R.drawable.ic_ps_lock, Lang.t("常に安全な接続を使用する"), https[h], () -> choose(Lang.t("常に安全な接続を使用する"),
-                new String[]{Lang.t("オフ"), Lang.t("シークレット タブのみ\nシークレット タブで HTTPS に切り替えます"),
+                new String[]{Lang.t("オフ\nHTTP のサイトもそのまま開きます"),
+                        Lang.t("シークレット タブのみ\nシークレット タブで HTTPS に切り替えます"),
+                        Lang.t("メインセッションのみ\nシークレット タブ以外で HTTPS に切り替えます。シークレット タブでは HTTP を許可します"),
                         Lang.t("すべてのタブ\n可能な限り HTTPS で接続し、安全でないサイトを開く前に警告します")},
                 h, i -> {
-                    BrowserPrefs.put(this, BrowserPrefs.HTTPS_ONLY, i);
+                    BrowserPrefs.put(this, BrowserPrefs.HTTPS_ONLY, HTTPS_ORDER[i]);
                     BrowserPrefs.apply(this);
-                }));
+                })).key(FOCUS_HTTPS);
         row(R.drawable.ic_ps_dns, Lang.t("セキュア DNS を使用する"), dnsSummary(), this::chooseDns);
         row(R.drawable.ic_ps_delete, Lang.t("キャッシュを消去"), Lang.t("ローカルにキャッシュしたコンテンツを消去する"), () -> {
             GeckoEngine.get(this).clearCache();
             Toast.makeText(this, Lang.t("キャッシュを削除しました"), Toast.LENGTH_SHORT).show();
         });
-        row(R.drawable.ic_si_cookie, Lang.t("Cookie をすべて消去"), Lang.t("すべてのブラウザ Cookie を消去する"), () ->
-                confirm(Lang.t("AirSky ブラウザ内のすべてのサイトデータが削除されます"), Lang.t("Cookie をすべて消去します\n本当によろしいですか?"),
+        row(R.drawable.ic_si_cookie, Lang.t("Cookie をすべて消去"), Lang.t("すべてのサイトの Cookie だけを消去する"), () ->
+                confirm(Lang.t("Cookie をすべて消去しますか?"),
+                        Lang.t("すべてのサイトの Cookie が削除され、多くのサイトからログアウトされます。\n\n"
+                                + "閲覧履歴・キャッシュ・ブックマーク・保存したパスワード、"
+                                + "サイトのその他のデータ(ローカル ストレージなど)は削除されません。"),
                         Lang.t("消去"), () -> GeckoEngine.get(this).clearCookies()));
     }
 
@@ -134,8 +150,7 @@ public class PrivacySettingsActivity extends PixelSettingsActivity {
 
     private String dnsSummary() {
         int dns = BrowserPrefs.integer(this, BrowserPrefs.SECURE_DNS, BrowserPrefs.DNS_DEFAULT);
-        String provider = BrowserPrefs.DNS_PROVIDERS[Math.max(0, Math.min(BrowserPrefs.DNS_PROVIDERS.length - 1,
-                BrowserPrefs.integer(this, BrowserPrefs.SECURE_DNS_PROVIDER, 0)))][0];
+        String provider = BrowserPrefs.dnsProviderName(this);
         switch (dns) {
             case BrowserPrefs.DNS_INCREASED: return Lang.t("強化(") + provider + ")";
             case BrowserPrefs.DNS_MAX: return Lang.t("最大(") + provider + ")";
@@ -153,16 +168,66 @@ public class PrivacySettingsActivity extends PixelSettingsActivity {
                 Lang.t("オフ\n通常の DNS を使います")}, dns, i -> {
             BrowserPrefs.put(this, BrowserPrefs.SECURE_DNS, i);
             if (i == BrowserPrefs.DNS_INCREASED || i == BrowserPrefs.DNS_MAX) {
-                String[] names = new String[BrowserPrefs.DNS_PROVIDERS.length];
-                for (int k = 0; k < names.length; k++) names[k] = BrowserPrefs.DNS_PROVIDERS[k][0];
-                choose(Lang.t("プロバイダを選択"), names, BrowserPrefs.integer(this, BrowserPrefs.SECURE_DNS_PROVIDER, 0),
-                        p -> {
-                            BrowserPrefs.put(this, BrowserPrefs.SECURE_DNS_PROVIDER, p);
-                            BrowserPrefs.apply(this);
-                        });
+                chooseDnsProvider();
             } else {
                 BrowserPrefs.apply(this);
             }
+        });
+    }
+
+    /** プロバイダを選ぶ(それぞれの違いを説明に書く)。最後の「カスタム」は URL を入力する。 */
+    private void chooseDnsProvider() {
+        int n = BrowserPrefs.DNS_PROVIDERS.length;
+        String[] labels = new String[n + 1];
+        for (int k = 0; k < n; k++) {
+            labels[k] = Lang.t(BrowserPrefs.DNS_PROVIDERS[k][0]) + "\n" + Lang.t(BrowserPrefs.DNS_PROVIDERS[k][2]);
+        }
+        String custom = BrowserPrefs.customDnsUrl(this);
+        labels[n] = Lang.t("カスタム") + "\n" + (custom.isEmpty()
+                ? Lang.t("DNS over HTTPS のサーバーの URL を自分で入力します") : custom);
+        int current = BrowserPrefs.integer(this, BrowserPrefs.SECURE_DNS_PROVIDER, 0);
+        int checked = current == BrowserPrefs.DNS_PROVIDER_CUSTOM ? n : Math.max(0, Math.min(n - 1, current));
+        choose(Lang.t("プロバイダを選択"), labels, checked, p -> {
+            if (p == n) {
+                askCustomDns();
+                return;
+            }
+            BrowserPrefs.put(this, BrowserPrefs.SECURE_DNS_PROVIDER, p);
+            BrowserPrefs.apply(this);
+        });
+    }
+
+    /** カスタムのプロバイダ(DoH サーバーの URL)を入力する。 */
+    private void askCustomDns() {
+        android.widget.EditText input = new android.widget.EditText(this);
+        input.setSingleLine(true);
+        input.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_URI);
+        input.setHint("https://dns.example.com/dns-query");
+        input.setText(BrowserPrefs.customDnsUrl(this));
+        input.setSelection(input.length());
+        android.widget.FrameLayout box = new android.widget.FrameLayout(this);
+        box.setPadding(dp(24), dp(8), dp(24), 0);
+        box.addView(input);
+        androidx.appcompat.app.AlertDialog d = new MaterialAlertDialogBuilder(this)
+                .setTitle(Lang.t("カスタム プロバイダ"))
+                .setMessage(Lang.t("DNS over HTTPS (DoH) に対応したサーバーの URL を入力してください"))
+                .setView(box)
+                .setPositiveButton(Lang.t("保存"), null)
+                .setNegativeButton(Lang.t("キャンセル"), null)
+                .show();
+        // 正しくない URL の時はダイアログを閉じずに知らせる
+        d.getButton(android.content.DialogInterface.BUTTON_POSITIVE).setOnClickListener(v -> {
+            String url = input.getText().toString().trim();
+            android.net.Uri u = android.net.Uri.parse(url);
+            if (!"https".equalsIgnoreCase(u.getScheme()) || u.getHost() == null || u.getHost().isEmpty()) {
+                input.setError(Lang.t("https:// から始まる URL を入力してください"));
+                return;
+            }
+            BrowserPrefs.put(this, BrowserPrefs.SECURE_DNS_CUSTOM, url);
+            BrowserPrefs.put(this, BrowserPrefs.SECURE_DNS_PROVIDER, BrowserPrefs.DNS_PROVIDER_CUSTOM);
+            BrowserPrefs.apply(this);
+            d.dismiss();
+            rebuild();
         });
     }
 
@@ -203,15 +268,14 @@ public class PrivacySettingsActivity extends PixelSettingsActivity {
 
     private void rebootDialog() {
         new MaterialAlertDialogBuilder(this)
-                .setMessage(Lang.t("変更を反映するには再起動が必要です"))
+                .setMessage(Lang.t("変更を反映するには、アプリの再起動が必要です"))
                 .setCancelable(false)
-                .setPositiveButton(Lang.t("キャンセル"), null)
-                .setNegativeButton(Lang.t("再起動"), (d, w) -> {
+                .setPositiveButton(Lang.t("再起動"), (d, w) -> {
                     getSharedPreferences("AppPrefs", MODE_PRIVATE).edit().putBoolean("rebootApp", true).apply();
                     finish();
                     overridePendingTransition(0, 0);
                 })
-                .setNeutralButton(Lang.t("後で"), null)
+                .setNegativeButton(Lang.t("後で"), null)
                 .show();
     }
 

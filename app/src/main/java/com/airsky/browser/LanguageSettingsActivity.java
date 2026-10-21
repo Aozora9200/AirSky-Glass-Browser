@@ -91,14 +91,7 @@ public class LanguageSettingsActivity extends PixelSettingsActivity {
      */
     private void switchLanguage(@NonNull String lang) {
         Lang.setPreference(this, lang);
-        Intent restart = getPackageManager().getLaunchIntentForPackage(getPackageName());
-        if (restart == null) return;
-        restart.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        android.app.PendingIntent pi = android.app.PendingIntent.getActivity(this, 0, restart,
-                android.app.PendingIntent.FLAG_CANCEL_CURRENT | android.app.PendingIntent.FLAG_IMMUTABLE);
-        android.app.AlarmManager am = (android.app.AlarmManager) getSystemService(ALARM_SERVICE);
-        if (am != null) am.set(android.app.AlarmManager.RTC, System.currentTimeMillis() + 1600, pi);
-        finishAffinity();
-        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> System.exit(0), 1200);
+        // 閉じるブラウザ画面がタブを保存し終えるまで少し待ってから起動し直す
+        RestartActivity.restart(this, 1200);
     }
 }

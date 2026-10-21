@@ -1,12 +1,11 @@
 <resources>
-    <string name="app_name">AirSky Browser</string>
+    <string name="app_name" translatable="false">AirSky Browser</string>
     <!-- ホーム画面のアイコンの名前(長い正式名称は切れるので通称) -->
-    <string name="launcher_name">AirSky Browser</string>
-    <string name="k_dessert_case">Dessert Case</string>
+    <string name="launcher_name" translatable="false">AirSky Browser</string>
+    <string name="k_dessert_case" translatable="false">Dessert Case</string>
     <dimen name="k_dessert_case_cell_size">192dp</dimen>
-    <string name="version">4.0.0</string>
-    <string name="build">AT40A</string>
-    <string name="password_key"></string>
+    <string name="version" translatable="false">4.0.1</string>
+    <string name="build" translatable="false">AT40B</string>
     <string name="new_tab">New tab</string>
 
     <string name="websiteSettings">Website settings</string>
@@ -99,26 +98,26 @@
     <string name="select_image">Choose image</string>
     <string name="save_color">Save colors</string>
     <string name="error" msgid="9197457880925804499">Error</string>
-    <string name="digit0" msgid="8069590963464434135">"0"</string>
-    <string name="digit1" msgid="8535041374797804029">"1"</string>
-    <string name="digit2" msgid="8977354203154316247">"2"</string>
-    <string name="digit3" msgid="148544090755132760">"3"</string>
-    <string name="digit4" msgid="2199490603838247678">"4"</string>
-    <string name="digit5" msgid="7568514524384173087">"5"</string>
-    <string name="digit6" msgid="6705952561049362551">"6"</string>
-    <string name="digit7" msgid="658125644218958447">"7"</string>
-    <string name="digit8" msgid="3134686906411558886">"8"</string>
-    <string name="digit9" msgid="765379157698748031">"9"</string>
+    <string name="digit0" msgid="8069590963464434135" translatable="false">"0"</string>
+    <string name="digit1" msgid="8535041374797804029" translatable="false">"1"</string>
+    <string name="digit2" msgid="8977354203154316247" translatable="false">"2"</string>
+    <string name="digit3" msgid="148544090755132760" translatable="false">"3"</string>
+    <string name="digit4" msgid="2199490603838247678" translatable="false">"4"</string>
+    <string name="digit5" msgid="7568514524384173087" translatable="false">"5"</string>
+    <string name="digit6" msgid="6705952561049362551" translatable="false">"6"</string>
+    <string name="digit7" msgid="658125644218958447" translatable="false">"7"</string>
+    <string name="digit8" msgid="3134686906411558886" translatable="false">"8"</string>
+    <string name="digit9" msgid="765379157698748031" translatable="false">"9"</string>
     <string name="del" msgid="6248896117422989693">Delete</string>
     <string name="clear" msgid="8103610981407459768">Clear</string>
-    <string name="sin" msgid="6793866152659175277">"sin"</string>
-    <string name="cos" msgid="6901841853098114414">"cos"</string>
-    <string name="tan" msgid="7957459816738554960">"tan"</string>
-    <string name="e" msgid="1377847800971731483">"e"</string>
-    <string name="ln" msgid="6888500680285403344">"ln"</string>
-    <string name="lg" msgid="873623857385418182">"log"</string>
-    <string name="leftParen" msgid="4850643713953092099">"("</string>
-    <string name="rightParen" msgid="3177971166159324016">")"</string>
+    <string name="sin" msgid="6793866152659175277" translatable="false">"sin"</string>
+    <string name="cos" msgid="6901841853098114414" translatable="false">"cos"</string>
+    <string name="tan" msgid="7957459816738554960" translatable="false">"tan"</string>
+    <string name="e" msgid="1377847800971731483" translatable="false">"e"</string>
+    <string name="ln" msgid="6888500680285403344" translatable="false">"ln"</string>
+    <string name="lg" msgid="873623857385418182" translatable="false">"log"</string>
+    <string name="leftParen" msgid="4850643713953092099" translatable="false">"("</string>
+    <string name="rightParen" msgid="3177971166159324016" translatable="false">")"</string>
     <string name="basic" msgid="7691469861698059753">Basic</string>
     <string name="advanced" msgid="7122495413742976492">Advanced</string>
     <string name="clear_history" msgid="8458043980601165012">Clear history</string>
@@ -162,22 +161,22 @@
         <item msgid="8587490959348493065">pi</item>
         <item msgid="8134315487552198394">equals</item>
     </string-array>
-    <string name="div">\u00f7</string>
-    <string name="mul">\u00d7</string>
-    <string name="plus">+</string>
-    <string name="minus">\u2212</string>
-    <string name="dot">.</string>
-    <string name="equal">=</string>
+    <string name="div" translatable="false">\u00f7</string>
+    <string name="mul" translatable="false">\u00d7</string>
+    <string name="plus" translatable="false">+</string>
+    <string name="minus" translatable="false">\u2212</string>
+    <string name="dot" translatable="false">.</string>
+    <string name="equal" translatable="false">=</string>
     <string translate="false" name="sin_mathematical_value">sin</string>
     <string translate="false" name="cos_mathematical_value">cos</string>
     <string translate="false" name="tan_mathematical_value">tan</string>
-    <string name="pi">\u03c0</string>
+    <string name="pi" translatable="false">\u03c0</string>
     <string translate="false" name="e_mathematical_value">e</string>
     <string translate="false" name="ln_mathematical_value">ln</string>
     <string translate="false" name="lg_mathematical_value">lg</string>
-    <string name="sqrt">\u221a</string>
-    <string name="power">^</string>
-    <string name="factorial">!</string>
+    <string name="sqrt" translatable="false">\u221a</string>
+    <string name="power" translatable="false">^</string>
+    <string name="factorial" translatable="false">!</string>
     <string-array name="operators" translatable="false">
         <item>(</item>
         <item>)</item>
@@ -651,4 +650,6 @@
     <string name="i18n_fdbc77bd19">Safety</string>
     <string name="i18n_ff5932fd7b">Convert to image</string>
     <string name="i18n_ffcad92658">Error: couldn\'t show it</string>
+    <string name="i18n_368fe98b76">Keep the address bar fixed</string>
+    <string name="i18n_4585950080">Delete tab groups</string>
 </resources>

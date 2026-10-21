@@ -192,7 +192,12 @@ internal class StartPageState(context: Context) {
     fun reloadGlassStyle() {
         glassEnabled = GlassPrefs.enabled(appContext)
         glassRefraction = GlassPrefs.refraction(appContext)
+        newsEnabled = BrowserPrefs.startPageNews(appContext)
     }
+
+    /** ニュース(おすすめ記事)を出すか。設定の「ホームページ」で切り替える。 */
+    var newsEnabled by mutableStateOf(BrowserPrefs.startPageNews(appContext))
+        private set
 
     // ---- 壁紙 ----
     var customWallpaper by mutableStateOf<ImageBitmap?>(null)
@@ -421,6 +426,7 @@ internal class StartPageState(context: Context) {
     // ---- ニュース ----
 
     fun refreshFeedIfStale() {
+        if (!newsEnabled) return
         val age = SystemClock.elapsedRealtime() - feedLoadedAt
         if (feedLoadedAt != 0L && !feedFailed && age < FEED_REFRESH_MS) return
         loadFeed(null)
@@ -429,6 +435,10 @@ internal class StartPageState(context: Context) {
     /** 引っ張って更新。 */
     fun refresh(done: () -> Unit) {
         wallpaperTick++
+        if (!newsEnabled) {
+            main.postDelayed({ done() }, 400)
+            return
+        }
         loadFeed(done)
     }
 

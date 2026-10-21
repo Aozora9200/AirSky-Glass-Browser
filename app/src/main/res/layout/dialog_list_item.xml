@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ダイアログのリスト(setItems)の 1 項目。Material の既定より上下を広げて、項目どうしの間隔を空ける -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    style="?attr/materialAlertDialogBodyTextStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/dialog_list_item_min_height"
+    android:gravity="center_vertical"
+    android:paddingLeft="?attr/listPreferredItemPaddingLeft"
+    android:paddingTop="@dimen/dialog_list_item_padding_vertical"
+    android:paddingRight="?attr/listPreferredItemPaddingRight"
+    android:paddingBottom="@dimen/dialog_list_item_padding_vertical"
+    android:ellipsize="marquee" />

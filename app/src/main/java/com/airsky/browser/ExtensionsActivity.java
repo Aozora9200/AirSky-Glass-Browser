@@ -38,18 +38,32 @@ import java.util.List;
  */
 public class ExtensionsActivity extends AppCompatActivity implements ExtensionManager.Listener {
 
+    /** 最初に開く一覧。{@link #KIND_COARA} なら Coara Browser 拡張機能の一覧。 */
+    static final String EXTRA_KIND = "kind";
+    static final String KIND_COARA = "coara";
+
     private static final PathInterpolator EMPHASIZED = new PathInterpolator(0.05f, 0.7f, 0.1f, 1f);
 
     private ExtensionManager manager;
     private LinearLayout sections;
     private TextView summary;
+    private ExtendedFloatingActionButton find;
+    private TextView note;
     @Nullable private List<ExtensionStore.Addon> recommended;
     private boolean recommendedFailed;
     private boolean firstBind = true;
+    /** Coara Browser 拡張機能の一覧を出している */
+    private boolean coaraMode;
+    private CoaraExtensionsSection coara;
 
     private final ActivityResultLauncher<String[]> pickXpi = registerForActivityResult(
             new ActivityResultContracts.OpenDocument(), uri -> {
                 if (uri != null) manager.installFromUri(uri);
+            });
+
+    private final ActivityResultLauncher<String[]> pickPlugin = registerForActivityResult(
+            new ActivityResultContracts.OpenDocument(), uri -> {
+                if (uri != null) coara.installFromUri(uri);
             });
 
     @Override
@@ -59,11 +73,35 @@ public class ExtensionsActivity extends AppCompatActivity implements ExtensionMa
         manager = ExtensionManager.get(this);
         sections = findViewById(R.id.exSections);
         summary = findViewById(R.id.exBigSummary);
+        note = findViewById(R.id.exNote);
+        coara = new CoaraExtensionsSection(this, sections, this::bind, this::pickPluginFile);
+        coaraMode = savedInstanceState != null
+                ? savedInstanceState.getBoolean(EXTRA_KIND)
+                : KIND_COARA.equals(getIntent().getStringExtra(EXTRA_KIND));
 
         findViewById(R.id.exBack).setOnClickListener(v -> finish());
         findViewById(R.id.exMenu).setOnClickListener(this::showMenu);
-        ExtendedFloatingActionButton find = findViewById(R.id.exFind);
-        find.setOnClickListener(v -> openStore(ExtensionManager.AMO_URL));
+        find = findViewById(R.id.exFind);
+        find.setOnClickListener(v -> {
+            if (coaraMode) pickPluginFile();
+            else openStore(ExtensionManager.AMO_URL);
+        });
+
+        // [Firefox 拡張機能] [Coara Browser 拡張機能] の切り替え
+        com.google.android.material.button.MaterialButtonToggleGroup kind = findViewById(R.id.exKind);
+        ((TextView) findViewById(R.id.exKindFirefox)).setText(Lang.t("Firefox 拡張機能"));
+        ((TextView) findViewById(R.id.exKindCoara)).setText(Lang.t("Coara Browser 拡張機能"));
+        kind.check(coaraMode ? R.id.exKindCoara : R.id.exKindFirefox);
+        kind.addOnButtonCheckedListener((group, id, checked) -> {
+            if (!checked) return;
+            boolean now = id == R.id.exKindCoara;
+            if (now == coaraMode) return;
+            coaraMode = now;
+            applyKind();
+            bind();
+            playEnter();
+        });
+        applyKind();
 
         // スクロールすると: 見出しに小さな題名がフェードで現れ、大きな題名は少し沈む。ボタンは縮む
         NestedScrollView scroll = findViewById(R.id.exScroll);
@@ -82,14 +120,47 @@ public class ExtensionsActivity extends AppCompatActivity implements ExtensionMa
         });
 
         manager.addListener(this);
+        coara.start();
         bind();
         loadRecommended(false);
         handleIntent(getIntent());
     }
 
     @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(EXTRA_KIND, coaraMode);
+    }
+
+    /** 一覧の種類に合わせて、下のボタンと注意書きを変える。 */
+    private void applyKind() {
+        if (coaraMode) {
+            find.setText(Lang.t("ファイルから追加"));
+            find.setIconResource(R.drawable.ic_ext_file);
+            note.setText(Lang.t("Coara Browser 用のプラグイン(plugin.xml を含む .zip)・ユーザースクリプト(.user.js)・ユーザースタイル(.user.css)を追加できます。"));
+        } else {
+            find.setText(Lang.t("拡張機能を探す"));
+            find.setIconResource(R.drawable.ic_ext_store);
+            note.setText(Lang.t("拡張機能は Firefox のアドオンストアから入れられます。.xpi ファイルを開いてインストールすることもできます。"));
+        }
+        find.extend();
+    }
+
+    private void pickPluginFile() {
+        try {
+            pickPlugin.launch(new String[]{"*/*"});
+        } catch (Exception e) {
+            Toast.makeText(this, Lang.t("ファイルを選ぶアプリがありません"), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        if (KIND_COARA.equals(intent.getStringExtra(EXTRA_KIND)) && !coaraMode) {
+            ((com.google.android.material.button.MaterialButtonToggleGroup) findViewById(R.id.exKind))
+                    .check(R.id.exKindCoara);
+        }
         handleIntent(intent);
     }
 
@@ -111,6 +182,7 @@ public class ExtensionsActivity extends AppCompatActivity implements ExtensionMa
     @Override
     protected void onDestroy() {
         manager.removeListener(this);
+        coara.stop();
         super.onDestroy();
     }
 
@@ -130,6 +202,17 @@ public class ExtensionsActivity extends AppCompatActivity implements ExtensionMa
     // ------------------------------------------------------------------
 
     private void bind() {
+        if (isFinishing()) return;
+        if (coaraMode) {
+            summary.setText(coara.summary());
+            sections.removeAllViews();
+            coara.bind();
+            if (firstBind) {
+                firstBind = false;
+                playEnter();
+            }
+            return;
+        }
         List<WebExtension> enabled = new ArrayList<>();
         List<WebExtension> disabled = new ArrayList<>();
         for (WebExtension ext : manager.getInstalled()) {
@@ -340,6 +423,18 @@ public class ExtensionsActivity extends AppCompatActivity implements ExtensionMa
     }
 
     private void showMenu(View anchor) {
+        if (coaraMode) {
+            PopupMenu popup = new PopupMenu(this, anchor);
+            popup.getMenu().add(0, 1, 0, Lang.t("ファイルからインストール"));
+            popup.getMenu().add(0, 2, 1, Lang.t("ログを表示"));
+            popup.setOnMenuItemClickListener(item -> {
+                if (item.getItemId() == 1) pickPluginFile();
+                else coara.showLog(null);
+                return true;
+            });
+            popup.show();
+            return;
+        }
         PopupMenu popup = new PopupMenu(this, anchor);
         popup.getMenu().add(0, 1, 0, Lang.t("ファイルからインストール"));
         popup.getMenu().add(0, 2, 1, Lang.t("更新を確認"));

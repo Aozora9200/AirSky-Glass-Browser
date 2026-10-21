@@ -37,6 +37,8 @@ public final class BrowserPrefs {
     static final String HTTPS_ONLY = "httpsOnly";
     static final String SECURE_DNS = "secureDns";
     static final String SECURE_DNS_PROVIDER = "secureDnsProvider";
+    /** セキュア DNS のカスタム プロバイダの URL(SECURE_DNS_PROVIDER が DNS_PROVIDER_CUSTOM の時に使う)。 */
+    static final String SECURE_DNS_CUSTOM = "secureDnsCustom";
     static final String JS_OPTIMIZE = "jsOptimization";
     static final String LOCK_SECRET = "lockSecretTabs";
     // ユーザー補助
@@ -67,6 +69,8 @@ public final class BrowserPrefs {
     static final int HTTPS_OFF = 0;
     static final int HTTPS_SECRET = 1;
     static final int HTTPS_ALWAYS = 2;
+    /** シークレット タブ以外(メインのセッション)だけ HTTPS にする。シークレット タブでは HTTP を許可する。 */
+    static final int HTTPS_MAIN = 3;
 
     static final int DNS_DEFAULT = 0;
     static final int DNS_INCREASED = 1;
@@ -77,13 +81,28 @@ public final class BrowserPrefs {
     static final int LANG_EN = 1;
     static final int LANG_DEVICE = 2;
 
-    /** セキュア DNS のプロバイダ(表示名, URL)。 */
+    /**
+     * セキュア DNS のプロバイダ(表示名, URL, どういうプロバイダかの短い説明)。
+     * 保存しているのは並びの番号なので、前の 4 つの順番は変えない(新しいものは後ろに足す)。
+     */
     static final String[][] DNS_PROVIDERS = {
-            {"Cloudflare", "https://mozilla.cloudflare-dns.com/dns-query"},
-            {"Google Public DNS", "https://dns.google/dns-query"},
-            {"Quad9", "https://dns.quad9.net/dns-query"},
-            {"NextDNS", "https://firefox.dns.nextdns.io/"},
+            {"Cloudflare", "https://mozilla.cloudflare-dns.com/dns-query", "速さ重視。問い合わせの記録を最小限にします"},
+            {"Google Public DNS", "https://dns.google/dns-query", "安定性重視。世界中で使われている定番の DNS"},
+            {"Quad9", "https://dns.quad9.net/dns-query", "セキュリティ重視。危険なサイトのドメインをブロックします"},
+            {"NextDNS", "https://firefox.dns.nextdns.io/", "自分好みにカスタマイズできる DNS(設定は NextDNS のサイトで)"},
+            {"AdGuard DNS", "https://dns.adguard-dns.com/dns-query", "広告・トラッカーのドメインをブロックします"},
+            {"AdGuard DNS(ファミリー)", "https://family.adguard-dns.com/dns-query", "広告に加えて、成人向けサイトもブロックします"},
+            {"Cloudflare(マルウェア対策)", "https://security.cloudflare-dns.com/dns-query", "Cloudflare の速さに、危険なサイトのブロックを加えたもの"},
+            {"Cloudflare(ファミリー)", "https://family.cloudflare-dns.com/dns-query", "危険なサイトと成人向けサイトをブロックします"},
+            {"Mullvad DNS", "https://dns.mullvad.net/dns-query", "プライバシー重視。記録を残さず、フィルタもしません"},
+            {"Mullvad DNS(広告ブロック)", "https://adblock.dns.mullvad.net/dns-query", "プライバシー重視で、広告・トラッカーもブロックします"},
+            {"CleanBrowsing(ファミリー)", "https://doh.cleanbrowsing.org/doh/family-filter/", "子ども向け。成人向けサイトをブロックし、セーフサーチを強制します"},
+            {"OpenDNS", "https://doh.opendns.com/dns-query", "Cisco が運営。フィッシング サイトをブロックします"},
+            {"IIJ Public DNS", "https://public.dns.iij.jp/dns-query", "日本の IIJ が運営。国内のサイトに速くつながりやすい"},
     };
+
+    /** SECURE_DNS_PROVIDER の値: カスタム(SECURE_DNS_CUSTOM の URL を使う)。 */
+    static final int DNS_PROVIDER_CUSTOM = -1;
 
     private BrowserPrefs() {}
 
@@ -124,6 +143,15 @@ public final class BrowserPrefs {
             {"ecosia", "Ecosia", "ecosia.org", "https://www.ecosia.org/search", "q", "#36A852"},
     };
 
+    /** スタートページにニュース(おすすめ記事)を出すか。既定はオン。 */
+    static boolean startPageNews(@NonNull Context c) {
+        return c.getSharedPreferences("start_page", Context.MODE_PRIVATE).getBoolean("showNews", true);
+    }
+
+    static void setStartPageNews(@NonNull Context c, boolean on) {
+        c.getSharedPreferences("start_page", Context.MODE_PRIVATE).edit().putBoolean("showNews", on).apply();
+    }
+
     @NonNull
     static String engineKey(@NonNull Context c) {
         String key = c.getSharedPreferences("start_page", Context.MODE_PRIVATE).getString("engine", null);
@@ -134,10 +162,105 @@ public final class BrowserPrefs {
         c.getSharedPreferences("start_page", Context.MODE_PRIVATE).edit().putString("engine", key).apply();
     }
 
+    // ---- 自分で追加した検索エンジン ----
+
+    /** 自分で追加した検索エンジンの key の頭。 */
+    static final String CUSTOM_ENGINE_PREFIX = "custom_";
+    /** 検索 URL の、検索する言葉を入れる場所。 */
+    static final String QUERY_PLACEHOLDER = "%s";
+    private static final String CUSTOM_ENGINE_COLOR = "#5F6B7A";
+    private static final String KEY_CUSTOM_ENGINES = "custom_engines";
+
+    /**
+     * 自分で追加した検索エンジン。形は {@link #ENGINES} と同じだが、
+     * [3] は「%s」を含む検索 URL 全体で、[4](パラメータ名)は空。
+     */
+    @NonNull
+    static List<String[]> customEngines(@NonNull Context c) {
+        List<String[]> out = new ArrayList<>();
+        String json = c.getSharedPreferences("start_page", Context.MODE_PRIVATE).getString(KEY_CUSTOM_ENGINES, null);
+        if (json == null) return out;
+        try {
+            org.json.JSONArray a = new org.json.JSONArray(json);
+            for (int i = 0; i < a.length(); i++) {
+                org.json.JSONObject o = a.optJSONObject(i);
+                if (o == null) continue;
+                String key = o.optString("key");
+                String name = o.optString("name");
+                String url = o.optString("url");
+                if (key.isEmpty() || name.isEmpty() || !url.contains(QUERY_PLACEHOLDER)) continue;
+                out.add(new String[]{key, name, hostOf(url), url, "", CUSTOM_ENGINE_COLOR});
+            }
+        } catch (Exception e) {
+            Log.w("BrowserPrefs", "custom engines", e);
+        }
+        return out;
+    }
+
+    /** 選べる検索エンジン全部(用意したもの → 自分で追加したもの)。 */
+    @NonNull
+    static List<String[]> allEngines(@NonNull Context c) {
+        List<String[]> out = new ArrayList<>(java.util.Arrays.asList(ENGINES));
+        out.addAll(customEngines(c));
+        return out;
+    }
+
+    /** 検索エンジンを追加して、その key を返す。url は「%s」を含む検索 URL。 */
+    @NonNull
+    static String addCustomEngine(@NonNull Context c, @NonNull String name, @NonNull String url) {
+        String key = CUSTOM_ENGINE_PREFIX + Long.toString(System.currentTimeMillis(), 36);
+        List<String[]> list = customEngines(c);
+        list.add(new String[]{key, name.trim(), hostOf(url), url.trim(), "", CUSTOM_ENGINE_COLOR});
+        saveCustomEngines(c, list);
+        return key;
+    }
+
+    /** 追加した検索エンジンを消す。使っていたものなら既定(Google)に戻す。 */
+    static void removeCustomEngine(@NonNull Context c, @NonNull String key) {
+        List<String[]> list = customEngines(c);
+        for (int i = list.size() - 1; i >= 0; i--) if (list.get(i)[0].equals(key)) list.remove(i);
+        saveCustomEngines(c, list);
+        if (key.equals(engineKey(c))) setEngineKey(c, ENGINES[0][0]);
+    }
+
+    private static void saveCustomEngines(@NonNull Context c, @NonNull List<String[]> list) {
+        org.json.JSONArray a = new org.json.JSONArray();
+        try {
+            for (String[] e : list) {
+                org.json.JSONObject o = new org.json.JSONObject();
+                o.put("key", e[0]);
+                o.put("name", e[1]);
+                o.put("url", e[3]);
+                a.put(o);
+            }
+        } catch (Exception ignored) {
+        }
+        c.getSharedPreferences("start_page", Context.MODE_PRIVATE).edit()
+                .putString(KEY_CUSTOM_ENGINES, a.toString()).apply();
+    }
+
+    /** 検索 URL として使えるか(http/https で「%s」を含む)。 */
+    static boolean isValidEngineUrl(@Nullable String url) {
+        if (url == null) return false;
+        String u = url.trim().toLowerCase(Locale.ROOT);
+        return (u.startsWith("https://") || u.startsWith("http://")) && u.contains(QUERY_PLACEHOLDER)
+                && hostOf(url).length() > 0;
+    }
+
+    @NonNull
+    private static String hostOf(@NonNull String url) {
+        try {
+            String host = android.net.Uri.parse(url.trim().replace(QUERY_PLACEHOLDER, "x")).getHost();
+            return host != null ? host : "";
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
     @NonNull
     static String[] engine(@NonNull Context c) {
         String key = engineKey(c);
-        for (String[] e : ENGINES) if (e[0].equals(key)) return e;
+        for (String[] e : allEngines(c)) if (e[0].equals(key)) return e;
         if ("youtube".equals(key)) {
             return new String[]{"youtube", "YouTube", "youtube.com", "https://www.youtube.com/results",
                     "search_query", "#FF0000"};
@@ -150,10 +273,29 @@ public final class BrowserPrefs {
     static String searchUrl(@NonNull Context c, @NonNull String query) {
         String[] e = engine(c);
         try {
+            if (e[4].isEmpty()) {
+                // 自分で追加した検索エンジン: URL の %s を言葉に置き換える
+                return e[3].replace(QUERY_PLACEHOLDER, URLEncoder.encode(query.trim(), "UTF-8"));
+            }
             return e[3] + "?" + e[4] + "=" + URLEncoder.encode(query.trim(), "UTF-8");
         } catch (Exception ex) {
             return e[3] + "?" + e[4] + "=" + query;
         }
+    }
+
+    // ------------------------------------------------------------------
+    // アドレスバー
+    // ------------------------------------------------------------------
+
+    /** 設定「アドレスバーを固定」(AppPrefs)。既定はオフ(スクロールで隠れる)。 */
+    static final String URL_BAR_FIXED = "fixedUrlBar";
+
+    static boolean isUrlBarFixed(@NonNull Context c) {
+        return c.getSharedPreferences("AppPrefs", Context.MODE_PRIVATE).getBoolean(URL_BAR_FIXED, false);
+    }
+
+    static void setUrlBarFixed(@NonNull Context c, boolean fixed) {
+        c.getSharedPreferences("AppPrefs", Context.MODE_PRIVATE).edit().putBoolean(URL_BAR_FIXED, fixed).apply();
     }
 
     // ------------------------------------------------------------------
@@ -211,6 +353,7 @@ public final class BrowserPrefs {
 
         // 常に安全な接続(HTTPS-Only モード)
         int https = integer(c, HTTPS_ONLY, HTTPS_OFF);
+        // メインのセッションだけの時は Gecko の設定にないので、GeckoTabView が読み込む前に HTTPS に切り替える
         s.setAllowInsecureConnections(https == HTTPS_ALWAYS ? GeckoRuntimeSettings.HTTPS_ONLY
                 : https == HTTPS_SECRET ? GeckoRuntimeSettings.HTTPS_ONLY_PRIVATE
                 : GeckoRuntimeSettings.ALLOW_ALL);
@@ -256,8 +399,36 @@ public final class BrowserPrefs {
     @NonNull
     static String dnsProviderUrl(Context c) {
         int i = integer(c, SECURE_DNS_PROVIDER, 0);
+        if (i == DNS_PROVIDER_CUSTOM) {
+            String custom = customDnsUrl(c);
+            if (!custom.isEmpty()) return custom;
+        }
         if (i < 0 || i >= DNS_PROVIDERS.length) i = 0;
         return DNS_PROVIDERS[i][1];
+    }
+
+    /** 選んでいるセキュア DNS のプロバイダの表示名。 */
+    @NonNull
+    static String dnsProviderName(Context c) {
+        int i = integer(c, SECURE_DNS_PROVIDER, 0);
+        String custom = customDnsUrl(c);
+        if (i == DNS_PROVIDER_CUSTOM && !custom.isEmpty()) {
+            String host = android.net.Uri.parse(custom).getHost();
+            return host != null ? host : custom;
+        }
+        if (i < 0 || i >= DNS_PROVIDERS.length) i = 0;
+        return Lang.t(DNS_PROVIDERS[i][0]);
+    }
+
+    @NonNull
+    static String customDnsUrl(Context c) {
+        String url = prefs(c).getString(SECURE_DNS_CUSTOM, "");
+        return url != null ? url.trim() : "";
+    }
+
+    /** メインのセッション(シークレット以外)で HTTP を HTTPS に切り替えるか。 */
+    static boolean httpsOnlyMainSession(Context c) {
+        return integer(c, HTTPS_ONLY, HTTPS_OFF) == HTTPS_MAIN;
     }
 
     /** ウェブページの言語の既定(英語表示なら英語を優先)。 */

@@ -92,6 +92,13 @@
                     android:text="@string/i18n_19ea2c4414" />
 
                 <CheckBox
+                    android:id="@+id/setup_checkbox_fixed_url"
+                    style="@style/Aozora.Switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/i18n_368fe98b76" />
+
+                <CheckBox
                     android:id="@+id/setup_checkbox_update"
                     style="@style/Aozora.Switch"
                     android:layout_width="match_parent"

@@ -74,6 +74,9 @@ public final class AppDownloader {
     private static final int SUMMARY_ID = 0x0D0A0D0A;
     static final String ACTION_CANCEL = "com.airsky.browser.action.CANCEL_DOWNLOAD";
     static final String EXTRA_ID = "download_id";
+    /** ダウンロード画面を開いて、失敗したダウンロードをやり直す(通知の「再試行」)。 */
+    static final String EXTRA_RETRY_ID = "retry_download_id";
+    static final String EXTRA_RETRY_URL = "retry_download_url";
     static final int REQUEST_NOTIFICATION_PERMISSION = 0x0D1;
 
     static final String PREFS = "DownloadPrefs";
@@ -103,6 +106,8 @@ public final class AppDownloader {
         public volatile int status = DownloadManager.STATUS_RUNNING;
         /** ウイルススキャンで見つかった検出名(見つかって中止した場合)。 */
         @Nullable public volatile String threat;
+        /** ダウンロード元の URL(失敗した時の「再試行」に使う)。 */
+        @Nullable volatile String sourceUrl;
         volatile boolean cancelled;
 
         Progress(String fileName, String filePath, long total) {
@@ -483,6 +488,7 @@ public final class AppDownloader {
                 progress = new Progress(target.displayName, target.path, total);
                 progress.contentUri = target.mediaUri != null ? target.mediaUri.toString() : null;
                 progress.mimeType = mimeType;
+                progress.sourceUrl = response.uri;
                 ACTIVE.put(id, progress);
                 if (observer != null) activity.runOnUiThread(() -> observer.onStarted(id));
                 // 開始した時点で一覧に載せ、ダウンロード画面から進行状況を確認できるようにする
@@ -568,11 +574,79 @@ public final class AppDownloader {
                         notifyDone(app, id, progress, false);
                     }
                 }
-                final String msg = cancelled ? Lang.t("ダウンロードをキャンセルしました")
-                        : Lang.t("ダウンロードに失敗しました") + (e.getMessage() != null ? ": " + e.getMessage() : "");
-                activity.runOnUiThread(() -> Toast.makeText(app, msg, Toast.LENGTH_LONG).show());
+                if (cancelled) {
+                    activity.runOnUiThread(() ->
+                            Toast.makeText(app, Lang.t("ダウンロードをキャンセルしました"), Toast.LENGTH_LONG).show());
+                    return;
+                }
+                final String reason = e.getMessage();
+                final String name = progress != null ? progress.fileName : fileName;
+                final String url = response.uri;
+                final long failedId = progress != null ? id : 0;
+                activity.runOnUiThread(() -> showFailedMessage(activity, failedId, name, url, reason));
             }
         });
+    }
+
+    /** 「ダウンロードに失敗しました」を画面上部に出す。もう一度取得できる時は「再試行」ボタンを付ける。 */
+    private static void showFailedMessage(@NonNull Activity activity, long id, @NonNull String name,
+                                          @Nullable String url, @Nullable String reason) {
+        Context app = activity.getApplicationContext();
+        String detail = Lang.t("ダウンロードに失敗しました") + (reason != null ? ": " + reason : "");
+        if (activity.isFinishing() || activity.isDestroyed()) {
+            Toast.makeText(app, detail, Toast.LENGTH_LONG).show();
+            return;
+        }
+        TopMessage m = TopMessage.make(activity, R.drawable.ic_msg_warning, Lang.t("ダウンロードに失敗しました"))
+                .setSubtitle(reason != null ? name + " • " + reason : name);
+        if (canRetry(url)) {
+            boolean privateMode = activity instanceof MainActivity && ((MainActivity) activity).isSecretMode();
+            m.setAction(Lang.t("再試行"), () -> retry(activity, id, url, privateMode));
+        }
+        m.show();
+    }
+
+    static boolean canRetry(@Nullable String url) {
+        if (url == null) return false;
+        String lower = url.toLowerCase(Locale.ROOT);
+        return lower.startsWith("http://") || lower.startsWith("https://");
+    }
+
+    /**
+     * 失敗したダウンロードをもう一度行う。失敗した方の履歴と通知は消す(一覧に同じものが 2 つ並ばないように)。
+     * oldId が 0 の時は履歴に載る前に失敗したもの。
+     */
+    static boolean retry(@NonNull Activity activity, long oldId, @Nullable String url, boolean privateMode) {
+        return retry(activity, oldId, url, privateMode, null);
+    }
+
+    static boolean retry(@NonNull Activity activity, long oldId, @Nullable String url, boolean privateMode,
+                         @Nullable Observer observer) {
+        // 失敗した方の履歴は、やり直しの書き込みが始まってから消す。
+        // 先に消すと、やり直しも書き込む前に失敗した時(接続できない・HTTP エラー)に履歴から消えてしまう
+        Context app = activity.getApplicationContext();
+        Observer replace = new Observer() {
+            @Override
+            public void onStarted(long id) {
+                if (oldId != 0 && oldId != id) {
+                    ACTIVE.remove(oldId);
+                    DownloadHistoryManager.removeDownloadHistory(app, oldId);
+                    NotificationManagerCompat.from(app).cancel((int) oldId);
+                    updateSummary(app);
+                }
+                if (observer != null) observer.onStarted(id);
+            }
+
+            @Override
+            public void onDiscarded() {
+                if (observer != null) observer.onDiscarded();
+            }
+        };
+        if (!canRetry(url) || !downloadUrl(activity, url, null, false, privateMode, replace)) {
+            Toast.makeText(activity, Lang.t("このダウンロードは再試行できません"), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     /** ウイルススキャンで不正なデータが見つかった。 */
@@ -708,6 +782,11 @@ public final class AppDownloader {
      */
     public static boolean downloadUrl(@NonNull Activity activity, @NonNull String url,
                                       @Nullable String userAgent, boolean image, boolean privateMode) {
+        return downloadUrl(activity, url, userAgent, image, privateMode, null);
+    }
+
+    static boolean downloadUrl(@NonNull Activity activity, @NonNull String url, @Nullable String userAgent,
+                               boolean image, boolean privateMode, @Nullable Observer observer) {
         String lower = url.toLowerCase(Locale.ROOT);
         if (!lower.startsWith("http://") && !lower.startsWith("https://")) {
             return false;
@@ -720,12 +799,18 @@ public final class AppDownloader {
                 .fetch(req.build(), flags)
                 .accept(response -> {
                     if (response != null) {
-                        activity.runOnUiThread(() -> saveResponse(activity, response, dir, url, null));
+                        activity.runOnUiThread(() -> saveResponse(activity, response, dir, url, observer));
+                    } else if (observer != null) {
+                        activity.runOnUiThread(observer::onDiscarded);
                     }
-                }, e -> activity.runOnUiThread(() -> Toast.makeText(activity,
-                        (image ? Lang.t("画像を保存できませんでした") : Lang.t("ダウンロードできませんでした"))
-                                + (e != null && e.getMessage() != null ? ": " + e.getMessage() : ""),
-                        Toast.LENGTH_LONG).show()));
+                }, e -> activity.runOnUiThread(() -> {
+                    Toast.makeText(activity,
+                            (image ? Lang.t("画像を保存できませんでした") : Lang.t("ダウンロードできませんでした"))
+                                    + (e != null && e.getMessage() != null ? ": " + e.getMessage() : ""),
+                            Toast.LENGTH_LONG).show();
+                    // 書き込みを始めずに終わったことを知らせる(再試行なら元の履歴を残したまま一覧を戻す)
+                    if (observer != null) observer.onDiscarded();
+                }));
         return true;
     }
 
@@ -945,6 +1030,14 @@ public final class AppDownloader {
             }
             Bitmap thumb = loadThumbnail(ctx, p);
             if (thumb != null) b.setLargeIcon(thumb);
+        } else if (p.threat == null && canRetry(p.sourceUrl)) {
+            // 失敗した: 「再試行」でダウンロード画面を開き、そこからやり直す
+            Intent retry = new Intent(ctx, DownloadListActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    .putExtra(EXTRA_RETRY_ID, id)
+                    .putExtra(EXTRA_RETRY_URL, p.sourceUrl);
+            b.addAction(0, Lang.t("再試行"), PendingIntent.getActivity(ctx, (int) id ^ 0x5245, retry,
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
         }
         NotificationManagerCompat.from(ctx).notify((int) id, b.build());
         updateSummary(ctx);

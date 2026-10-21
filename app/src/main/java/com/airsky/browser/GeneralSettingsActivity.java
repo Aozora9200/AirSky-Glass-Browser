@@ -24,8 +24,14 @@ public class GeneralSettingsActivity extends PixelSettingsActivity {
                 "isSwipeReload", true);
         toggle(p, R.drawable.ic_ps_progress, Lang.t("プログレスバーのアニメーション"), Lang.t("プログレスバー進行時のアニメーションを有効化する"),
                 "ProgressBarAnimation", true);
+        boolean fixedUrl = BrowserPrefs.isUrlBarFixed(this);
+        switchRow(R.drawable.ic_ps_lock, Lang.t("アドレスバーを固定する"),
+                Lang.t("スクロールしてもアドレスバーと下部メニューバーを隠さない"), fixedUrl, on -> {
+                    BrowserPrefs.setUrlBarFixed(this, on);
+                    rebuild();
+                }).key(BrowserPrefs.URL_BAR_FIXED);
         toggle(p, R.drawable.ic_ps_hidebar, Lang.t("下部メニューバーを自動的に隠す"), Lang.t("スクロール時に下部メニューバーを自動的に隠す"),
-                "hidebottom", true);
+                "hidebottom", true).setEnabled(!fixedUrl);
         toggle(p, R.drawable.ic_ps_vibration, Lang.t("振動"), Lang.t("サイト推移時に端末を少々振動させる"), "Vibrate", true);
 
         header(Lang.t("起動"));
@@ -46,7 +52,7 @@ public class GeneralSettingsActivity extends PixelSettingsActivity {
         header(Lang.t("お知らせ"));
         toggle(p, R.drawable.ic_ps_battery, Lang.t("バッテリー残量低下の通知"),
                 Lang.t("充電されていない状態でバッテリー残量が20%を切った場合、残量低下の通知を表示する"), "batteryalert", true);
-        note(Lang.t("ズームボタンの表示とタップの表示は「ユーザー補助機能」に移動しました。"));
+        note(Lang.t("タップの表示は「ユーザー補助機能」に移動しました。"));
     }
 
     private void requestNotificationPermission() {

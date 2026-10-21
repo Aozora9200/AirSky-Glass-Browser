@@ -104,7 +104,6 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.pm.PackageInfo;
-import android.widget.ZoomControls;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -142,7 +141,7 @@ import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
 public class MainActivity extends AppCompatActivity implements HistoryAdapter.HistoryListener,
-        GeckoTabView.WindowInsetsHost, DualScreenController.Owner, TopSheet.Host {
+        GeckoTabView.WindowInsetsHost, DualScreenController.Owner, TopSheet.Host, GeckoPromptDelegate.Host {
 
     private final List<HistoryItem> historyItems = new ArrayList<>();
     private final Map<String, Bitmap> faviconCaches = new HashMap<>();
@@ -207,7 +206,6 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
     private StatusBattery.IconDrawable batteryDrawable;
     private int lastBatteryPct = -1;
     private boolean lastBatteryCharging;
-    private ZoomControls zoomButton;
     private SavedPageDatabase dbH;
     private ImageButton backButton, forwardButton, bmbutton, reloadButton, hideBottomButton, showBottomButton, donttouch, popupbutton;
     private FrameLayout webViewContainer;
@@ -238,6 +236,12 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
 
     private GeckoEngine geckoEngine;
     private GeckoPromptDelegate promptDelegate;
+
+    @Nullable
+    @Override
+    public GeckoPromptDelegate getPromptDelegate() {
+        return promptDelegate;
+    }
     private GeckoPermissionDelegate permissionDelegate;
     // ストレージ権限(Android 9 以前)の許可待ちで保留している保存処理
     private Runnable pendingStorageAction;
@@ -306,7 +310,7 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
     private static final int HIT_IMAGE_ANCHOR = 3;
 
     private static final String GITHUB_API_URL =
-            "https://api.github.com/repos/Aozora9200/Aozora-Browser/releases/latest";
+            "https://api.github.com/repos/Aozora9200/AirSky-Glass-Browser/releases/latest";
     private boolean isLoading = false; // ページ読み込み中かどうか
     private boolean isNewTab = false;
     private boolean skipLockOnce = false;
@@ -409,24 +413,6 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
     private int singleScreenProgressTop = -1;
 
     private boolean nohideurl = false;
-    /**
-     * 拡大縮小ボタンで拡大率を変えている間(uptimeMillis)。拡大率が変わるとページのスクロール位置も
-     * 動くので(縮小で最上部に戻るなど)、この間はバーを出し入れしない。
-     */
-    private long zoomHoldUntil = 0;
-    /** 拡大縮小ボタンを押してから、拡大率の変化(と行き過ぎた時の戻り)が落ち着くまでの時間。 */
-    private static final long ZOOM_HOLD_MS = 900;
-    /**
-     * 縮小ボタンで最上部まで戻った時にバーを出す。拡大縮小中のスクロールは無視しているので、
-     * 落ち着いた後に最上部にいても「最上部ならバーを出す」が働かず、一度下へスクロールして
-     * 戻すまでアドレスバーが出てこなかった。
-     */
-    private final Runnable zoomSettledCheck = () -> {
-        GeckoTabView tab = getCurrentTab();
-        if (tab != null && !nohideurl && !isFullScreen && tab.getPageScrollY() <= 0) {
-            showUrlBar();
-        }
-    };
     private boolean networkCallbackRegistered = false;
     private boolean loadTabnoHideurl = false;
 
@@ -634,7 +620,6 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
         sitename = findViewById(R.id.sitename);
         hideBottomButton = findViewById(R.id.hidebottom);
         showBottomButton = findViewById(R.id.showbottom);
-        zoomButton = findViewById(R.id.simpleZoomControl);
         donttouch = findViewById(R.id.donttouch);
         forwardView = findViewById(R.id.forwardView);
         backView = findViewById(R.id.backView);
@@ -858,7 +843,6 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
         }
 
         pageloading.setVisibility(View.INVISIBLE);
-        zoomButton.setVisibility(View.GONE);
 
         reloadButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1223,12 +1207,14 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
         ImageButton slot1 = newTabletToolbarButton(R.id.action_shortcut_tablet1, ToolbarShortcut.SLOT_TABLET_1);
         ImageButton slot2 = newTabletToolbarButton(R.id.action_shortcut_tablet2, ToolbarShortcut.SLOT_TABLET_2);
 
+        // タブボタンは置かない(タブの切り替え・グループはツールバーの上のタブの帯で行う)
         View[] order = {shortcut, backButton, backView, forwardButton, forwardView, reloadButton, urlFrame,
-                slot1, slot2, tabButton, popupbutton, menu};
+                slot1, slot2, popupbutton, menu};
         for (View v : order) {
             ViewGroup parent = (ViewGroup) v.getParent();
             if (parent != null) parent.removeView(v);
         }
+        if (tabButton != null) tabButton.setVisibility(View.GONE);
         row.removeAllViews();
         int h = Math.round(40 * density);
         int w = Math.round(44 * density);
@@ -1346,7 +1332,30 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
 
     /** 上のタブの並びを今のタブに合わせる(タブレット UI の時だけ)。 */
     private void refreshTabStrip() {
-        if (tabStrip != null) tabStrip.refresh();
+        if (tabStrip == null) return;
+        ensureGroupsContiguous();
+        tabStrip.refresh();
+    }
+
+    /**
+     * グループのタブが離れて並んでいたら、最初のタブの位置に寄せる。
+     * 離れていると、タブの帯に同じグループのチップが 2 つ出てしまう(以前の並べ替えで離れたものも直す)。
+     */
+    private void ensureGroupsContiguous() {
+        if (tabGroups == null) return;
+        java.util.Set<Integer> seen = new java.util.HashSet<>();
+        java.util.Set<Integer> broken = new java.util.HashSet<>();
+        Integer prev = null;
+        for (int i = 0; i < tabIds.size(); i++) {
+            Integer g = tabGroupOf.get(tabIds.get(i));
+            if (g != null && !g.equals(prev)) {
+                if (!seen.add(g)) broken.add(g);
+            }
+            prev = g;
+        }
+        if (broken.isEmpty()) return;
+        for (int gid : broken) gatherGroup(gid);
+        saveTabsState();
     }
 
     private final TabStrip.Host tabStripHost = new TabStrip.Host() {
@@ -1395,13 +1404,28 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
         }
 
         @Override
-        public void moveTab(int from, int to) {
-            int n = tabs.size();
-            if (from < 0 || from >= n || to < 0 || to >= n || from == to) return;
-            List<Integer> order = new ArrayList<>(n);
-            for (int i = 0; i < n; i++) order.add(i);
-            order.add(to, order.remove(from));
+        public void reorderTabs(@NonNull List<Integer> order) {
             applyTabOrder(order);
+            saveTabsState();
+            refreshTabStrip();
+        }
+
+        @Override
+        public void dropTab(@NonNull List<Integer> order, int tabId, int groupId) {
+            applyTabOrder(order);
+            // 落とした場所のグループに入れる(-1 ならグループから外す)。元のグループが空になれば消す
+            Integer old = tabGroupOf.get(tabId);
+            TabGroup target = groupId >= 0 && tabGroups != null ? tabGroups.get(groupId) : null;
+            if (target != null && !target.closed) {
+                tabGroupOf.put(tabId, groupId);
+                target.touch();
+            } else {
+                tabGroupOf.remove(tabId);
+            }
+            Integer now = tabGroupOf.get(tabId);
+            if (old != null && !old.equals(now)) removeGroupIfEmpty(old);
+            saveTabsState();
+            if (tabGroups != null) tabGroups.save();
             refreshTabStrip();
         }
 
@@ -1422,7 +1446,151 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
         public void newTab(@NonNull View button) {
             openNewTabAnimated(button);
         }
+
+        @Nullable
+        @Override
+        public TabGroup tabGroup(int index) {
+            if (tabGroups == null || index < 0 || index >= tabIds.size()) return null;
+            Integer gid = tabGroupOf.get(tabIds.get(index));
+            TabGroup g = gid != null ? tabGroups.get(gid) : null;
+            return g != null && !g.closed ? g : null;
+        }
+
+        @Override
+        public int groupTabCount(int groupId) {
+            return tabsInGroup(groupId).size();
+        }
+
+        @Override
+        public void showTabContextMenu(@NonNull View anchor, int index) {
+            showTabStripTabMenu(anchor, index);
+        }
+
+        @Override
+        public void showGroupMenu(@NonNull View anchor, int groupId) {
+            showTabStripGroupMenu(anchor, groupId);
+        }
+
+        @Override
+        public void showAllTabs(@NonNull View button) {
+            clearUrlBarFocus();
+            closeKeyboard();
+            captureTabSnapshot(getCurrentTab(), () -> showTabMenu());
+        }
     };
+
+    /**
+     * タブの帯でタブを長押し・右クリックした時のメニュー。
+     * タブレットではタブボタンを置かないので、グループの作成・追加・解除はここから行う。
+     */
+    private void showTabStripTabMenu(@NonNull View anchor, int index) {
+        if (index < 0 || index >= tabs.size()) return;
+        android.widget.PopupMenu menu = new android.widget.PopupMenu(this, anchor);
+        android.view.Menu m = menu.getMenu();
+        final int newGroup = 1, removeFromGroup = 2, close = 3, closeOthers = 4, groupBase = 100;
+        Integer current = tabGroupOf.get(tabIds.get(index));
+        if (tabGroups != null) {
+            m.add(0, newGroup, 0, Lang.t("新しいグループにタブを追加"));
+            // 開いているほかのグループへ
+            List<TabGroup> others = new ArrayList<>();
+            for (TabGroup g : tabGroups.all()) {
+                if (!g.closed && (current == null || g.id != current) && !tabsInGroup(g.id).isEmpty()) others.add(g);
+            }
+            if (!others.isEmpty()) {
+                android.view.SubMenu sub = m.addSubMenu(0, 0, 1, Lang.t("グループにタブを追加"));
+                for (TabGroup g : others) {
+                    android.view.MenuItem item = sub.add(0, groupBase + g.id, 0, g.displayTitle(tabsInGroup(g.id).size()));
+                    item.setIcon(TabGroupUi.dot(TabGroup.colorValue(this, g.color, isSecretMode())));
+                }
+            }
+            if (current != null) m.add(0, removeFromGroup, 2, Lang.t("グループから削除"));
+        }
+        m.add(0, close, 3, Lang.t("タブを閉じる"));
+        if (tabs.size() > 1) m.add(0, closeOthers, 4, Lang.t("他のタブを閉じる"));
+        final int tabId = tabIds.get(index);
+        menu.setOnMenuItemClickListener(item -> {
+            int i = tabIds.indexOf(tabId);
+            if (i < 0) return true;
+            int id = item.getItemId();
+            if (id == newGroup) {
+                List<Integer> one = new ArrayList<>();
+                one.add(i);
+                int gid = createTabGroup(one);
+                TabGroup g = tabGroups != null ? tabGroups.get(gid) : null;
+                if (g != null) {
+                    TabGroupUi.showEditDialog(this, g, tabsInGroup(gid).size(), true, (title, color) -> {
+                        g.title = title;
+                        g.color = color;
+                        g.touch();
+                        tabGroups.save();
+                        refreshTabStrip();
+                    });
+                }
+            } else if (id >= groupBase) {
+                List<Integer> one = new ArrayList<>();
+                one.add(i);
+                moveTabsToGroup(one, id - groupBase);
+            } else if (id == removeFromGroup) {
+                removeTabFromGroup(i);
+            } else if (id == close) {
+                closeTab(i, true);
+            } else if (id == closeOthers) {
+                for (int k = tabs.size() - 1; k >= 0; k--) {
+                    if (tabIds.get(k) != tabId) closeTab(k, false);
+                }
+            }
+            refreshTabStrip();
+            return true;
+        });
+        menu.show();
+    }
+
+    /** タブの帯でグループ名のラベルを押した時のメニュー。 */
+    private void showTabStripGroupMenu(@NonNull View anchor, int groupId) {
+        if (tabGroups == null) return;
+        TabGroup g = tabGroups.get(groupId);
+        if (g == null) return;
+        android.widget.PopupMenu menu = new android.widget.PopupMenu(this, anchor);
+        android.view.Menu m = menu.getMenu();
+        final int newTab = 1, edit = 2, ungroup = 3, closeGroup = 4, delete = 5;
+        m.add(0, newTab, 0, Lang.t("グループに新しいタブを追加"));
+        m.add(0, edit, 1, Lang.t("名前と色を変更"));
+        m.add(0, ungroup, 2, Lang.t("グループを解除"));
+        m.add(0, closeGroup, 3, Lang.t("グループを閉じる"));
+        m.add(0, delete, 4, Lang.t("グループを削除"));
+        menu.setOnMenuItemClickListener(item -> {
+            int id = item.getItemId();
+            if (id == newTab) {
+                tabSwitcherHost.onNewTabInGroup(groupId);
+            } else if (id == edit) {
+                TabGroupUi.showEditDialog(this, g, tabsInGroup(groupId).size(), false, (title, color) -> {
+                    g.title = title;
+                    g.color = color;
+                    g.touch();
+                    tabGroups.save();
+                    refreshTabStrip();
+                });
+            } else if (id == ungroup) {
+                tabSwitcherHost.onUngroup(groupId);
+            } else if (id == closeGroup) {
+                // 閉じたグループはタブとグループの一覧の「タブグループ」から開き直せる
+                closeTabGroup(groupId);
+            } else if (id == delete) {
+                new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                        .setTitle(Lang.t("グループを削除しますか?"))
+                        .setMessage(Lang.t("グループのタブもすべて閉じられ、グループは保存されません。"))
+                        .setPositiveButton(Lang.t("削除"), (d, w) -> {
+                            deleteTabGroup(groupId);
+                            refreshTabStrip();
+                        })
+                        .setNegativeButton(Lang.t("キャンセル"), null)
+                        .show();
+            }
+            refreshTabStrip();
+            return true;
+        });
+        menu.show();
+    }
 
     /** アドレスバー/ボトムバーのスクロール連動を準備する。 */
     private void setupDynamicToolbar() {
@@ -1434,14 +1602,6 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
                 new DynamicToolbar.Listener() {
                     @Override
                     public void onToolbarFullyHidden(boolean hidden) {
-                        // バーが隠れている間だけズームボタンを出す(従来どおり)
-                        boolean zoombutton = getSharedPreferences("AppPrefs", MODE_PRIVATE)
-                                .getBoolean("zoomButton", true);
-                        boolean visible = hidden && zoombutton && !isFullScreen;
-                        if (visible == (zoomButton.getVisibility() == View.VISIBLE)) return;
-                        zoomButton.startAnimation(AnimationUtils.loadAnimation(MainActivity.this,
-                                visible ? R.anim.fade : R.anim.fadeout));
-                        zoomButton.setVisibility(visible ? View.VISIBLE : View.GONE);
                     }
 
                     @Override
@@ -1457,6 +1617,7 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
                 });
         dynamicToolbar.setHideBottomOnScroll(
                 getSharedPreferences("AppPrefs", MODE_PRIVATE).getBoolean("hidebottom", true));
+        dynamicToolbar.setUrlBarFixed(BrowserPrefs.isUrlBarFixed(this));
         // 下に置いたツールバーには URL バーがあるので、キーボードが出たらその上へ持ち上げる
         dynamicToolbar.setBottomFollowsIme(tabletBarsBottom);
 
@@ -3165,10 +3326,9 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
             SharedPreferences.Editor editor = setupprefs.edit();
             editor.putBoolean("rebootApp", false);
             editor.apply();
-            Intent intent = new Intent(this, BootingActivity.class);
-            finish();
-            overridePendingTransition(0, 0);
-            startActivity(intent);
+            // テーマや UI の切り替えを確実に反映するため、プロセスごと起動し直す
+            // (閉じる間にタブを保存し終えるよう少し待つ)
+            RestartActivity.restart(this, new Intent(this, BootingActivity.class), 1200);
         }
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             // API 24 以上のときだけ実行する処理
@@ -3182,6 +3342,7 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
         if (dynamicToolbar != null) {
             dynamicToolbar.setHideBottomOnScroll(
                     getSharedPreferences("AppPrefs", MODE_PRIVATE).getBoolean("hidebottom", true));
+            dynamicToolbar.setUrlBarFixed(BrowserPrefs.isUrlBarFixed(this));
         }
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             // API 24 以上のときだけ実行する処理
@@ -4094,19 +4255,50 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
             @Override
             public void run() {
                 try {
-                    File dir = new File(Environment.getExternalStorageDirectory(), "DCIM/AirSky/Screenshot");
-                    if (!dir.exists()) dir.mkdirs();
                     String ts = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
                     String name = ts + ".png";
-                    File file = new File(dir, name);
-                    FileOutputStream fos = new FileOutputStream(file);
-                    bmp.compress(Bitmap.CompressFormat.PNG, 100, fos);
-                    fos.flush();
-                    fos.close();
+                    String relDir = Environment.DIRECTORY_DCIM + "/AirSky/Screenshot";
+                    final String savedPath;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        // Android 10 以降は DCIM/AirSky を直接作れない(すべてのファイルへのアクセスが無いと失敗する)ので、
+                        // MediaStore に保存してフォルダも作ってもらう
+                        android.content.ContentResolver cr = getContentResolver();
+                        android.content.ContentValues v = new android.content.ContentValues();
+                        v.put(android.provider.MediaStore.Images.Media.DISPLAY_NAME, name);
+                        v.put(android.provider.MediaStore.Images.Media.MIME_TYPE, "image/png");
+                        v.put(android.provider.MediaStore.Images.Media.RELATIVE_PATH, relDir);
+                        v.put(android.provider.MediaStore.Images.Media.IS_PENDING, 1);
+                        Uri uri = cr.insert(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, v);
+                        if (uri == null) throw new java.io.IOException(Lang.t("保存先を作成できませんでした"));
+                        try (java.io.OutputStream os = cr.openOutputStream(uri)) {
+                            if (os == null || !bmp.compress(Bitmap.CompressFormat.PNG, 100, os)) {
+                                throw new java.io.IOException(Lang.t("画像を書き込めませんでした"));
+                            }
+                        } catch (Exception e) {
+                            cr.delete(uri, null, null);
+                            throw e;
+                        }
+                        v.clear();
+                        v.put(android.provider.MediaStore.Images.Media.IS_PENDING, 0);
+                        cr.update(uri, v, null, null);
+                        savedPath = relDir + "/" + name;
+                    } else {
+                        File dir = new File(Environment.getExternalStorageDirectory(), relDir);
+                        if (!dir.isDirectory() && !dir.mkdirs()) {
+                            throw new java.io.IOException(Lang.t("保存先を作成できませんでした") + ": " + dir.getAbsolutePath());
+                        }
+                        File file = new File(dir, name);
+                        try (FileOutputStream fos = new FileOutputStream(file)) {
+                            bmp.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                        }
+                        android.media.MediaScannerConnection.scanFile(MainActivity.this,
+                                new String[]{file.getAbsolutePath()}, new String[]{"image/png"}, null);
+                        savedPath = file.getAbsolutePath();
+                    }
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(MainActivity.this, Lang.t("スクリーンショットを保存しました: ") + file.getAbsolutePath(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, Lang.t("スクリーンショットを保存しました: ") + savedPath, Toast.LENGTH_LONG).show();
                         }
                     });
                 } catch (Exception e) {
@@ -4556,9 +4748,19 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
         @Override
         public void onScrollChanged(GeckoTabView tab, int scrollY, int oldScrollY) {
             // 戻る/進む・ズーム直後などの位置の飛びではバーを動かさない
-            if (!isCurrentTab(tab) || nohideurl
-                    || android.os.SystemClock.uptimeMillis() < zoomHoldUntil) return;
+            if (!isCurrentTab(tab) || nohideurl) return;
             dynamicToolbar.onPageScrolled(scrollY, oldScrollY);
+        }
+
+        @Override
+        public void onSelectionWebSearch(GeckoTabView tab, String text) {
+            addNewTab(BrowserPrefs.searchUrl(MainActivity.this, text));
+        }
+
+        @Override
+        public void onSelectionTranslate(GeckoTabView tab, String query) {
+            // ページのプレビューと同じシートで、翻訳の検索結果を見せる
+            showPagePreview(BrowserPrefs.searchUrl(MainActivity.this, query));
         }
 
         @Override
@@ -5279,7 +5481,6 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
             action_Bar.setVisibility(View.GONE);
             progressBar.setVisibility(View.GONE);
             StatusBar.setVisibility(View.GONE);
-            zoomButton.setVisibility(View.GONE);
             showBottomButton.setVisibility(View.GONE);
 
             getWindow().getDecorView().setSystemUiVisibility(
@@ -5759,8 +5960,10 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
             bmbutton.setVisibility(View.VISIBLE);
         }
         if (tabletUi) {
-            // タブレット UI では並びがずれないよう、隠さずに薄くする
+            // タブレット UI では並びがずれないよう、隠さずに薄くする。
+            // ただしスタートページでは使える項目が無いので、ページメニューのボタンごと隠す(いちばん右なので並びはずれない)
             boolean page = !isInternalUrl(currentUrl);
+            bmbutton.setVisibility(currentUrl != null && isHomeUrl(currentUrl) ? View.GONE : View.VISIBLE);
             bmbutton.setEnabled(page);
             bmbutton.setAlpha(page ? 1f : 0.38f);
         }
@@ -5892,19 +6095,6 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
             }
         }
         dynamicToolbar.attachTab(currentWebView);
-
-        // 連打しても、最後に押してから落ち着くまではスクロールの変化でバーを出さない
-        // (出すとバーが全部隠れている間だけのズームボタンが消えてしまう)
-        zoomButton.setOnZoomInClickListener(v -> {
-            zoomHoldUntil = android.os.SystemClock.uptimeMillis() + ZOOM_HOLD_MS;
-            currentWebView.zoomBy(1.5f);
-        });
-        zoomButton.setOnZoomOutClickListener(v -> {
-            zoomHoldUntil = android.os.SystemClock.uptimeMillis() + ZOOM_HOLD_MS;
-            currentWebView.zoomBy(1f / 1.5f);
-            zoomButton.removeCallbacks(zoomSettledCheck);
-            zoomButton.postDelayed(zoomSettledCheck, ZOOM_HOLD_MS);
-        });
 
         String url = currentWebView.getUrl();
         if (url == null) url = "";
@@ -6382,7 +6572,6 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
 
     private void reloadBrowserSettings() {
         SharedPreferences setupprefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
-        boolean zoombutton = setupprefs.getBoolean("zoomButton", true);
         pref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         darkModeEnabled = pref.getBoolean(KEY_DARK_MODE, false);
         basicAuthEnabled = pref.getBoolean(KEY_BASIC_AUTH, false);
@@ -6408,9 +6597,6 @@ public class MainActivity extends AppCompatActivity implements HistoryAdapter.Hi
             if (tab != null) applyTabSettings(tab);
         }
 
-        if (!zoombutton) {
-            zoomButton.setVisibility(View.GONE);
-        }
         reloadCurrentPage();
     }
 

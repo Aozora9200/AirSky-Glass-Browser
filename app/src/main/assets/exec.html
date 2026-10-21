@@ -484,7 +484,7 @@
          "  ping -c 3 <host>",
          "App commands:",
          "  su / root      switch to a root shell (rooted devices only)",
-         "  exit           leave root / close EXEC",
+         (rootEnabled ? "  exit           leave root / close EXEC" : "  exit           close EXEC"),
          "  help / clear / history",
          "Lines you type while a command runs are sent to it as input. Stop it with ^C (twice to force stop).",
          "This isn't a terminal (TTY), so full-screen commands such as vi and top don't work."]
@@ -497,10 +497,13 @@
          "  ping -c 3 <host>",
          "アプリ側のコマンド:",
          "  su / root      ルート権限のシェルに切り替える(ルート化された端末のみ)",
-         "  exit           root を抜ける / EXEC を閉じる",
+         (rootEnabled ? "  exit           root を抜ける / EXEC を閉じる" : "  exit           EXEC を閉じる"),
          "  help / clear / history",
          "実行中に入力した行は、そのコマンドへの入力になります。止める時は ^C(2 回目は強制終了)。",
-         "端末(TTY)ではないため、vi や top などの全画面のコマンドは使えません。"]).forEach(function (l) { addLine(l, "sys"); });
+         "端末(TTY)ではないため、vi や top などの全画面のコマンドは使えません。"]).forEach(function (l) {
+          if (!rootEnabled && l.indexOf("su / root") >= 0) return;
+          addLine(l, "sys");
+        });
         return;
       }
       if (trimmed === "history") {
@@ -508,6 +511,7 @@
         return;
       }
       if (trimmed === "su" || trimmed === "root") {
+        if (!rootEnabled) { addLine(T("コマンドが見つかりません: ", "command not found: ") + trimmed, "err"); return; }
         if (isRoot) { addLine(T("すでにルート権限のシェルです", "Already a root shell"), "sys"); return; }
         startRoot();
         return;
@@ -603,7 +607,9 @@
     });
     document.getElementById("hint").addEventListener("click", function () { input.focus(); });
 
-    try { if (Android.isRootAvailable()) rootChip.style.display = "inline-flex"; } catch (e) {}
+    var rootEnabled = false;
+    try { rootEnabled = Android.isRootAvailable(); } catch (e) {}
+    if (rootEnabled) rootChip.style.display = "inline-flex";
     updateTitle();
     updateInputLine();
     Android.start();

@@ -823,9 +823,16 @@ public class TabSwitcher {
         PopupMenu popup = new PopupMenu(activity, anchor);
         popup.getMenuInflater().inflate(host.isSecret()
                 ? R.menu.menu_tabsecretlist : R.menu.menu_tablist, popup.getMenu());
+        // グループが 1 つも無ければ「タブグループを一括削除」は出さない
+        android.view.MenuItem deleteGroups = popup.getMenu().findItem(R.id.action_delete_groups);
+        if (deleteGroups != null) {
+            deleteGroups.setVisible(host.supportsGroups() && !host.getGroups().isEmpty());
+        }
         popup.setOnMenuItemClickListener(item -> {
             int id = item.getItemId();
-            if (id == R.id.action_new_group) {
+            if (id == R.id.action_delete_groups) {
+                showDeleteGroupsDialog();
+            } else if (id == R.id.action_new_group) {
                 createGroupWithNewTab();
             } else if (id == R.id.action_group_tabs) {
                 TabGroupUi.showPickTabsDialog(activity, host, this::createGroupFrom);
@@ -917,6 +924,77 @@ public class TabSwitcher {
                     closeGroupPanelNow();
                     mutating = true;
                     host.onDeleteGroup(gid);
+                    mutating = false;
+                    if (showing) reloadAll();
+                })
+                .show();
+    }
+
+    /**
+     * タブグループの一括削除。全部に印を付けた一覧を出し、選んだグループをまとめて削除する
+     * (開いているグループはタブも閉じる)。
+     */
+    private void showDeleteGroupsDialog() {
+        List<TabGroup> groups = new ArrayList<>(host.getGroups());
+        if (groups.isEmpty()) return;
+        String[] labels = new String[groups.size()];
+        boolean[] checked = new boolean[groups.size()];
+        for (int i = 0; i < groups.size(); i++) {
+            TabGroup g = groups.get(i);
+            int count = g.closed ? g.saved.size() : host.countTabsInGroup(g.id);
+            String name = g.displayTitle(count);
+            String tabs = count + Lang.t(" 個のタブ");
+            // 名前がそのまま「N 個のタブ」なら、タブの数を重ねて書かない
+            labels[i] = name + (g.closed
+                    ? Lang.t("(閉じたグループ)")
+                    : name.equals(tabs) ? "" : Lang.t("(") + tabs + ")");
+            checked[i] = true;
+        }
+        androidx.appcompat.app.AlertDialog dialog = new MaterialAlertDialogBuilder(activity)
+                .setTitle(Lang.t("タブグループを一括削除"))
+                .setMultiChoiceItems(labels, checked, (d, which, on) -> {
+                    checked[which] = on;
+                    updateDeleteGroupsButton((androidx.appcompat.app.AlertDialog) d, checked);
+                })
+                .setNegativeButton(Lang.t("キャンセル"), null)
+                .setPositiveButton(Lang.t("削除"), (d, w) -> {
+                    List<Integer> ids = new ArrayList<>();
+                    for (int i = 0; i < groups.size(); i++) if (checked[i]) ids.add(groups.get(i).id);
+                    confirmDeleteGroups(ids);
+                })
+                .create();
+        dialog.setOnShowListener(d -> updateDeleteGroupsButton(dialog, checked));
+        dialog.show();
+    }
+
+    private static void updateDeleteGroupsButton(androidx.appcompat.app.AlertDialog dialog, boolean[] checked) {
+        int n = 0;
+        for (boolean c : checked) if (c) n++;
+        android.widget.Button b = dialog.getButton(android.content.DialogInterface.BUTTON_POSITIVE);
+        if (b == null) return;
+        b.setEnabled(n > 0);
+        b.setText(n > 0 ? Lang.t("削除") + " (" + n + ")" : Lang.t("削除"));
+    }
+
+    private void confirmDeleteGroups(@NonNull List<Integer> ids) {
+        if (ids.isEmpty()) return;
+        int tabs = 0;
+        for (int gid : ids) {
+            TabGroup g = host.getGroup(gid);
+            if (g != null && !g.closed) tabs += host.countTabsInGroup(gid);
+        }
+        new MaterialAlertDialogBuilder(activity)
+                .setTitle(ids.size() + Lang.t(" 個のタブグループを削除しますか？"))
+                .setMessage(tabs > 0
+                        ? Lang.t("グループの ") + tabs + Lang.t(" 個のタブも閉じます。この操作は元に戻せません。")
+                        : Lang.t("この操作は元に戻せません。"))
+                .setNegativeButton(Lang.t("キャンセル"), null)
+                .setPositiveButton(Lang.t("削除"), (d, w) -> {
+                    closeGroupPanelNow();
+                    mutating = true;
+                    for (int gid : ids) {
+                        if (host.getGroup(gid) != null) host.onDeleteGroup(gid);
+                    }
                     mutating = false;
                     if (showing) reloadAll();
                 })

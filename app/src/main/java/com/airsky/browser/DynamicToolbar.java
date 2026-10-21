@@ -80,6 +80,8 @@ public class DynamicToolbar {
 
     /** 設定「スクロールでボトムバーも隠す」。 */
     private boolean hideBottomOnScroll;
+    /** 設定「アドレスバーを固定」。スクロールしてもバーを隠さない(▼での手動の出し入れはできる)。 */
+    private boolean urlBarFixed;
     /** ボトムバーを手動(▼ボタン)で隠している。 */
     private boolean bottomManuallyHidden;
     /** 内蔵ページなどでバーを常に出しておく。 */
@@ -180,6 +182,23 @@ public class DynamicToolbar {
         offset = 0;
         relayoutContent();
         apply();
+    }
+
+    /** 設定「アドレスバーを固定」。オンの間はスクロールしてもアドレスバーとボトムバーを隠さない。 */
+    public void setUrlBarFixed(boolean fixed) {
+        if (urlBarFixed == fixed) return;
+        urlBarFixed = fixed;
+        cancelSnap();
+        handler.removeCallbacks(snapRunnable);
+        offset = 0;
+        fitted = false;
+        relayoutContent();
+        apply();
+    }
+
+    /** スクロールでボトムバーも隠すか(アドレスバーを固定している時は隠さない)。 */
+    private boolean hidesBottomOnScroll() {
+        return hideBottomOnScroll && !urlBarFixed;
     }
 
     /** 表示中のタブ。Gecko に Dynamic Toolbar の情報を渡す相手。 */
@@ -445,12 +464,12 @@ public class DynamicToolbar {
 
     /** スクロールで動く高さの合計。 */
     private int range() {
-        if (fullScreen || pinned) return 0;
+        if (fullScreen || pinned || urlBarFixed) return 0;
         return topHeight + (bottomScrolls() ? bottomHeight : 0);
     }
 
     private boolean bottomScrolls() {
-        return hideBottomOnScroll && !bottomManuallyHidden;
+        return hidesBottomOnScroll() && !bottomManuallyHidden;
     }
 
     /**
@@ -463,7 +482,7 @@ public class DynamicToolbar {
         ViewGroup.LayoutParams p = content.getLayoutParams();
         if (!(p instanceof ViewGroup.MarginLayoutParams)) return;
         ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) p;
-        int bottom = (fullScreen || hideBottomOnScroll || bottomManuallyHidden) ? 0 : bottomHeight;
+        int bottom = (fullScreen || hidesBottomOnScroll() || bottomManuallyHidden) ? 0 : bottomHeight;
         if (fitted) bottom += range();
         // 二画面: ボトムバーは下の画面にあるので、上のバーの分だけ下端を詰めて画面内に収める
         if (pinned) bottom = fullScreen ? 0 : topHeight;
@@ -515,7 +534,7 @@ public class DynamicToolbar {
         if (doc <= 0 || !(content.getParent() instanceof View)) return false;
         int full = ((View) content.getParent()).getHeight();
         if (full <= 0) return false;
-        int bottom = (fullScreen || hideBottomOnScroll || bottomManuallyHidden) ? 0 : bottomHeight;
+        int bottom = (fullScreen || hidesBottomOnScroll() || bottomManuallyHidden) ? 0 : bottomHeight;
         return doc <= full - bottom + 2;
     }
 

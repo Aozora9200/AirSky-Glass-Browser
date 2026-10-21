@@ -38,6 +38,11 @@ public class HomepageSettingsActivity extends PixelSettingsActivity {
         radioRow(0, Lang.t("カスタムのウェブアドレス"),
                 url == null || url.isEmpty() ? Lang.t("タップして入力") : url, custom, this::editUrl).setEnabled(enabled);
         note(Lang.t("ホームページはシークレットタブでは使われません。"));
+
+        header(Lang.t("スタートページ"));
+        switchRow(R.drawable.ic_ps_news, Lang.t("ニュースを表示"),
+                Lang.t("スタートページの下に、おすすめのニュース記事を表示します"),
+                BrowserPrefs.startPageNews(this), on -> BrowserPrefs.setStartPageNews(this, on));
     }
 
     private void editUrl() {

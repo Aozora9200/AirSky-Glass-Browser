@@ -127,7 +127,8 @@ public class SettingsActivity extends PixelSettingsActivity {
         row(R.drawable.ic_ps_swap, Lang.t("データの引っ越し"), Lang.t("別の端末の AirSky Browser にデータを移す"),
                 () -> open(DeviceMigrationActivity.class))
                 .tone(R.color.ps_tone_teal_bg, R.color.ps_tone_teal_fg);
-        row(R.drawable.ic_ps_storage, Lang.t("ストレージ"), Lang.t("アプリの情報を開く"), this::openAppDetails)
+        row(R.drawable.ic_ps_storage, Lang.t("ストレージ"), Lang.t("使用量、キャッシュとサイトデータの消去"),
+                () -> open(StorageManageActivity.class))
                 .tone(R.color.ps_tone_gray_bg, R.color.ps_tone_gray_fg);
         row(R.drawable.ic_ps_history, Lang.t("初期設定にリセット"), Lang.t("設定をデフォルト値に戻す"), this::confirmReset)
                 .tone(R.color.ps_tone_gray_bg, R.color.ps_tone_gray_fg);
@@ -169,6 +170,7 @@ public class SettingsActivity extends PixelSettingsActivity {
             {Lang.t("住所"), Lang.t("自動入力とパスワード"), AutofillSettingsActivity.class},
             {Lang.t("非アクティブなタブ"), Lang.t("タブとタブグループ"), InactiveTabsSettingsActivity.class},
             {Lang.t("ホームページ"), Lang.t("詳細設定"), HomepageSettingsActivity.class},
+            {Lang.t("ニュースを表示"), Lang.t("スタートページ"), HomepageSettingsActivity.class},
             {Lang.t("デザイン"), Lang.t("詳細設定"), DesignSettingsActivity.class},
             {Lang.t("テーマ (ライト / ダーク)"), Lang.t("デザイン"), DesignSettingsActivity.class},
             {Lang.t("メニューボタン"), Lang.t("デザイン"), DesignSettingsActivity.class},
@@ -181,7 +183,6 @@ public class SettingsActivity extends PixelSettingsActivity {
             {Lang.t("仮想マウス"), Lang.t("コントローラー"), ControllerSettingsActivity.class},
             {Lang.t("デフォルトのズーム (文字の大きさ)"), Lang.t("ユーザー補助機能"), AccessibilitySettingsActivity.class},
             {Lang.t("強制的にズームを有効にする"), Lang.t("ユーザー補助機能"), AccessibilitySettingsActivity.class},
-            {Lang.t("ズームボタンの表示"), Lang.t("ユーザー補助機能"), AccessibilitySettingsActivity.class},
             {Lang.t("字幕"), Lang.t("ユーザー補助機能"), AccessibilitySettingsActivity.class},
             {Lang.t("タップを表示"), Lang.t("ユーザー補助機能"), AccessibilitySettingsActivity.class},
             {Lang.t("テキスト カーソル"), Lang.t("ユーザー補助機能"), AccessibilitySettingsActivity.class},
@@ -205,6 +206,7 @@ public class SettingsActivity extends PixelSettingsActivity {
             {Lang.t("起動画面・起動音"), Lang.t("全般"), GeneralSettingsActivity.class},
             {Lang.t("振動"), Lang.t("全般"), GeneralSettingsActivity.class},
             {Lang.t("バッテリー残量低下の通知"), Lang.t("全般"), GeneralSettingsActivity.class},
+            {Lang.t("アドレスバーを固定する"), Lang.t("全般"), GeneralSettingsActivity.class},
             {Lang.t("下部メニューバーを自動的に隠す"), Lang.t("全般"), GeneralSettingsActivity.class},
             {Lang.t("更新情報を表示"), Lang.t("全般"), GeneralSettingsActivity.class},
             {Lang.t("すべてをデスクトップモードにする"), Lang.t("ブラウザの動作"), BrowserBehaviorSettingsActivity.class},
@@ -213,6 +215,8 @@ public class SettingsActivity extends PixelSettingsActivity {
             {Lang.t("URL スキーム"), Lang.t("ブラウザの動作"), BrowserBehaviorSettingsActivity.class},
             {Lang.t("データ使用状況"), "AirSky", DataUsage.class},
             {Lang.t("データの引っ越し"), "AirSky", DeviceMigrationActivity.class},
+            {Lang.t("ストレージ"), "AirSky", StorageManageActivity.class},
+            {Lang.t("キャッシュを消去"), Lang.t("ストレージ"), StorageManageActivity.class},
             {Lang.t("Bluetooth・QR コード・Quick Share で引っ越し"), Lang.t("データの引っ越し"), DeviceMigrationActivity.class},
             {Lang.t("AirSky Browser について"), Lang.t("情報"), AppInfoActivity.class},
     };
@@ -232,13 +236,16 @@ public class SettingsActivity extends PixelSettingsActivity {
         header(Lang.t("検索結果"));
         for (Object[] e : hits) {
             Class<?> target = (Class<?>) e[2];
-            row(0, (String) e[0], (String) e[1], () -> {
+            String title = (String) e[0];
+            row(0, title, (String) e[1], () -> {
+                // 開いた画面で、選んだ項目までスクロールして目立たせる
+                Intent intent = new Intent(this, target).putExtra(EXTRA_FOCUS_TITLE, title);
                 if (target == DesignSettingsActivity.class) {
-                    openForResult(target);
+                    startActivityForResult(intent, 1001);
                 } else if (e.length > 3) {
                     SitePermissionActivity.open(this, (Integer) e[3]);
                 } else {
-                    open(target);
+                    startActivity(intent);
                 }
             });
         }
@@ -286,6 +293,7 @@ public class SettingsActivity extends PixelSettingsActivity {
             editor.putBoolean("intentJump", true);
             editor.putBoolean("ProgressBarAnimation", true);
             editor.putBoolean("hidebottom", true);
+            editor.putBoolean(BrowserPrefs.URL_BAR_FIXED, false);
             editor.putBoolean("batteryalert", true);
             editor.putBoolean("zoomButton", true);
             editor.putBoolean("bootScreen", true);
@@ -297,7 +305,7 @@ public class SettingsActivity extends PixelSettingsActivity {
             editor.putBoolean("isSwipeReload", true);
             for (String k : new String[]{BrowserPrefs.DO_NOT_TRACK, BrowserPrefs.GPC, BrowserPrefs.PRELOAD,
                     BrowserPrefs.TRACKING, BrowserPrefs.SAFE_BROWSING, BrowserPrefs.HTTPS_ONLY,
-                    BrowserPrefs.SECURE_DNS, BrowserPrefs.SECURE_DNS_PROVIDER, BrowserPrefs.JS_OPTIMIZE,
+                    BrowserPrefs.SECURE_DNS, BrowserPrefs.SECURE_DNS_PROVIDER, BrowserPrefs.SECURE_DNS_CUSTOM, BrowserPrefs.JS_OPTIMIZE,
                     BrowserPrefs.LOCK_SECRET, BrowserPrefs.FONT_SCALE, BrowserPrefs.FONT_AUTO,
                     BrowserPrefs.FORCE_ZOOM, BrowserPrefs.DOUBLE_TAP_ZOOM, BrowserPrefs.CARET,
                     BrowserPrefs.TRANSLATE_OFFER, BrowserPrefs.TRANSLATE_AUTO, BrowserPrefs.PAGE_LANGUAGE, BrowserPrefs.HOME_ENABLED,

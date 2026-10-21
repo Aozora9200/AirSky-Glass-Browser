@@ -3,8 +3,6 @@ package com.airsky.browser;
 import android.Manifest;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
@@ -820,6 +818,7 @@ public class DeviceMigrationActivity extends AppCompatActivity {
             t.port = server.getLocalPort();
             t.key = MigrationChannel.newKey();
             t.device = DeviceMigration.deviceName();
+            t.signature = MigrationChannel.appSignature(this);
             try {
                 QrRenderer.Style st = new QrRenderer.Style();
                 st.dot = QrRenderer.DOT_ROUNDED;
@@ -854,7 +853,7 @@ public class DeviceMigrationActivity extends AppCompatActivity {
                 try {
                     s.setSoTimeout(120_000);
                     s.setTcpNoDelay(true);
-                    MigrationChannel.send(s.getInputStream(), s.getOutputStream(), t.key, file, sum,
+                    MigrationChannel.send(s.getInputStream(), s.getOutputStream(), t.key, t.signature, file, sum,
                             (done, total) -> postProgress(token, done, total));
                     closeQuietly(s);
                     closeQuietly(server);
@@ -862,7 +861,7 @@ public class DeviceMigrationActivity extends AppCompatActivity {
                         if (token == op) sent();
                     });
                     return;
-                } catch (MigrationChannel.RemoteRejected r) {
+                } catch (MigrationChannel.RemoteRejected | MigrationChannel.SignatureMismatch r) {
                     closeQuietly(s);
                     closeQuietly(server);
                     main.post(() -> {
@@ -1067,7 +1066,8 @@ public class DeviceMigrationActivity extends AppCompatActivity {
                     main.post(() -> {
                         if (token == op) setTransferText(Lang.t("送信しています"), Lang.f("%s へ送っています。画面を閉じずにお待ちください。", name));
                     });
-                    MigrationChannel.send(socket.getInputStream(), socket.getOutputStream(), null, file, sum,
+                    MigrationChannel.send(socket.getInputStream(), socket.getOutputStream(), null,
+                            MigrationChannel.appSignature(getApplicationContext()), file, sum,
                             (done, total) -> postProgress(token, done, total));
                     closeQuietly(socket);
                     main.post(() -> {
@@ -1077,7 +1077,7 @@ public class DeviceMigrationActivity extends AppCompatActivity {
                     closeQuietly(socket);
                     main.post(() -> {
                         if (token != op) return;
-                        if (e instanceof MigrationChannel.RemoteRejected) {
+                        if (e instanceof MigrationChannel.RemoteRejected || e instanceof MigrationChannel.SignatureMismatch) {
                             failTransfer(e);
                         } else {
                             transferring = false;
@@ -1214,6 +1214,11 @@ public class DeviceMigrationActivity extends AppCompatActivity {
     }
 
     private void receiveWithTicket(@NonNull MigrationChannel.Ticket t) {
+        if (!MigrationChannel.sameSignature(MigrationChannel.appSignature(this), t.signature)) {
+            // 署名の違う(作り替えられた・別の開発者の)アプリとは、つなぐ前に止める
+            go(() -> errorPage(Lang.t("引っ越しを完了できませんでした"), signatureMismatchMessage(), null));
+            return;
+        }
         go(() -> transferPage(Lang.t("接続しています"), Lang.f("%s に接続しています…", t.device)));
         int token = op;
         transferring = true;
@@ -1392,7 +1397,7 @@ public class DeviceMigrationActivity extends AppCompatActivity {
             if (token == op) setTransferText(Lang.t("受信しています"), Lang.f("%s から受け取っています。画面を閉じずにお待ちください。", from));
         });
         try {
-            MigrationChannel.receive(in, out, key, file, null, (done, total) -> postProgress(token, done, total));
+            MigrationChannel.receive(in, out, key, MigrationChannel.appSignature(getApplicationContext()), file, null, (done, total) -> postProgress(token, done, total));
         } catch (IOException e) {
             //noinspection ResultOfMethodCallIgnored
             file.delete();
@@ -1516,14 +1521,8 @@ public class DeviceMigrationActivity extends AppCompatActivity {
     /** プロセスごと起動し直し、反映した結果をこの画面で見せる。 */
     private void restartIntoResult() {
         Intent next = new Intent(this, DeviceMigrationActivity.class)
-                .putExtra(EXTRA_FINISHED, true)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pi = PendingIntent.getActivity(this, 0, next,
-                PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-        AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-        if (am != null) am.set(AlarmManager.RTC, System.currentTimeMillis() + 600, pi);
-        finishAffinity();
-        main.postDelayed(() -> System.exit(0), 300);
+                .putExtra(EXTRA_FINISHED, true);
+        RestartActivity.restart(this, next);
     }
 
     // ------------------------------------------------------------------
@@ -1665,17 +1664,27 @@ public class DeviceMigrationActivity extends AppCompatActivity {
         String msg;
         if (e instanceof MigrationChannel.WrongKey) {
             msg = Lang.t("QR コードが古いか、別の端末のものです。送る端末に表示されている QR コードを読み取り直してください。");
+        } else if (e instanceof MigrationChannel.SignatureMismatch) {
+            msg = signatureMismatchMessage();
         } else if (e instanceof MigrationChannel.NoSpace) {
             msg = Lang.t("受け取る端末の空き容量が足りません。不要なファイルを消してから、もう一度お試しください。");
         } else if (e instanceof MigrationChannel.RemoteRejected) {
             String why = e.getMessage();
             if ("nospace".equals(why)) msg = Lang.t("受け取る端末の空き容量が足りません。");
             else if ("corrupt".equals(why)) msg = Lang.t("データが途中で壊れました。もう一度お試しください。");
+            else if ("signature".equals(why)) msg = signatureMismatchMessage();
             else msg = Lang.t("受け取る端末でキャンセルされました。");
         } else {
             msg = Lang.t("接続が切れました。2 台の端末を近くに置いて、もう一度お試しください。");
         }
         replace(() -> errorPage(title, msg, null));
+    }
+
+    /** 相手のアプリの署名がこのアプリと違う時の説明。 */
+    @NonNull
+    private static String signatureMismatchMessage() {
+        return Lang.t("相手の端末の AirSky が正規のアプリではないか、このアプリと署名が異なります。安全のため引っ越しを中止しました。"
+                + "両方の端末に公式の AirSky を入れて、もう一度お試しください。");
     }
 
     @NonNull

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.text.InputType;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -48,6 +49,13 @@ public class DebugActivity extends PixelSettingsActivity {
     @Override
     protected CharSequence pageTitle() {
         return "Debug Menu";
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // パスワードで解除していない時は開かない(作り直しの時も、解除から時間が経っていれば閉じる)
+        if (!DebugGate.isUnlocked()) finish();
     }
 
     @Override
@@ -97,6 +105,26 @@ public class DebugActivity extends PixelSettingsActivity {
         row(R.drawable.ic_ps_location, Lang.t("位置情報の権限設定"), null,
                 () -> open(GeoSettingsActivity.class)).chevron();
         row(R.drawable.ic_ps_info, Lang.t("ライセンス"), null, () -> open(OssLicensesActivity.class)).chevron();
+
+        // ---- EXEC ----
+        header("EXEC");
+        boolean rootShell = p.getBoolean(ExecActivity.PREF_ROOT_SHELL, false);
+        switchRow(R.drawable.ic_ps_code, Lang.t("root のシェル(su)を使えるようにする"),
+                Lang.t("ルート化された端末で、EXEC から su のシェルに切り替えられるようにします"), rootShell, on -> {
+                    if (!on) {
+                        p.edit().putBoolean(ExecActivity.PREF_ROOT_SHELL, false).apply();
+                        return;
+                    }
+                    // オンにするのは確認してから。やめた時はスイッチを戻す
+                    rebuild();
+                    confirm(Lang.t("root のシェルを有効にしますか?"),
+                            Lang.t("root のシェルからは、AirSky のデータ(パスワードや履歴を含む)や端末のシステムを制限なく読み書きできます。"
+                                    + "コマンドによっては AirSky や端末が正しく動かなくなることがあります。意味の分からないコマンドは実行しないでください。"),
+                            Lang.t("有効にする"), () -> {
+                                p.edit().putBoolean(ExecActivity.PREF_ROOT_SHELL, true).apply();
+                                rebuild();
+                            });
+                });
 
         // ---- フラグ ----
         header(Lang.t("フラグ"));

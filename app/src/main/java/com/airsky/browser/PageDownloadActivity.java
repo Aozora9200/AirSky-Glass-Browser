@@ -38,6 +38,7 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
@@ -208,13 +209,16 @@ public class PageDownloadActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(jsSwitch.isChecked());
         webSettings.setDomStorageEnabled(true);
         webSettings.setDatabaseEnabled(true);
-        webSettings.setAllowFileAccess(true);
-        webSettings.setAllowContentAccess(true);
+        // 保存するのはウェブのページだけ。端末の中のファイル(file://)やほかのアプリのデータ(content://)は読ませない
+        webSettings.setAllowFileAccess(false);
+        webSettings.setAllowContentAccess(false);
+        webSettings.setAllowFileAccessFromFileURLs(false);
+        webSettings.setAllowUniversalAccessFromFileURLs(false);
         webSettings.setLoadsImagesAutomatically(true);
         webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         webSettings.setBlockNetworkLoads(false);
-        webSettings.setSupportMultipleWindows(true);
-        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        webSettings.setSupportMultipleWindows(false);
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(false);
         webSettings.setMediaPlaybackRequiresUserGesture(false);
         updateUserAgent(webSettings);
 
@@ -355,6 +359,11 @@ public class PageDownloadActivity extends AppCompatActivity {
             isSaving.set(false);
             return;
         }
+        if (!isWebUrl(urlString) && !urlString.startsWith("data:")) {
+            Toast.makeText(this, Lang.t("保存できるのは http:// または https:// のページだけです"), Toast.LENGTH_LONG).show();
+            isSaving.set(false);
+            return;
+        }
 
         currentSessionId = System.currentTimeMillis();
 
@@ -418,6 +427,22 @@ public class PageDownloadActivity extends AppCompatActivity {
         }
     }
 
+    /** http:// か https:// の URL か。 */
+    static boolean isWebUrl(@Nullable String url) {
+        if (url == null) return false;
+        String scheme = Uri.parse(url.trim()).getScheme();
+        return "http".equalsIgnoreCase(scheme) || "https".equalsIgnoreCase(scheme);
+    }
+
+    /** http(s) の接続だけを開く。file: ・ jar: などの URL は読まない。 */
+    static HttpURLConnection openWebConnection(@NonNull URL url) throws IOException {
+        String p = url.getProtocol();
+        if (!"http".equalsIgnoreCase(p) && !"https".equalsIgnoreCase(p)) {
+            throw new IOException("Unsupported URL scheme: " + p);
+        }
+        return (HttpURLConnection) url.openConnection();
+    }
+
     private class CustomWebViewClient extends WebViewClient {
         private final String originalUrl;
         private final String siteName;
@@ -455,8 +480,19 @@ public class PageDownloadActivity extends AppCompatActivity {
         }
 
         @Override
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+            // ページの中から file:// ・ content:// ・ intent:// などへ移らせない
+            return !isWebUrl(request.getUrl().toString());
+        }
+
+        @Override
         public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
             String resUrl = request.getUrl().toString();
+            if (!isWebUrl(resUrl) && !resUrl.startsWith("data:") && !resUrl.startsWith("blob:")) {
+                // 端末の中のファイルなどを読み込もうとした: 空の応答を返す
+                return new WebResourceResponse("text/plain", "UTF-8", 403, "Forbidden",
+                        null, new java.io.ByteArrayInputStream(new byte[0]));
+            }
             if (Utils.isResourceType(resUrl)) {
                 loadedResources.add(resUrl);
             }
@@ -674,7 +710,7 @@ public class PageDownloadActivity extends AppCompatActivity {
             }
 
             try {
-                final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                final HttpURLConnection conn = openWebConnection(url);
                 conn.setRequestMethod("HEAD");
                 conn.setConnectTimeout(CONNECT_TIMEOUT_MS);
                 conn.setReadTimeout(READ_TIMEOUT_MS);
@@ -1074,7 +1110,7 @@ public class PageDownloadActivity extends AppCompatActivity {
         private String getContentTypeFromUrl(final String urlString) {
             try {
                 final URL url = new URL(urlString);
-                final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                final HttpURLConnection conn = openWebConnection(url);
                 conn.setRequestMethod("HEAD");
                 conn.setRequestProperty("User-Agent", pcUa ? PC_USER_AGENT : WebSettings.getDefaultUserAgent(this));
                 conn.setRequestProperty("Accept", ACCEPT_HEADER);
@@ -1173,7 +1209,7 @@ public class PageDownloadActivity extends AppCompatActivity {
             HttpURLConnection conn = null;
             try {
                 final URL url = new URL(resourceUrl);
-                conn = (HttpURLConnection) url.openConnection();
+                conn = openWebConnection(url);
                 conn.setInstanceFollowRedirects(true);
                 conn.setConnectTimeout(CONNECT_TIMEOUT_MS);
                 conn.setReadTimeout(READ_TIMEOUT_MS);
@@ -1221,7 +1257,7 @@ public class PageDownloadActivity extends AppCompatActivity {
             HttpURLConnection conn = null;
             try {
                 final URL url = new URL(resourceUrl);
-                conn = (HttpURLConnection) url.openConnection();
+                conn = openWebConnection(url);
                 conn.setInstanceFollowRedirects(true);
                 conn.setConnectTimeout(CONNECT_TIMEOUT_MS);
                 conn.setReadTimeout(READ_TIMEOUT_MS);
@@ -1525,7 +1561,7 @@ public class PageDownloadActivity extends AppCompatActivity {
         HttpURLConnection conn = null;
         try {
             final URL url = new URL(resourceUrl);
-            conn = (HttpURLConnection) url.openConnection();
+            conn = openWebConnection(url);
             conn.setInstanceFollowRedirects(true);
             conn.setConnectTimeout(CONNECT_TIMEOUT_MS);
             conn.setReadTimeout(READ_TIMEOUT_MS);

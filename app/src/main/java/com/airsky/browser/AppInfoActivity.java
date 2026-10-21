@@ -50,7 +50,7 @@ public class AppInfoActivity extends PixelSettingsActivity {
 
         header(Lang.t("ソフトウェア情報"));
         row(0, Lang.t("アプリ名"), getString(R.string.app_name), null);
-        row(0, Lang.t("App バージョン"), getString(R.string.version), this::onVersionTap);
+        row(0, Lang.t("アプリバージョン"), getString(R.string.version), this::onVersionTap);
         row(0, Lang.t("ビルド番号"), getString(R.string.build), this::onBuildTap);
     }
 
@@ -132,21 +132,36 @@ public class AppInfoActivity extends PixelSettingsActivity {
                     .setView(LayoutInflater.from(this).inflate(R.layout.dialog_password, null))
                     .setPositiveButton("OK", (dialog, which) -> {
                         EditText input = ((AlertDialog) dialog).findViewById(R.id.password_edit);
-                        if (input != null) {
-                            String enteredPassword = input.getText().toString();
-                            String correctPassword = getString(R.string.password_key);
-
-                            if (enteredPassword.equals(correctPassword)) {
-                                showToast(Lang.t("これでデベロッパーになりました！"));
-                                startActivity(new Intent(this, DebugActivity.class));
-                            } else {
-                                Toast.makeText(this, Lang.t("パスワードが違います"), Toast.LENGTH_SHORT).show();
-                            }
-                        }
+                        if (input != null) checkDebugPassword(input);
                     })
                     .setNegativeButton(Lang.t("キャンセル"), null)
                     .show();
         }
+    }
+
+    /** パスワードで Debug Menu の暗号を解く(鍵を作るのに少し時間がかかるので別のスレッドで)。 */
+    private void checkDebugPassword(EditText input) {
+        long wait = DebugGate.retryWaitMs();
+        if (wait > 0) {
+            showToast(Lang.t("しばらくしてからもう一度お試しください") + " (" + ((wait + 999) / 1000) + "s)");
+            return;
+        }
+        android.text.Editable e = input.getText();
+        char[] entered = new char[e.length()];
+        e.getChars(0, e.length(), entered, 0);
+        e.clear();
+        new Thread(() -> {
+            String target = DebugGate.unlock(entered);
+            runOnUiThread(() -> {
+                if (isFinishing() || isDestroyed()) return;
+                if (target != null) {
+                    showToast(Lang.t("これでデベロッパーになりました！"));
+                    startActivity(new Intent().setClassName(this, target));
+                } else {
+                    Toast.makeText(this, Lang.t("パスワードが違います"), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }, "DebugGate").start();
     }
 
     private void showToast(String text) {

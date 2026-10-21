@@ -21,4 +21,9 @@
     <color name="ps_tone_purple_fg">#E9DDFF</color>
     <color name="ps_ok">#6DD58C</color>
     <color name="ps_warn">#FFB870</color>
+    <color name="ps_storage_app">#AFC6FF</color>
+    <color name="ps_storage_data">#6CD8CB</color>
+    <color name="ps_storage_web">#FFB77C</color>
+    <color name="ps_storage_cache">#CFBCFF</color>
+    <color name="ps_storage_track">#3A3B41</color>
 </resources>

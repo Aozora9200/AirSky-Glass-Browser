@@ -45,8 +45,8 @@ import java.util.concurrent.Executors;
 public class UpdateActivity extends AppCompatActivity {
 
     private static final String EXTRA_VERSION = "com.airsky.browser.extra.UPDATE_VERSION";
-    private static final String RELEASE_API = "https://api.github.com/repos/Aozora9200/Aozora-Browser/releases/latest";
-    private static final String DOWNLOAD_BASE = "https://github.com/Aozora9200/Aozora-Browser/releases/latest/download/";
+    private static final String RELEASE_API = "https://api.github.com/repos/Aozora9200/AirSky-Glass-Browser/releases/latest";
+    private static final String DOWNLOAD_BASE = "https://github.com/Aozora9200/AirSky-Glass-Browser/releases/latest/download/";
     private static final String APK_NAME = "update.apk";
 
     @NonNull
@@ -190,11 +190,11 @@ public class UpdateActivity extends AppCompatActivity {
 
     /**
      * リリースに添付された APK のうち、この端末の CPU(ABI)に合うものを選ぶ。
-     * 分かれていない(1 つだけの)リリースなら Aozora-バージョン.apk を使う。
+     * API が使えないときは AirSky-Browser-バージョン-ABI.apk を直接取りに行く。
      */
     @NonNull
     private String resolveApkUrl() {
-        String fallback = DOWNLOAD_BASE + "Aozora-" + version + ".apk";
+        String fallback = DOWNLOAD_BASE + "AirSky-Browser-" + version + "-" + Build.SUPPORTED_ABIS[0] + ".apk";
         HttpURLConnection conn = null;
         try {
             conn = (HttpURLConnection) new URL(RELEASE_API).openConnection();

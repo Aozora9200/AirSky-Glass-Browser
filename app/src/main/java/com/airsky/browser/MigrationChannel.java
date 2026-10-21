@@ -1,6 +1,11 @@
 package com.airsky.browser;
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.net.Uri;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +28,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
@@ -40,6 +46,10 @@ import javax.crypto.spec.SecretKeySpec;
  * <p>QR コード(Wi-Fi)では、QR コードに入れた 256 ビットの鍵で枠ごとに AES-GCM で暗号化する
  * (QR コードを読んだ端末しか中身を読めず、書き換えも見つかる)。Bluetooth はペア設定した端末どうしの
  * 暗号化された接続なので、鍵は使わず SHA-256 で壊れていないかだけ確かめる。</p>
+ *
+ * <p>どちらの方法でも、アプリの署名(署名証明書の SHA-256)が同じ相手とだけやり取りする。
+ * QR コードと見出しに送る側の署名を入れ、受け取る側は見出しを読んだらすぐ自分の署名を返す。
+ * 送る側はそれを確かめてからデータを送るので、作り替えられた AirSky などにはデータを渡さない。</p>
  */
 final class MigrationChannel {
 
@@ -53,6 +63,8 @@ final class MigrationChannel {
     private static final byte T_DATA = 2;
     private static final byte T_END = 3;
     private static final byte T_ACK = 4;
+    /** 受け取る側の署名(見出しのすぐ後に返す)。 */
+    private static final byte T_HELLO = 5;
     private static final int CHUNK = 64 * 1024;
     private static final int MAX_FRAME = CHUNK + 1024;
     private static final String MAGIC = "AIRSKY-MIG/1";
@@ -78,6 +90,8 @@ final class MigrationChannel {
         int port;
         byte[] key;
         String device = "";
+        /** 送る側のアプリの署名({@link #appSignature})。 */
+        String signature = "";
 
         @NonNull
         String toQr() {
@@ -90,6 +104,7 @@ final class MigrationChannel {
             sb.append("&k=").append(android.util.Base64.encodeToString(key,
                     android.util.Base64.URL_SAFE | android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP));
             sb.append("&n=").append(Uri.encode(device));
+            sb.append("&s=").append(signature);
             return sb.toString();
         }
 
@@ -107,6 +122,8 @@ final class MigrationChannel {
                         android.util.Base64.URL_SAFE | android.util.Base64.NO_PADDING);
                 String n = u.getQueryParameter("n");
                 t.device = n != null ? n : "";
+                String sig = u.getQueryParameter("s");
+                t.signature = sig != null ? sig : "";
                 if (t.hosts.isEmpty() || t.port <= 0 || t.port > 65535 || t.key.length != 32) return null;
                 return t;
             } catch (Exception e) {
@@ -117,6 +134,54 @@ final class MigrationChannel {
 
     static boolean isMigrationQr(@Nullable String text) {
         return text != null && text.startsWith(QR_SCHEME + ":");
+    }
+
+    /**
+     * このアプリの署名証明書の SHA-256(URL セーフな Base64)。同じ開発者が署名したアプリなら同じになる。
+     * 読めなければ空文字(どの相手とも一致しない)。
+     */
+    @NonNull
+    static String appSignature(@NonNull Context context) {
+        String cached = signatureCache;
+        if (cached != null) return cached;
+        String result = "";
+        try {
+            PackageManager pm = context.getPackageManager();
+            Signature[] signers;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                PackageInfo pi = pm.getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNING_CERTIFICATES);
+                signers = pi.signingInfo != null ? pi.signingInfo.getApkContentsSigners() : null;
+            } else {
+                //noinspection deprecation
+                PackageInfo pi = pm.getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
+                //noinspection deprecation
+                signers = pi.signatures;
+            }
+            if (signers != null && signers.length > 0) {
+                // 複数の署名者がいても並び順に左右されないよう、証明書ごとのハッシュを並べ替えてからまとめる
+                String[] each = new String[signers.length];
+                for (int i = 0; i < signers.length; i++) each[i] = b64(sha256().digest(signers[i].toByteArray()));
+                Arrays.sort(each);
+                result = b64(sha256().digest(String.join(",", each).getBytes(StandardCharsets.US_ASCII)));
+            }
+        } catch (Exception ignored) {
+        }
+        if (!result.isEmpty()) signatureCache = result;
+        return result;
+    }
+
+    @Nullable private static volatile String signatureCache;
+
+    /** 相手の署名が自分と同じか。どちらかが空なら同じとはみなさない。 */
+    static boolean sameSignature(@NonNull String mine, @Nullable String theirs) {
+        if (mine.isEmpty() || theirs == null || theirs.isEmpty()) return false;
+        return MessageDigest.isEqual(mine.getBytes(StandardCharsets.US_ASCII), theirs.getBytes(StandardCharsets.US_ASCII));
+    }
+
+    @NonNull
+    private static String b64(@NonNull byte[] b) {
+        return android.util.Base64.encodeToString(b,
+                android.util.Base64.URL_SAFE | android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP);
     }
 
     @NonNull
@@ -158,10 +223,11 @@ final class MigrationChannel {
     /**
      * 引っ越しファイルを送る。相手が「受け取った」を返すまで待つ。
      *
-     * @param key Wi-Fi(QR コード)の時は暗号化の鍵、Bluetooth の時は null
+     * @param key       Wi-Fi(QR コード)の時は暗号化の鍵、Bluetooth の時は null
+     * @param signature このアプリの署名({@link #appSignature})。相手の署名が違えば送らない
      */
     static void send(@NonNull InputStream rawIn, @NonNull OutputStream rawOut, @Nullable byte[] key,
-                     @NonNull File file, @NonNull DeviceMigration.Summary summary,
+                     @NonNull String signature, @NonNull File file, @NonNull DeviceMigration.Summary summary,
                      @Nullable Progress progress) throws IOException {
         DataOutputStream out = new DataOutputStream(new java.io.BufferedOutputStream(rawOut, CHUNK + 64));
         DataInputStream in = new DataInputStream(rawIn);
@@ -172,9 +238,17 @@ final class MigrationChannel {
         JSONObject header = summary.toJson();
         try {
             header.put("bytes", file.length());
+            header.put("signature", signature);
         } catch (Exception ignored) {
         }
         writeFrame(out, seal, T_HEADER, header.toString().getBytes(StandardCharsets.UTF_8), 0, -1);
+        out.flush();
+
+        // 受け取る側の署名を確かめてから中身を送る
+        Frame hello = readFrame(in, open);
+        if (hello.type == T_ACK) throw new RemoteRejected(new String(hello.data, StandardCharsets.UTF_8));
+        if (hello.type != T_HELLO) throw new IOException("unexpected frame " + hello.type);
+        if (!sameSignature(signature, new String(hello.data, StandardCharsets.UTF_8))) throw new SignatureMismatch();
 
         MessageDigest sha = sha256();
         long total = file.length();
@@ -199,7 +273,11 @@ final class MigrationChannel {
         if (!"ok".equals(reply)) throw new RemoteRejected(reply);
     }
 
-    /** 相手が受け取りを断った(内容の確認でキャンセルした・空き容量が無いなど)。 */
+    /** 相手のアプリの署名がこのアプリと違う(作り替えられたアプリ・別の開発者のビルドなど)。 */
+    static final class SignatureMismatch extends IOException {
+    }
+
+    /** 相手が受け取りを断った(内容の確認でキャンセルした・空き容量が無い・署名が違うなど)。 */
     static final class RemoteRejected extends IOException {
         RemoteRejected(String reason) {
             super(reason);
@@ -217,7 +295,7 @@ final class MigrationChannel {
      */
     @NonNull
     static DeviceMigration.Summary receive(@NonNull InputStream rawIn, @NonNull OutputStream rawOut,
-                                           @Nullable byte[] key, @NonNull File outFile,
+                                           @Nullable byte[] key, @NonNull String signature, @NonNull File outFile,
                                            @Nullable HeaderCheck check, @Nullable Progress progress)
             throws IOException {
         DataInputStream in = new DataInputStream(new java.io.BufferedInputStream(rawIn, CHUNK + 64));
@@ -232,11 +310,20 @@ final class MigrationChannel {
         Frame h = readFrame(in, open);
         if (h.type != T_HEADER) throw new IOException("no header");
         DeviceMigration.Summary summary;
+        String theirs;
         try {
-            summary = DeviceMigration.Summary.fromJson(new JSONObject(new String(h.data, StandardCharsets.UTF_8)));
+            JSONObject header = new JSONObject(new String(h.data, StandardCharsets.UTF_8));
+            summary = DeviceMigration.Summary.fromJson(header);
+            theirs = header.optString("signature");
         } catch (Exception e) {
             throw new IOException("bad header", e);
         }
+        if (!sameSignature(signature, theirs)) {
+            sendAck(out, seal, "signature");
+            throw new SignatureMismatch();
+        }
+        writeFrame(out, seal, T_HELLO, signature.getBytes(StandardCharsets.US_ASCII), 0, -1);
+        out.flush();
         if (summary.bytes <= 0 || summary.bytes > DeviceMigration.MAX_SIZE) throw new IOException("bad size");
         if (check != null && !check.onHeader(summary)) {
             sendAck(out, seal, "cancel");

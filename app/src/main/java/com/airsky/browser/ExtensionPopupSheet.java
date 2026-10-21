@@ -61,6 +61,13 @@ final class ExtensionPopupSheet {
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         view.setSession(session);
 
+        // ポップアップの中の <input type="file">・alert などは、ブラウザ本体と同じ処理で出す。
+        // これが無いと Gecko はファイル選択の要求を捨ててしまい、ポップアップからファイルを
+        // アップロードできない(何も起きない)
+        if (activity instanceof GeckoPromptDelegate.Host) {
+            GeckoPromptDelegate prompts = ((GeckoPromptDelegate.Host) activity).getPromptDelegate();
+            if (prompts != null) session.setPromptDelegate(prompts);
+        }
         session.setContentDelegate(new GeckoSession.ContentDelegate() {
             @Override
             public void onCloseRequest(@NonNull GeckoSession s) {

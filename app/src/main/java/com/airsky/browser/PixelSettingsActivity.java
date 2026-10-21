@@ -53,6 +53,11 @@ public abstract class PixelSettingsActivity extends AppCompatActivity {
         void onSelected(int index);
     }
 
+    /** 開いた時にスクロールして目立たせる項目({@link Row#key} で付けた名前)。 */
+    public static final String EXTRA_FOCUS = "ps_focus";
+    /** 開いた時にスクロールして目立たせる項目の見出し(設定の検索結果から開く時)。 */
+    public static final String EXTRA_FOCUS_TITLE = "ps_focus_title";
+
     protected LinearLayout body;
     protected NestedScrollView scroll;
     private TextView bigTitle;
@@ -60,6 +65,13 @@ public abstract class PixelSettingsActivity extends AppCompatActivity {
 
     /** 今作っているグループの行(区切り = 見出し・説明・余白で閉じる)。 */
     private final List<View> group = new ArrayList<>();
+    /** 名前を付けた行(EXTRA_FOCUS で探す)。 */
+    private final java.util.Map<String, View> keyed = new java.util.HashMap<>();
+    @Nullable private String pendingFocus;
+    @Nullable private String pendingFocusTitle;
+    /** 作った行と見出し(見出しの文字で探す)。 */
+    private final List<android.util.Pair<String, View>> titled = new ArrayList<>();
+    private final List<android.util.Pair<String, View>> headed = new ArrayList<>();
 
     @NonNull
     protected abstract CharSequence pageTitle();
@@ -78,6 +90,8 @@ public abstract class PixelSettingsActivity extends AppCompatActivity {
         barTitle = findViewById(R.id.ps_bar_title);
         findViewById(R.id.ps_back).setOnClickListener(v -> onBackPressed());
 
+        pendingFocus = getIntent().getStringExtra(EXTRA_FOCUS);
+        pendingFocusTitle = getIntent().getStringExtra(EXTRA_FOCUS_TITLE);
         CharSequence title = pageTitle();
         bigTitle.setText(title);
         barTitle.setText(title);
@@ -95,7 +109,53 @@ public abstract class PixelSettingsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        launching = false;
         rebuild();
+    }
+
+    // ------------------------------------------------------------------
+    // 二度押しの対策
+    // ------------------------------------------------------------------
+
+    /** 項目を続けて押した時に、2 回目を無視する間隔。 */
+    private static final long CLICK_GUARD_MS = 600;
+    private long lastClickAt;
+    /** 別の画面を開いている途中(戻ってくるまで、次の画面は開かない)。 */
+    private boolean launching;
+
+    /**
+     * 行を素早く 2 回押した(ダブルタップ)なら true。2 回目の処理を飛ばす。
+     * これが無いと、同じ設定画面やダイアログが 2 枚重なって開いてしまう。
+     */
+    protected boolean isDoubleClick() {
+        long now = android.os.SystemClock.uptimeMillis();
+        if (now - lastClickAt < CLICK_GUARD_MS) return true;
+        lastClickAt = now;
+        return false;
+    }
+
+    /**
+     * 設定画面から開く画面は 1 枚だけにする。startActivity もここを通るので、
+     * どの行・ボタンから開いても、戻ってくるまでに開こうとした 2 枚目は無視する。
+     */
+    @Override
+    @SuppressWarnings("deprecation")
+    public void startActivityForResult(@NonNull android.content.Intent intent, int requestCode,
+                                       @Nullable Bundle options) {
+        if (launching) return;
+        launching = true;
+        try {
+            super.startActivityForResult(intent, requestCode, options);
+        } catch (RuntimeException e) {
+            launching = false;
+            throw e;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable android.content.Intent data) {
+        launching = false;
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     /** 項目をすべて作り直す(スクロール位置はそのまま)。 */
@@ -103,9 +163,77 @@ public abstract class PixelSettingsActivity extends AppCompatActivity {
         int y = scroll.getScrollY();
         body.removeAllViews();
         group.clear();
+        keyed.clear();
+        titled.clear();
+        headed.clear();
         onBuild();
         closeGroup();
-        scroll.post(() -> scroll.scrollTo(0, y));
+        View focus = pendingFocus != null ? keyed.get(pendingFocus) : null;
+        if (focus == null && pendingFocusTitle != null) focus = findByTitle(pendingFocusTitle);
+        pendingFocus = null;
+        pendingFocusTitle = null;
+        if (focus != null) {
+            View target = focus;
+            scroll.post(() -> focusRow(target));
+        } else {
+            scroll.post(() -> scroll.scrollTo(0, y));
+        }
+    }
+
+    /**
+     * 見出しの文字で行を探す。検索の索引の名前は画面の見出しと少し違うこと
+     * (「セキュア DNS」と「セキュア DNS を使用する」、末尾の「(HTTPS)」など)があるので、ゆるく比べる。
+     */
+    @Nullable
+    private View findByTitle(String query) {
+        String q = normalizeTitle(query);
+        if (q.isEmpty()) return null;
+        // 行を先に、見出し(header)はあとに探す
+        List<android.util.Pair<String, View>> all = new ArrayList<>(titled);
+        all.addAll(headed);
+        for (android.util.Pair<String, View> t : all) if (normalizeTitle(t.first).equals(q)) return t.second;
+        for (android.util.Pair<String, View> t : all) if (normalizeTitle(t.first).contains(q)) return t.second;
+        for (android.util.Pair<String, View> t : all) {
+            String n = normalizeTitle(t.first);
+            if (n.length() >= 2 && q.contains(n)) return t.second;
+        }
+        return null;
+    }
+
+    /** 括弧の中・空白・かぎ括弧を除いて小文字にする。 */
+    private static String normalizeTitle(@Nullable String s) {
+        if (s == null) return "";
+        return s.replaceAll("[(（][^)）]*[)）]", "").replaceAll("[\\s「」]", "")
+                .toLowerCase(java.util.Locale.ROOT);
+    }
+
+    /** 行が画面のまん中あたりに来るようにスクロールし、2 回点滅させて「ここ」と分かるようにする。 */
+    private void focusRow(View row) {
+        int top = 0;
+        for (View v = row; v != null && v != scroll; v = (View) v.getParent()) top += v.getTop();
+        int target = Math.max(0, top - (scroll.getHeight() - row.getHeight()) / 2);
+        scroll.smoothScrollTo(0, target);
+        if (target > bigTitle.getBottom() - bigTitle.getHeight() / 3) {
+            barTitle.setTag(1f);
+            barTitle.animate().alpha(1f).setDuration(150).start();
+        }
+        GradientDrawable glow = new GradientDrawable();
+        glow.setCornerRadius(dp(26));
+        glow.setColor(attrColor(androidx.appcompat.R.attr.colorPrimary));
+        glow.setAlpha(0);
+        row.setForeground(glow);
+        android.animation.ValueAnimator a = android.animation.ValueAnimator.ofInt(0, 70, 0, 70, 0);
+        a.setStartDelay(350);
+        a.setDuration(1400);
+        a.addUpdateListener(an -> glow.setAlpha((int) an.getAnimatedValue()));
+        a.addListener(new android.animation.AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(android.animation.Animator animation) {
+                row.setForeground(null);
+            }
+        });
+        a.start();
+        row.requestFocus();
     }
 
     /**
@@ -119,6 +247,22 @@ public abstract class PixelSettingsActivity extends AppCompatActivity {
         scroll.setLayoutParams(sp);
         root.addView(bar, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
+    }
+
+    /**
+     * 上のバーのすぐ下に、スクロールしない View を固定する(デザインのプレビューなど)。
+     * 大きな見出しは隠し、見出しは上のバーに出したままにする。
+     */
+    protected void setPinnedHeader(View pinned) {
+        LinearLayout root = findViewById(R.id.ps_root);
+        root.addView(pinned, root.indexOfChild(findViewById(R.id.ps_bar)) + 1,
+                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT));
+        bigTitle.setVisibility(View.GONE);
+        scroll.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) null);
+        barTitle.animate().cancel();
+        barTitle.setAlpha(1f);
+        barTitle.setTag(1f);
     }
 
     /** 左上の戻るボタンを出すか(同意が必要な画面などでは隠す)。 */
@@ -151,6 +295,7 @@ public abstract class PixelSettingsActivity extends AppCompatActivity {
         t.setPadding(dp(20), dp(28), dp(20), dp(10));
         body.addView(t, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
+        headed.add(new android.util.Pair<>(text.toString(), t));
         return t;
     }
 
@@ -180,7 +325,9 @@ public abstract class PixelSettingsActivity extends AppCompatActivity {
                       @Nullable Runnable onClick) {
         Row r = newRow(icon, title, summary);
         if (onClick != null) {
-            r.view.setOnClickListener(v -> onClick.run());
+            r.view.setOnClickListener(v -> {
+                if (!isDoubleClick()) onClick.run();
+            });
         } else {
             r.view.setClickable(false);
         }
@@ -226,7 +373,9 @@ public abstract class PixelSettingsActivity extends AppCompatActivity {
             ((LinearLayout.LayoutParams) start.getLayoutParams()).setMarginEnd(dp(12));
         }
         r.toggle = rb;
-        r.view.setOnClickListener(v -> onClick.run());
+        r.view.setOnClickListener(v -> {
+            if (!isDoubleClick()) onClick.run();
+        });
         return r;
     }
 
@@ -250,6 +399,7 @@ public abstract class PixelSettingsActivity extends AppCompatActivity {
         View v = LayoutInflater.from(this).inflate(R.layout.item_ps_row, body, false);
         Row r = new Row(v);
         r.title.setText(title);
+        titled.add(new android.util.Pair<>(title.toString(), v));
         r.setSummary(summary);
         if (icon != 0) {
             r.icon.setImageResource(icon);
@@ -301,17 +451,51 @@ public abstract class PixelSettingsActivity extends AppCompatActivity {
     // 便利な部品
     // ------------------------------------------------------------------
 
-    /** 1 つ選ぶダイアログ。 */
+    /**
+     * 1 つ選ぶダイアログ。選択肢が「見出し\n説明」の時は、見出しを太字に、説明を小さな薄い文字にして段落を分ける。
+     */
     protected void choose(CharSequence title, CharSequence[] labels, int checked, IntListener listener) {
+        CharSequence[] styled = new CharSequence[labels.length];
+        for (int i = 0; i < labels.length; i++) styled[i] = styleChoice(labels[i]);
         new MaterialAlertDialogBuilder(this)
                 .setTitle(title)
-                .setSingleChoiceItems(labels, checked, (d, which) -> {
+                .setSingleChoiceItems(styled, checked, (d, which) -> {
                     d.dismiss();
                     listener.onSelected(which);
                     rebuild();
                 })
                 .setNegativeButton(Lang.t("キャンセル"), null)
                 .show();
+    }
+
+    /** 選択肢の見出し(1 行目)を太字に、説明(2 行目から)を小さく薄くする。 */
+    protected CharSequence styleChoice(CharSequence label) {
+        String s = label.toString();
+        int nl = s.indexOf('\n');
+        int end = nl >= 0 ? nl : s.length();
+        android.text.SpannableStringBuilder b = new android.text.SpannableStringBuilder(s);
+        b.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), 0, end,
+                android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        if (nl >= 0) {
+            int start = nl + 1;
+            b.setSpan(new android.text.style.RelativeSizeSpan(0.86f), start, s.length(),
+                    android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            b.setSpan(new android.text.style.ForegroundColorSpan(
+                            attrColor(com.google.android.material.R.attr.colorOnSurfaceVariant)), start, s.length(),
+                    android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            // 見出しと説明の間を少しあける
+            b.setSpan(new android.text.style.LineHeightSpan() {
+                @Override
+                public void chooseHeight(CharSequence text, int st, int en, int spanstartv, int lineHeight,
+                                         android.graphics.Paint.FontMetricsInt fm) {
+                    if (st == start) {
+                        fm.ascent -= dp(4);
+                        fm.top -= dp(4);
+                    }
+                }
+            }, start, s.length(), android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        return b;
     }
 
     /** 確認してから実行する。 */
@@ -354,6 +538,12 @@ public abstract class PixelSettingsActivity extends AppCompatActivity {
             this.title = view.findViewById(R.id.ps_row_title);
             this.summary = view.findViewById(R.id.ps_row_summary);
             this.icon = view.findViewById(R.id.ps_icon);
+        }
+
+        /** 名前を付ける。EXTRA_FOCUS にこの名前を入れて開くと、この行までスクロールして目立たせる。 */
+        public Row key(String name) {
+            keyed.put(name, view);
+            return this;
         }
 
         public Row setSummary(@Nullable CharSequence text) {
@@ -418,6 +608,11 @@ public abstract class PixelSettingsActivity extends AppCompatActivity {
                     ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_VERTICAL));
             end.setVisibility(View.VISIBLE);
         }
+    }
+
+    /** 設定画面を開き、名前を付けた行までスクロールして目立たせる。 */
+    static void openFocused(Context c, Class<?> activity, String key) {
+        c.startActivity(new Intent(c, activity).putExtra(EXTRA_FOCUS, key));
     }
 
     /** Context から Activity を開くための小さな補助。 */

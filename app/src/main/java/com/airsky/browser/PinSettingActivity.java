@@ -181,8 +181,21 @@ public class PinSettingActivity extends AppCompatActivity {
                 String number =
                         ((Button) v).getText().toString();
 
-                // 最大8桁
+                // 最大8桁。それ以上押された時は、入らない理由を案内文に出す(少ししたら元に戻す)
                 if (pinInput.length() >= 8) {
+                    String limit = Lang.t("PIN は最大 8 桁までです。これ以上は入力できません");
+                    CharSequence before = setpassword_msg.getText();
+                    if (limit.contentEquals(before)) return;
+                    setpassword_msg.startAnimation(animout);
+                    setpassword_msg.setVisibility(View.INVISIBLE);
+                    setpassword_msg.setText(limit);
+                    setpassword_msg.startAnimation(animin);
+                    setpassword_msg.setVisibility(View.VISIBLE);
+                    handler.postDelayed(() -> {
+                        if (!limit.contentEquals(setpassword_msg.getText())) return;
+                        setpassword_msg.setText(before);
+                        setpassword_msg.startAnimation(animin);
+                    }, 2500);
                     return;
                 }
 

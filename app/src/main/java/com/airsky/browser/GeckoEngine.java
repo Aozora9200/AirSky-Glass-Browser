@@ -154,9 +154,12 @@ public final class GeckoEngine {
                     @Override
                     public void onDisconnect(@NonNull WebExtension.Port p) {
                         if (backgroundPort == p) backgroundPort = null;
+                        CoaraPlugins.get(appContext).detachBackground(p);
                     }
                 });
                 pushSettingsToBackground();
+                // Coara Browser 拡張機能をページで動くように登録してもらう
+                CoaraPlugins.get(appContext).attachBackground(port);
             }
         }, "aozora_bg");
 

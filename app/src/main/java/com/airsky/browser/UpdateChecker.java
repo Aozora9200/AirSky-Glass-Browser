@@ -38,7 +38,7 @@ import java.util.concurrent.TimeUnit;
  */
 final class UpdateChecker {
 
-    static final String RELEASE_API = "https://api.github.com/repos/Aozora9200/Aozora-Browser/releases/latest";
+    static final String RELEASE_API = "https://api.github.com/repos/Aozora9200/AirSky-Glass-Browser/releases/latest";
 
     private static final String PREFS = "AppPrefs";
     static final String KEY_ENABLED = "updateDialog";
